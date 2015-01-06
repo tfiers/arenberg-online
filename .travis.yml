@@ -3,5 +3,7 @@ python:
   - "2.7"
 # command to install dependencies
 install: "pip install -r requirements.txt"
+# add necessary environment variable
+env: ARENBERG_ONLINE_DJANGO_SECRET_KEY=dummy
 # command to run tests
 script: "python manage.py test"
