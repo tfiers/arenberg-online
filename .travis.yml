@@ -9,7 +9,7 @@ install:
 env: ARENBERG_ONLINE_DJANGO_SECRET_KEY=dummy
 # command to run tests
 script:
-  coverage run --source=arenberg-online,core,ticketing --omit=tests.py manage.py test
+  coverage run --source=arenberg-online,core,ticketing --omit=*/tests.py manage.py test
 # compute fraction of code that is automatically tested
 after_success:
   coveralls
