@@ -35,6 +35,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'core' # Users, user profiles, instruments and groups.
 )
 
 MIDDLEWARE_CLASSES = (
@@ -80,3 +81,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# A User adapted from the Django source code to use the email address
+# as identifier instead of a custom username.
+AUTH_USER_MODEL = 'core.User'
