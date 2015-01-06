@@ -1,8 +1,15 @@
 from django.contrib import admin
+from core.models import User
+import django.contrib.auth.admin
 
-# Register your models here.
+class UserAdmin(django.contrib.auth.admin.UserAdmin):
+	"""
+	See superclass source code:
+	https://github.com/django/django/blob/master/django/contrib/auth/admin.py#L40
+	"""
+	# TODO: Check 'fieldsets' and 'add_fieldsets' in source code: they still contain 'username'
+	list_display = ('email', 'first_name', 'last_name', 'is_staff', 'date_joined', 'last_login')
+	search_fields = ('email', 'first_name', 'last_name')
+	ordering = ('-date_joined',)
 
-# TODO: register custom core.User model
-# See:
-# https://docs.djangoproject.com/en/1.7/topics/auth/customizing/#a-full-example
-# http://stackoverflow.com/questions/15012235/using-django-auth-useradmin-for-a-custom-user-model
+admin.site.register(User, UserAdmin)
