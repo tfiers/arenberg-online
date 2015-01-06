@@ -91,4 +91,4 @@ class User(AbstractBaseUser, PermissionsMixin):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
     def __unicode__(self):
-        return get_full_name()
+        return self.get_full_name()
