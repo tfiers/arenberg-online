@@ -3,9 +3,7 @@ from django.test import TestCase
 from core.models import User
 
 def create_benji():
-	benji = User(email="benji@minogue.biz", password="1234")
-	benji.save()
-	return benji
+	return User.objects.create(email="benji@minogue.biz", password="1234")
 
 class UserTest(TestCase):
 	def test_create(self):
@@ -32,3 +30,11 @@ class UserTest(TestCase):
 		self.assertEqual(User.objects.all()[0], benji)
 		benji.delete()
 		self.assertEqual(len(User.objects.all()), 0)
+
+	def test_string_representation(self):
+		benji = create_benji()
+		assertEqual(str(benji), "[benji@minogue.biz]")
+		benji.first_name = "Benji"
+		benji.last_name = "Minogue"
+		benji.save()
+		self.assertEqual(str(benji), "Benji Minogue")
