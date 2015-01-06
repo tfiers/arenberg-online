@@ -1,5 +1,7 @@
 from django.core.mail import send_mail
-from django.db import models
+from django.db.models import (
+    EmailField, CharField, BooleanField, DateTimeField
+)
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 
@@ -9,7 +11,9 @@ from django.contrib.auth.models import (
 
 class UserManager(BaseUserManager):
     """
-    Adapted from the Django source code to use the email address as 
+    Manager for the User model defined below.
+
+    Adapted from the Django source code 'UserManager' to use the email address as 
     the identifier instead of a custom username.
 
     Source: https://github.com/django/django/blob/master/django/contrib/auth/models.py#L166
@@ -46,24 +50,24 @@ class User(AbstractBaseUser, PermissionsMixin):
     A fully featured user model with admin-compliant permissions.
     Email and password are required. Other fields are optional.
 
-    Adapted from the Django source code to use the email address as 
+    Adapted from the Django source code 'User' to use the email address as 
     the identifier instead of a custom username.
 
     Source: https://github.com/django/django/blob/master/django/contrib/auth/models.py#L379
     """
-    email = models.EmailField(_('email address'), max_length=255, unique=True,
+    email = EmailField(_('email address'), max_length=255, unique=True,
         error_messages={
             'unique': _("A user with that email adress already exists."),
         })
-    first_name = models.CharField(_('first name'), max_length=50, blank=True)
-    last_name = models.CharField(_('last name'), max_length=50, blank=True)
-    is_staff = models.BooleanField(_('staff status'), default=False,
+    first_name = CharField(_('first name'), max_length=50, blank=True)
+    last_name = CharField(_('last name'), max_length=50, blank=True)
+    is_staff = BooleanField(_('staff status'), default=False,
         help_text=_('Designates whether the user can log into this admin '
                     'site.'))
-    is_active = models.BooleanField(_('active'), default=True,
+    is_active = BooleanField(_('active'), default=True,
         help_text=_('Designates whether this user should be treated as '
                     'active. Unselect this instead of deleting accounts.'))
-    date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
+    date_joined = DateTimeField(_('date joined'), default=timezone.now)
 
     objects = UserManager()
 
