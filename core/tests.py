@@ -2,32 +2,33 @@ from django.test import TestCase
 
 from core.models import User
 
-class UserTestCreate(TestCase):
+def create_benji():
+	benji = User(email="benji@minogue.biz", password="1234")
+	benji.save()
+	return benji
+
+class UserTest(TestCase):
 	def test_create(self):
 		self.assertEqual(len(User.objects.all()), 0)
-		benji = User(email="benji@minogue.biz", password="1234")
-		benji.save()
+		benji = create_benji()
 		self.assertEqual(len(User.objects.all()), 1)
 		self.assertEqual(User.objects.all()[0], benji)
 
-
-class UserTest(TestCase):
-	def setUp(self):
-		self.benji = User(email="benji@minogue.biz", password="1234")
-		self.benji.save()
-
 	def test_get(self):
-		self.assertEqual(User.objects.get(email="benji@minogue.biz"), self.benji)
+		benji = create_benji()
+		self.assertEqual(User.objects.get(email="benji@minogue.biz"), benji)
 
 	def test_name(self):
-		self.assertEqual(self.benji.get_full_name(), "")
-		self.benji.first_name = "Benji"
-		self.benji.last_name = "Minogue"
-		self.benji.save()
-		self.assertEqual(self.benji.get_full_name(), "Benji Minogue")
+		benji = create_benji()
+		self.assertEqual(benji.get_full_name(), "")
+		benji.first_name = "Benji"
+		benji.last_name = "Minogue"
+		benji.save()
+		self.assertEqual(benji.get_full_name(), "Benji Minogue")
 
 	def test_delete(self):
+		benji = create_benji()
 		self.assertEqual(len(User.objects.all()), 1)
-		self.assertEqual(User.objects.all()[0], self.benji)
-		self.benji.delete()
+		self.assertEqual(User.objects.all()[0], benji)
+		benji.delete()
 		self.assertEqual(len(User.objects.all()), 0)
