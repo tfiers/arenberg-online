@@ -33,7 +33,7 @@ class UserTest(TestCase):
 
 	def test_string_representation(self):
 		benji = create_benji()
-		assertEqual(str(benji), "[benji@minogue.biz]")
+		self.assertEqual(str(benji), "[benji@minogue.biz]")
 		benji.first_name = "Benji"
 		benji.last_name = "Minogue"
 		benji.save()
