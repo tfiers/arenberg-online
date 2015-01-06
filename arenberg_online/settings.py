@@ -68,12 +68,13 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Brussels'
 
 USE_I18N = True
 
 USE_L10N = True
 
+# Store dates in UTC, display them in TIME_ZONE by default.
 USE_TZ = True
 
 
