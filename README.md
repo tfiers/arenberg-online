@@ -1,4 +1,4 @@
-Arenberg Online
+Arenberg Online [![Green if all tests ran succesfully.](https://api.travis-ci.org/tfiers/arenberg-online.svg)](https://travis-ci.org/tfiers/arenberg-online)
 ===============
 
 The web app of the **Arenbergorkest**, a symphonic student orchestra based in Leuven, Belgium.
