@@ -35,7 +35,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core' # Users, user profiles, instruments and groups.
+    'core', # Users, user profiles, instruments and groups.
+    'ticketing', # Ordering tickets online, reporting tickets sold offline, tracking ticket sales 
 )
 
 MIDDLEWARE_CLASSES = (
