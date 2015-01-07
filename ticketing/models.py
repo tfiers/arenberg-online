@@ -53,7 +53,9 @@ class Order(Model):
 
 	TRANSFER, CASH = 'transfer', 'cash'
 	payment_method_choices = (
-		(TRANSFER, _('Bank transfer')), (CASH, _('Cash on the spot'))
+		# (TRANSFER, _('Bank transfer')), (CASH, _('Cash on the spot'))
+		# TODO: translate
+		(TRANSFER, _('Via overschrijving')), (CASH, _('Aan de kassa'))
 	)
 	payment_method = CharField(max_length=8, choices=payment_method_choices, default=TRANSFER)
 
