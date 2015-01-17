@@ -1,3 +1,6 @@
+# Production settings
+arenberg-secure/
+
 # Django SQLite database
 db.sqlite3
 

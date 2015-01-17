@@ -12,18 +12,24 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+# You should clone 'https://github.com/tfiers/arenberg-secure' into a 
+# 'arenberg-secure' subdirectory of the project folder.
+# (Next to for example the 'arenberg_online' and 'core' directories).
+CONFIG_DIR = os.path.join(BASE_DIR, 'arenberg-secure')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
-SECRET_KEY = os.environ['ARENBERG_ONLINE_DJANGO_SECRET_KEY']
+# When deploying, check this list:
+# https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
+
+with open(os.path.join(CONFIG_DIR, 'django_secret_key.txt')) as f:
+    SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [] # Only relevant when DEBUG = False (-> when you are in production).
 
 
 # Application definition
@@ -36,7 +42,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core', # Users, user profiles, instruments and groups.
-    'ticketing', # Ordering tickets online, reporting tickets sold offline, tracking ticket sales 
+    'ticketing', # Ordering tickets online, reporting tickets sold offline, 
+                 # tracking ticket sales 
 )
 
 MIDDLEWARE_CLASSES = (
@@ -84,6 +91,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# A User adapted from the Django source code to use the email address
-# as identifier instead of a custom username.
+# Only relevant when DEBUG = False (-> when you are in production).
+STATIC_ROOT = '/home/django/arenberg_online/static/'
+
+
+# Change Django's default user model (defined in the django.contrib.auth app)
+# to use the email address of a user as its identifier instead of a custom username.
+# Except for this modification, this user model is a clone of the 
+# django.contrib.auth user model.
 AUTH_USER_MODEL = 'core.User'
