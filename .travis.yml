@@ -3,15 +3,18 @@
 language: python
 python:
   - "2.7"
-# command to install dependencies
+# Install dependencies.
 install: 
  - pip install -r requirements.txt
  - pip install coveralls
-# add necessary environment variable
-env: ARENBERG_ONLINE_DJANGO_SECRET_KEY=dummy
-# command to run tests
+# Prepare the build for testing.
+# (Simulate the effects of cloning the arenberg-secure repo.)
+before_script:
+ - mkdir arenberg-secure
+ - echo "dummykey" > arenberg-secure/django_secret_key.txt
+# Run tests.
 script:
   coverage run --source=arenberg-online,core,ticketing --omit=*/tests.py manage.py test
-# compute fraction of code that is automatically tested
+# Compute fraction of code that is automatically tested.
 after_success:
   coveralls
