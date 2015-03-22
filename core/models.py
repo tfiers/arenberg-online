@@ -72,6 +72,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
+    # From the docs:
+    # "REQUIRED_FIELDS: A list of the field names that will be prompted for 
+    # when creating a user via the createsuperuser management command. [..]
+    # REQUIRED_FIELDS has no effect in other parts of Django, like creating 
+    # a user in the admin. [..] REQUIRED_FIELDS must contain all required fields 
+    # on your User model, but should not contain the USERNAME_FIELD or password 
+    # as these fields will always be prompted for.
     REQUIRED_FIELDS = []
 
     def get_full_name(self):
