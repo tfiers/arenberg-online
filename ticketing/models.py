@@ -40,6 +40,9 @@ class PriceCategory(Model):
 	def __unicode__(self):
 		return u'"{}": € {}'.format(self.name, self.price)
 
+	class Meta:
+		verbose_name_plural = "price categories"
+
 
 class Order(Model):
 	"""
@@ -76,4 +79,4 @@ class Ticket(Model):
 	order = ForeignKey(Order)
 
 	def __unicode__(self):
-		return u'Ticket of € {} for {}, part of [{}]'.format(self.number, self.price_category.price, self.performance, self.order)
+		return u'Ticket of € {} for {}, part of [{}]'.format(self.price_category.price, self.performance, self.order)
