@@ -60,7 +60,7 @@ class Order(Model):
 	payment_method = CharField(max_length=8, choices=payment_method_choices, default=TRANSFER)
 
 	def total_price(self):
-		return sum([ticket.number*ticket.price_category.price for ticket in self.ticket_set.all()])
+		return sum([ticket.price_category.price for ticket in self.ticket_set.all()])
 
 	def __unicode__(self):
 		return u"Online order by {} {} on {}.".format(self.first_name, self.last_name, self.date)
@@ -68,14 +68,12 @@ class Order(Model):
 
 class Ticket(Model):
 	"""
-	One or more tickets for a certain performance, in a certain price category
-	and part of a certain ticketing order.
+	A ticket for a certain performance, in a certain price category
+	and part of a certain order.
 	"""
 	performance = ForeignKey(Performance)
 	price_category = ForeignKey(PriceCategory)
 	order = ForeignKey(Order)
-	number = PositiveSmallIntegerField()
 
 	def __unicode__(self):
-		# TODO: pluralize tickets
-		return u'{} ticket(s) of € {} for {}, part of {}'.format(self.number, self.price_category.price, self.performance, self.order)
+		return u'Ticket of € {} for {}, part of [{}]'.format(self.number, self.price_category.price, self.performance, self.order)

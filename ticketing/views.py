@@ -21,10 +21,10 @@ def order_snowman_tickets(request):
     if request.method == 'POST':
         # Create a form instance and populate it with data from the request:
         form = SnowmanTicketingForm(request.POST)
-        # If the data entered is valid, save a new order for feb 2015 performance of
-        # "The Snowman" to the database.
+        # If the data entered is valid, save a new order and associated tickets 
+        # for the feb 2015 performance of "The Snowman" to the database.
         if form.is_valid():
-            o = Order.objects.create(
+            order = Order.objects.create(
                 first_name = form.cleaned_data['first_name'],
                 last_name = form.cleaned_data['last_name'],
                 email = form.cleaned_data['email'],
@@ -33,21 +33,17 @@ def order_snowman_tickets(request):
                 payment_method = form.cleaned_data['payment_method']
             )
             performance = Performance.objects.filter(production__name__contains='The Snowman')[0]
-            child_tickets = form.cleaned_data['child_tickets']
-            if child_tickets > 0:
+            for i in range(form.cleaned_data['child_tickets']):
                 Ticket.objects.create(
                     performance = performance,
                     price_category = PriceCategory.objects.filter(price=5)[0],
-                    order = o,
-                    number = child_tickets
+                    order = order
                 )
-            adult_tickets = form.cleaned_data['adult_tickets']
-            if adult_tickets > 0:
+            for i in range(form.cleaned_data['adult_tickets']):
                 Ticket.objects.create(
                     performance = performance,
                     price_category = PriceCategory.objects.filter(price=10)[0],
-                    order = o,
-                    number = adult_tickets
+                    order = order
                 )
             return HttpResponseRedirect('/thanks')
 
