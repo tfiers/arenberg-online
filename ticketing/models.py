@@ -54,7 +54,8 @@ class Order(Model):
 	last_name = CharField(max_length=75, blank=True)
 	email = EmailField()
 	date = DateTimeField(_("date of order"))
-	remarks = TextField(_("remarks, for questions, special requests, "
+	remarks = TextField(_(
+		"remarks. For questions, special requests, "
 		"answers to 'how did you hear about this?', ..."), blank=True)
 
 	TRANSFER, CASH = 'transfer', 'cash'
