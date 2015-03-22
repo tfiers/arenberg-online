@@ -2,7 +2,8 @@
 
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import (
-	Model, ForeignKey, CharField, DateField, TimeField, FloatField, EmailField, DateTimeField, TextField, PositiveSmallIntegerField
+	Model, ForeignKey, CharField, DateField, TimeField, FloatField, 
+	EmailField, DateTimeField, TextField, PositiveSmallIntegerField
 )
 
 class Production(Model):
@@ -26,7 +27,8 @@ class Performance(Model):
 	location = CharField(max_length=200, blank=True)
 
 	def __unicode__(self):
-		return u'"{}" on {} @ {}'.format(self.production.name, self.date, self.location)
+		return u'"{}" on {} @ {}'.format(
+			self.production.name, self.date, self.location)
 
 
 class PriceCategory(Model):
@@ -52,7 +54,8 @@ class Order(Model):
 	last_name = CharField(max_length=75, blank=True)
 	email = EmailField()
 	date = DateTimeField(_("date of order"))
-	remarks = TextField(_("remarks, for questions, special requests, answers to 'how did you hear about this?', ..."), blank=True)
+	remarks = TextField(_("remarks, for questions, special requests, "
+		"answers to 'how did you hear about this?', ..."), blank=True)
 
 	TRANSFER, CASH = 'transfer', 'cash'
 	payment_method_choices = (
@@ -60,13 +63,15 @@ class Order(Model):
 		# TODO: translate
 		(TRANSFER, _('Via overschrijving')), (CASH, _('Aan de kassa'))
 	)
-	payment_method = CharField(max_length=8, choices=payment_method_choices, default=TRANSFER)
+	payment_method = CharField(
+		max_length=8, choices=payment_method_choices, default=TRANSFER)
 
 	def total_price(self):
 		return sum([ticket.price_category.price for ticket in self.ticket_set.all()])
 
 	def __unicode__(self):
-		return u"Online order by {} {} on {}.".format(self.first_name, self.last_name, self.date)
+		return u"Online order by {} {} on {}.".format(
+			self.first_name, self.last_name, self.date)
 
 
 class Ticket(Model):
@@ -79,4 +84,5 @@ class Ticket(Model):
 	order = ForeignKey(Order)
 
 	def __unicode__(self):
-		return u'Ticket of € {} for {}, part of [{}]'.format(self.price_category.price, self.performance, self.order)
+		return u'Ticket of € {} for {}, part of [{}]'.format(
+			self.price_category.price, self.performance, self.order)
