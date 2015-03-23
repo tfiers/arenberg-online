@@ -100,3 +100,11 @@ STATIC_ROOT = '/home/django/arenberg_online/static/'
 # Except for this modification, this user model is a clone of the 
 # django.contrib.auth user model.
 AUTH_USER_MODEL = 'core.User'
+
+TEMPLATE_DIRS = (
+    # Location for general templates not specific to an app:
+    os.path.join(BASE_DIR, 'templates/'),
+)
+
+# http://django-crispy-forms.readthedocs.org/en/latest/install.html#template-packs
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
