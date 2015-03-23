@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}Stel een muziekstuk voor{% endblock title %}
+{% block custom_css %}
+<link rel="stylesheet" href="{% static 'music_suggestions/style.css' %}">
+{% endblock custom_css %}
+{% block content %}
+	<h1>Stel een muziekstuk voor</h1>
+	{% crispy form %}
+{% endblock content %}

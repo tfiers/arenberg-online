@@ -41,9 +41,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms', # https://github.com/maraujop/django-crispy-forms
     'core', # Users, user profiles, instruments and groups.
     'ticketing', # Ordering tickets online, reporting tickets sold offline, 
                  # tracking ticket sales 
+    'music_suggestions', # Suggest pieces to be played and vote for them.
 )
 
 MIDDLEWARE_CLASSES = (

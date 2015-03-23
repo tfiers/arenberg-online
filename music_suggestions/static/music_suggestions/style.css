@@ -1,0 +1,21 @@
+#btn-suggest {
+	margin-top: 30px;
+}
+
+@media (min-width: 992px) {
+	#btn-suggest {
+		float: right;
+	}
+}
+
+form {
+	margin-top: 40px;
+}
+
+table {
+	margin-top: 40px;
+}
+
+.sheet-music {
+	color: gray;
+}

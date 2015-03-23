@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Voorgestelde muziek{% endblock title %}
+{% block custom_css %}
+<link rel="stylesheet" href="{% static 'music_suggestions/style.css' %}">
+{% endblock custom_css %}
+{% block content %}
+	<div class="row">
+		<div class="col-sm-8">
+			<h1>Voorgestelde muziek</h1>
+		</div>
+		<div class="col-sm-4">
+			<a class="btn btn-success" href="{% url 'music_suggestions:suggest' %}" id="btn-suggest">Stel een muziekstuk voor</a>
+		</div>
+	</div>
+
+	<div class="row">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Titel</th>
+					<th>Link naar opname</th>
+					<th>Partituren</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for piece in suggested_pieces %}
+				<tr>
+					<td class="col-md-5"><strong>{{ piece.title }}</strong></td>
+					<td class="col-md-3"><a href="{{ piece.link_to_recording }}">Luister</a></td>
+					{# <td><a href="{{ piece.link_to_recording }}">{{ piece.title }}</a></td> #}
+					<td class="col-md-4 sheet-music">{{ piece.sheet_music }}</td>
+					{# <td>{{ piece.suggested_by }}</td> #}
+					{# <td><a href="#">♥</a></td> #}
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock content %}
