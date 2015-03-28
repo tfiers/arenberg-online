@@ -11,11 +11,12 @@ class PieceOfMusic(Model):
 	suggested_by_string = CharField(max_length=200, blank=True)
 
 	class Meta:
+		ordering = ['-id']
 		verbose_name_plural = "pieces of music"
 
 	def __unicode__(self):
 		return u"'{}' (suggested by {})".format(
-			self.title, self.suggested_by)
+			self.title, self.suggested_by_string)
 
 class Vote(Model):
 	receiving_piece = ForeignKey(PieceOfMusic)
