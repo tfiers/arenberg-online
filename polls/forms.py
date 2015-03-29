@@ -21,7 +21,7 @@ class NewSemesterPoll(forms.Form):
 	)
 
 	engage_input = forms.BooleanField(
-		label = "Ik wil me engageren voor het orkest",
+		label = "Ik wil verantwoordelijkheid opnemen voor een taak in de organisatie",
 		required = False,
 	)
 
