@@ -25,11 +25,11 @@ with open(os.path.join(CONFIG_DIR, 'django_secret_key.txt')) as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = [] # Only relevant when DEBUG = False (-> when you are in production).
+ALLOWED_HOSTS = [95.85.3.22] # Only relevant when DEBUG = False (-> when you are in production).
 
 
 # Application definition
