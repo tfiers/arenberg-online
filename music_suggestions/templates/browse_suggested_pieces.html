@@ -20,17 +20,18 @@
 				<tr>
 					<th>Titel</th>
 					<th>Link naar opname</th>
+					<th>Voorgesteld door</th>
 					<th>Partituren</th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for piece in suggested_pieces %}
 				<tr>
-					<td class="col-md-5"><strong>{{ piece.title }}</strong></td>
-					<td class="col-md-3"><a href="{{ piece.link_to_recording }}">Luister</a></td>
+					<td class="col-xs-6"><strong>{{ piece.title }}</strong></td>
+					<td class="col-xs-2"><a href="{{ piece.link_to_recording }}">Luister</a></td>
 					{# <td><a href="{{ piece.link_to_recording }}">{{ piece.title }}</a></td> #}
-					<td class="col-md-4 sheet-music">{{ piece.sheet_music }}</td>
-					{# <td>{{ piece.suggested_by }}</td> #}
+					<td class="col-xs-2">{{ piece.suggested_by_string }}</td>
+					<td class="col-xs-2 sheet-music">{{ piece.sheet_music }}</td>
 					{# <td><a href="#">♥</a></td> #}
 				</tr>
 				{% endfor %}

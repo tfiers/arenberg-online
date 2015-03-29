@@ -34,18 +34,15 @@ class SuggestPieceOfMusicForm(forms.Form):
 	helper = FormHelper()
 	helper.form_action = 'music_suggestions:suggest'
 	helper.form_class = 'form-horizontal'
-	helper.label_class = 'col-lg-2'
-	helper.field_class = 'col-lg-8'
+	helper.label_class = 'col-sm-2'
+	helper.field_class = 'col-sm-8'
 	helper.layout = Layout(
 		'title_input',
 		'url_input',
 		'sheet_music_input',
 		'name_input',
-		Div(
-			FormActions(
-				Submit('submit', 'Stel voor', css_class="btn-success"),
-			),
-			css_class="col-sm-offset-2 col-sm-8",
-		)
+		FormActions(
+			Submit('submit', 'Stel voor', css_class="btn-success"),
+		),
 
 	)

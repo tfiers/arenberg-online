@@ -16,6 +16,14 @@ table {
 	margin-top: 40px;
 }
 
+td {
+	height: 60px;
+}
+
 .sheet-music {
 	color: gray;
+}
+
+input[type="submit"] {
+	margin: 2em 0;
 }
