@@ -29,7 +29,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = [95.85.3.22] # Only relevant when DEBUG = False (-> when you are in production).
+ALLOWED_HOSTS = ['95.85.3.22'] # Only relevant when DEBUG = False (-> when you are in production).
 
 
 # Application definition
