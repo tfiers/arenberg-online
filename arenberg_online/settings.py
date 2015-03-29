@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'ticketing', # Ordering tickets online, reporting tickets sold offline, 
                  # tracking ticket sales 
     'music_suggestions', # Suggest pieces to be played and vote for them.
+    'polls', # Ask questions to orchestra members.
 )
 
 MIDDLEWARE_CLASSES = (

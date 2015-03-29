@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Nieuw semester{% endblock title %}
+{% block custom_css %}
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+{% endblock custom_css %}
+{% block content %}
+	<div class="text-center">
+		<h1><span class="glyphicon glyphicon-heart"></span> Bedankt!</h1>
+	</div>
+{% endblock content %}

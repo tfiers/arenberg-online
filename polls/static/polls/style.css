@@ -1,0 +1,17 @@
+h1 {
+	margin: 1em 0;
+}
+
+p {
+	text-align: justify;
+	margin: 0;
+}
+
+input[type="submit"] {
+	margin-top: 2.5em;
+}
+
+.spacer {
+	margin-top: 2.5em;
+	margin-bottom: 0;
+}
