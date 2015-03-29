@@ -6,6 +6,8 @@ python:
 # Install dependencies.
 install: 
  - pip install -r requirements.txt
+ - pip install -e git+git://github.com/maraujop/django-crispy-forms.git@dev#egg=django-crispy-forms
+   # Install the development version of django-crispy-forms.
  - pip install coveralls
 # Prepare the build for testing.
 # (Simulate the effects of cloning the arenberg-secure repo.)
