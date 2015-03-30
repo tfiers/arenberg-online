@@ -1,5 +1,8 @@
-h1 {
-	margin: 1em 0;
+#header {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	text-align: center;
+	/*padding: 0;*/
 }
 
 p {
@@ -8,10 +11,18 @@ p {
 }
 
 input[type="submit"] {
-	margin-top: 2.5em;
+	margin: 2.5em 0;
 }
 
 .spacer {
 	margin-top: 2.5em;
 	margin-bottom: 0;
+}
+
+.space-below {
+	margin-bottom: 2.5em;
+}
+
+div.text-center>h1 {
+	margin-top: 150px;
 }

@@ -1,27 +1,37 @@
-from django import forms
+# coding: utf-8
 
+from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Field
-from crispy_forms.bootstrap import FormActions, PrependedText
+from crispy_forms.bootstrap import FormActions
+from django.utils.translation import ugettext_lazy as _
+from django.utils.safestring import mark_safe
+from django.utils.html import conditional_escape
 
 class NewSemesterPoll(forms.Form):
 
 	name_input = forms.CharField(
-		label = "Je naam",
+		label = _("Je naam"),
+		widget = forms.TextInput(
+			attrs={'placeholder': _("Voor & Achter")}),
 	)
 
 	plans_input = forms.CharField(
-	    widget = forms.Textarea(),
-	    label = "Je plannen",
+	    label = _("Je plannen"),
+	    # Using the crispy-forms shortcut to specify the placeholder escapes the special characters twice.
+	    widget = forms.Textarea(
+	    	attrs={'placeholder': _('Tot wanneer plan je in het Arenbergorkest te spelen? ' \
+			    			 		'Bijvoorbeeld: "Tot het einde van mijn master", "Nog tot en met volgend semester", of ' \
+			    					'"Dit is m\'n laatste semester"')}),
 	)
 
 	next_semester_input = forms.BooleanField(
-		label = "Ik speel volgend semester mee in het orkest",
+		label = _("Ik speel volgend semester mee in het orkest"),
 		required = False,
 	)
 
 	engage_input = forms.BooleanField(
-		label = "Ik wil verantwoordelijkheid opnemen voor een taak in de organisatie",
+		label = _("Ik wil een functie opnemen in de organisatie"),
 		required = False,
 	)
 
@@ -33,26 +43,24 @@ class NewSemesterPoll(forms.Form):
 	helper.layout = Layout(
 		Div(
 			Div(
-				HTML(("<p>Volgend semester same as usual: een concertreeks in Leuven, "
-					  "met een sterk nieuw programma. In het tweede semester plannen "
-					  "we een samenwerking met het Gents Universitair Koor, met concerten "
-					  "in Leuven en in Gent. Om een goede bezetting te kunnen voorzien, "
-					  "vragen we je nu al naar je plannen.</p>")),
+				HTML(_(u"<p>Volgend semester creëren we opnieuw een concertreeks voor in Leuven, " \
+						"met een sterk nieuw programma. In het tweede semester plannen " \
+						"we een samenwerking met het Gents Universitair Koor, met concerten " \
+						"in Leuven en in Gent. Om een goede bezetting te kunnen voorzien, " \
+						"vragen we je nu al naar je plannen.</p>")),
 				css_class="col-sm-offset-3 col-sm-6",
 			),
-			css_class="form-group",
+			css_class="form-group space-below",
 		),
-		Field('name_input', placeholder="Voor & Achter"),
-		Field('plans_input', rows="3", placeholder=("Tot wanneer plan je in het Arenbergorkest te spelen? "
-	    			 'Bijvoorbeeld: "Tot het einde van mijn master", "Dit is m\'n laatste semester" of '
-	    			 '"Nog tot en met volgend semester"')),
-		# The next form inputs require the dev-version of django-crispy-forms to be layouted correctly.
+		Field('name_input'),
+		Field('plans_input', rows="3"),
+		# The next form inputs require the dev-version of django-crispy-forms, to be layouted correctly.
 		# (Specifically, this commit: https://github.com/maraujop/django-crispy-forms/commit/5c3a268)
 		# Install this dev version with (pip and git required on path):
 		# pip install -e git+git://github.com/maraujop/django-crispy-forms.git@dev#egg=django-crispy-forms
 		Div(
 			Div(
-				HTML("<p>Concreet voor volgend semester (vink even aan):</p>"),
+				HTML(_("<p>Concreet voor volgend semester (vink even aan als van toepassing):</p>")),
 				css_class="col-sm-offset-3 col-sm-6",
 			),
 			css_class="form-group spacer",
@@ -60,13 +68,17 @@ class NewSemesterPoll(forms.Form):
 		'next_semester_input',
 		Div(
 			Div(
-				HTML("<p>Er volgt nog meer info over wat je kan doen, maar als je het nu al weet:</p>"),
+				HTML(_("<p>Er volgt nog meer info over wat je kan doen, maar als je het nu al weet:</p>")),
 				css_class="col-sm-offset-3 col-sm-6",
 			),
 			css_class="form-group spacer",
 		),
 		'engage_input',
 		FormActions(
-			Submit('submit', 'Gaan met die banaan', css_class="btn-success"),
+			# Note: using _("Gaan met die banaan") for the button label (value) doesn't work.
+			# The same string apears in both the English and Dutch versions.
+			# See views.py for the workaround we use for this.
+			Submit(name='submit', value="Submit form", css_class="btn-success"),
+			css_class="text-center",
 		),
 	)

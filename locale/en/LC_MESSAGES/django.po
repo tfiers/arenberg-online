@@ -1,0 +1,182 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-30 03:05+0200\n"
+"PO-Revision-Date: 2015-03-30 03:06+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"X-Generator: Poedit 1.7.5\n"
+
+#: .\core\admin.py:16
+msgid "The two password fields didn't match."
+msgstr ""
+
+#: .\core\admin.py:18 .\core\admin.py:50
+msgid "Password"
+msgstr ""
+
+#: .\core\admin.py:20
+msgid "Password confirmation"
+msgstr ""
+
+#: .\core\admin.py:22
+msgid "Enter the same password as above, for verification."
+msgstr ""
+
+#: .\core\admin.py:51
+msgid ""
+"Raw passwords are not stored, so there is no way to see this user's "
+"password, but you can change the password using <a href=\"password/\">this "
+"form</a>."
+msgstr ""
+
+#: .\core\admin.py:80
+msgid "Personal info"
+msgstr ""
+
+#: .\core\admin.py:81
+msgid "Permissions"
+msgstr ""
+
+#: .\core\admin.py:83
+msgid "Important dates"
+msgstr ""
+
+#: .\core\models.py:58
+msgid "email address"
+msgstr ""
+
+#: .\core\models.py:60
+msgid "A user with that email adress already exists."
+msgstr ""
+
+#: .\core\models.py:62
+msgid "first name"
+msgstr ""
+
+#: .\core\models.py:63
+msgid "last name"
+msgstr ""
+
+#: .\core\models.py:64
+msgid "staff status"
+msgstr ""
+
+#: .\core\models.py:65
+msgid "Designates whether the user can log into this admin site."
+msgstr ""
+
+#: .\core\models.py:67
+msgid "active"
+msgstr ""
+
+#: .\core\models.py:68
+msgid ""
+"Designates whether this user should be treated as active. Unselect this "
+"instead of deleting accounts."
+msgstr ""
+
+#: .\core\models.py:70
+msgid "date joined"
+msgstr ""
+
+#: .\polls\forms.py:14
+msgid "Je naam"
+msgstr "Your name"
+
+#: .\polls\forms.py:16
+msgid "Voor & Achter"
+msgstr "First & Last"
+
+#: .\polls\forms.py:20
+msgid "Je plannen"
+msgstr "Your plans"
+
+#: .\polls\forms.py:23
+msgid ""
+"Tot wanneer plan je in het Arenbergorkest te spelen? Bijvoorbeeld: \"Tot het "
+"einde van mijn master\", \"Nog tot en met volgend semester\", of \"Dit is "
+"m'n laatste semester\""
+msgstr ""
+"Until when are you planning to play in the orchestra? For example: \"Until "
+"the end of my Master's (two years to go)\", \"Until the end of next semester"
+"\", or \"This is my last semester\""
+
+#: .\polls\forms.py:29
+msgid "Ik speel volgend semester mee in het orkest"
+msgstr "I play in the orchestra next semester"
+
+#: .\polls\forms.py:34
+msgid "Ik wil een functie opnemen in de organisatie"
+msgstr "I want to take up responsibility for a task in the organisation"
+
+#: .\polls\forms.py:46
+msgid ""
+"<p>Volgend semester creëren we opnieuw een concertreeks voor in Leuven, met "
+"een sterk nieuw programma. In het tweede semester plannen we een "
+"samenwerking met het Gents Universitair Koor, met concerten in Leuven en in "
+"Gent. Om een goede bezetting te kunnen voorzien, vragen we je nu al naar je "
+"plannen.</p>"
+msgstr ""
+"<p>Next semester we again create a new concert series for in Leuven, with a "
+"strong new programme. In the second semester, we are planning a "
+"collaboration with the Ghent University Choir, with concerts in Leuven and "
+"in Ghent. To ensure a good balance in the orchestra, we are asking you now "
+"for your plans.</p>"
+
+#: .\polls\forms.py:63
+msgid ""
+"<p>Concreet voor volgend semester (vink even aan als van toepassing):</p>"
+msgstr "<p>Specifically for next semester (just check the box if you do):</p>"
+
+#: .\polls\forms.py:71
+msgid ""
+"<p>Er volgt nog meer info over wat je kan doen, maar als je het nu al weet:</"
+"p>"
+msgstr ""
+"<p>More info about the specific tasks is coming up, but if you already know "
+"now:</p>"
+
+#: .\polls\templates\new_semester_poll.html:5
+#: .\polls\templates\new_semester_poll.html:13 .\polls\templates\thanks.html:4
+msgid "Nieuw semester"
+msgstr "New semester"
+
+#: .\polls\templates\thanks.html:10
+msgid "Bedankt!"
+msgstr "Thanks!"
+
+#: .\polls\views.py:30
+msgid "Gaan met die banaan"
+msgstr "Submit answers"
+
+#: .\ticketing\models.py:56
+msgid "date of order"
+msgstr ""
+
+#: .\ticketing\models.py:58
+msgid ""
+"remarks. For questions, special requests, answers to 'how did you hear about "
+"this?', ..."
+msgstr ""
+
+#: .\ticketing\models.py:65
+msgid "Via overschrijving"
+msgstr "By bank transfer"
+
+#: .\ticketing\models.py:65
+msgid "Aan de kassa"
+msgstr "At the desk"
+
+#~ msgid "Ik wil me engageren voor het orkest"
+#~ msgstr "I want to take up responsibility for some task in the organisation"
