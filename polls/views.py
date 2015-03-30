@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from polls.forms import NewSemesterPoll
 from polls.models import NewSemesterAnswer
+from django.utils.translation import ugettext_lazy as _
 
 
 def new_semester_answer(request):
@@ -25,9 +26,10 @@ def new_semester_answer(request):
 	else:
 		form = NewSemesterPoll()
 
-	return render(request,
-		'new_semester_poll.html',
-		{'form': form})
+	response = render(request, 'new_semester_poll.html', {'form': form})
+	# Workaround to correctly translate the value of the submit button in the form.
+	response.content = response.content.replace("Submit form", (_("Gaan met die banaan")).encode('utf-8'))
+	return response
 
 def thanks(request):
 	return render(request, 'thanks.html')
