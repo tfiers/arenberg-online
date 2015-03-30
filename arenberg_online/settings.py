@@ -25,7 +25,7 @@ with open(os.path.join(CONFIG_DIR, 'django_secret_key.txt')) as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = True
 
@@ -51,6 +51,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -62,6 +63,17 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'arenberg_online.urls'
 
 WSGI_APPLICATION = 'arenberg_online.wsgi.application'
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    "django.core.context_processors.request", # Now the request will be available in each template.
+)
 
 
 # Database
@@ -77,7 +89,8 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
+# LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Europe/Brussels'
 
@@ -87,6 +100,15 @@ USE_L10N = True
 
 # Store dates in UTC, display them in TIME_ZONE by default.
 USE_TZ = True
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
+LANGUAGES = (
+    ('nl', 'Nederlands'),
+    ('en', 'English'),
+)
 
 
 # Static files (CSS, JavaScript, Images)
@@ -106,8 +128,9 @@ AUTH_USER_MODEL = 'core.User'
 
 TEMPLATE_DIRS = (
     # Location for general templates not specific to an app:
-    os.path.join(BASE_DIR, 'templates/'),
+    os.path.join(BASE_DIR, 'templates'),
 )
 
-# http://django-crispy-forms.readthedocs.org/en/latest/install.html#template-packs
+# Use Bootstrap 3 for rendering forms with django-crispy-forms.
+# See: http://django-crispy-forms.readthedocs.org/en/latest/install.html#template-packs
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
