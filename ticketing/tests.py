@@ -5,6 +5,7 @@ from ticketing.management.commands.setup_space_ticketing import setup_space_tick
 from ticketing.models import (
 	Production, Performance, PriceCategory, Order, Performance, Ticket )
 from datetime import date, datetime
+import django.utils.timezone as django_tz
 import pytz
 
 a_certain_time = datetime.now(pytz.utc)
@@ -87,6 +88,16 @@ class SpaceTicketingTest(TestCase):
 		order = create_order()
 		self.assertEqual(str(order), "Online order by Henk Douwe on {}.".format(
 			a_certain_time.strftime('%d-%m-%Y %H:%M:%S')))
+
+	def test_datetime_formatting(self):
+		tz = django_tz.get_default_timezone()
+		self.assertEqual("Fri May 08 20:30", "{:%a %b %d %H:%M}".format(
+			datetime(2015, 5, 8, 20, 30, tzinfo=tz)))
+
+	def test_performance_datetime(self):
+		tz = django_tz.get_default_timezone()
+		vr = Performance.objects.get(date__contains=date(2015,5,8))
+		self.assertEqual(vr.date, datetime(2015, 5, 8, 20, 30, tzinfo=tz))
 
 	def test_sum_ticket_prices(self):
 		order = create_order()
