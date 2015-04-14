@@ -2,7 +2,7 @@
 # Makes all tests run automatically on each commit.
 language: python
 python:
-  - "2.7.6"
+  - "2.7"
 # Install dependencies.
 install: 
  - pip install -r requirements.txt
