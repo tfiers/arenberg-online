@@ -1,2 +1,4 @@
 Django
 django-crispy-forms
+solid_i18n
+pytz

@@ -1,12 +1,12 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from django.conf.urls.i18n import i18n_patterns
+from solid_i18n.urls import solid_i18n_patterns
 
 urlpatterns = patterns ('',
     url(r'^setlang/(?P<lang>[\w-]+)/$', 'core.views.set_lang', name='set_lang'),
 )
 
-urlpatterns += i18n_patterns('',
+urlpatterns += solid_i18n_patterns('',
     # Examples:
     # url(r'^$', 'arenberg_online.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
