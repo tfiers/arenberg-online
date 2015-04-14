@@ -5,18 +5,18 @@ The web app of the **Arenbergorkest**, a symphonic student orchestra based in Le
 
 Serves the public website and a private members section.
 
-Full list of feature ideas:
+www.arenbergorkest.be
+
+Feature ideas
+-------------
 
 * A ticketing service with live reporting;
 * A rehearsal planner measuring attendance;
 * An accounting app supporting financial planning;
 * A music database, for socially composing playlists for future concerts and inventorising owned sheet music.
 
-www.arenbergorkest.be
-
-
 Code status
----------------------
+-----------
 
 Develop branch | Production branch | Tests
 :-------------:|:-------------:|:-------------:
