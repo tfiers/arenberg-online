@@ -41,8 +41,16 @@ class SpaceTicketingTest(TestCase):
 		self.assertEqual(do.location, "PDS")
 		self.assertEqual(vr.location, "PDS")
 		self.assertEqual(za.location, "Zaventem")
+
+		self.assertEqual(vr.date.minute, 30)
+		
+		self.assertEqual(str(do),
+			'"S P A C E - Lente 2015" on Thu May 07 20:30 @ PDS')
 		self.assertEqual(str(vr),
 			'"S P A C E - Lente 2015" on Fri May 08 20:30 @ PDS')
+		self.assertEqual(str(za),
+			'"S P A C E - Lente 2015" on Sat May 09 20:00 @ Zaventem')
+
 
 		vvk_cc = PriceCategory.objects.get(
 			name="Cultuurkaart in VVK (vanaf winter 2014)", price=4)
