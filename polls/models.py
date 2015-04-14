@@ -1,6 +1,6 @@
+from django.utils.translation import ugettext_lazy as _
 from django.db.models import (
-	Model, CharField, TextField, BooleanField
-)
+	Model, CharField, TextField, BooleanField )
 
 def bool_to_yes_no(boolean):
 	return "Yes" if boolean == True else "No"
