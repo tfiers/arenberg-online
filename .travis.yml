@@ -14,8 +14,6 @@ before_script:
 # (Simulate the effects of cloning the arenberg-secure repo.)
  - mkdir arenberg-secure
  - echo "dummykey" > arenberg-secure/django_secret_key.txt
-# Run self created script to prepare the arenberg-online django project.
- - python manage.py setup
 # Run tests.
 script:
   coverage run --source=arenberg-online,core,ticketing --omit=*/tests.py manage.py test
