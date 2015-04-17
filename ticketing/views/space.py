@@ -97,7 +97,7 @@ def persist_data(data):
 	else:
 		rm = None
 	marketing_poll_answers = StandardMarketingPollAnswer.objects.create(
-		related_order = order,
+		associated_order = order,
 		marketing_feedback = data['marketing_feedback'],
 		referred_member = rm,
 		first_concert = data['first_concert'],
