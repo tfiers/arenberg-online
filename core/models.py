@@ -1,13 +1,12 @@
 from django.core.mail import send_mail
 from django.db.models import (
-    EmailField, CharField, BooleanField, DateTimeField
-)
+    EmailField, CharField, BooleanField, DateTimeField, Model,
+    OneToOneField, IntegerField )
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 
 from django.contrib.auth.models import (
-    AbstractBaseUser, PermissionsMixin, BaseUserManager
-)
+    AbstractBaseUser, PermissionsMixin, BaseUserManager )
 
 class UserManager(BaseUserManager):
     """
@@ -106,3 +105,13 @@ class User(AbstractBaseUser, PermissionsMixin):
             return name
         else:
             return u"[{}]".format(self.email)
+
+
+
+class UserProfile(Model):
+    associated_user = OneToOneField(User)
+    old_drupal_uid = IntegerField(blank=True, null=True, default=None)
+    last_password_change = DateTimeField(blank=True, null=True, default=None)
+    
+    def __unicode__(self):
+        return u"User profile for {}".format(self.associated_user)

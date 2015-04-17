@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "SPACE Concerten Arenbergorkest" %}{% endblock title %}
+{% block custom_css %}
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{% static 'ticketing/space/style.css' %}">
+<link rel="stylesheet" href="{% static 'ticketing/space/style-landscape-tablet-and-larger.css' %}" media="(min-width: 992px)">
+<link rel="stylesheet" href="{% static 'ticketing/space/landing-page-style.css' %}" media="(min-width: 992px)">
+{% endblock custom_css %}
+{% block content %}
+<div id="header">
+	<div class="container">
+		<h2 id="title-arenbergorkest" class="caps">{% trans "Arenbergorkest" %}</h2>
+		<h2 id="title-conductor" class="caps">{% trans "OLV Roel Willems" %}</h2>
+		<h1 id="title-space" class="caps">{% trans "SPACE" %}</h1>
+	<!--<p id="language-selection">
+		{% if LANGUAGE_CODE == 'en' %}
+			<em><a href="{% url 'set_lang' lang='nl' %}">(Nederlands)</a></em>
+		{% else %}
+			<em><a href="{% url 'set_lang' lang='en' %}">(Switch to English)</a></em>
+		{% endif %}
+		</p> -->
+	</div>
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<h3 id="tagline", class="caps">Symphony orchestra<br>
+						<span class="handwritten">plays music of</span><br>
+						<span id="tagline-third-line">interstellar intensity</span></h3>
+					<p><a href="{% url 'space_ticketing:space_start_order' %}" class="btn btn-success order-btn">Bestel tickets</a></p>
+					<div id="more-info-reference"><em>Do 7 & Vr 8 mei</em><br>
+						20u30 @ Aula Pieter De Somer, Leuven<br>
+						<br>
+						<em>Za 9 mei</em><br>
+						20u00 @ St-Martinuskerk, Zaventem<br>
+						{% comment %}<a href="#">Meer info<br>
+						<span class="glyphicon glyphicon-chevron-down"></span>{% endcomment %}</a></div>
+					<h3 id="music-names", class="caps fulljustify">Beethoven – Sta<span class="small-tracking">r</span> Wars – Holst – D<span class="small-tracking">r</span> Who – Strauss</h3>
+				</div>
+			</div>
+		</div>
+	</footer>	
+</div>
+{% endblock content %}

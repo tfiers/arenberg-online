@@ -18,16 +18,11 @@
         </script>
     </head>
     <body>
-        <div class="container">
-            <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-10">            
-                {% block content %}
-                    <h1>You look nice today</h1>
-                {% endblock content %}
-            </div>
-            <div class="col-lg-1"></div>
-        </div>
+
+        {% block content %}
+        <h1>You look nice today</h1>
+        {% endblock content %}
+
         <script type="text/javascript">
             var _paq = _paq || [];
             _paq.push(['trackPageView']);
@@ -40,6 +35,8 @@
                 g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
             })();
         </script>
+        
         <noscript><p><img src="//95.85.3.22/analytics/piwik/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
+
     </body>
 </html>
