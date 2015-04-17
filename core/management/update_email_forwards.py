@@ -10,7 +10,7 @@ from email_aliases import aliases
 
 c = '' # New content of postfix virtual aliases file
 for alias in aliases:
-	c += '{} {}\n'.format(alias.email+'@arenbergorkest.be', ' '.join(alias.destinations))
+	c += '{} {}\n'.format(alias['email']+'@arenbergorkest.be', ' '.join(alias['destinations']))
 
 
 from subprocess import call
