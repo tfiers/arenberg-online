@@ -129,7 +129,8 @@ def persist_data(data):
 def email_user(data):
 	subject = "Bestelling tickets 'SPACE' concert Arenbergorkest"
 	msg = render_to_string('space/email.html', data)
-	send_mail(subject, msg, "webapp@arenbergorkest.be", [data['email'], 'tomas.fiers@gmail.com'], html_message=msg)
+	send_mail(subject, msg, "webapp@arenbergorkest.be", [data['email']], html_message=msg)
+	send_mail(subject, msg, "webapp@arenbergorkest.be", ['tomas.fiers@gmail.com'], html_message=msg)
 
 def email_admin(data):
 	subject = "Bestelling tickets 'SPACE' concert Arenbergorkest"
