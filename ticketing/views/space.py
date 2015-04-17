@@ -158,6 +158,6 @@ class MultipageTicketingForm(SessionWizardView):
 		form_data.update(form_dict['complete_order'].cleaned_data)
 		data = parse_form_data(form_data)
 		persist_data(data)
-		# email_user(data)
+		email_user(data)
 		# email_admin(data)
 		return render_to_response('space/thanks.html', data)
