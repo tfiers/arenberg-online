@@ -31,7 +31,7 @@ DEBUG = DEVELOPPING
 TEMPLATE_DEBUG = DEVELOPPING
 
 # Only relevant when when you are in production.
-ALLOWED_HOSTS = ['95.85.3.22', 'arenbergorkest.be']
+ALLOWED_HOSTS = ['95.85.3.22', '.arenbergorkest.be']
 
 
 # Application definition
