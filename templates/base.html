@@ -26,7 +26,7 @@
                     {% if LANGUAGE_CODE == 'en' %}
                         <li id="language-select"><a href="{% url 'set_lang' lang='nl' %}">NL</a> | <strong>EN</strong></li>
                     {% else %}
-                        <li id="language-select"><strong>NL</strong> | EN</li>
+                        <li id="language-select"><strong>NL</strong> | <span class="disabled-lang">EN</span></li>
                         {% comment %}<li id="language-select"><strong>NL</strong> | <a href="{% url 'set_lang' lang='en' %}">EN</a></li>{% endcomment %}
                     {% endif %}
                 </ul>
