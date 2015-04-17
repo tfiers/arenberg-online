@@ -8,12 +8,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
+DEVELOPPING = True
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # You should clone 'https://github.com/tfiers/arenberg-secure' into a 
-# 'arenberg-secure' subdirectory of the project folder.
+# 'arenberg-secure' subdirectory of the project folder
 # (Next to for example the 'arenberg_online' and 'core' directories).
 CONFIG_DIR = os.path.join(BASE_DIR, 'arenberg-secure')
 
@@ -25,11 +27,11 @@ with open(os.path.join(CONFIG_DIR, 'django_secret_key.txt')) as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = DEVELOPPING
+TEMPLATE_DEBUG = DEVELOPPING
 
-TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = ['95.85.3.22'] # Only relevant when DEBUG = False (-> when you are in production).
+# Only relevant when when you are in production.
+ALLOWED_HOSTS = ['95.85.3.22', 'arenbergorkest.be']
 
 
 # Application definition
@@ -43,6 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'crispy_forms', # https://github.com/maraujop/django-crispy-forms
     'core', # Users, user profiles, instruments and groups.
+    'django.contrib.formtools', # For multi-page forms.
     'ticketing', # Ordering tickets online, reporting tickets sold offline, 
                  # tracking ticket sales 
     'music_suggestions', # Suggest pieces to be played and vote for them.
@@ -51,7 +54,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+    'solid_i18n.middleware.SolidLocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -88,27 +91,52 @@ DATABASES = {
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
+# https://github.com/st4lk/django-solid-i18n-urls#django-solid_i18n-urls
 
-LANGUAGE_CODE = 'en'
-# LANGUAGE_CODE = 'en-us'
+# Default language, that will be used for requests without language prefix
+LANGUAGE_CODE = 'nl'
 
-TIME_ZONE = 'Europe/Brussels'
+# Supported languages
+LANGUAGES = (
+    ('nl', 'Nederlands'),
+    ('en', 'English'),
+)
 
+# Enable Django translation.
+# After you have introduced new translatable strings, run
+# 'python manage.py makemessages', then edit the .po files
+# in 'LOCALE_PATHS' (with Poedit e.g.) and finally run
+# 'python manage.py compilemessges'.
 USE_I18N = True
-
-USE_L10N = True
-
-# Store dates in UTC, display them in TIME_ZONE by default.
-USE_TZ = True
 
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
-LANGUAGES = (
-    ('nl', 'Nederlands'),
-    ('en', 'English'),
-)
+# If True, redirect from url without prefix (/...), to url with 
+# non-default language prefix (/en/...) if user's language is not 
+# equal to default. Otherwise url without language prefix will always
+# render default language content (see behaviour section and notes for 
+# details https://github.com/st4lk/django-solid-i18n-urls#behaviour);
+SOLID_I18N_USE_REDIRECTS = True
+
+# If True, redirect from url with default language prefix (/nl/...)
+# to url without any prefix (/...).
+SOLID_I18N_DEFAULT_PREFIX_REDIRECT = True
+
+# If True, both urls /... and /nl/... will render default language 
+# content (in this example 'nl' is default language). Otherwise, 
+# /nl/... will return 404 status_code. // "Don't mix together settings 
+# SOLID_I18N_HANDLE_DEFAULT_PREFIX and SOLID_I18N_DEFAULT_PREFIX_REDIRECT. 
+# You should choose only one of them."
+# SOLID_I18N_HANDLE_DEFAULT_PREFIX = True
+
+TIME_ZONE = 'Europe/Brussels'
+
+# Store dates in UTC, display them in TIME_ZONE by default.
+USE_TZ = True
+
+USE_L10N = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -134,3 +162,17 @@ TEMPLATE_DIRS = (
 # Use Bootstrap 3 for rendering forms with django-crispy-forms.
 # See: http://django-crispy-forms.readthedocs.org/en/latest/install.html#template-packs
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+
+# Email
+
+if DEVELOPPING:
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = 'tomas.fiers@gmail.com'
+    with open(os.path.join(CONFIG_DIR, 'google_pass.txt')) as f:
+        EMAIL_HOST_PASSWORD = f.read().strip()
+else:
+    EMAIL_HOST = 'localhost'
+    EMAIL_PORT = 25

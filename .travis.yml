@@ -10,8 +10,8 @@ install:
    # Install the development version of django-crispy-forms.
  - pip install coveralls
 # Prepare the build for testing.
-# (Simulate the effects of cloning the arenberg-secure repo.)
 before_script:
+# (Simulate the effects of cloning the arenberg-secure repo.)
  - mkdir arenberg-secure
  - echo "dummykey" > arenberg-secure/django_secret_key.txt
 # Run tests.

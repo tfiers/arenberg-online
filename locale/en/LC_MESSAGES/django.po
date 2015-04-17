@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-30 03:05+0200\n"
-"PO-Revision-Date: 2015-03-30 03:06+0100\n"
+"PO-Revision-Date: 2015-04-14 14:55+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -176,7 +176,7 @@ msgstr "By bank transfer"
 
 #: .\ticketing\models.py:65
 msgid "Aan de kassa"
-msgstr "At the desk"
+msgstr "Cash at the desk"
 
 #~ msgid "Ik wil me engageren voor het orkest"
 #~ msgstr "I want to take up responsibility for some task in the organisation"
