@@ -46,6 +46,10 @@ body {
 	float: right;
 	word-spacing: 0.2em;
 }
+/* Temp, before translating */
+#navbar #language-select a {
+	cursor: not-allowed;
+}
 
 
 #header {
