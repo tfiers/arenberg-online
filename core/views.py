@@ -13,3 +13,6 @@ def set_lang(request, lang='en'):
 	if referer.startswith('/en/'):
 		referer = referer[3:]
 	return HttpResponseRedirect(referer)
+
+def redirect_to_old_drupal_site(request, path='/'):
+	return HttpResponseRedirect('http://arenbergorkest.studentenweb.org/'+path)
