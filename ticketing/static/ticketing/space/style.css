@@ -5,13 +5,56 @@ body {
 ::selection {
   background: #FFC95A;
 }
-h1, h2, h3 {
-	margin: 0;
+
+
+#navbar {
+	background-color: white;
+	min-height: 20px;
+	border: 0;
+	border-bottom: 1px solid #999;
+	border-radius: 0;
+	font-family: 'Lato', sans-serif;
+	color: #666;
+	font-size: 11px;
 }
+#navbar #cont {
+	max-width: 700px;
+	margin: 0 auto;
+}
+#navbar ul {
+	margin: 0;
+	padding: 0;
+}
+#navbar li {
+	display: block;
+	margin: 0.5em 0.5em;
+}
+#navbar a {
+	color: #666;
+}
+#navbar strong {
+	font-weight: lighter;
+}
+#navbar strong {
+	font-weight: bolder;
+}
+#navbar #go-old {
+	float: left;
+}
+#navbar #language-select {
+	color: #333;
+	float: right;
+	word-spacing: 0.2em;
+}
+
+
 #header {
 	text-align: center;
 	font-family: 'Lato', sans-serif;
 	padding-top: 5vh;
+}
+h1, h2, h3 {
+	margin: 0;
 }
 .caps {
 	text-transform: uppercase;
@@ -39,9 +82,6 @@ h1, h2, h3 {
 	position: relative;
 	left: 0.2em;
 }
-#language-selection {
-
-}
 .fulljustify {
 	text-align: justify;
 }
@@ -67,8 +107,8 @@ h1, h2, h3 {
 	line-height: 1.8em;
 }
 #music-names {
-	letter-spacing: 0.3em;
-	margin-right: -0.3em;
+	letter-spacing: 0.2em;
+	margin-right: -0.2em;
 	font-size: 14px;
 	font-size: 2.2vw;
 }

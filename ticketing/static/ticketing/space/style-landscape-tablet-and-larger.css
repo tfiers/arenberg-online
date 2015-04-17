@@ -8,10 +8,10 @@
 	font-size: 72px;
 }
 .footer {
-	height: 380px;
+	height: 450px;
 }
 body {
-  margin-bottom: 380px;
+  margin-bottom: 450px;
 }
 #tagline {
 	font-size: 14px;
@@ -21,6 +21,8 @@ body {
 }
 #music-names {
 	font-size: 10px;
+	letter-spacing: 0.5em;
+	margin-right: -0.5em;
 }
 .order-btn {
 	font-size: 16px;
