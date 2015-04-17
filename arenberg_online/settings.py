@@ -8,12 +8,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
+DEVELOPPING = True
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # You should clone 'https://github.com/tfiers/arenberg-secure' into a 
-# 'arenberg-secure' subdirectory of the project folder.
+# 'arenberg-secure' subdirectory of the project folder
 # (Next to for example the 'arenberg_online' and 'core' directories).
 CONFIG_DIR = os.path.join(BASE_DIR, 'arenberg-secure')
 
@@ -25,11 +27,10 @@ with open(os.path.join(CONFIG_DIR, 'django_secret_key.txt')) as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = DEVELOPPING
+TEMPLATE_DEBUG = DEVELOPPING
 
-TEMPLATE_DEBUG = True
-
-# Only relevant when DEBUG = False (-> when you are in production).
+# Only relevant when when you are in production.
 ALLOWED_HOSTS = ['95.85.3.22', 'arenbergorkest.be']
 
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'crispy_forms', # https://github.com/maraujop/django-crispy-forms
     'core', # Users, user profiles, instruments and groups.
+    'django.contrib.formtools', # For multi-page forms.
     'ticketing', # Ordering tickets online, reporting tickets sold offline, 
                  # tracking ticket sales 
     'music_suggestions', # Suggest pieces to be played and vote for them.
@@ -160,3 +162,17 @@ TEMPLATE_DIRS = (
 # Use Bootstrap 3 for rendering forms with django-crispy-forms.
 # See: http://django-crispy-forms.readthedocs.org/en/latest/install.html#template-packs
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+
+# Email
+
+if DEVELOPPING:
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = 'tomas.fiers@gmail.com'
+    with open(os.path.join(CONFIG_DIR, 'google_pass.txt')) as f:
+        EMAIL_HOST_PASSWORD = f.read().strip()
+else:
+    EMAIL_HOST = 'localhost'
+    EMAIL_PORT = 25

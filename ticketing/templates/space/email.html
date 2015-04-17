@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Bestelling tickets 'SPACE' concert Arenbergorkest</title>
+		<style type="text/css">
+		body {
+			font-family: sans-serif;
+			line-height: 1.3em;
+		}
+		#content {
+			/*margin: 60px auto;*/
+		}
+		</style>
+	</head>
+	<body>
+		<p><strong>Beste {{ first_name }} {{ last_name }},</strong></p>
+		<br>
+		<div id="content">
+			<p>Bedankt om tickets te bestellen voor de 'SPACE' concerten van het Arenbergorkest!</p>
+			<p>Dit is je bestelling:</p>
+			{% if performance == "za" %}
+				<p>
+					<strong>{{ total_tickets }}</strong> tickets voor samen <strong>€ {{ total_price }}</strong>.
+				</p>
+			{% else %}
+				<p>
+					In totaal <strong>{{ total_tickets }}</strong> ticket{{ total_tickets|pluralize }} (studenten: {{ num_student_tickets }}, niet-studenten: {{ num_non_student_tickets }}, KU Leuven cultuurkaarthouders: {{ num_culture_card_tickets }})<br>
+					Voor {% if total_tickets > 1 %}samen {% endif %}<strong>€ {{ total_price }}</strong>.
+				</p>
+			{% endif %}
+			<p>
+				Voor het concert van <strong>{{ performance_full }}</strong>.<br>
+			</p>
+			<p>{% trans "Deze kaarten zullen klaarliggen op naam aan de kassa." %}</p>
+			<p>Betalingswijze: <strong>{{ payment_method_full|lower }}</strong>.</p>
+			{% if payment_method == "transfer" %}
+				<p>Gelieve <strong>€ {{ total_price }}</strong> over te schrijven op <br>
+				<strong>BE23 7330 2625 4391</strong><br>
+				met vermelding van <strong>"SPACE"</strong> en uw <strong>naam</strong>.</p>
+			{% endif %}
+			{% if remarks != "" %}
+				<p>Opmerkingen:<br>
+				<strong>{{ remarks }}</strong>
+				</p>
+			{% endif %}
+		</div>
+		<br>
+		<p>Tot op het concert!</p>
+		<p>- Het Arenbergorkest</p>
+	</body>
+</html>

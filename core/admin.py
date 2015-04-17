@@ -1,4 +1,4 @@
-from core.models import User
+from core.models import User, UserProfile
 from django import forms
 from django.contrib import admin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
@@ -93,3 +93,4 @@ class UserAdmin(django.contrib.auth.admin.UserAdmin):
     ordering = ('-date_joined',)
 
 admin.site.register(User, UserAdmin)
+admin.site.register(UserProfile)

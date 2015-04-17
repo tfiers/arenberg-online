@@ -1,0 +1,127 @@
+body {
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+::selection {
+  background: #FFC95A;
+}
+h1, h2, h3 {
+	margin: 0;
+}
+#header {
+	text-align: center;
+	font-family: 'Lato', sans-serif;
+	padding-top: 5vh;
+}
+.caps {
+	text-transform: uppercase;
+	letter-spacing: 0.5em;
+	/* To compensate for the letter spacing after the last letter. */
+	/*margin-right: -0.5em;*/
+}
+#title-arenbergorkest {
+	font-size: 20px;
+	font-size: 3vw;
+	font-weight: lighter;
+}
+#title-conductor {
+	margin-top: 1.2em;
+	font-size: 10px;
+	font-size: 1.5vw;
+}
+#title-space {
+	margin-top: 0.5em;
+	margin-bottom: 0.7em;
+	font-size: 72px;
+	font-size: 13vw;
+	font-weight: bolder;
+	/* To compensate for the letter spacing after the last letter. */
+	position: relative;
+	left: 0.2em;
+}
+#language-selection {
+
+}
+.fulljustify {
+	text-align: justify;
+}
+.fulljustify:after {
+	content: "";
+	display: inline-block;
+	width: 100%;
+}
+#tagline {
+	letter-spacing: 0em;
+	font-size: 14px;
+	font-size: 3vw;
+	font-weight: 900;
+	margin-bottom: 5em;
+}
+#tagline .handwritten {
+	font-family: 'Damion', cursive;
+	font-size: 3.5vw;
+	font-weight: 600;
+	text-transform: lowercase;
+}
+#tagline-third-line {
+	line-height: 1.8em;
+}
+#music-names {
+	letter-spacing: 0.3em;
+	margin-right: -0.3em;
+	font-size: 14px;
+	font-size: 2.2vw;
+}
+#music-names .small-tracking {
+	letter-spacing: 0.1em;
+}
+.order-btn {
+	font-size: 3vw;
+}
+.footer .order-btn {
+	margin-bottom: 1.5em;
+	/* -- Temp -- */
+	margin-bottom: 5.5em;
+	/* -- Temp -- */
+}
+#more-info-reference {
+	margin-bottom: 5em;
+	/* -- Temp -- */
+	font-size: 3vw;
+	color: #666;
+	line-height: 2em;
+	/* -- Temp -- */
+}
+#more-info-reference a {
+	text-decoration: none;
+	color: #333;
+}
+#more-info-reference a:hover {
+	color: #37B;
+}
+#more-info-reference a:active {
+	background-color: black;
+	color: white;
+}
+/* -- Temp -- */
+#more-info-reference em {
+	font-size: 5vw;
+	font-style: normal;
+}
+/* -- Temp -- */
+
+
+form {
+	max-width: 500px;
+	margin: 40px auto 20px auto;
+}
+form h1 {
+	margin-bottom: 40px;
+	font-family: 'Lato';
+}
+label {
+	font-size: 18px;
+}
+form #recap {
+	margin-bottom: 60px;
+}

@@ -6,5 +6,6 @@ class Command(BaseCommand):
 	help = "Executes various setup tasks for the apps in this project."
 
 	def handle(self, *args, **options):
+		call_command('migrate_users_from_drupal')
 		call_command('setup_space_ticketing')
-		self.stdout.write("Succesfully set-up arenberg-online web app.")
+		# self.stdout.write("Succesfully set-up arenberg-online web app.")

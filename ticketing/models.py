@@ -1,10 +1,10 @@
 # coding: utf8
 
 from django.utils.translation import ugettext_lazy as _
+from django.utils.timezone import get_current_timezone
 from django.db.models import (
 	Model, ForeignKey, OneToOneField, ManyToManyField,CharField, DateTimeField, 
-	FloatField, NullBooleanField, EmailField, DateTimeField, TextField, 
-	PositiveSmallIntegerField )
+	FloatField, NullBooleanField, EmailField, DateTimeField, TextField )
 from core.models import User
 
 
@@ -66,17 +66,19 @@ class Order(Model):
 		(TRANSFER, _('Via overschrijving')), (CASH, _('Aan de kassa')))
 	payment_method = CharField(
 		max_length=8, choices=payment_method_choices, default=TRANSFER)
-	marketing_answers = OneToOneField('MarketingPollAnswer', blank=True, null=True)
 	user_remarks = TextField(blank=True, null= True, help_text=_(
 		'opmerkingen gebruiker. Voor vragen en speciale verzoeken.'))
 	admin_remarks = TextField(blank=True, null= True)
+
+	def num_tickets(self):
+		return len(self.ticket_set.all())
 
 	def total_price(self):
 		return sum([ticket.price_category.price for ticket in self.ticket_set.all()])
 
 	def __unicode__(self):
 		return u"Online order by {} {} on {:%d-%m-%Y %H:%M:%S}.".format(
-			self.first_name, self.last_name, self.date)
+			self.first_name, self.last_name, self.date.astimezone(get_current_timezone()))
 
 
 class Ticket(Model):
@@ -88,7 +90,7 @@ class Ticket(Model):
 
 	def __unicode__(self):
 		return u'Ticket of € {:g} for {}, part of [{}]'.format(
-			self.price_category.price, self.performance, self.order)
+			self.price_category.price, self.order.performance, self.order)
 
 
 
@@ -101,8 +103,12 @@ class MarketingPollAnswer(Model):
 class StandardMarketingPollAnswer(MarketingPollAnswer):
 	''' For asking marketing questions to people that are
 		ordering tickets for a concert. '''
+	associated_order = OneToOneField(Order)
 	marketing_feedback = TextField(blank=True, help_text=_(
-		('Voor antwoorden op de vraag: "Hoe heb je van dit concert gehoord?"')))
+		'Voor antwoorden op de vraag: "Hoe heb je van dit concert gehoord?"'))
 	referred_member = ForeignKey(User, blank=True, null=True, help_text=_(
 		'Ken je een muzikant en kom je dankzij hem of haar luisteren?'))
 	first_concert = NullBooleanField()
+
+	def __unicode__(self):
+		return u'Marketing poll answers of {}'.format(self.associated_order)
