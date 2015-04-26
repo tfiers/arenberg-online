@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from polls.forms import NewSemesterPoll
-from polls.models import NewSemesterAnswer
+from polls.forms import NewSemesterPoll, ZaventemTransportForm
+from polls.models import NewSemester, ZaventemTransport
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.decorators import login_required
 
+def thanks(request):
+	return render(request, 'thanks.html')
 
-def new_semester_answer(request):
+def new_semester(request):
 	# If this is a POST request we need to process the form data.
 	if request.method == 'POST':
 		# Create a form instance and populate it with data from the request:
@@ -14,7 +17,7 @@ def new_semester_answer(request):
 		# If the data entered is valid, save a new answer
 		# to the database.
 		if form.is_valid():
-			answer = NewSemesterAnswer.objects.create(
+			answer = NewSemester.objects.create(
 				name = form.cleaned_data['name_input'],
 				plans = form.cleaned_data['plans_input'],
 				next_semester = form.cleaned_data['next_semester_input'],
@@ -26,10 +29,19 @@ def new_semester_answer(request):
 	else:
 		form = NewSemesterPoll()
 
-	response = render(request, 'new_semester_poll.html', {'form': form})
+	response = render(request, 'new_semester.html', {'form': form})
 	# Workaround to correctly translate the value of the submit button in the form.
 	response.content = response.content.replace("Submit form", (_("Gaan met die banaan")).encode('utf-8'))
 	return response
 
-def thanks(request):
-	return render(request, 'thanks.html')
+@login_required
+def zaventem_transport(request):
+	if request.method == 'POST':
+		form = ZaventemTransportForm(request.POST, instance=ZaventemTransport(musician=request.user))
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect(reverse('thanks'))
+	else:
+		form = ZaventemTransportForm()
+
+	return render(request, 'zaventem_transport.html', {'form': form})

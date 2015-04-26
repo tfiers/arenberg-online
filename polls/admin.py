@@ -1,8 +1,10 @@
 from django.contrib import admin
-from polls.models import NewSemesterAnswer
+from polls.models import NewSemester
+from polls.models import ZaventemTransport
 
-class NewSemesterAnswerAdmin(admin.ModelAdmin):
+class NewSemesterAdmin(admin.ModelAdmin):
 	list_display = ('name', 'next_semester', 'plans', 'engage')
 	ordering = ('-id',)
 
-admin.site.register(NewSemesterAnswer, NewSemesterAnswerAdmin)
+admin.site.register(NewSemester, NewSemesterAdmin)
+admin.site.register(ZaventemTransport)
