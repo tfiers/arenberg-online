@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Ticketverkoop S P A C E" %}{% endblock title %}
+{% block custom_css_js %}
+<style type="text/css">
+	h1 {
+		font-family: 'Lato';
+		letter-spacing: 0.07em;
+		word-spacing: 0.25em;
+		margin-bottom: 2em;
+		line-height: 1.8em;
+	}
+	h1 span {
+		letter-spacing: 0.5em;
+		font-size: 150%;
+		font-weight: bolder;
+	}
+	.large-number {
+		font-size: 72px;
+		font-weight: bolder;
+		line-height: 0.8em;
+	}
+	p .figures {
+		font-size: 120%;
+	}
+	p {
+		margin: 2em 0;
+	}
+	.low {
+		font-size: 100%;
+		margin-top: 7em;
+	}
+	a.btn {
+		margin-top: 1.6em;
+		margin-bottom: 0;
+	}
+	#text {
+		margin-top: 60px;
+	}
+	ul {
+		margin: 0;
+	}
+</style>
+{% endblock custom_css_js %}
+{% block content %}
+
+<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+	<h1>{% trans "<span>SPACE</span><br>Ticketverkoop" %}</h1>
+	<p class="figures">
+		{% trans "Donderdag" %}:<br>
+		<span class="large-number">{{num_do}}</span>
+	</p>
+	<p class="figures">
+		{% trans "Vrijdag" %}:<br>
+		<span class="large-number">{{num_vr}}</span>
+	</p>
+	
+	{% url 'space_ticketing:space_landing' as order_online %}
+	{% url 'zaventem_transport_poll' as nz %}
+	{% blocktrans %}
+	<p id="text">Wil je die tellers mee omhooghelpen? <br>Verkoop onze concerten dan aan vrienden, familie en vage kenissen, en laat hen ..</p>
+    <ul>
+    	<li>.. ofwel <a href="{{order_online}}">online tickets bestellen;</a></li>
+    	<li>.. ofwel papieren tickets van jou kopen.</li>
+    </ul>
+	<p>Telkens je papieren tickets verkocht hebt, geef je dat hier even in:
+	<!--<a href="{{order_online}}" class="btn btn-primary" role="button">Registreer je verkochte papieren tickets</a></p>-->
+	<a href="#" class="btn btn-primary disabled" role="button">(Binnenkort beschikbaar)</a><br>
+	<a href="{{nz}}" class="btn btn-primary" role="button">Kies vervoer voor Zaventem</a></p>
+	{% endblocktrans %}
+	<p class="low">
+		{{user.first_name}} <em>({{user.email}})</em> &nbsp; – &nbsp; <a href="{% url 'logout' %}">{% trans "Afmelden" %}</a>
+	</p>
+</div>
+
+{% endblock content %}

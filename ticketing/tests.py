@@ -1,4 +1,4 @@
-# coding: utf8
+# coding: utf-8
 
 from django.test import TestCase
 from ticketing.management.commands.setup_space_ticketing import setup_space_ticketing

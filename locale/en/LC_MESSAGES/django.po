@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-30 03:05+0200\n"
-"PO-Revision-Date: 2015-04-14 14:55+0100\n"
+"POT-Creation-Date: 2015-04-26 09:39+0200\n"
+"PO-Revision-Date: 2015-04-26 09:40+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -52,57 +52,139 @@ msgstr ""
 msgid "Important dates"
 msgstr ""
 
-#: .\core\models.py:58
+#: .\core\models.py:57
 msgid "email address"
 msgstr ""
 
-#: .\core\models.py:60
+#: .\core\models.py:59
 msgid "A user with that email adress already exists."
 msgstr ""
 
-#: .\core\models.py:62
+#: .\core\models.py:61
 msgid "first name"
 msgstr ""
 
-#: .\core\models.py:63
+#: .\core\models.py:62
 msgid "last name"
 msgstr ""
 
-#: .\core\models.py:64
+#: .\core\models.py:63
 msgid "staff status"
 msgstr ""
 
-#: .\core\models.py:65
+#: .\core\models.py:64
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
 
-#: .\core\models.py:67
+#: .\core\models.py:66
 msgid "active"
 msgstr ""
 
-#: .\core\models.py:68
+#: .\core\models.py:67
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
 
-#: .\core\models.py:70
+#: .\core\models.py:69
 msgid "date joined"
 msgstr ""
 
-#: .\polls\forms.py:14
+#: .\core\templates\base.html:29
+msgid "Naar oude site"
+msgstr "To old website"
+
+#: .\core\templates\registration\logged_out.html:7
+#: .\core\templates\registration\logged_out.html:11
+msgid "Je bent afgemeld"
+msgstr "You are logged off"
+
+#: .\core\templates\registration\login.html:4
+#: .\core\templates\registration\login.html:12
+msgid "Toegang voor muzikanten"
+msgstr "Access for musicians"
+
+#: .\core\templates\registration\login.html:16
+msgid ""
+"Je e-mailadres en je wachtwoord kwamen niet overeen. Probeer het nog eens."
+msgstr "Your username and password didn't match. Please try again."
+
+#: .\core\templates\registration\login.html:19
+#: .\ticketing\templates\space\start_order.html:98
+msgid "Je e-mailadres"
+msgstr "Your email address"
+
+#: .\core\templates\registration\login.html:20
+msgid "xxJohnnyLover69@msn.be"
+msgstr ""
+
+#: .\core\templates\registration\login.html:23
+msgid "Je wachtwoord"
+msgstr "Your password"
+
+#: .\core\templates\registration\login.html:24
+msgid "H@rdstyleWillN3verDie"
+msgstr ""
+
+#: .\core\templates\registration\login.html:26
+msgid "Aanmelden"
+msgstr "Log in"
+
+#: .\core\templates\registration\pass_changed.html:7
+#: .\core\templates\registration\pass_changed.html:11
+msgid "Je wachtwoord is ingesteld"
+msgstr "Your password has been set"
+
+#: .\core\templates\registration\pass_changed.html:12
+#: .\ticketing\templates\space\start_order.html:106
+msgid "Ga verder"
+msgstr "Go on"
+
+#: .\core\templates\registration\password_set_form.html:4
+#: .\core\templates\registration\password_set_form.html:12
+#: .\core\templates\registration\password_set_form.html:27
+msgid "Stel wachtwoord in"
+msgstr "Set password"
+
+#: .\core\templates\registration\password_set_form.html:15
+#, python-format
+msgid ""
+"Kies een ander wachtwoord dan \"%(default_pass)s\". Dat mag je wachtwoord "
+"van de oude website zijn."
+msgstr ""
+"Choose a password different from \"%(default_pass)s\". This can be your "
+"password from the old website."
+
+#: .\core\templates\registration\password_set_form.html:17
+msgid "De wachtwoorden kwamen niet overeen. Probeer het nog eens."
+msgstr "Your username and password didn't match. Please try again."
+
+#: .\core\templates\registration\password_set_form.html:20
+msgid "Nieuw wachtwoord"
+msgstr "New password"
+
+#: .\core\templates\registration\password_set_form.html:21
+#: .\core\templates\registration\password_set_form.html:25
+msgid "Lange zinnen zijn de veiligste wachtwoorden. Zie xkcd.com/936"
+msgstr "Long sentences are the safest passwords. See xkcd.com/936"
+
+#: .\core\templates\registration\password_set_form.html:24
+msgid "Nog eens je nieuwe wachtwoord"
+msgstr "New password again"
+
+#: .\polls\forms.py:16 .\ticketing\templates\space\start_order.html:81
 msgid "Je naam"
 msgstr "Your name"
 
-#: .\polls\forms.py:16
+#: .\polls\forms.py:18
 msgid "Voor & Achter"
 msgstr "First & Last"
 
-#: .\polls\forms.py:20
+#: .\polls\forms.py:22
 msgid "Je plannen"
 msgstr "Your plans"
 
-#: .\polls\forms.py:23
+#: .\polls\forms.py:25
 msgid ""
 "Tot wanneer plan je in het Arenbergorkest te spelen? Bijvoorbeeld: \"Tot het "
 "einde van mijn master\", \"Nog tot en met volgend semester\", of \"Dit is "
@@ -112,15 +194,15 @@ msgstr ""
 "the end of my Master's (two years to go)\", \"Until the end of next semester"
 "\", or \"This is my last semester\""
 
-#: .\polls\forms.py:29
+#: .\polls\forms.py:31
 msgid "Ik speel volgend semester mee in het orkest"
 msgstr "I play in the orchestra next semester"
 
-#: .\polls\forms.py:34
+#: .\polls\forms.py:36
 msgid "Ik wil een functie opnemen in de organisatie"
 msgstr "I want to take up responsibility for a task in the organisation"
 
-#: .\polls\forms.py:46
+#: .\polls\forms.py:48
 msgid ""
 "<p>Volgend semester creëren we opnieuw een concertreeks voor in Leuven, met "
 "een sterk nieuw programma. In het tweede semester plannen we een "
@@ -134,12 +216,12 @@ msgstr ""
 "in Ghent. To ensure a good balance in the orchestra, we are asking you now "
 "for your plans.</p>"
 
-#: .\polls\forms.py:63
+#: .\polls\forms.py:65
 msgid ""
 "<p>Concreet voor volgend semester (vink even aan als van toepassing):</p>"
 msgstr "<p>Specifically for next semester (just check the box if you do):</p>"
 
-#: .\polls\forms.py:71
+#: .\polls\forms.py:73
 msgid ""
 "<p>Er volgt nog meer info over wat je kan doen, maar als je het nu al weet:</"
 "p>"
@@ -147,36 +229,557 @@ msgstr ""
 "<p>More info about the specific tasks is coming up, but if you already know "
 "now:</p>"
 
-#: .\polls\templates\new_semester_poll.html:5
-#: .\polls\templates\new_semester_poll.html:13 .\polls\templates\thanks.html:4
+#: .\polls\forms.py:98
+msgid "Ik ga naar Zaventem .."
+msgstr "I go to Zaventem .."
+
+#: .\polls\models.py:31
+msgid ".. met de groep"
+msgstr ".. with the group"
+
+#: .\polls\models.py:32
+msgid ".. met eigen vervoer"
+msgstr ".. by myself"
+
+#: .\polls\templates\new_semester.html:5
+#: .\polls\templates\new_semester.html:13 .\polls\templates\thanks.html:4
 msgid "Nieuw semester"
 msgstr "New semester"
 
-#: .\polls\templates\thanks.html:10
+#: .\polls\templates\thanks.html:10 .\ticketing\templates\space\thanks.html:19
 msgid "Bedankt!"
 msgstr "Thanks!"
 
-#: .\polls\views.py:30
+#: .\polls\templates\zaventem_transport.html:5
+#: .\polls\templates\zaventem_transport.html:11
+msgid "Vervoer concert Zaventem"
+msgstr "Transport concert Zaventem"
+
+#: .\polls\views.py:34
 msgid "Gaan met die banaan"
 msgstr "Submit answers"
 
-#: .\ticketing\models.py:56
-msgid "date of order"
+#: .\ticketing\models.py:31
+msgid "datum en eventueel uur"
 msgstr ""
 
-#: .\ticketing\models.py:58
-msgid ""
-"remarks. For questions, special requests, answers to 'how did you hear about "
-"this?', ..."
+#: .\ticketing\models.py:63
+msgid "datum van online bestelling"
 msgstr ""
 
-#: .\ticketing\models.py:65
+#: .\ticketing\models.py:66 .\ticketing\templates\space\complete_order.html:57
 msgid "Via overschrijving"
 msgstr "By bank transfer"
 
-#: .\ticketing\models.py:65
+#: .\ticketing\models.py:66
 msgid "Aan de kassa"
 msgstr "Cash at the desk"
+
+#: .\ticketing\models.py:70
+msgid "opmerkingen gebruiker. Voor vragen en speciale verzoeken."
+msgstr ""
+
+#: .\ticketing\models.py:108
+msgid "Voor antwoorden op de vraag: \"Hoe heb je van dit concert gehoord?\""
+msgstr ""
+
+#: .\ticketing\models.py:110
+msgid "Ken je een muzikant en kom je dankzij hem of haar luisteren?"
+msgstr ""
+
+#: .\ticketing\templates\internal\musician_dashboard.html:4
+msgid "Ticketverkoop S P A C E"
+msgstr "Ticket sales S P A C E"
+
+#: .\ticketing\templates\internal\musician_dashboard.html:49
+msgid "<span>SPACE</span><br>Ticketverkoop"
+msgstr "<span>SPACE</span><br>Ticket sales"
+
+#: .\ticketing\templates\internal\musician_dashboard.html:51
+msgid "Donderdag"
+msgstr "Thursday"
+
+#: .\ticketing\templates\internal\musician_dashboard.html:55
+msgid "Vrijdag"
+msgstr "Friday"
+
+#: .\ticketing\templates\internal\musician_dashboard.html:61
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "\t<p id=\"text\">Wil je die tellers mee omhooghelpen? <br>Verkoop onze "
+#| "concerten dan aan vrienden, familie en vage kenissen, en laat hen ..</p>\n"
+#| "    <ul>\n"
+#| "    \t<li>.. ofwel <a href=\"%(order_online)s\">online tickets bestellen;"
+#| "</a></li>\n"
+#| "    \t<li>.. ofwel papieren tickets van jou kopen.</li>\n"
+#| "    </ul>\n"
+#| "\t<p>Telkens je papieren tickets verkocht hebt, geef je dat hier even "
+#| "in:\n"
+#| "\t<!--<a href=\"%(order_online)s\" class=\"btn btn-primary\" role=\"button"
+#| "\">Registreer je verkochte papieren tickets</a></p>-->\n"
+#| "\t<a href=\"#\" class=\"btn btn-primary disabled\" role=\"button"
+#| "\">(Binnenkort beschikbaar)</a><br>\n"
+#| "\t<a href=\"%(nz)s\" class=\"btn btn-primary\" role=\"button\">Regel "
+#| "vervoer voor Zaventem</a></p>\n"
+#| "\t"
+msgid ""
+"\n"
+"\t<p id=\"text\">Wil je die tellers mee omhooghelpen? <br>Verkoop onze "
+"concerten dan aan vrienden, familie en vage kenissen, en laat hen ..</p>\n"
+"    <ul>\n"
+"    \t<li>.. ofwel <a href=\"%(order_online)s\">online tickets bestellen;</"
+"a></li>\n"
+"    \t<li>.. ofwel papieren tickets van jou kopen.</li>\n"
+"    </ul>\n"
+"\t<p>Telkens je papieren tickets verkocht hebt, geef je dat hier even in:\n"
+"\t<!--<a href=\"%(order_online)s\" class=\"btn btn-primary\" role=\"button"
+"\">Registreer je verkochte papieren tickets</a></p>-->\n"
+"\t<a href=\"#\" class=\"btn btn-primary disabled\" role=\"button"
+"\">(Binnenkort beschikbaar)</a><br>\n"
+"\t<a href=\"%(nz)s\" class=\"btn btn-primary\" role=\"button\">Kies vervoer "
+"voor Zaventem</a></p>\n"
+"\t"
+msgstr ""
+"\n"
+"\t<p id=\"text\">Do you want to help raise those numbers?<br>Then sell our "
+"concert to close friends and loose acquaintanes alike, and let them ..</p>\n"
+"    <ul>\n"
+"    \t<li>.. OR <a href=\"%(order_online)s\">order tickets online</a></li>\n"
+"    \t<li>.. OR buy paper tickets from you.</li>\n"
+"    </ul>\n"
+"\t<p>Everytime you sold paper ticekts, you should incidate so here:\n"
+"\t<!--<a href=\"%(order_online)s\" class=\"btn btn-primary\" role=\"button"
+"\">Register your sold tickets</a></p>-->\n"
+"\t<a href=\"#\" class=\"btn btn-primary disabled\" role=\"button\">(Soon "
+"availabler)</a><br>\n"
+"\t<a href=\"%(nz)s\" class=\"btn btn-primary\" role=\"button\">Choose "
+"transport from and to the Zaventem concert.</a></p>\n"
+"\t"
+
+#: .\ticketing\templates\internal\musician_dashboard.html:73
+msgid "Afmelden"
+msgstr "Log off"
+
+#: .\ticketing\templates\space\complete_order.html:4
+#: .\ticketing\templates\space\landing.html:4
+#: .\ticketing\templates\space\start_order.html:4
+#: .\ticketing\templates\space\thanks.html:4
+msgid "SPACE Concerten Arenbergorkest"
+msgstr "SPACE Concerts Arenbergorkest"
+
+#: .\ticketing\templates\space\complete_order.html:12
+#: .\ticketing\templates\space\landing.html:14
+#: .\ticketing\templates\space\landing_bootstrap.html:18
+#: .\ticketing\templates\space\start_order.html:12
+#: .\ticketing\templates\space\thanks.html:12
+msgid "Arenbergorkest"
+msgstr ""
+
+#: .\ticketing\templates\space\complete_order.html:13
+#: .\ticketing\templates\space\start_order.html:13
+#: .\ticketing\templates\space\thanks.html:13
+msgid "olv Roel Willems"
+msgstr ""
+
+#: .\ticketing\templates\space\complete_order.html:14
+#: .\ticketing\templates\space\landing.html:16
+#: .\ticketing\templates\space\landing_bootstrap.html:20
+#: .\ticketing\templates\space\start_order.html:14
+#: .\ticketing\templates\space\thanks.html:14
+msgid "SPACE"
+msgstr ""
+
+#: .\ticketing\templates\space\complete_order.html:19
+#: .\ticketing\templates\space\start_order.html:19
+msgid "Tickets bestellen"
+msgstr "Order tickets"
+
+#: .\ticketing\templates\space\complete_order.html:23
+msgid "Dit is je voorlopige bestelling:"
+msgstr "This is your draft order:"
+
+#: .\ticketing\templates\space\complete_order.html:25
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t<p>\n"
+"\t\t\t\t\t<strong>%(tt)s</strong> tickets voor samen <strong>€ %(tp)s</"
+"strong>.\n"
+"\t\t\t\t</p>\n"
+"\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t<p>\n"
+"\t\t\t\t\t<strong>%(tt)s</strong> tickets for a total of <strong>€ %(tp)s</"
+"strong>.\n"
+"\t\t\t\t</p>\n"
+"\t\t\t\t"
+
+#: .\ticketing\templates\space\complete_order.html:31
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t<p>\n"
+"\t\t\t\t\tIn totaal <strong>%(tt)s</strong> ticket%(ttplural)s (studenten: "
+"%(s)s, niet-studenten: %(ns)s, KU Leuven cultuurkaarthouders: %(cc)s)<br>\n"
+"\t\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t\tA total of <strong>%(tt)s</strong> ticket%(ttplural)s (students: "
+"%(s)s, non-students: %(ns)s, KU Leuven Culture Card holders: %(cc)s)<br>"
+
+#: .\ticketing\templates\space\complete_order.html:35
+#: .\ticketing\templates\space\email.html:26
+msgid "Voor"
+msgstr "For"
+
+#: .\ticketing\templates\space\complete_order.html:35
+#: .\ticketing\templates\space\email.html:26
+msgid "samen"
+msgstr "a total of"
+
+#: .\ticketing\templates\space\complete_order.html:38
+#, python-format
+msgid ""
+"\n"
+"\t\t\t<p>\n"
+"\t\t\t\tVoor het concert van <strong>%(p)s</strong>.<br>\n"
+"\t\t\t</p>\n"
+"\t\t\t<p>\n"
+"\t\t\t\tOp naam van <strong>%(fn)s</strong> (voornaam) <strong>%(ln)s</"
+"strong>  (achternaam)<br>\n"
+"\t\t\t\tEmail: <strong>%(e)s</strong><br>\n"
+"\t\t\t</p>\n"
+"\t\t\t<p>\n"
+"\t\t\t\tKlopt er iets niet? Dan kan je dat \n"
+"\t\t\t\t<button name=\"wizard_goto_step\" type=\"submit\" value=\"%(val)s\" "
+"class=\"btn btn-link\">Aanpassen.</button>\n"
+"\t\t\t</p>\n"
+"\t\t\t<p>Als alles klopt, mag je het formulier hieronder verder invullen en "
+"je bestelling definitief bevestigen.</p>\n"
+"\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t<p>\n"
+"\t\t\t\tFor the performance of <strong>%(p)s</strong>.<br>\n"
+"\t\t\t</p>\n"
+"\t\t\t<p>\n"
+"\t\t\t\tBy name of <strong>%(fn)s</strong> (first name) <strong>%(ln)s</"
+"strong>  (last name)<br>\n"
+"\t\t\t\tEmail: <strong>%(e)s</strong><br>\n"
+"\t\t\t</p>\n"
+"\t\t\t<p>\n"
+"\t\t\t\tIf something is not correct, you can easily  \n"
+"\t\t\t\t<button name=\"wizard_goto_step\" type=\"submit\" value=\"%(val)s\" "
+"class=\"btn btn-link\">Change it.</button>\n"
+"\t\t\t</p>\n"
+"\t\t\t<p>If everything is OK, you may complete the form below and confirm "
+"your ticket order.</p>\n"
+"\t\t\t"
+
+#: .\ticketing\templates\space\complete_order.html:55
+#: .\ticketing\templates\space\complete_order.html:68
+#: .\ticketing\templates\space\email.html:33
+msgid "Betalingswijze"
+msgstr "Method of payment"
+
+#: .\ticketing\templates\space\complete_order.html:64
+msgid ""
+"Voor het concert in Zaventem kan enkel via overschrijving worden betaald."
+msgstr "For the Zaventem concert, only payment by bank transfer is possible."
+
+#: .\ticketing\templates\space\complete_order.html:70
+msgid "– Kies betalingswijze –"
+msgstr "– Choose method of payment –"
+
+#: .\ticketing\templates\space\complete_order.html:83
+msgid "Hoe heb je van dit concert gehoord?"
+msgstr "How did you hear about this concert?"
+
+#: .\ticketing\templates\space\complete_order.html:84
+msgid ""
+"Kennis of familie in orkest, poster ergens gezien, e-mail ontvangen, ..."
+msgstr "Friend in the orchestra, seen the poster somewhere, Facebook, ..."
+
+#: .\ticketing\templates\space\complete_order.html:92
+msgid "Muzikant"
+msgstr "Musician"
+
+#: .\ticketing\templates\space\complete_order.html:93
+msgid ""
+"Ken je een muzikant en kom je dankzij hem of haar luisteren? Help hem of "
+"haar dan om de prijs voor Strafste Ticketverkoper in de wacht te slepen."
+msgstr ""
+"Do you know a musician and are you coming because of him or her? Then help "
+"him or her to win the prize for Most Sensational Ticket Salesman."
+
+#: .\ticketing\templates\space\complete_order.html:95
+msgid "Niet van toepassing"
+msgstr "Not applicable."
+
+#: .\ticketing\templates\space\complete_order.html:107
+msgid "Dit is m'n eerste Arenberg-concert"
+msgstr "This is my first Arenberg concert"
+
+#: .\ticketing\templates\space\complete_order.html:109
+msgid "– Kies –"
+msgstr "– Choose –"
+
+#: .\ticketing\templates\space\complete_order.html:110
+msgid "Ja"
+msgstr "Yes"
+
+#: .\ticketing\templates\space\complete_order.html:111
+msgid "Nee"
+msgstr "No"
+
+#: .\ticketing\templates\space\complete_order.html:120
+#: .\ticketing\templates\space\email.html:42
+msgid "Opmerkingen"
+msgstr "Remarks"
+
+#: .\ticketing\templates\space\complete_order.html:121
+msgid "Eventuele vragen of speciale verzoeken."
+msgstr "Questions or special requests"
+
+#: .\ticketing\templates\space\complete_order.html:128
+msgid "Bestel"
+msgstr "Order"
+
+#: .\ticketing\templates\space\email.html:6
+msgid "Bestelling tickets 'SPACE' concert Arenbergorkest"
+msgstr "Tickets for SPACE concert Arenbergorkest"
+
+#: .\ticketing\templates\space\email.html:10
+#, python-format
+msgid "Beste %(first_name)s %(last_name)s,"
+msgstr "Dear %(first_name)s %(last_name)s,"
+
+#: .\ticketing\templates\space\email.html:13
+msgid ""
+"\n"
+"\t\t\t<p>Bedankt om tickets te bestellen voor de 'SPACE' concerten van het "
+"Arenbergorkest!</p>\n"
+"\t\t\t<p>Dit is je bestelling:</p>\n"
+"\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t<p>Thanks for ordering tickets for the SPACE concerts of the "
+"Arenbergorkest!</p>\n"
+"\t\t\t<p>This is your order:</p>\n"
+"\t\t\t"
+
+#: .\ticketing\templates\space\email.html:20
+#, python-format
+msgid ""
+"<strong>%(total_tickets)s</strong> tickets voor samen <strong>€ "
+"%(total_price)s</strong>."
+msgstr ""
+"<strong>%(total_tickets)s</strong> tickets for a total of <strong>€ "
+"%(total_price)s</strong>."
+
+#: .\ticketing\templates\space\email.html:24
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t\tIn totaal <strong>%(total_tickets)s</strong> ticket"
+"%(total_tickets|pluralize)s (studenten: %(num_student_tickets)s, niet-"
+"studenten: %(num_non_student_tickets)s, KU Leuven cultuurkaarthouders: "
+"%(num_culture_card_tickets)s)<br>"
+msgstr ""
+"\n"
+"\t\t\t\t\tTogether <strong>%(total_tickets)s</strong> ticket"
+"%(total_tickets|pluralize)s (students: %(num_student_tickets)s, non-"
+"students: %(num_non_student_tickets)s, KU Leuven Culture Card holders: "
+"%(num_culture_card_tickets)s)<br>"
+
+#: .\ticketing\templates\space\email.html:30
+#, python-format
+msgid "Voor het concert van <strong>%(performance_full)s</strong>.<br>"
+msgstr "For the performance of <strong>%(performance_full)s</strong>.<br>"
+
+#: .\ticketing\templates\space\email.html:32
+msgid "Deze kaarten zullen klaarliggen op naam aan de kassa."
+msgstr "These tickets will be handed out at the desk on mention of your name."
+
+#: .\ticketing\templates\space\email.html:35
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t<p>Gelieve <strong>€ %(total_price)s</strong> over te schrijven op "
+"<br>\n"
+"\t\t\t\t<strong>BE23 7330 2625 4391</strong><br>\n"
+"\t\t\t\tmet vermelding van <strong>\"SPACE\"</strong> en uw <strong>naam</"
+"strong>.</p>\n"
+"\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t<p>Please transfer <strong>€ %(total_price)s</strong> to <br>\n"
+"\t\t\t<strong>BE23 7330 2625 4391</strong><br>\n"
+"\t\t\tmentioning <strong>\"SPACE\"</strong> and your <strong>name</strong>.</"
+"p>\n"
+"\t\t\t"
+
+#: .\ticketing\templates\space\email.html:48
+msgid ""
+"\n"
+"\t\t<p>Tot op het concert!</p>\n"
+"\t\t<p>- Het Arenbergorkest</p>\n"
+"\t\t"
+msgstr ""
+"\n"
+"\t\t<p>See you at the concert!</p>\n"
+"\t\t<p>- Arenbergorkest</p>\n"
+"\t\t"
+
+#: .\ticketing\templates\space\landing.html:15
+#: .\ticketing\templates\space\landing_bootstrap.html:19
+msgid "OLV Roel Willems"
+msgstr ""
+
+#: .\ticketing\templates\space\landing.html:32
+msgid "Bestel tickets"
+msgstr "Order tickets"
+
+#: .\ticketing\templates\space\landing.html:33
+msgid "Do 7 &amp; Vr 8 mei"
+msgstr "Thu May 7 &amp; Fri May 8"
+
+#: .\ticketing\templates\space\landing.html:34
+msgid "20u30 @ Aula Pieter De Somer, Leuven"
+msgstr "20h30 @ Aula Pieter De Somer, Leuven"
+
+#: .\ticketing\templates\space\landing.html:36
+msgid "Za 9 mei"
+msgstr "Sat May 9"
+
+#: .\ticketing\templates\space\landing.html:37
+msgid "20u00 @ St-Martinuskerk, Zaventem"
+msgstr "20h00 @ the Church of St-Martinus, Zaventem"
+
+#: .\ticketing\templates\space\landing_bootstrap.html:5
+msgid "S P A C E Concerten Arenbergorkest"
+msgstr "S P A C E Concerts Arenbergorkest"
+
+#: .\ticketing\templates\space\start_order.html:23
+msgid "Voor welk concert wil je tickets bestellen?"
+msgstr "For which concert do you want to order tickets?"
+
+#: .\ticketing\templates\space\start_order.html:25
+msgid "– Kies concert –"
+msgstr "– Choose concert –"
+
+#: .\ticketing\templates\space\start_order.html:39
+msgid "Hoeveel tickets wil je bestellen?"
+msgstr "How many tickets do you want to order?"
+
+#: .\ticketing\templates\space\start_order.html:40
+msgid "Een ticket voor Zaventem kost €10"
+msgstr "A ticket for Zaventem is €10"
+
+#: .\ticketing\templates\space\start_order.html:50
+msgid "Hoeveel tickets wil je bestellen voor ..."
+msgstr "How many tickets do you want to order for ..."
+
+#: .\ticketing\templates\space\start_order.html:52
+msgid "Studenten en -18"
+msgstr "Students and -18"
+
+#: .\ticketing\templates\space\start_order.html:61
+msgid "Niet-studenten"
+msgstr "Non-students"
+
+#: .\ticketing\templates\space\start_order.html:70
+msgid "KU Leuven Cultuurkaarthouders"
+msgstr "KU Leuven Culture Card holders"
+
+#: .\ticketing\templates\space\start_order.html:82
+msgid "Voornaam"
+msgstr "First name"
+
+#: .\ticketing\templates\space\start_order.html:90
+msgid "Achternaam"
+msgstr "Last name"
+
+#: .\ticketing\templates\space\start_order.html:99
+msgid "E-mailadres"
+msgstr "Email address"
+
+#: .\ticketing\templates\space\thanks.html:21
+#, python-format
+msgid ""
+"\n"
+"\t\t\t<p>Gelieve <strong>€ %(total_price)s</strong> over te schrijven op "
+"<br>\n"
+"\t\t\t<strong>BE23 7330 2625 4391</strong><br>\n"
+"\t\t\tmet vermelding van <strong>\"SPACE\"</strong> en uw <strong>naam</"
+"strong>.</p>\n"
+"\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t<p>Please transfer <strong>€ %(total_price)s</strong> to <br>\n"
+"\t\t\t<strong>BE23 7330 2625 4391</strong><br>\n"
+"\t\t\tmentioning <strong>\"SPACE\"</strong> and your <strong>name</strong>.</"
+"p>\n"
+"\t\t\t"
+
+#: .\ticketing\templates\space\thanks.html:27
+msgid "Je bestelde kaarten zullen klaarliggen op naam aan de kassa."
+msgstr ""
+"The tickets you ordered will be handed out at the desk on mention of your "
+"name."
+
+#: .\ticketing\templates\space\thanks.html:28
+msgid ""
+"Je ontvangt zometeen een e-mail met nog eens alle informatie van je "
+"bestelling."
+msgstr "You'll soon receive an email with all info again about your order."
+
+#: .\ticketing\templates\space\thanks.html:29
+msgid "Bestel tickets voor een ander concert"
+msgstr "Order tickets for another concert."
+
+#: .\ticketing\templates\space\thanks.html:30
+msgid "Terug naar het begin"
+msgstr "Back to the start"
+
+#: .\ticketing\views\space.py:22
+msgid "Donderdag 7 mei - om 20u30 in Aula Pieter De Somer, Leuven"
+msgstr "Thursday May 7 – 20h30 in Aula Pieter De Somer, Leuven"
+
+#: .\ticketing\views\space.py:23
+msgid "Vrijdag 8 mei - om 20u30 in Aula Pieter De Somer, Leuven"
+msgstr "Friday May 8 – 20h30 in Aula Pieter De Somer, Leuven"
+
+#: .\ticketing\views\space.py:24
+msgid "Zaterdag 9 mei - om 20u00 in St-Martinuskerk, Zaventem"
+msgstr "Saturday May 9 – 20h00 in the Church of St-Martinus, Zaventem"
+
+#~ msgid ""
+#~ "\n"
+#~ "\t\t\t\t<p>\n"
+#~ "\t\t\t\t\tIn totaal <strong>%(first_form.total_tickets)s</strong> ticket"
+#~ "%(first_form.total_tickets|pluralize)s (studenten: %(first_form."
+#~ "num_student_tickets)s, niet-studenten: %(first_form."
+#~ "num_non_student_tickets)s, KU Leuven cultuurkaarthouders: %(first_form."
+#~ "num_culture_card_tickets)s)<br>\n"
+#~ "\t\t\t\t\t"
+#~ msgstr ""
+#~ "\n"
+#~ "\t\t\t\t<p>\n"
+#~ "\t\t\t\t\tA total of <strong>%(first_form.total_tickets)s</strong> ticket"
+#~ "%(first_form.total_tickets|pluralize)s (students: %(first_form."
+#~ "num_student_tickets)s, non-students: %(first_form."
+#~ "num_non_student_tickets)s, KU Leuven Culture Card holders: %(first_form."
+#~ "num_culture_card_tickets)s)<br>\n"
+#~ "\t\t\t\t\t"
+
+#~ msgid "Wachtwoord"
+#~ msgstr "Password"
+
+#~ msgid "Aanpassen."
+#~ msgstr "Change."
 
 #~ msgid "Ik wil me engageren voor het orkest"
 #~ msgstr "I want to take up responsibility for some task in the organisation"

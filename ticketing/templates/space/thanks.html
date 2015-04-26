@@ -2,11 +2,10 @@
 {% load i18n %}
 {% load staticfiles %}
 {% block title %}{% trans "SPACE Concerten Arenbergorkest" %}{% endblock title %}
-{% block custom_css %}
-<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+{% block custom_css_js %}
 <link rel="stylesheet" href="{% static 'ticketing/space/style.css' %}">
 <link rel="stylesheet" href="{% static 'ticketing/space/style-landscape-tablet-and-larger.css' %}" media="(min-width: 992px)">
-{% endblock custom_css %}
+{% endblock custom_css_js %}
 {% block content %}
 <div id="header">
 	<div class="container">
@@ -19,9 +18,11 @@
 	<form>
 		<h1>{% trans "Bedankt!" %}</h1>
 		{% if payment_method == "transfer" %}
+			{% blocktrans %}
 			<p>Gelieve <strong>€ {{ total_price }}</strong> over te schrijven op <br>
 			<strong>BE23 7330 2625 4391</strong><br>
 			met vermelding van <strong>"SPACE"</strong> en uw <strong>naam</strong>.</p>
+			{% endblocktrans %}
 		{% endif %}
 		<p>{% trans "Je bestelde kaarten zullen klaarliggen op naam aan de kassa." %}</p>
 		<p>{% trans "Je ontvangt zometeen een e-mail met nog eens alle informatie van je bestelling." %}</p><br>

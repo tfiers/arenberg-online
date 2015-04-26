@@ -7,6 +7,8 @@ from crispy_forms.bootstrap import FormActions
 from django.utils.translation import ugettext_lazy as _
 from django.utils.safestring import mark_safe
 from django.utils.html import conditional_escape
+from django.forms import ModelForm
+from polls.models import ZaventemTransport
 
 class NewSemesterPoll(forms.Form):
 
@@ -78,7 +80,20 @@ class NewSemesterPoll(forms.Form):
 			# Note: using _("Gaan met die banaan") for the button label (value) doesn't work.
 			# The same string apears in both the English and Dutch versions.
 			# See views.py for the workaround we use for this.
-			Submit(name='submit', value="Submit form", css_class="btn-success"),
+			Submit(name='submit', value="Submit form", css_class="btn-success "),
 			css_class="text-center",
 		),
 	)
+
+
+class ZaventemTransportForm(ModelForm):
+	def __init__(self, *args, **kwargs):
+		super(ZaventemTransportForm, self).__init__(*args, **kwargs)
+		self.helper = FormHelper(self)
+		self.helper.layout.append(Submit(name='submit', value="Go", css_class="btn-success"))
+	class Meta:
+		model = ZaventemTransport
+		fields = ['transport']
+		labels = {
+			'transport': _("Ik ga naar Zaventem ..")
+		}

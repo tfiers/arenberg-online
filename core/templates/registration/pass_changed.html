@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block custom_css_js %}
+<link rel="stylesheet" href="{% static 'registration/style.css' %}">
+{% endblock custom_css_js %}
+{% block title %}{% trans "Je wachtwoord is ingesteld" %}{% endblock title %}
+{% block content %}
+	<div class="text-center" id="ciao-msg">
+		<h1><span class="glyphicon glyphicon-ok"></span></h1>
+		<h3>{% trans "Je wachtwoord is ingesteld" %}</h3>
+		<a href="{% url 'space_ticketing:musician_tickets' %}">{% trans "Ga verder" %}</a>
+	</div>
+{% endblock content %}

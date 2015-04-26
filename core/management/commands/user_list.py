@@ -1,4 +1,4 @@
-# coding: utf8
+# coding: utf-8
 
 user_list = (
 (7,'Mathias','Diricx','mathiasdiricx@hotmail.com'),

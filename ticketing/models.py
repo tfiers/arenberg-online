@@ -1,4 +1,4 @@
-# coding: utf8
+# coding: utf-8
 
 from django.utils.translation import ugettext_lazy as _
 from django.utils.timezone import get_current_timezone

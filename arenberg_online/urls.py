@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from solid_i18n.urls import solid_i18n_patterns
 
 urlpatterns = patterns ('',
@@ -11,8 +12,14 @@ urlpatterns += solid_i18n_patterns('',
     # url(r'^$', 'arenberg_online.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     url(r'^', include('ticketing.urls', namespace='space_ticketing')),
+    url(r'^home/', include('ticketing.urls', namespace='space_ticketing')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^meer\-orkest$', 'polls.views.new_semester_answer', name="new_semester_poll"),
+    url(r'^musicians/login$', auth_views.login, name='login'),
+    url(r'^musicians/adieu$', auth_views.logout, name='logout'),
+    url(r'^musicians/choose-password$', 'core.views.change_default_password', name='change_password'),
+    url(r'^musicians/choose-password/done$', 'core.views.password_set', name='pass_changed'),
+    url(r'^meer\-orkest$', 'polls.views.new_semester', name="new_semester_poll"),
+    url(r'^naar\-zaventem$', 'polls.views.zaventem_transport', name="zaventem_transport_poll"),
     url(r'^thanks$', 'polls.views.thanks', name="thanks"),
     url(r'^music_suggestions/', include('music_suggestions.urls', namespace='music_suggestions')),
     url(r'^(?P<path>.*)/$', 'core.views.redirect_to_old_drupal_site', name='redirect_to_old_drupal_site'), # catch-all

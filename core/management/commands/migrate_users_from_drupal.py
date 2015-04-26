@@ -1,8 +1,7 @@
 from django.core.management.base import BaseCommand
 from core.models import User, UserProfile
 from user_list import user_list
-
-DEFAULT_PASSWORD = "vuurvogel"
+from django.conf import settings
 
 class Command(BaseCommand):
 	args = 'none'
@@ -17,7 +16,7 @@ class Command(BaseCommand):
 					email=email,
 					first_name=first_name,
 					last_name=last_name,
-					password=DEFAULT_PASSWORD,
+					password=settings.DEFAULT_NEW_PASSWORD,
 				)
 				profile = UserProfile.objects.create(
 					associated_user=user,

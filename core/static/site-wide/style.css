@@ -1,0 +1,44 @@
+::selection {
+  background: #FFC95A;
+}
+
+#navbar {
+	background-color: white;
+	min-height: 20px;
+	border: 0;
+	border-bottom: 1px solid #999;
+	border-radius: 0;
+	font-family: 'Lato', sans-serif;
+	color: #666;
+	font-size: 11px;
+}
+#navbar #cont {
+	max-width: 700px;
+	margin: 0 auto;
+}
+#navbar ul {
+	margin: 0;
+	padding: 0;
+}
+#navbar li {
+	display: block;
+	margin: 0.4em 0.4em;
+}
+#navbar #left li {
+	float: left;
+}
+#navbar #left li + li::before {
+	content: "|";
+	margin-right: 0.8em;
+}
+#navbar a {
+	color: #666;
+}
+#navbar strong {
+	font-weight: bolder;
+}
+#navbar #language-select {
+	color: #333;
+	float: right;
+	word-spacing: 0.2em;
+}

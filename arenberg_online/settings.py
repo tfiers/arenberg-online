@@ -8,7 +8,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
-DEVELOPPING = False
+DEVELOPPING = True
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -154,18 +154,19 @@ STATIC_ROOT = '/home/django/arenberg_online/static/'
 # django.contrib.auth user model.
 AUTH_USER_MODEL = 'core.User'
 
+LOGIN_URL = 'login' # Defined in urls.py
+LOGIN_REDIRECT_URL = 'change_password' # Defined in urls.py
+
 TEMPLATE_DIRS = (
     # Location for general templates not specific to an app:
-    os.path.join(BASE_DIR, 'templates'),
+    os.path.join(BASE_DIR, 'core/templates'),
 )
 
 # Use Bootstrap 3 for rendering forms with django-crispy-forms.
 # See: http://django-crispy-forms.readthedocs.org/en/latest/install.html#template-packs
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-
 # Email
-
 if DEVELOPPING:
     EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_PORT = 587
@@ -176,3 +177,7 @@ if DEVELOPPING:
 else:
     EMAIL_HOST = 'localhost'
     EMAIL_PORT = 25
+
+# Migrating users from drupal site.
+with open(os.path.join(CONFIG_DIR, 'default_new_password.txt')) as f:
+    DEFAULT_NEW_PASSWORD = f.read().strip()

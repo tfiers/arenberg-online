@@ -2,11 +2,10 @@
 {% load i18n %}
 {% load staticfiles %}
 {% block title %}{% trans "SPACE Concerten Arenbergorkest" %}{% endblock title %}
-{% block custom_css %}
-<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+{% block custom_css_js %}
 <link rel="stylesheet" href="{% static 'ticketing/space/style.css' %}">
 <link rel="stylesheet" href="{% static 'ticketing/space/style-landscape-tablet-and-larger.css' %}" media="(min-width: 992px)">
-{% endblock custom_css %}
+{% endblock custom_css_js %}
 {% block content %}
 <div id="header">
 	<div class="container">
@@ -17,7 +16,7 @@
 </div>  
 <div class="container">
 	<form action="" method="post">
-		<h1>Tickets bestellen</h1>
+		<h1>{% trans "Tickets bestellen" %}</h1>
 		{{ wizard.management_form }}
 		{% csrf_token %}
 		<div class="form-group{% if form.performance.errors %} has-error{% endif %}">
@@ -50,7 +49,7 @@
 			<div id="leuven">
 				<p>{% trans "Hoeveel tickets wil je bestellen voor ..." %}</p>
 				<div class="form-group{% if form.num_student_tickets.errors %} has-error{% endif %}">
-					<label for="{{ form.num_student_tickets.id_for_label }}">{% trans "Studenten" %} (€5)</label>
+					<label for="{{ form.num_student_tickets.id_for_label }}">{% trans "Studenten en -18" %} (€5)</label>
 					<input type="number" name="{{ form.num_student_tickets.html_name }}" id="{{ form.num_student_tickets.id_for_label }}" class="form-control" min="0" step="1" value="{{ form.num_student_tickets.value|default_if_none:'0' }}">
 					<span class="help-block">
 					{% for error in form.num_student_tickets.errors %}
