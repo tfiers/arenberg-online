@@ -28,7 +28,7 @@
                     <div id="left">
                     <li><a href="http://arenbergorkest.studentenweb.org/">{% trans "Naar oude site" %}</a></li>
                     {% if user.is_authenticated %}<li><a href="{% url 'space_ticketing:musician_tickets' %}">{{ user.first_name|default:"Mijn profiel" }}</a></li>
-                    {% else %}<li><a href="{% url 'login' %}">Login muzikanten</a></li>
+                    {% else %}<li><a href="{% url 'login' %}">{% trans "Login muzikanten" %}</a></li>
                     {% endif %}
                     </div>
                     {% if LANGUAGE_CODE == 'en' %}<li id="language-select"><a href="{% url 'set_lang' lang='nl' %}">NL</a> | <strong>EN</strong></li>
