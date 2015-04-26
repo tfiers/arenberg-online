@@ -9,6 +9,8 @@ from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth import update_session_auth_hash
 from django.conf import settings 
+from datetime import datetime
+from pytz import utc
 
 def set_lang(request, lang='en'):
 	if lang not in ('en', 'nl'):
@@ -32,6 +34,8 @@ def change_default_password(request):
 		if request.method == 'POST':
 			form = SetPasswordForm(user=request.user, data=request.POST)
 			if form.is_valid():
+				form.user.userprofile.last_password_change = datetime.now(utc)
+				form.user.userprofile.save()
 				form.save()
 				update_session_auth_hash(request, form.user)
 				return HttpResponseRedirect(reverse('pass_changed'))
