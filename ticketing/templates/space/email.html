@@ -21,8 +21,8 @@
 				</p>
 			{% else %}
 				<p>
-					{% blocktrans %}
-					In totaal <strong>{{ total_tickets }}</strong> ticket{{ total_tickets|pluralize }} (studenten: {{ num_student_tickets }}, niet-studenten: {{ num_non_student_tickets }}, KU Leuven cultuurkaarthouders: {{ num_culture_card_tickets }})<br>{% endblocktrans %}
+					{% blocktrans with ttplural=total_tickets|pluralize%}
+					In totaal <strong>{{ total_tickets }}</strong> ticket{{ ttplural }} (studenten: {{ num_student_tickets }}, niet-studenten: {{ num_non_student_tickets }}, KU Leuven cultuurkaarthouders: {{ num_culture_card_tickets }})<br>{% endblocktrans %}
 					{% trans "Voor" %} {% if total_tickets > 1 %}{% trans "samen" %} {% endif %}<strong>€ {{ total_price }}</strong>.
 				</p>
 			{% endif %}
