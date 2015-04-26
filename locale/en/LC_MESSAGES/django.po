@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-26 10:25+0200\n"
-"PO-Revision-Date: 2015-04-26 10:26+0100\n"
+"POT-Creation-Date: 2015-04-26 10:33+0200\n"
+"PO-Revision-Date: 2015-04-26 10:34+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -119,16 +119,16 @@ msgid "Je e-mailadres"
 msgstr "Your email address"
 
 #: .\core\templates\registration\login.html:20
-msgid "xxJohnnyLover69@msn.be"
-msgstr ""
+msgid "bv. xxJohnnyLover69@msn.be"
+msgstr "e.g. xxJohnnyLover69@msn.be"
 
 #: .\core\templates\registration\login.html:23
 msgid "Je wachtwoord"
 msgstr "Your password"
 
 #: .\core\templates\registration\login.html:24
-msgid "H@rdstyleWillN3verDie"
-msgstr ""
+msgid "bv. H@rdstyleWillN3verDie"
+msgstr "e.g. H@rdstyleWillN3verDie"
 
 #: .\core\templates\registration\login.html:26
 msgid "Aanmelden"
