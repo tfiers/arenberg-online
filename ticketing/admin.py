@@ -5,7 +5,7 @@ from ticketing.models import (
 
 class OrderAdmin(admin.ModelAdmin):
 	list_display = ('first_name', 'last_name', 'num_tickets', 'total_price',
-		'payment_method', 'email', 'date', , 'user_remarks', 'admin_remarks')
+		'payment_method', 'email', 'date', 'user_remarks', 'admin_remarks')
 	ordering = ('-date',)
 
 class StandardMarketingPollAnswerAdmin(admin.ModelAdmin):
