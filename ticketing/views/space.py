@@ -76,12 +76,8 @@ def parse_form_data(form):
 
 
 def persist_data(data):
-	if data['performance'] == 'do':
-		performance = Performance.objects.get(date__contains=date(2015,5,7))
-	elif data['performance'] == 'vr':
-		performance = Performance.objects.get(date__contains=date(2015,5,8))
-	elif data['performance'] == 'za':
-		performance = Performance.objects.get(date__contains=date(2015,5,9))
+	day_mapping = {'do': 7, 'vr': 8, 'za': 9} # ..th of May
+	performance = Performance.objects.get(date__contains=date(2015,5,day_mapping[data['performance']]))
 		
 	order = Order.objects.create(
 		performance = performance,

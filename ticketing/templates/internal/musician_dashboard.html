@@ -57,7 +57,6 @@
 	</p>
 	
 	{% url 'space_ticketing:space_landing' as order_online %}
-	{% url 'zaventem_transport_poll' as nz %}
 	{% blocktrans %}
 	<p id="text">Wil je die tellers mee omhooghelpen? <br>Verkoop onze concerten dan aan vrienden, familie en vage kenissen, en laat hen ..</p>
     <ul>
@@ -65,10 +64,12 @@
     	<li>.. ofwel papieren tickets van jou kopen.</li>
     </ul>
 	<p>Telkens je papieren tickets verkocht hebt, geef je dat hier even in:<br>
-	<!--<a href="{{order_online}}" class="btn btn-primary" role="button">Registreer je verkochte papieren tickets</a></p>-->
-	<a href="#" class="btn btn-primary disabled" role="button">(Binnenkort beschikbaar)</a><br>
-	<a href="{{nz}}" class="btn btn-primary" role="button">Kies vervoer voor Zaventem</a></p>
 	{% endblocktrans %}
+	<!--<a href="{{order_online}}" class="btn btn-primary" role="button">{% trans "Registreer je verkochte papieren tickets" %}</a></p>-->
+	<a href="#" class="btn btn-primary disabled" role="button">{% trans "(Binnenkort beschikbaar)" %}</a><br>
+	<a href="{% url 'space_ticketing:space_posters' %}" class="btn btn-primary" role="button">{% trans "Bekijk posters!" %}</a>
+	<a href="{% url 'zaventem_transport_poll' %}" class="btn btn-primary" role="button">{% trans "Kies vervoer voor Zaventem" %}</a><br>
+	</p>
 	<p class="low">
 		{{user.first_name}} <em>({{user.email}})</em> &nbsp; – &nbsp; <a href="{% url 'logout' %}">{% trans "Afmelden" %}</a>
 	</p>

@@ -50,6 +50,7 @@ INSTALLED_APPS = (
                  # tracking ticket sales 
     'music_suggestions', # Suggest pieces to be played and vote for them.
     'polls', # Ask questions to orchestra members.
+    'postermap', # See where posters have been hung in the city.
 )
 
 MIDDLEWARE_CLASSES = (

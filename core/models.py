@@ -106,6 +106,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         else:
             return u"[{}]".format(self.email)
 
+    class Meta:
+        ordering = ['first_name']
+
 
 
 class UserProfile(Model):
