@@ -7,7 +7,7 @@ from core.models import User
 from django.utils.translation import ugettext_lazy as _
 
 class Poster(Model):
-	latitutde = FloatField()
+	latitude = FloatField()
 	longitude = FloatField()
 	hanging_date = DateTimeField()
 	for_what = GenericForeignKey('for_what_type', 'for_what_id')
@@ -27,4 +27,4 @@ class Poster(Model):
 		(OTHER, _('Anders')),
 	)
 	attachment_type = CharField(
-		max_length=8, choices=attachment_type_choices, blank=True)
+		max_length=14, choices=attachment_type_choices, null=True, blank=True)

@@ -1,30 +1,40 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from postermap.models import Poster
+from ticketing.models import Production
 from django.utils.translation import ugettext_lazy as _
-from django.forms import ModelForm, HiddenInput
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from django.forms import ModelForm, ChoiceField, DateTimeField
+from datetime import datetime
+from pytz import utc
 
 class PosterForm(ModelForm):
-	def __init__(self, *args, **kwargs):
-		super(PosterForm, self).__init__(*args, **kwargs)
-		self.helper = FormHelper(self)
-		self.helper.layout.append(
-			Submit(name='submit', value=_("Hang poster op"), css_class="btn-success"))
+	attachment_type = ChoiceField(choices=Poster.attachment_type_choices, required=False)
 	class Meta:
 		model = Poster
-		fields = ['latitutde', 'longitude', 'hanging_date', 'location_name', 
+		fields = ['latitude', 'longitude', 'hanging_date', 'location_name', 
 				  'count', 'hung_by', 'remarks', 'attachment_type']
-		widgets = {'latitude': HiddenInput(), 'longitude': HiddenInput()}
-		# labels = {
-		# 	'transport': _("Ik ga naar Zaventem ..")
-		# }
 
 @login_required
 def add_space_poster(request):
 	if request.method == 'POST':
-		pass
+		form = PosterForm(request.POST, instance=Poster(
+			entered_by=request.user, entered_on=datetime.now(utc),
+			for_what=Production.objects.get(name="S P A C E - Lente 2015")))
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect(reverse('space_ticketing:space_posters'))
 	else:
-		form = PosterForm()
+		form = PosterForm(initial={'hanging_date': datetime.now().strftime('%Y-%m-%d %H:%M')})
+	print form['hanging_date'].value()
 	return render(request, 'add_space_poster.html', {'form': form})
+
+def space_posters(request):
+	context = {}
+	context['posters'] = []
+	for poster in Poster.objects.all():
+		context['posters'].append(poster)
+		print poster.longitude
+	print context
+	return render (request, 'space_posters.html', context)

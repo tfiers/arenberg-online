@@ -1,3 +1,4 @@
 from django.contrib import admin
+from postermap.models import Poster
 
-# Register your models here.
+admin.site.register(Poster)

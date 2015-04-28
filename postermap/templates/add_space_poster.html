@@ -1,14 +1,162 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load staticfiles %}
-{% block title %}{% trans "We hangen de stad vol" %}{% endblock title %}
+{% block title %}{% trans "Poster toevoegen" %}{% endblock title %}
 {% block custom_css_js %}
-
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
+<script type="text/javascript" src="{% static 'site-wide/jquery.tokenize.js' %}"></script>
+<script type="text/javascript" src="{% static 'site-wide/jquery.datetimepicker.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'site-wide/jquery.tokenize.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'site-wide/jquery.datetimepicker.css' %}" />
+<script type="text/javascript">
+var map;
+var newMarkerListener;
+var marker;
+function initialize() {
+	var mapOptions = {
+		center: {lat: 50.8770, lng: 4.6857},
+		zoom: 13,
+	};
+	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	newMarkerListener = google.maps.event.addListener(map, 'click', function(event) { placeMarker(event.latLng); });
+}
+function placeMarker(latlng) {
+	marker = new google.maps.Marker({
+		position: latlng,
+		map: map,
+		draggable: true,
+		title: '{% trans "Nieuwe poster" %}',
+	});
+	updateNewPosterLatLng();
+	google.maps.event.addListener(marker, 'dragend', updateNewPosterLatLng);
+	google.maps.event.removeListener(newMarkerListener);
+}
+function updateNewPosterLatLng() {
+	$('#id_latitude').val(marker.position.lat());
+	$('#id_longitude').val(marker.position.lng());
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+<style type="text/css">
+h1 {
+	margin-bottom: 1em;
+}
+#map-canvas {
+	height: 50vh;
+	width: 100%;
+}
+form {
+	margin: 40px 0;
+}
+.form-group {
+	margin-bottom: 2em;
+}
+.multiselect-tokenize {
+	width: 100%;
+}
+ul.TokensContainer {
+	height: 35px !important;
+}
+</style>
 {% endblock custom_css_js %}
 {% block content %}
 
 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-	<h1>{% trans "We hangen de stad vol" %}</h1>
+	<h1>{% trans "Poster toevoegen" %}</h1>
+	<p>{% trans "Klik op de kaart om aan te duiden waar je de poster hebt opgehangen.<br><small>(Je kan hem achteraf nog verslepen).</small>" %}</p>
+	<div id="map-canvas"></div>
+	<form method="post">
+		{% csrf_token %}
+		<input id="id_latitude" name="latitude" type="hidden">
+		<input id="id_longitude" name="longitude" type="hidden">
+		{% if form.longitude.errors %}
+		<div class="form-group has-error">
+		<span class="help-block">Kies een locatie op de kaart</span>
+		</div>
+		{% endif %}
+		<div class="form-group{% if form.location_name.errors %} has-error{% endif %}">
+			<label for="{{ form.location_name.id_for_label }}">{% trans "Naam locatie" %}</label>
+			<input type="text" name="{{ form.location_name.html_name }}" id="{{ form.location_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Toiletten van Restaurant De Wiering' %}" value="{{ form.location_name.value|default_if_none:'' }}">
+			<span class="help-block">
+			{% for error in form.location_name.errors %}
+				{{ error }}<br>
+			{% endfor %}
+			</span>
+		</div>
+		<div class="form-group{% if form.hanging_date.errors %} has-error{% endif %}">
+			<label for="{{ form.hanging_date.id_for_label }}">{% trans "Wanneer heb je deze poster opgehangen?" %}</label>
+			<input type="text" name="{{ form.hanging_date.html_name }}" id="{{ form.hanging_date.id_for_label }}" class="form-control" value="{{ form.hanging_date.value }}"> {% comment %}Format: 'Y/m/d H:i'{% endcomment %}
+			<script type="text/javascript">
+				$('#{{ form.hanging_date.id_for_label }}').datetimepicker({
+					lang: '{% trans "nl" %}',
+					inline: true,
+				});
+			</script>
+			<span class="help-block">
+			<small>({% trans "Standaardwaarde: vandaag" %})</small>
+			{% for error in form.hanging_date.errors %}
+				<br>{{ error }}
+			{% endfor %}
+			</span>
+		</div>
+		<div class="form-group{% if form.count.errors %} has-error{% endif %}">
+			<label for="{{ form.count.id_for_label }}">{% trans "Hoeveel posters?" %}</label>
+			<input type="number" name="{{ form.count.html_name }}" id="{{ form.count.id_for_label }}" class="form-control" min="1" step="1" value="{{ form.count.value|default_if_none:'1' }}">
+			<span class="help-block">
+			<small>{% trans "Als je op deze locatie meer dan één poster hebt opgehangen, kan je dat hier aangeven." %}</small>
+			{% for error in form.count.errors %}
+				{{ error }}<br>
+			{% endfor %}
+			</span>
+		</div>
+		<div class="form-group{% if form.attachment_type.errors %} has-error{% endif %}">
+			<label for="{{ form.attachment_type.id_for_label }}">{% trans "Manier van ophangen" %}</label>
+			<select name="{{ form.attachment_type.html_name }}" id="{{ form.attachment_type.id_for_label }}" class="form-control">
+				<option disabled value=""{% if form.attachment_type.value == None %} selected="selected"{% endif %}><em>{% trans "– Kies manier –" %}</em></option>
+				{% for value, text in form.attachment_type.field.choices %}
+				<option value="{{ value }}"{% if form.attachment_type.value == value %} selected="selected"{% endif %}>{{ text }}</option>
+				{% endfor %}
+			</select>
+			<span class="help-block">
+			{% for error in form.attachment_type.errors %}
+				{{ error }}<br>
+			{% endfor %}
+			</span>
+		</div>
+		
+		<div class="form-group{% if form.count.errors %} has-error{% endif %}">
+			<label for="{{ form.hung_by.id_for_label }}">{% trans "Medeplichtigen" %}</label>
+			<select multiple name="{{ form.hung_by.html_name }}" id="{{ form.hung_by.id_for_label }}" class="multiselect-tokenize">
+				{% for value, text in form.hung_by.field.choices %}
+				<option value="{{ value }}"{% if form.hung_by.value == value %} selected="selected"{% endif %}>{{ text }}</option>
+				{% endfor %}
+			</select>
+			<script type="text/javascript">
+			    $('#{{ form.hung_by.id_for_label }}').tokenize();
+			</script>
+			<span class="help-block">
+			<small>{% trans "Heb je deze poster samen met anderen opgehangen? Dan kan je hier hun namen meegeven." %}</small>
+			{% for error in form.hung_by.errors %}
+				{{ error }}<br>
+			{% endfor %}
+			</span>
+		</div>
+		<div class="form-group{% if form.remarks.errors %} has-error{% endif %}">
+			<label for="{{ form.remarks.id_for_label }}">{% trans "Opmerkingen" %}</label>
+			<textarea type="text" name="{{ form.remarks.html_name }}" id="{{ form.remarks.id_for_label }}" class="form-control" placeholder="{% trans 'Voor eventuele opmerkingen.' %}" rows="1">{{ form.remarks.value|default_if_none:"" }}</textarea>
+			<span class="help-block">
+			{% for error in form.remarks.errors %}
+				{{ error }}<br>
+			{% endfor %}
+			</span>
+		</div>
+		<input type="submit" name="submit" value="{% trans 'Voeg poster toe' %}"class="btn btn-success">
+	</form>
 </div>
+
+<script type="text/javascript">
+// Replacement for "height: 50vh" for old Android browsers.
+$('#map-canvas').css('height', 0.5*$(window).height());
+</script>
 
 {% endblock content %}
