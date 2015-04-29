@@ -6,19 +6,31 @@
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script>
 var map;
-var newMarkerListener;
 function initialize() {
 	var mapOptions = {
-		center: {lat: 50.8770, lng: 4.6857},
-		zoom: 13,
+		center: {lat: 50.8735, lng: 4.6857},
+		zoom: 14,
 	};
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	var infoWindow = new google.maps.InfoWindow({});
 	{% for poster in posters %}
-		new google.maps.Marker({
-			position: {lat: {{poster.latitude|stringformat:"f"}}, lng: {{poster.longitude|stringformat:"f"}}},
-			map: map,
-			title: '{{poster.location_name}}',
-		});
+	var marker{{forloop.counter}} = new google.maps.Marker({
+		position: {lat: {{poster.latitude|stringformat:"f"}}, lng: {{poster.longitude|stringformat:"f"}}},
+		map: map,
+		title: '{{poster.location_name}}',
+	});
+	var content{{forloop.counter}} = ""+
+		"<strong>{{poster.location_name}}</strong><br>"+
+		{% if poster.count > 1 %}"({{poster.count}} posters)<br>"+{% endif %}
+		"{{poster.authors_as_string}}<br>"+
+		{% if poster.hanging_date %}"{{poster.hanging_date|date:'D d M'}}<br>"+{% endif %}
+		/*{% if poster.attachment_type %}"{{poster.attachment_type}}<br>"+{% endif %}*/
+		{% if poster.remarks %}"<em>\"{{poster.remarks}}\"</em><br>"+{% endif %}
+		"";
+	google.maps.event.addListener(marker{{forloop.counter}}, 'click', function() {
+		infoWindow.setContent(content{{forloop.counter}});
+		infoWindow.open(map, marker{{forloop.counter}});
+	});
 	{% endfor %}
 }
 google.maps.event.addDomListener(window, 'load', initialize);

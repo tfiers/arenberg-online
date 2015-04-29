@@ -28,3 +28,17 @@ class Poster(Model):
 	)
 	attachment_type = CharField(
 		max_length=14, choices=attachment_type_choices, null=True, blank=True)
+
+	def __unicode__(self):
+		if self.count > 1:
+			return u"{} posters bij {} door {}".format(
+				self.count, self.location_name, self.authors_as_string())
+		else:
+			return u"Poster bij {} door {}".format(
+				self.location_name, self.authors_as_string())
+
+	@property
+	def authors_as_string(self):
+		authors = [str(self.entered_by)]
+		authors.extend([str(accomplice) for accomplice in list(self.hung_by.all())])
+		return ", ".join(authors)
