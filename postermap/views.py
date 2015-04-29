@@ -27,7 +27,6 @@ def add_space_poster(request):
 			return HttpResponseRedirect(reverse('space_ticketing:space_posters'))
 	else:
 		form = PosterForm(initial={'hanging_date': datetime.now().strftime('%Y-%m-%d %H:%M')})
-	print form['hanging_date'].value()
 	return render(request, 'add_space_poster.html', {'form': form})
 
 def space_posters(request):
@@ -35,6 +34,4 @@ def space_posters(request):
 	context['posters'] = []
 	for poster in Poster.objects.all():
 		context['posters'].append(poster)
-		print poster.longitude
-	print context
 	return render (request, 'space_posters.html', context)
