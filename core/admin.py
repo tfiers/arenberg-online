@@ -92,5 +92,9 @@ class UserAdmin(django.contrib.auth.admin.UserAdmin):
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('-date_joined',)
 
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('associated_user', 'old_drupal_uid', 'last_password_change')
+    ordering = ('last_password_change',)
+
 admin.site.register(User, UserAdmin)
-admin.site.register(UserProfile)
+admin.site.register(UserProfile, UserProfileAdmin)
