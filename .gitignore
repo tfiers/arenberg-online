@@ -2,7 +2,7 @@
 arenberg-secure/
 
 # Django SQLite database
-.sqlite3
+*.sqlite3
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
