@@ -19,7 +19,6 @@
 {% endblock custom_css_js %}
 {% block content %}
 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-	<h1>{% trans "<span>SPACE</span><br>Ticketverkoop" %}</h1>
 	{% if display_CTA %}
 		<p><a href="{% url 'zaventem_transport_poll' %}" class="btn btn-warning" role="button">{% trans "Kies vervoer voor Zaventem" %}</a><br>
 	{% endif %}
