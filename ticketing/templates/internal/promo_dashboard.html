@@ -67,8 +67,7 @@
 	{% endblocktrans %}
 	<!--<a href="{{order_online}}" class="btn btn-primary" role="button">{% trans "Registreer je verkochte papieren tickets" %}</a></p>-->
 	<a href="#" class="btn btn-primary disabled" role="button">{% trans "(Binnenkort beschikbaar)" %}</a><br>
-	<a href="{% url 'space_ticketing:space_posters' %}" class="btn btn-primary" role="button">{% trans "Bekijk posters!" %}</a>
-	<a href="{% url 'zaventem_transport_poll' %}" class="btn btn-primary" role="button">{% trans "Kies vervoer voor Zaventem" %}</a><br>
+	<a href="{% url 'space_ticketing:space_posters' %}" class="btn btn-primary" role="button">{% trans "Bekijk posters!" %}</a><br>
 	</p>
 	<p class="low">
 		{{user.first_name}} <em>({{user.email}})</em> &nbsp; – &nbsp; <a href="{% url 'logout' %}">{% trans "Afmelden" %}</a>

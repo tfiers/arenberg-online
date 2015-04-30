@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-26 10:33+0200\n"
-"PO-Revision-Date: 2015-04-26 10:34+0100\n"
+"POT-Creation-Date: 2015-04-30 06:40+0200\n"
+"PO-Revision-Date: 2015-04-30 06:45+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -263,6 +263,110 @@ msgstr "Transport concert Zaventem"
 msgid "Gaan met die banaan"
 msgstr "Submit answers"
 
+#: .\postermap\models.py:24
+msgid "Borstel en lijm"
+msgstr "Brush and glue"
+
+#: .\postermap\models.py:25
+msgid "Punaises"
+msgstr "Pushpins"
+
+#: .\postermap\models.py:26
+msgid "Plakband"
+msgstr "Tape"
+
+#: .\postermap\models.py:27
+msgid "Anders"
+msgstr "Other"
+
+#: .\postermap\templates\add_space_poster.html:4
+#: .\postermap\templates\add_space_poster.html:65
+msgid "Poster toevoegen"
+msgstr "Add poster"
+
+#: .\postermap\templates\add_space_poster.html:28
+msgid "Nieuwe poster"
+msgstr "New poster"
+
+#: .\postermap\templates\add_space_poster.html:66
+msgid ""
+"Klik op de kaart om aan te duiden waar je de poster hebt opgehangen."
+"<br><small>(Je kan hem achteraf nog verslepen).</small>"
+msgstr ""
+"Click the map to mark where you hung the poster.<br><small>(You can change "
+"this afterwards).</small>"
+
+#: .\postermap\templates\add_space_poster.html:78
+msgid "Naam locatie"
+msgstr "Name of location"
+
+#: .\postermap\templates\add_space_poster.html:79
+msgid "bv. Toiletten van Restaurant De Wiering"
+msgstr "e.g. Toilets of restaurant 'De Wiering'"
+
+#: .\postermap\templates\add_space_poster.html:87
+msgid "Wanneer heb je deze poster opgehangen?"
+msgstr "When did you put up this poster?"
+
+#: .\postermap\templates\add_space_poster.html:92
+msgid "nl"
+msgstr "en"
+
+#: .\postermap\templates\add_space_poster.html:97
+msgid "Standaardwaarde: vandaag"
+msgstr "Default: today"
+
+#: .\postermap\templates\add_space_poster.html:104
+msgid "Hoeveel posters?"
+msgstr "How many posters"
+
+#: .\postermap\templates\add_space_poster.html:107
+msgid ""
+"Als je op deze locatie meer dan één poster hebt opgehangen, kan je dat hier "
+"aangeven."
+msgstr ""
+"If you hung more than one poster at this location, you can indicate so here."
+
+#: .\postermap\templates\add_space_poster.html:114
+msgid "Manier van ophangen"
+msgstr "Method of attachment"
+
+#: .\postermap\templates\add_space_poster.html:116
+msgid "– Kies manier –"
+msgstr "– Choose method –"
+
+#: .\postermap\templates\add_space_poster.html:129
+msgid "Medeplichtigen"
+msgstr "Accomplices"
+
+#: .\postermap\templates\add_space_poster.html:139
+msgid ""
+"Heb je deze poster samen met anderen opgehangen? Dan kan je hier hun namen "
+"meegeven."
+msgstr ""
+"Did you hang this poster together with someone else? Then you can enter "
+"their names here."
+
+#: .\postermap\templates\add_space_poster.html:146
+#: .\ticketing\templates\space\complete_order.html:120
+#: .\ticketing\templates\space\email.html:42
+msgid "Opmerkingen"
+msgstr "Remarks"
+
+#: .\postermap\templates\add_space_poster.html:147
+msgid "Voor eventuele opmerkingen."
+msgstr "For remarks maybe."
+
+#: .\postermap\templates\add_space_poster.html:154
+#: .\postermap\templates\space_posters.html:68
+msgid "Voeg poster toe"
+msgstr "Add poster"
+
+#: .\postermap\templates\space_posters.html:4
+#: .\postermap\templates\space_posters.html:67
+msgid "Posterlocaties"
+msgstr "Poster locations"
+
 #: .\ticketing\models.py:31
 msgid "datum en eventueel uur"
 msgstr ""
@@ -291,24 +395,42 @@ msgstr ""
 msgid "Ken je een muzikant en kom je dankzij hem of haar luisteren?"
 msgstr ""
 
-#: .\ticketing\templates\internal\musician_dashboard.html:4
+#: .\ticketing\templates\internal\promo_dashboard.html:4
 msgid "Ticketverkoop S P A C E"
 msgstr "Ticket sales S P A C E"
 
-#: .\ticketing\templates\internal\musician_dashboard.html:49
+#: .\ticketing\templates\internal\promo_dashboard.html:49
 msgid "<span>SPACE</span><br>Ticketverkoop"
 msgstr "<span>SPACE</span><br>Ticket sales"
 
-#: .\ticketing\templates\internal\musician_dashboard.html:51
+#: .\ticketing\templates\internal\promo_dashboard.html:51
 msgid "Donderdag"
 msgstr "Thursday"
 
-#: .\ticketing\templates\internal\musician_dashboard.html:55
+#: .\ticketing\templates\internal\promo_dashboard.html:55
 msgid "Vrijdag"
 msgstr "Friday"
 
-#: .\ticketing\templates\internal\musician_dashboard.html:61
-#, python-format
+#: .\ticketing\templates\internal\promo_dashboard.html:60
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "\t<p id=\"text\">Wil je die tellers mee omhooghelpen? <br>Verkoop onze "
+#| "concerten dan aan vrienden, familie en vage kenissen, en laat hen ..</p>\n"
+#| "    <ul>\n"
+#| "    \t<li>.. ofwel <a href=\"%(order_online)s\">online tickets bestellen;"
+#| "</a></li>\n"
+#| "    \t<li>.. ofwel papieren tickets van jou kopen.</li>\n"
+#| "    </ul>\n"
+#| "\t<p>Telkens je papieren tickets verkocht hebt, geef je dat hier even in:"
+#| "<br>\n"
+#| "\t<!--<a href=\"%(order_online)s\" class=\"btn btn-primary\" role=\"button"
+#| "\">Registreer je verkochte papieren tickets</a></p>-->\n"
+#| "\t<a href=\"#\" class=\"btn btn-primary disabled\" role=\"button"
+#| "\">(Binnenkort beschikbaar)</a><br>\n"
+#| "\t<a href=\"%(nz)s\" class=\"btn btn-primary\" role=\"button\">Kies "
+#| "vervoer voor Zaventem</a></p>\n"
+#| "\t"
 msgid ""
 "\n"
 "\t<p id=\"text\">Wil je die tellers mee omhooghelpen? <br>Verkoop onze "
@@ -320,12 +442,6 @@ msgid ""
 "    </ul>\n"
 "\t<p>Telkens je papieren tickets verkocht hebt, geef je dat hier even in:"
 "<br>\n"
-"\t<!--<a href=\"%(order_online)s\" class=\"btn btn-primary\" role=\"button"
-"\">Registreer je verkochte papieren tickets</a></p>-->\n"
-"\t<a href=\"#\" class=\"btn btn-primary disabled\" role=\"button"
-"\">(Binnenkort beschikbaar)</a><br>\n"
-"\t<a href=\"%(nz)s\" class=\"btn btn-primary\" role=\"button\">Kies vervoer "
-"voor Zaventem</a></p>\n"
 "\t"
 msgstr ""
 "\n"
@@ -344,7 +460,23 @@ msgstr ""
 "transport from and to the Zaventem concert.</a></p>\n"
 "\t"
 
-#: .\ticketing\templates\internal\musician_dashboard.html:73
+#: .\ticketing\templates\internal\promo_dashboard.html:68
+msgid "Registreer je verkochte papieren tickets"
+msgstr "Register sold paper tickets"
+
+#: .\ticketing\templates\internal\promo_dashboard.html:69
+msgid "(Binnenkort beschikbaar)"
+msgstr "(Available soon)"
+
+#: .\ticketing\templates\internal\promo_dashboard.html:70
+msgid "Bekijk posters!"
+msgstr "See poster locations!"
+
+#: .\ticketing\templates\internal\promo_dashboard.html:71
+msgid "Kies vervoer voor Zaventem"
+msgstr "Choose transport Zaventem concert"
+
+#: .\ticketing\templates\internal\promo_dashboard.html:74
 msgid "Afmelden"
 msgstr "Log off"
 
@@ -520,11 +652,6 @@ msgstr "Yes"
 #: .\ticketing\templates\space\complete_order.html:111
 msgid "Nee"
 msgstr "No"
-
-#: .\ticketing\templates\space\complete_order.html:120
-#: .\ticketing\templates\space\email.html:42
-msgid "Opmerkingen"
-msgstr "Remarks"
 
 #: .\ticketing\templates\space\complete_order.html:121
 msgid "Eventuele vragen of speciale verzoeken."

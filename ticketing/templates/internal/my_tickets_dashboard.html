@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Ticketverkoop S P A C E" %}{% endblock title %}
+{% block custom_css_js %}
+<style type="text/css">
+	p {
+		margin: 2em 0;
+	}
+	.low {
+		font-size: 100%;
+		margin-top: 7em;
+	}
+	a.btn {
+		margin-top: 1.6em;
+		margin-bottom: 0;
+	}
+</style>
+{% endblock custom_css_js %}
+{% block content %}
+<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+	<h1>{% trans "<span>SPACE</span><br>Ticketverkoop" %}</h1>
+	{% if display_CTA %}
+		<p><a href="{% url 'zaventem_transport_poll' %}" class="btn btn-warning" role="button">{% trans "Kies vervoer voor Zaventem" %}</a><br>
+	{% endif %}
+	<p class="low">
+		{{user.first_name}} <em>({{user.email}})</em> &nbsp; – &nbsp; <a href="{% url 'logout' %}">{% trans "Afmelden" %}</a>
+	</p>
+</div>
+
+{% endblock content %}
