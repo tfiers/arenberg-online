@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}{% trans "Registreer je verkochte papieren tickets" %}{% endblock title %}
+{% block custom_css_js %}
+<style type="text/css">
+h1 {
+	font-size: 30px;
+	margin-bottom: 1.2em;
+}
+</style>
+{% endblock custom_css_js %}
+{% block content %}
+	<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" id="zaventem-form">
+		<h1>{% trans "Registreer je verkochte papieren tickets" %}</h1>
+		{% crispy form %}
+	</div>
+{% endblock content %}

@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.timezone import get_current_timezone
 from django.db.models import (
 	Model, ForeignKey, OneToOneField, ManyToManyField,CharField, DateTimeField, 
-	FloatField, NullBooleanField, EmailField, DateTimeField, TextField )
+	FloatField, NullBooleanField, EmailField, DateTimeField, TextField, BooleanField )
 from core.models import User
 
 
@@ -55,20 +55,23 @@ class PriceCategory(Model):
 class Order(Model):
 	"""
 	Created when someone orders tickets online for a certain performance.
+	Created when an orchestra member reports having sold paper tickets.
 	"""
 	performance = ForeignKey(Performance)
-	first_name = CharField(max_length=75)
-	last_name = CharField(max_length=75)
-	email = EmailField()
+	first_name = CharField(max_length=75, blank=True, null=True)
+	last_name = CharField(max_length=75, blank=True, null=True)
+	email = EmailField(blank=True, null=True)
 	date = DateTimeField(_("datum van online bestelling"))
 	TRANSFER, CASH = 'transfer', 'cash'
 	payment_method_choices = (
 		(TRANSFER, _('Via overschrijving')), (CASH, _('Aan de kassa')))
 	payment_method = CharField(
 		max_length=8, choices=payment_method_choices, default=TRANSFER)
-	user_remarks = TextField(blank=True, null= True, help_text=_(
+	user_remarks = TextField(blank=True, null=True, help_text=_(
 		'opmerkingen gebruiker. Voor vragen en speciale verzoeken.'))
-	admin_remarks = TextField(blank=True, null= True)
+	admin_remarks = TextField(blank=True, null=True)
+	online = BooleanField(default=True) # True = online, False = member reported sale
+	seller = ForeignKey(User, null=True, blank=True)
 
 	def num_tickets(self):
 		return len(self.ticket_set.all())
