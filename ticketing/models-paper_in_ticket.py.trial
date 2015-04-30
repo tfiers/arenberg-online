@@ -66,15 +66,18 @@ class Order(Model):
 		(TRANSFER, _('Via overschrijving')), (CASH, _('Aan de kassa')))
 	payment_method = CharField(
 		max_length=8, choices=payment_method_choices, default=TRANSFER)
-	user_remarks = TextField(blank=True, null= True, help_text=_(
+	user_remarks = TextField(blank=True, null=True, help_text=_(
 		'opmerkingen gebruiker. Voor vragen en speciale verzoeken.'))
-	admin_remarks = TextField(blank=True, null= True)
+	admin_remarks = TextField(blank=True, null=True)
 	TRANSFER, CASH = 'transfer', 'cash'
-	type_choices = (
+	typpee_choices = (
 		(ONLINE, _('Online')), (PAPER, _('Papieren')))
-	sold_by_user
-	type = CharField(
-		max_length=8, choices=type_choices, default=ONLINE)
+	typpe = CharField(
+		max_length=8, choices=typpe_choices, default=ONLINE)
+	sold_by_musician = BooleanField()
+	transfer_made = BooleanField()
+	parent = ForeignKey(Order)
+	cash_payment_made = BooleanField()
 
 
 	def num_tickets(self):
@@ -88,6 +91,9 @@ class Order(Model):
 			self.first_name, self.last_name, self.date.astimezone(get_current_timezone()))
 
 
+	
+
+
 class Ticket(Model):
 	"""
 	A ticket in a certain price category and part of a certain order.
@@ -98,6 +104,17 @@ class Ticket(Model):
 	def __unicode__(self):
 		return u'Ticket of € {:g} for {}, part of [{}]'.format(
 			self.price_category.price, self.order.performance, self.order)
+
+
+class UnpricedTicket(Model): # UnsoldTicket
+	for_thing --> Performance (of Production) (of iets anders) --> Generic
+	received or given (to musician fromm me)
+	transaction_date
+	musician
+
+class PaidBackUnsoldTicket(Model):
+	musician
+	transaction_date
 
 
 
