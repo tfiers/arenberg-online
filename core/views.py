@@ -44,7 +44,7 @@ def change_default_password(request):
 			
 		return render(request, 'registration/password_set_form.html', {'form': form, 'default_pass': settings.DEFAULT_NEW_PASSWORD})
 	else:
-		return HttpResponseRedirect(reverse('space_ticketing:musician_dashboard'))
+		return HttpResponseRedirect(reverse('space_ticketing:promo_dashboard'))
 
 @login_required
 def password_set(request):

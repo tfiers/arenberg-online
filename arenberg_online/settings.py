@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'music_suggestions', # Suggest pieces to be played and vote for them.
     'polls', # Ask questions to orchestra members.
     'postermap', # See where posters have been hung in the city.
+    # 'debug_toolbar', # http://stackoverflow.com/questions/2361985/profiling-django
 )
 
 MIDDLEWARE_CLASSES = (

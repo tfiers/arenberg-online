@@ -45,7 +45,7 @@ h1 {
 	margin: 0 0 20px 0;
 	float: left;
 }
-@media (min-width: 400px) {
+@media (min-width: 345px) {
 	a.btn {
 		float: right;
 	}
@@ -55,9 +55,12 @@ h1 {
 }
 .center {
 	max-width: 600px;
-	margin: 20px auto;
+	margin: 30px auto;
 	padding: 0 15px;
 	overflow: hidden; /* 'Clearfix bug' fix*/
+}
+th {
+	border-top-width: 0 !important; 
 }
 </style>
 {% endblock custom_css_js %}
@@ -65,11 +68,28 @@ h1 {
 
 <div class="center">
 	<h1>{% trans "Posterlocaties" %}</h1>
-	<a href="{% url 'space_ticketing:add_poster' %}" class="btn btn-primary" role="button">{% trans "Voeg poster toe" %}</a>
+	<a href="{% url 'space_ticketing:add_poster' %}" class="btn btn-success" role="button">{% trans "Voeg poster toe" %}</a>
 </div>
 <div id="map-canvas"></div>
 <div class="center">
-	
+<table class="table table-hover">
+	<tr>
+		<th></th>
+		<th></th>
+		<th>{% trans "# Locaties" %}</th>
+		<th>{% trans "# Posters" %}</th>
+		<th title="50 x #locaties + 10 x #posters">{% trans "Score" %}</th>
+	</tr>
+{% for leader in leaders %}
+	<tr>
+		<td><strong># {{leader.rank}}</strong></td>
+		<td>{{leader.leader}}</td>
+		<td>{{leader.num_locations}}</td>
+		<td>{{leader.num_posters}}</td>
+		<td><strong>{{leader.score}}</strong></td>
+	</tr>
+{% endfor %}
+</table>
 </div>
 
 {% endblock content %}

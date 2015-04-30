@@ -26,8 +26,11 @@
             <div id="cont">
                 <ul>
                     <div id="left">
+                    <li><a href="{% url 'space_ticketing:space_landing' %}">{% trans "Home" %}</a></li>
                     <li><a href="http://arenbergorkest.studentenweb.org/">{% trans "Naar oude site" %}</a></li>
-                    {% if user.is_authenticated %}<li><a href="{% url 'space_ticketing:musician_dashboard' %}">{{ user.first_name|default:"Mijn profiel" }}</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'space_ticketing:my_tickets_dashboard' %}" title="{% trans 'Mijn profiel' %}">{{ user.first_name|default:'{% trans "Mijn profiel" %}' }}</a></li>
+                    <li><a href="{% url 'space_ticketing:promo_dashboard' %}">{% trans "SPACE Concerten" %}</a></li>
                     {% else %}<li><a href="{% url 'login' %}">{% trans "Login muzikanten" %}</a></li>
                     {% endif %}
                     </div>
