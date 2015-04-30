@@ -32,13 +32,19 @@ class Poster(Model):
 	def __unicode__(self):
 		if self.count > 1:
 			return u"{} posters bij {} door {}".format(
-				self.count, self.location_name, self.authors_as_string())
+				self.count, self.location_name, self.authors_as_string)
 		else:
 			return u"Poster bij {} door {}".format(
-				self.location_name, self.authors_as_string())
+				self.location_name, self.authors_as_string)
 
 	@property
 	def authors_as_string(self):
 		authors = [str(self.entered_by)]
 		authors.extend([str(accomplice) for accomplice in list(self.hung_by.all())])
 		return ", ".join(authors)
+
+	@property
+	def authors(self):
+		authors = [self.entered_by]
+		authors.extend([accomplice for accomplice in list(self.hung_by.all())])
+		return authors

@@ -36,29 +36,40 @@ function initialize() {
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 <style type="text/css">
-h1 {
-	margin-bottom: 1em;
-}
 #map-canvas {
 	height: 400px;
 	height: 60vh;
 	width: 100%;
 }
 h1 {
+	margin: 0 0 20px 0;
 	float: left;
 }
-a.btn {
-	margin-top: 20px;
-	float: right;
+@media (min-width: 400px) {
+	a.btn {
+		float: right;
+	}
+	h1 {
+		margin: 0;
+	}
+}
+.center {
+	max-width: 600px;
+	margin: 20px auto;
+	padding: 0 15px;
+	overflow: hidden; /* 'Clearfix bug' fix*/
 }
 </style>
 {% endblock custom_css_js %}
 {% block content %}
 
-<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+<div class="center">
 	<h1>{% trans "Posterlocaties" %}</h1>
 	<a href="{% url 'space_ticketing:add_poster' %}" class="btn btn-primary" role="button">{% trans "Voeg poster toe" %}</a>
 </div>
 <div id="map-canvas"></div>
+<div class="center">
+	
+</div>
 
 {% endblock content %}

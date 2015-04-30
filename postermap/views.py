@@ -34,4 +34,5 @@ def space_posters(request):
 	context['posters'] = []
 	for poster in Poster.objects.all():
 		context['posters'].append(poster)
+	context['leaders'] = []
 	return render (request, 'space_posters.html', context)
