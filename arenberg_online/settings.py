@@ -180,6 +180,15 @@ else:
     EMAIL_HOST = 'localhost'
     EMAIL_PORT = 25
 
+if DEVELOPPING:
+    POSTFIX_VIRTUAL_ALIAS_FILE = 'generated_for_postfix.txt'
+else:
+    POSTFIX_VIRTUAL_ALIAS_FILE = '/etc/postfix/virtual'
+
+# To what email address should emails sent to 
+# [undefined.string]@arenbergorkest.be be forwarded?
+CATCHALL_EMAIL = 'bestuur@arenbergorkest'
+
 # Migrating users from drupal site.
 with open(os.path.join(CONFIG_DIR, 'default_new_password.txt')) as f:
     DEFAULT_NEW_PASSWORD = f.read().strip()

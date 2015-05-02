@@ -1,12 +1,12 @@
 from django.core.mail import send_mail
 from django.db.models import (
     EmailField, CharField, BooleanField, DateTimeField, Model,
-    OneToOneField, IntegerField )
+    OneToOneField, IntegerField, ManyToManyField, ForeignKey )
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
-
 from django.contrib.auth.models import (
     AbstractBaseUser, PermissionsMixin, BaseUserManager )
+
 
 class UserManager(BaseUserManager):
     """
@@ -80,6 +80,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     # as these fields will always be prompted for.
     REQUIRED_FIELDS = []
 
+    @property
+    def full_name(self):
+        return self.get_full_name()
+
     def get_full_name(self):
         """
         Returns the first_name plus the last_name, with a space in between.
@@ -110,11 +114,59 @@ class User(AbstractBaseUser, PermissionsMixin):
         ordering = ['first_name']
 
 
-
 class UserProfile(Model):
     associated_user = OneToOneField(User)
     old_drupal_uid = IntegerField(blank=True, null=True, default=None)
     last_password_change = DateTimeField(blank=True, null=True, default=None)
+    groups = ManyToManyField('Group', blank=True)
     
     def __unicode__(self):
         return u"User profile for {}".format(self.associated_user)
+
+    @property   
+    def groups_as_string(self):
+        return ", ".join([str(g) for g in self.groups.all()])
+
+
+class Group(Model):
+    ''' A 'Group' (or a 'Role' if there is only one User in it) is 
+        a collection of Users, for sending emails or showing specific
+        content to. '''
+
+    STANDARD, MUSICAL, PROJECT = 'standard', 'musical', 'project'
+    category_choices = (
+        (STANDARD, _('Standaard')), # ouwzakken, bestuur, techniek, ...
+        (MUSICAL, _('Muzikaal')), # trompetten, strijkers.snowman, pv.violen1, ...
+        (PROJECT, _('Project')), # full-orchestra, snowman, china, ...
+    )
+
+    name = CharField(max_length=150)
+    category = CharField(max_length=14, choices=category_choices, default=STANDARD)
+    parents = ManyToManyField('self', symmetrical=False, related_name='children', 
+        blank=True)
+    email_address = CharField(max_length=100, blank=True,
+        help_text="If different from a sanitized version of 'name'")
+
+    def __unicode__(self):
+        return u"Group '{}' of type '{}'".format(self.name, self.category)
+
+    @property   
+    def parents_as_string(self):
+        return ", ".join([str(p) for p in self.parents.all()])
+
+    def get_all_descendant_groups(self, include_self=True):
+        results = []
+        if include_self:
+            results.append(self)
+        for g in Group.objects.filter(parents=self):
+            results.extend(g.get_all_descendant_groups(include_self=True))
+        return results
+
+class AlternativeGroupName(Model):
+    name = CharField(max_length=150)
+    group = ForeignKey(Group)
+    email_address = CharField(max_length=100, blank=True, 
+        help_text="If different from a sanitized version of 'name'")
+
+    def __unicode__(self):
+        return u"Alternative name '{}' for {}".format(self.name, self.group)

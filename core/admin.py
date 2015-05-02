@@ -1,4 +1,4 @@
-from core.models import User, UserProfile
+from core.models import User, UserProfile, Group, AlternativeGroupName
 from django import forms
 from django.contrib import admin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
@@ -93,8 +93,14 @@ class UserAdmin(django.contrib.auth.admin.UserAdmin):
     ordering = ('-date_joined',)
 
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('associated_user', 'old_drupal_uid', 'last_password_change')
+    list_display = ('associated_user', 'old_drupal_uid', 'last_password_change', 'groups_as_string')
     ordering = ('last_password_change',)
+
+class GroupAdmin(admin.ModelAdmin):
+    list_display = ('name', 'category', 'parents_as_string')
+
 
 admin.site.register(User, UserAdmin)
 admin.site.register(UserProfile, UserProfileAdmin)
+admin.site.register(Group, GroupAdmin)
+admin.site.register(AlternativeGroupName)
