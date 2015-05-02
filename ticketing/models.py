@@ -80,7 +80,7 @@ class Order(Model):
 		return sum([ticket.price_category.price for ticket in self.ticket_set.all()])
 
 	def __unicode__(self):
-		if online:
+		if self.online:
 			return u"Online order by {} {} on {:%d-%m-%Y %H:%M:%S}.".format(
 				self.first_name, self.last_name, self.date.astimezone(get_current_timezone()))
 		else:
