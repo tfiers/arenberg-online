@@ -10,12 +10,14 @@ from pprint import pformat
 from core.models import User
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from ticketing.models import Order, Ticket, Performance, PriceCategory, StandardMarketingPollAnswer
+from ticketing.models import ( Order, Ticket, Performance, PriceCategory, 
+	StandardMarketingPollAnswer)
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout
 from crispy_forms.bootstrap import FormActions
-from django.forms import ( Form, ChoiceField, IntegerField, NullBooleanField, CharField)
+from django.forms import ( Form, ChoiceField, IntegerField, NullBooleanField, 
+	CharField, DateTimeField)
 
 @login_required
 def promo_dashboard(request):
@@ -31,18 +33,18 @@ def promo_dashboard(request):
 	return render(request, 'internal/promo_dashboard.html', data)
 
 @login_required
+def facebook_pictures(request):
+	return render(request, 'internal/pictures.html', {})
+
+@login_required
 def my_tickets_dashboard(request):
 	transport_chosen = (ZaventemTransport.objects.filter(musician=request.user).count() > 0)
 	return render(request, 'internal/my_tickets_dashboard.html', {'display_CTA': not transport_chosen})
-
-
-
 
 performances = (
 	('do', _('Donderdag 7 mei')),
 	('vr', _('Vrijdag 8 mei')),
 )
-
 
 class ReportedSaleForm(Form):
 	performance = ChoiceField(required=True, choices=performances)
@@ -51,6 +53,7 @@ class ReportedSaleForm(Form):
 	num_non_student_tickets = IntegerField(required=False, min_value=0, initial=0)
 	payment_method = ChoiceField(required=False, choices=Order.payment_method_choices)
 	marketing_feedback = CharField(required=False)
+	date = DateTimeField(required=False)
 	first_concert = NullBooleanField(required=False)
 	remarks = CharField(required=False)
 	helper = FormHelper()
@@ -59,6 +62,7 @@ class ReportedSaleForm(Form):
 		'num_student_tickets',
 		'num_non_student_tickets',
 		'num_culture_card_tickets',
+		'date',
 		'first_concert',
 		'marketing_feedback',
 		'remarks',
@@ -66,7 +70,6 @@ class ReportedSaleForm(Form):
 			Submit('submit', _('Registreer'), css_class="btn-success"),
 		),
 	)
-
 
 @login_required
 def register_sold_tickets(request):
