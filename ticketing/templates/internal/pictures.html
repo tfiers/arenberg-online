@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Omslag- en profielfoto's voor Facebook" %}{% endblock title %}
+{% block custom_css_js %}
+<style type="text/css">
+h1 {
+	font-size: 30px;
+	margin-bottom: 1.2em;
+	font-family: 'Lato';
+}
+.cover {
+	margin-bottom: 20px;
+}
+</style>
+{% endblock custom_css_js %}
+{% block content %}
+	<div class="col-sm-6 col-sm-offset-3">
+		<div class="col-sm-12 cover">
+			<h1>{% trans "Omslag- en profielfoto's <br><small>voor Facebook</small>" %}</h1>
+			<a href="{% static 'ticketing/internal/omslagfoto.png' %}">
+				<img src="{% static 'ticketing/internal/omslagfoto.png' %}" class="cover img-thumbnail img-responsive">
+			</a>
+		</div>
+		<div class="col-sm-4">
+			<a href="{% static 'ticketing/internal/profiel uitgezoomd.jpg' %}">
+				<img src="{% static 'ticketing/internal/profiel uitgezoomd.jpg' %}" class="img-thumbnail img-responsive">
+			</a>
+		</div>
+		<div class="col-sm-4">
+			<a href="{% static 'ticketing/internal/profiel electrifying.jpg' %}">
+				<img src="{% static 'ticketing/internal/profiel electrifying.jpg' %}" class="img-thumbnail img-responsive">
+			</a>
+		</div>
+		<div class="col-sm-4">
+			<a href="{% static 'ticketing/internal/profiel ingezoomd.jpg' %}">
+				<img src="{% static 'ticketing/internal/profiel ingezoomd.jpg' %}" class="img-thumbnail img-responsive">
+			</a>
+		</div>
+	</div>
+{% endblock content %}

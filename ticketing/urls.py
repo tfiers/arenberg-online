@@ -12,5 +12,6 @@ urlpatterns = patterns('',
 	url(r'^musicians/?$', RedirectView.as_view(pattern_name='space_ticketing:promo_dashboard')),
 	url(r'^musicians/space/postermap/?$', space_posters, name='space_posters'),
 	url(r'^musicians/space/postermap/add$', add_space_poster, name='add_poster'),
+	url(r'^musicians/space/pictures$', internal.facebook_pictures, name='facebook_pictures'),
 	url(r'^musicians/space/tickets/add$', internal.register_sold_tickets, name='register_sold_tickets'),
 )
