@@ -70,7 +70,7 @@ class Order(Model):
 	user_remarks = TextField(blank=True, null=True, help_text=_(
 		'opmerkingen gebruiker. Voor vragen en speciale verzoeken.'))
 	admin_remarks = TextField(blank=True, null=True)
-	online = BooleanField(default=True) # True = online, False = member reported sale
+	online = BooleanField(default=True) # True = online, False = musician reported a sale
 	seller = ForeignKey(User, null=True, blank=True)
 
 	def num_tickets(self):
@@ -80,9 +80,12 @@ class Order(Model):
 		return sum([ticket.price_category.price for ticket in self.ticket_set.all()])
 
 	def __unicode__(self):
-		return u"Online order by {} {} on {:%d-%m-%Y %H:%M:%S}.".format(
-			self.first_name, self.last_name, self.date.astimezone(get_current_timezone()))
-
+		if online:
+			return u"Online order by {} {} on {:%d-%m-%Y %H:%M:%S}.".format(
+				self.first_name, self.last_name, self.date.astimezone(get_current_timezone()))
+		else:
+			return u"Ticket sale by {} on {:%d-%m-%Y %H:%M:%S}.".format(
+				self.seller, self.date.astimezone(get_current_timezone()))
 
 class Ticket(Model):
 	"""
