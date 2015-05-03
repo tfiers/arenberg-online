@@ -7,7 +7,7 @@ from postermap.models import Poster
 from ticketing.models import Production
 from core.models import User
 from django.utils.translation import ugettext_lazy as _
-from django.forms import ModelForm, ChoiceField, DateTimeField
+from django.forms import ModelForm, ChoiceField
 from datetime import datetime
 from pytz import utc
 

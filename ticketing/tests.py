@@ -53,14 +53,14 @@ class SpaceTicketingTest(TestCase):
 
 
 		vvk_cc = PriceCategory.objects.get(
-			name="Cultuurkaart in VVK (vanaf winter 2014)", price=4)
+			full_name="Cultuurkaart in VVK (vanaf winter 2014)", price=4)
 		vvk_stud = PriceCategory.objects.get(
-			name="Student in VVK (vanaf winter 2014)", price=5)
+			full_name="Student VVK (vanaf winter 2014)", price=5)
 		vvk_non_stud = PriceCategory.objects.get(
-			name="Niet-student in VVK (vanaf winter 2014)", price=9)
+			full_name="Niet-student in VVK (vanaf winter 2014)", price=9)
 		vvk_zaventem = PriceCategory.objects.get(
-			name="Zaventem VVK SPACE", price=10)
-		self.assertEqual(str(vvk_stud), '"Student in VVK (vanaf winter 2014)": € 5')
+			full_name="Zaventem VVK SPACE", price=10)
+		self.assertEqual(str(vvk_stud), '"Student VVK (vanaf winter 2014)": € 5')
 
 
 	def test_create_order(self):
@@ -112,7 +112,7 @@ class SpaceTicketingTest(TestCase):
 		vvk_cc = PriceCategory.objects.get(
 			name="Cultuurkaart in VVK (vanaf winter 2014)", price=4)
 		vvk_stud = PriceCategory.objects.get(
-			name="Student in VVK (vanaf winter 2014)", price=5)
+			name="Student VVK (vanaf winter 2014)", price=5)
 		vvk_non_stud = PriceCategory.objects.get(
 			name="Niet-student in VVK (vanaf winter 2014)", price=9)
 		vvk_zaventem = PriceCategory.objects.get(

@@ -21,7 +21,7 @@ def landing(request):
 performances = (
 	('do', _('Donderdag 7 mei - om 20u30 in Aula Pieter De Somer, Leuven')),
 	('vr', _('Vrijdag 8 mei - om 20u30 in Aula Pieter De Somer, Leuven')),
-	('za', _('Zaterdag 9 mei - om 20u00 in St-Martinuskerk, Zaventem')),
+	# ('za', _('Zaterdag 9 mei - om 20u00 in St-Martinuskerk, Zaventem')),
 )
 
 class SpaceTicketingForm_1(Form):
@@ -103,23 +103,23 @@ def persist_data(data):
 		for i in range(data['num_zaventem_tickets']):
 			Ticket.objects.create(
 				order = order,
-				price_category = PriceCategory.objects.get(name="Zaventem VVK SPACE", price=10),
+				price_category = PriceCategory.objects.get(full_name="Zaventem VVK SPACE", price=10),
 			)
 	else:
 		for i in range(data['num_student_tickets']):
 			Ticket.objects.create(
 				order = order,
-				price_category = PriceCategory.objects.get(name="Student in VVK (vanaf winter 2014)", price=5),
+				price_category = PriceCategory.objects.get(full_name="Student VVK (vanaf winter 2014)", price=5),
 			)
 		for i in range(data['num_non_student_tickets']):
 			Ticket.objects.create(
 				order = order,
-				price_category = PriceCategory.objects.get(name="Niet-student in VVK (vanaf winter 2014)", price=9),
+				price_category = PriceCategory.objects.get(full_name="Niet-student in VVK (vanaf winter 2014)", price=9),
 			)
 		for i in range(data['num_culture_card_tickets']):
 			Ticket.objects.create(
 				order = order,
-				price_category = PriceCategory.objects.get(name="Cultuurkaart in VVK (vanaf winter 2014)", price=4),
+				price_category = PriceCategory.objects.get(full_name="KU Leuven Cultuurkaart in VVK (vanaf winter 2014)", price=4),
 			)
 
 def email_user(data):

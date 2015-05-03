@@ -1,19 +1,118 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load staticfiles %}
-{% load crispy_forms_tags %}
-{% block title %}{% trans "Registreer je verkochte papieren tickets" %}{% endblock title %}
+{% block title %}{% trans "Registreer je verkochte papieren kaarten" %}{% endblock title %}
 {% block custom_css_js %}
+<script type="text/javascript" src="{% static 'site-wide/jquery.datetimepicker.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'site-wide/jquery.datetimepicker.css' %}" />
 <style type="text/css">
 h1 {
-	font-size: 30px;
 	margin-bottom: 1.2em;
+	font-family: 'Lato';
+}
+form {
+	margin-bottom: 50px;
 }
 </style>
 {% endblock custom_css_js %}
 {% block content %}
 	<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" id="zaventem-form">
-		<h1>{% trans "Registreer je verkochte papieren tickets" %}</h1>
-		{% crispy form %}
+		<h1>{% trans "Registreer je verkochte papieren kaarten" %}</h1>
+		<form method="post">
+			{% csrf_token %}
+			<div class="form-group{% if form.performance.errors %} has-error{% endif %}">
+				<label for="{{ form.performance.id_for_label }}">{% trans "Voor welk concert?" %} *</label>
+				<select name="{{ form.performance.html_name }}" id="{{ form.performance.id_for_label }}" class="form-control">
+					<option disabled value=""{% if form.performance.value == None %} selected="selected"{% endif %}><em>{% trans "– Kies concert –" %}</em></option>
+					{% for value, text in form.performance.field.choices %}
+					<option value="{{ value }}"{% if form.performance.value == value %} selected="selected"{% endif %}>{{ text }}</option>
+					{% endfor %}
+				</select>
+				<span class="help-block">
+				{% for error in form.performance.errors %}
+					{{ error }}<br>
+				{% endfor %}
+				</span>
+			</div>
+			<br>
+			<p>{% trans "Hoeveel kaarten heb je voor dit concert verkocht aan ..." %}</p>
+			<div class="form-group{% if form.num_student_tickets.errors %} has-error{% endif %}">
+				<label for="{{ form.num_student_tickets.id_for_label }}">{% trans "Studenten en -18" %} (€5)</label>
+				<input type="number" name="{{ form.num_student_tickets.html_name }}" id="{{ form.num_student_tickets.id_for_label }}" class="form-control" min="0" step="1" value="{{ form.num_student_tickets.value|default_if_none:'0' }}">
+				<span class="help-block">
+				{% for error in form.num_student_tickets.errors %}
+					{{ error }}<br>
+				{% endfor %}
+				</span>
+			</div>
+			<div class="form-group{% if form.num_non_student_tickets.errors %} has-error{% endif %}">
+				<label for="{{ form.num_non_student_tickets.id_for_label }}">{% trans "Niet-studenten" %} (€9)</label>
+				<input type="number" name="{{ form.num_non_student_tickets.html_name }}" id="{{ form.num_non_student_tickets.id_for_label }}" class="form-control" min="0" step="1" value="{{ form.num_non_student_tickets.value|default_if_none:'0' }}">
+				<span class="help-block">
+				{% for error in form.num_non_student_tickets.errors %}
+					{{ error }}<br>
+				{% endfor %}
+				</span>
+			</div>
+			<div class="form-group{% if form.num_culture_card_tickets.errors %} has-error{% endif %}">
+				<label for="{{ form.num_culture_card_tickets.id_for_label }}">{% trans "KU Leuven Cultuurkaarthouders" %} (€4)</label>
+				<input type="number" name="{{ form.num_culture_card_tickets.html_name }}" id="{{ form.num_culture_card_tickets.id_for_label }}" class="form-control" min="0" step="1" value="{{ form.num_culture_card_tickets.value|default_if_none:'0' }}">
+				<span class="help-block">
+				{% for error in form.num_culture_card_tickets.errors %}
+					{{ error }}<br>
+				{% endfor %}
+				</span>
+			</div>
+			<div class="form-group{% if form.sale_date.errors %} has-error{% endif %}">
+				<label for="{{ form.sale_date.id_for_label }}">{% trans "Wanneer heb je deze kaarten verkocht?" %}</label>
+				<input type="text" name="{{ form.sale_date.html_name }}" id="{{ form.sale_date.id_for_label }}" class="form-control" value="{{ form.sale_date.value }}">
+				<script type="text/javascript">
+					$('#{{ form.sale_date.id_for_label }}').datetimepicker({
+						lang: '{% trans "nl" %}',
+						inline: true,
+						format: 'Y-m-d H:i',
+					});
+				</script>
+				<span class="help-block">
+				<small>({% trans "Standaardwaarde: vandaag" %})</small>
+				{% for error in form.hanging_date.errors %}
+					<br>{{ error }}
+				{% endfor %}
+				</span>
+			</div>
+			<div class="form-group{% if form.first_concert.errors %} has-error{% endif %}">
+				<label for="{{ form.first_concert.id_for_label }}">{% trans "Dit is hun eerste Arenberg-concert" %}</label>
+				<select name="{{ form.first_concert.html_name }}" id="{{ form.first_concert.id_for_label }}" class="form-control">
+					<option disabled value="1"{% if form.first_concert.value == None %} selected="selected"{% endif %}><em>{% trans "– Kies –" %}</em></option>
+					<option value="2"{% if form.first_concert.value == True %} selected="selected"{% endif %}>{% trans "Ja" %}</option>
+					<option value="3"{% if form.first_concert.value == False %} selected="selected"{% endif %}>{% trans "Nee" %}</option>
+				</select>
+				<span class="help-block">
+				<small>({% trans "Of toch het eerste concert voor de meerderheid." %})</small>
+				{% for error in form.first_concert.errors %}
+					{{ error }}<br>
+				{% endfor %}
+				</span>
+			</div>
+			<div class="form-group{% if form.marketing_feedback.errors %} has-error{% endif %}">
+				<label for="{{ form.marketing_feedback.id_for_label }}">{% trans "Wie zijn de mensen aan wie je kaarten verkocht?" %}</label> *
+				<textarea type="text" name="{{ form.marketing_feedback.html_name }}" id="{{ form.marketing_feedback.id_for_label }}" class="form-control" placeholder="{% trans 'Familie, klasgenootjes, kotgenoten, vrienden, ...' %}" rows="2">{{ form.marketing_feedback.value|default_if_none:"" }}</textarea>
+				<span class="help-block">
+				{% for error in form.marketing_feedback.errors %}
+					{{ error }}<br>
+				{% endfor %}
+				</span>
+			</div>
+			<div class="form-group{% if form.remarks.errors %} has-error{% endif %}">
+				<label for="{{ form.remarks.id_for_label }}">{% trans "Opmerkingen" %}</label>
+				<textarea type="text" name="{{ form.remarks.html_name }}" id="{{ form.remarks.id_for_label }}" class="form-control" rows="1">{{ form.remarks.value|default_if_none:"" }}</textarea>
+				<span class="help-block">
+				{% for error in form.remarks.errors %}
+					{{ error }}<br>
+				{% endfor %}
+				</span>
+			</div>
+			<input type="submit" name="submit" value="{% trans 'Registreer kaarten' %}"class="btn btn-success">
+		</form>
 	</div>
 {% endblock content %}

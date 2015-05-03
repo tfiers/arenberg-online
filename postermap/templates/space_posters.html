@@ -62,6 +62,10 @@ h1 {
 th {
 	border-top-width: 0 !important; 
 }
+a[data-toggle="tooltip"] {
+	font-size: 12px;
+	color: black;
+}
 </style>
 {% endblock custom_css_js %}
 {% block content %}
@@ -78,7 +82,7 @@ th {
 		<th></th>
 		<th>{% trans "# Locaties" %}</th>
 		<th>{% trans "# Posters" %}</th>
-		<th title="50 x #locaties + 10 x #posters">{% trans "Score" %}</th>
+		<th>{% trans "Score" %} <a data-toggle="tooltip" title="Score = 50 x {% trans '# Locaties' %} + 10 x {% trans '# Posters' %}"><span class="glyphicon glyphicon-question-sign"></span></a></th>
 	</tr>
 {% for leader in leaders %}
 	<tr>
@@ -91,5 +95,11 @@ th {
 {% endfor %}
 </table>
 </div>
+
+<script type="text/javascript">
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+</script>
 
 {% endblock content %}

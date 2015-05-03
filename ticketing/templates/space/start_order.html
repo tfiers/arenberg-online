@@ -28,11 +28,13 @@
 				{% endfor %}
 			</select>
 			<span class="help-block">
+			<small>{% trans "Tickets voor het concert in Zaventem (zaterdag 9 mei - om 20u00 in de St-Martinuskerk) kunnen nog ter plaatse aan de kassa gekocht worden." %}</small>
 			{% for error in form.performance.errors %}
-				{{ error }}<br>
+				<br>{{ error }}
 			{% endfor %}
 			</span>
 		</div>
+		<br>
 		<div id="num_tickets">
 			<div id="zaventem">
 				<div class="form-group{% if form.num_zaventem_tickets.errors %} has-error{% endif %}">

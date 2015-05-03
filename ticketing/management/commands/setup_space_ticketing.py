@@ -11,13 +11,13 @@ def setup_space_ticketing():
 	# update_or_create() returns a tuple: (object, created), that's why we retain
 	# only the first element with [0]
 	vvk_cc = PriceCategory.objects.update_or_create(
-		name="Cultuurkaart in VVK (vanaf winter 2014)", price=4)[0]
+		full_name="KU Leuven Cultuurkaart in VVK (vanaf winter 2014)", price=4)[0]
 	vvk_stud = PriceCategory.objects.update_or_create(
-		name="Student in VVK (vanaf winter 2014)", price=5)[0]
+		full_name="Student VVK (vanaf winter 2014)", price=5)[0]
 	vvk_non_stud = PriceCategory.objects.update_or_create(
-		name="Niet-student in VVK (vanaf winter 2014)", price=9)[0]
+		full_name="Niet-student in VVK (vanaf winter 2014)", price=9)[0]
 	vvk_zaventem = PriceCategory.objects.update_or_create(
-		name="Zaventem VVK SPACE", price=10)[0]
+		full_name="Zaventem VVK SPACE", price=10)[0]
 
 	space = Production.objects.update_or_create(
 		name="S P A C E - Lente 2015")[0]

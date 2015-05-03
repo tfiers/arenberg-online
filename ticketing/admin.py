@@ -1,7 +1,7 @@
 from django.contrib import admin
 from ticketing.models import (
 	Production, Performance, PriceCategory, Ticket, Order, 
-	StandardMarketingPollAnswer )
+	StandardMarketingPollAnswer, GivenPaperTickets )
 
 class OrderAdmin(admin.ModelAdmin):
 	list_display = ('first_name', 'last_name', 'seller', 'num_tickets', 'total_price',
@@ -17,3 +17,4 @@ admin.site.register(PriceCategory)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Ticket)
 admin.site.register(StandardMarketingPollAnswer, StandardMarketingPollAnswerAdmin)
+admin.site.register(GivenPaperTickets)

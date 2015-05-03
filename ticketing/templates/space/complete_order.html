@@ -64,6 +64,7 @@
 				<p>{% trans "Voor het concert in Zaventem kan enkel via overschrijving worden betaald." %}</p>
 			</div>
 		{% else %}
+			{% comment %}
 			<div class="form-group{% if form.payment_method.errors %} has-error{% endif %}">
 				<label for="{{ form.payment_method.id_for_label }}">{% trans "Betalingswijze" %}</label> *
 				<select name="{{ form.payment_method.html_name }}" id="{{ form.payment_method.id_for_label }}" class="form-control">
@@ -77,6 +78,19 @@
 					{{ error }}<br>
 				{% endfor %}
 				</span>
+			</div>
+			{% endcomment %}
+			<div class="form-group{% if form.payment_method.errors %} has-error{% endif %}">
+				<label for="{{ form.payment_method.id_for_label }}">{% trans "Betalingswijze" %}</label> *
+				<select name="{{ form.payment_method.html_name }}" id="{{ form.payment_method.id_for_label }}" class="form-control">
+					<option value="cash" selected="selected">{% trans "Aan de kassa" %}</option>
+				</select>
+				<span class="help-block">
+				{% for error in form.payment_method.errors %}
+					{{ error }}<br>
+				{% endfor %}
+				</span>
+				<p>{% trans "(Er kan niet meer via overschrijving betaald worden)." %}</p>
 			</div>
 		{% endif %}
 		<div class="form-group{% if form.marketing_feedback.errors %} has-error{% endif %}">

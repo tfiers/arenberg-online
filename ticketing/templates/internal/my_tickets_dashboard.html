@@ -4,27 +4,242 @@
 {% block title %}{% trans "Ticketverkoop S P A C E" %}{% endblock title %}
 {% block custom_css_js %}
 <style type="text/css">
-	p {
-		margin: 2em 0;
+	h1 {
+		font-family: 'Lato', sans-serif;
 	}
-	.low {
-		font-size: 100%;
-		margin-top: 7em;
+	.page-header h1 {
+		margin-bottom: 0;
+	}
+	.page-header small {
+		margin-top: 0.5em;
+	}
+	.panel {
+		margin-top: 40px;
 	}
 	a.btn {
 		margin-top: 1.6em;
 		margin-bottom: 0;
 	}
+	a[data-toggle="tooltip"] {
+		font-size: 14px;
+		color: black;
+	}
+	a.btn {
+		margin-top: 0;
+	}
+	.low {
+		font-size: 100%;
+		margin-top: 7em;
+		margin-bottom: 3em;
+	}
 </style>
 {% endblock custom_css_js %}
 {% block content %}
-<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+<div class="col-sm-6 col-sm-offset-3">
+
 	{% if display_CTA %}
 		<p><a href="{% url 'zaventem_transport_poll' %}" class="btn btn-warning" role="button">{% trans "Kies vervoer voor Zaventem" %}</a><br>
 	{% endif %}
+
+	<div class="page-header">
+	  <h1>{% trans "Ticketing-overzicht" %} <small class="pull-right">{{user}}</small></h1>
+	</div>
+
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert {% if message.tags %}alert-{{message.tags}}{% endif %} alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+				{% if message.tags == "success" %}<span class="glyphicon glyphicon-heart"></span><strong> {% trans "Bedankt!" %} </strong>{% endif %}
+				{{message}}
+			</div>
+		{% endfor %}
+	{% endif %}
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+		<h1 class="panel-title">{% trans "Meegegeven papieren kaarten" %}</h1>
+		</div>
+		<div class="panel-body">
+			{% if total_tickets_given > 0 %}
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+							<th>{% trans "Datum van meegeven" %}</th>
+							<th>{% trans "Kaarten voor..." %}</th>
+							<th>{% trans "Aantal" %}</th>
+						</thead>
+					{% for ticket_distribution in ticket_distributions %}
+						<tr>
+							<td>{% if LANGUAGE_CODE == 'nl' %}{{ticket_distribution.given_on|date:"D d M"}}	
+							{% else %}{{ticket_distribution.given_on|date:"D M d"}}{% endif %}</td>
+							<td>{{ticket_distribution.for_what.name}}</td>
+							<td>{{ticket_distribution.count}}</td>
+						</tr>
+					{% endfor %}
+						<tr>
+							<td></td>
+							<td><strong>{% trans "Totaal" %}</strong></td>
+							<td><strong>{{total_tickets_given}}</strong></td>
+						</tr>
+					</table>
+				</div>
+			{% else %}
+				<p><em>{% trans "(Geen)" %}</em></p>
+			{% endif %}
+		</div>
+	</div>
+
+	{% comment %}TODO: table-responsive div outside panel-body (is nice){% endcomment %}
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+		<h1 class="panel-title">{% trans "Geregistreerde verkochte papieren kaarten" %}</h1>
+		</div>
+		<div class="panel-body">
+			{% if total_tickets_registered_sales > 0 %}
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+							<th>{% trans "Datum registratie" %}</th>
+							<th>{% trans "Opmerking" %}</th>
+							<th>{% trans "Concert" %}</th>
+							<th>{% trans "Prijsklasse" %}</th>
+							<th>{% trans "Aantal" %}</th>
+							<th>{% trans "Totaal" %}</th>
+						</thead>
+						{% for registered_sale in registered_sales %}
+							{% for data in registered_sale.per_price_category %}
+								<tr>
+									<td>{% if LANGUAGE_CODE == 'nl' %}{{registered_sale.date|date:"D d M"}}	
+									{% else %}{{registered_sale.date|date:"D M d"}}{% endif %}</td>
+									<td><small>{{registered_sale.user_remarks}}</small></td>
+									<td>{{registered_sale.performance.name}}</td>
+									<td>{{data.price_category.name}}</td>
+									<td>{{data.num_tickets}}</td>
+									<td>€ {{data.total_price|floatformat}}</td>
+								</tr>
+							{% endfor %}
+						{% endfor %}
+						<tr>
+							<td></td>
+							<td></td>	
+							<td></td>
+							<td><strong>{% trans "Totaal" %}</strong></td>
+							<td><strong>{{total_tickets_registered_sales}}</strong></td>
+							<td><strong>€ {{total_price_registered_sales|floatformat}}</strong></td>
+						</tr>
+					</table>
+				</div>
+			{% else %}
+				<p><em>{% trans "(Nog geen)" %}</em></p>
+			{% endif %}
+			<a href="{% url 'space_ticketing:register_sold_tickets' %}" class="btn btn-success" role="button">{% trans "Registreer verkochte papieren kaarten" %}</a>
+		</div>
+	</div>
+
+
+
+	{% comment %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+		<h1 class="panel-title">{% trans "Betaalde papieren kaarten" %}</h1>
+		</div>
+		<div class="panel-body">
+			{% if ticket_payment.total_count > 0 %}
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+							<th>{% trans "Datum" %}</th>
+							<th>{% trans "Betalingswijze" %}</th>
+							<th>{% trans "Concert" %}</th>
+							<th>{% trans "Prijsklasse" %}</th>
+							<th>{% trans "Aantal" %}</th>
+							<th>{% trans "Totaal (€)" %}</th>
+						</thead>
+					{% for ticket_payment in ticket_payments %}
+						<tr>
+							<td>{% if LANGUAGE_CODE == 'nl' %}{{ticket_payment.date|date:"D d M"}}	
+							{% else %}{{ticket_payment.date|date:"D M d"}}{% endif %}</td>
+							<td>{{ticket_payment.payment_method}}</td>
+							<td>{{ticket_payment.performance.name}}</td>
+							<td>{{ticket_payment.price_category.name}}</td>
+							<td>{{ticket_payment.count}}</td>
+							<td>{{ticket_payment.price}}</td>
+						</tr>
+					{% endfor %}
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><strong>{% trans "Totaal" %}</strong></td>
+							<td><strong>{{ticket_payment.total_count}}</strong></td>
+							<td><strong>{{ticket_payment.total_price}}</strong></td>
+						</tr>
+					</table>
+				</div>
+			{% else %}
+				<p><em>{% trans "(Nog geen)" %}</em></p>
+			{% endif %}
+			<p>{% trans 'Je kan cash betalen, of storten op het rekeningnummer van het orkest: <br><strong>BE23 7330 2625 4391</strong>, met vermelding van "<strong>papieren kaarten SPACE</strong>" en <strong>je naam</strong>.' %}</p>
+		</div>
+	</div>
+	{% endcomment %}
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+		<h1 class="panel-title">{% trans "Online bestellingen waarbij jij wordt vermeld" %} <a data-toggle="tooltip" title='{% trans "Online bestellingen waarbij jou naam werd opgegeven als antwoord op de vraag: " %}<em>"{% trans "Ken je een muzikant en kom je dankzij hem of haar luisteren?" %}"</em>' data-html="true"><span class="glyphicon glyphicon-question-sign"></span></a></h1>
+		</div>
+		<div class="panel-body">
+			{% if total_tickets_online_order_mentioneds > 0 %}
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+							<th>{% trans "Datum bestelling" %}</th>
+							<th>{% trans "Voornaam" %}</th>
+							<th>{% trans "Achternaam" %}</th>
+							<th>{% trans "Concert" %}</th>
+							<th>{% trans "Prijsklasse" %}</th>
+							<th>{% trans "Aantal" %}</th>
+						</thead>
+					{% for online_order_mentioned in online_order_mentioneds %}
+						{% for obj in online_order_mentioned.per_price_category %}
+							<tr>
+								<td>{% if LANGUAGE_CODE == 'nl' %}{{online_order_mentioned.date|date:"D d M"}}	
+								{% else %}{{online_order_mentioned.date|date:"D M d"}}{% endif %}</td>
+								<td>{{online_order_mentioned.first_name}}</td>
+								<td>{{online_order_mentioned.last_name}}</td>
+								<td>{{online_order_mentioned.performance.name}}</td>
+								<td>{{obj.price_category.name}}</td>
+								<td>{{obj.num_tickets}}</td>
+							</tr>
+						{% endfor %}
+					{% endfor %}
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><strong>{% trans "Totaal" %}</strong></td>
+							<td><strong>{{total_tickets_online_order_mentioneds}}</strong></td>
+						</tr>
+					</table>
+				</div>
+			{% else %}
+				<p><em>{% trans "(Nog geen)" %}</em></p>
+			{% endif %}
+			<a href="{% url 'space_ticketing:space_landing' %}" class="btn btn-success" role="button">{% trans "Bestel online kaarten" %}</a>
+		</div>
+	</div>
+
 	<p class="low">
 		{{user.first_name}} <em>({{user.email}})</em> &nbsp; – &nbsp; <a href="{% url 'logout' %}">{% trans "Afmelden" %}</a>
 	</p>
 </div>
+
+<script type="text/javascript">
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+</script>
 
 {% endblock content %}
