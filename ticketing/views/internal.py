@@ -84,7 +84,7 @@ def register_sold_tickets(request):
 			messages.success(request, _('Je verkochte tickets zijn geregistreerd.'))
 			return HttpResponseRedirect(reverse('space_ticketing:my_tickets_dashboard'))
 	else:
-		form = ReportedSaleForm()
+		form = ReportedSaleForm(initial={'sale_date': datetime.now().strftime('%Y-%m-%d %H:%M')})
 
 	return render(request, 'internal/register_sold_tickets.html', {'form': form})
 

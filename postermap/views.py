@@ -30,7 +30,6 @@ def add_space_poster(request):
 			form.save()
 			return HttpResponseRedirect(reverse('space_ticketing:space_posters'))
 	else:
-		form = PosterForm()
 		form = PosterForm(initial={'hanging_date': datetime.now().strftime('%Y-%m-%d %H:%M')})
 	return render(request, 'add_space_poster.html', {'form': form})
 
