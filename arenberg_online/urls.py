@@ -7,6 +7,11 @@ urlpatterns = patterns ('',
     url(r'^setlang/(?P<lang>[\w-]+)/$', 'core.views.set_lang', name='set_lang'),
 )
 
+# See: https://github.com/stochastic-technologies/django-loginas
+urlpatterns += patterns('loginas.views',
+    url(r"^login/user/(?P<user_id>.+)/$", "user_login", name="loginas-user-login"),
+)
+
 urlpatterns += solid_i18n_patterns('',
     # Examples:
     # url(r'^$', 'arenberg_online.views.home', name='home'),

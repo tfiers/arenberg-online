@@ -52,6 +52,8 @@ INSTALLED_APPS = (
     'polls', # Ask questions to orchestra members.
     'postermap', # See where posters have been hung in the city.
     # 'debug_toolbar', # http://stackoverflow.com/questions/2361985/profiling-django
+    'loginas', # https://github.com/stochastic-technologies/django-loginas
+    'vinaigrette', # For translation of database values. See https://github.com/ecometrica/django-vinaigrette
 )
 
 MIDDLEWARE_CLASSES = (
