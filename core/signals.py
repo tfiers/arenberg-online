@@ -19,10 +19,11 @@ def sanitize(name):
 	name = name.lower() # Lowercase
 	return name
 
-@receiver(post_save, sender=User)
-@receiver(m2m_changed, sender=UserProfile.groups.through)
-@receiver(post_save, sender=Group)
-@receiver(post_save, sender=AlternativeGroupName)
+# Disable for now
+# @receiver(post_save, sender=User)
+# @receiver(m2m_changed, sender=UserProfile.groups.through)
+# @receiver(post_save, sender=Group)
+# @receiver(post_save, sender=AlternativeGroupName)
 def update_email_forwards(sender, instance, **kwargs):
 	''' Updates postfix email forwards when a user changes his
 		email address, when a user is added to / removed from a group
