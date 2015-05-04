@@ -33,6 +33,7 @@ def add_space_poster(request):
 		form = PosterForm(initial={'hanging_date': datetime.now().strftime('%Y-%m-%d %H:%M')})
 	return render(request, 'add_space_poster.html', {'form': form})
 
+@login_required
 def space_posters(request):
 	context = {}
 	context['posters'] = []
