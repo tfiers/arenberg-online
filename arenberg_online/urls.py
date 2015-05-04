@@ -6,6 +6,7 @@ from django.views.generic import RedirectView
 
 urlpatterns = patterns ('',
     url(r'^setlang/(?P<lang>[\w-]+)/$', 'core.views.set_lang', name='set_lang'),
+    url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
 )
 
 # See: https://github.com/stochastic-technologies/django-loginas

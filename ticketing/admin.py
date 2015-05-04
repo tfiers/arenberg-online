@@ -2,8 +2,15 @@ from django.contrib import admin
 from ticketing.models import (
 	Production, Performance, PriceCategory, Ticket, Order, 
 	StandardMarketingPollAnswer, GivenPaperTickets )
+from import_export.resources import ModelResource
+from import_export.admin import ImportExportModelAdmin
 
-class OrderAdmin(admin.ModelAdmin):
+class OrderResource(ModelResource):
+    class Meta:
+        model = Order
+
+class OrderAdmin(ImportExportModelAdmin):
+	resource_class = OrderResource
 	list_display = ('first_name', 'last_name', 'seller', 'num_tickets', 'total_price',
 		'performance', 'payment_method', 'email', 'date', 'user_remarks', 'admin_remarks')
 	ordering = ('-date',)
