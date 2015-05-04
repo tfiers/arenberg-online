@@ -37,7 +37,9 @@ ALLOWED_HOSTS = ['95.85.3.22', '.arenbergorkest.be']
 # Application definition
 
 INSTALLED_APPS = (
+    'grappelli', # A jazzy skin for the admin-interface - www.grappelliproject.com
     'django.contrib.admin',
+    'import_export',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
