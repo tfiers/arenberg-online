@@ -15,19 +15,66 @@ from ticketing.models import ( Order, Ticket, Performance, PriceCategory,
 from django.forms import ( Form, ChoiceField, IntegerField, NullBooleanField, 
 	CharField, DateTimeField)
 from django.contrib import messages
+import django.utils.timezone as django_tz
+from django.db.models import Q
 
 @login_required
 def promo_dashboard(request):
 	do = Performance.objects.get(date__contains=date(2015,5,7))
 	vr = Performance.objects.get(date__contains=date(2015,5,8))
+	za = Performance.objects.get(date__contains=date(2015,5,9))
 	data = {
 		'num_do' : Ticket.objects.filter(order__performance=do).count(),
 		'num_vr' : Ticket.objects.filter(order__performance=vr).count(),
-		'num_by_musician_do' : Ticket.objects.filter(order__performance=do, order__standardmarketingpollanswer__referred_member=request.user).count(),
-		'num_by_musician_vr' : Ticket.objects.filter(order__performance=vr, order__standardmarketingpollanswer__referred_member=request.user).count(),
-		
+		'num_za' : Ticket.objects.filter(order__performance=za).count(),
+		# 'num_by_musician_do' : Ticket.objects.filter(order__performance=do, order__standardmarketingpollanswer__referred_member=request.user).count(),
+		# 'num_by_musician_vr' : Ticket.objects.filter(order__performance=vr, order__standardmarketingpollanswer__referred_member=request.user).count(),
 	}
+	total_graph, thu_graph, fri_graph = [], [], []
+	total_tickets, thu_tickets, fri_tickets = 0, 0, 0
+	for order in sorted(Order.objects.exclude(performance=za), key=lambda o: o.creation_date):
+		total_tickets += order.num_tickets()
+		total_graph.append({
+			'timestamp': to_timestamp(order.date),
+			'num_new_tickets': order.num_tickets(),
+			'total_tickets': total_tickets,
+			'order': order,
+		})
+		if order.performance == do:
+			thu_tickets += order.num_tickets()
+			thu_graph.append({
+				'timestamp': to_timestamp(order.date),
+				'num_new_tickets': order.num_tickets(),
+				'total_tickets': thu_tickets,
+				'order': order,
+			})
+		elif order.performance == vr:
+			fri_tickets += order.num_tickets()
+			fri_graph.append({
+				'timestamp': to_timestamp(order.date),
+				'num_new_tickets': order.num_tickets(),
+				'total_tickets': fri_tickets,
+				'order': order,
+			})
+	data['total_graph'] = total_graph
+	data['thu_graph'] = thu_graph
+	data['fri_graph'] = fri_graph
+
+	user_totals = []
+	for user in User.objects.all():
+		user_totals.append({
+			'user': user,
+			'num_tickets': Ticket.objects.filter(
+				Q(order__seller=user) | 
+				Q(order__standardmarketingpollanswer__referred_member=user)).count()
+		})
+	data['user_totals'] = sorted(user_totals, key=lambda obj: -obj['num_tickets'])[0:5]
+
 	return render(request, 'internal/promo_dashboard.html', data)
+
+def to_timestamp(dt):
+	epoch = django_tz.make_aware(datetime(1970,1,1), django_tz.get_default_timezone())
+	return int((dt - epoch).total_seconds()*1000)
 
 @login_required
 def facebook_pictures(request):

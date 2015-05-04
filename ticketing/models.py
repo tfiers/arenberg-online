@@ -123,6 +123,13 @@ class Order(Model):
 			})
 		return data
 
+	@property
+	def creation_date(self):
+		if self.sale_date:
+			return self.sale_date
+		else:
+			return self.date
+
 class Ticket(Model):
 	"""
 	A ticket in a certain price category and part of a certain order.

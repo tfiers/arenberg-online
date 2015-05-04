@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-03 22:37+0200\n"
-"PO-Revision-Date: 2015-05-03 22:38+0100\n"
+"POT-Creation-Date: 2015-05-04 13:36+0200\n"
+"PO-Revision-Date: 2015-05-04 13:37+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -430,11 +430,11 @@ msgstr "Cash at the desk"
 msgid "opmerkingen gebruiker. Voor vragen en speciale verzoeken."
 msgstr ""
 
-#: .\ticketing\models.py:166
+#: .\ticketing\models.py:173
 msgid "Voor antwoorden op de vraag: \"Hoe heb je van dit concert gehoord?\""
 msgstr "For answers to the question: \"How did you hear about this concert?\""
 
-#: .\ticketing\models.py:168
+#: .\ticketing\models.py:175
 #: .\ticketing\templates\internal\my_tickets_dashboard.html:192
 msgid "Ken je een muzikant en kom je dankzij hem of haar luisteren?"
 msgstr "Do you know a musician and are you coming because of him or her?"
@@ -541,7 +541,7 @@ msgid "Bestel online kaarten"
 msgstr "Order tickets online"
 
 #: .\ticketing\templates\internal\my_tickets_dashboard.html:237
-#: .\ticketing\templates\internal\promo_dashboard.html:73
+#: .\ticketing\templates\internal\promo_dashboard.html:155
 msgid "Afmelden"
 msgstr "Log off"
 
@@ -553,19 +553,47 @@ msgstr "Cover and profile pictures for Facebook"
 msgid "Omslag- en profielfoto's <br><small>voor Facebook</small>"
 msgstr "Cover and profile pictures <br><small>for Facebook</small>"
 
-#: .\ticketing\templates\internal\promo_dashboard.html:49
+#: .\ticketing\templates\internal\promo_dashboard.html:92
 msgid "<span>SPACE</span><br>Ticketverkoop"
 msgstr "<span>SPACE</span><br>Ticket sales"
 
-#: .\ticketing\templates\internal\promo_dashboard.html:51
+#: .\ticketing\templates\internal\promo_dashboard.html:93
+msgid ""
+"Het aantal verkochte kaarten is telkens het aantal kaarten dat via de "
+"website is besteld, plus het aantal verkochte papieren kaarten die door de "
+"muzikanten online zijn geregistreerd."
+msgstr ""
+"The numbe of sold tickets is the number of tickets ordered via the website, "
+"plus the number of sold paper ticktets that have been registered online by "
+"the musicians."
+
+#: .\ticketing\templates\internal\promo_dashboard.html:99
+#: .\ticketing\templates\internal\promo_dashboard.html:117
 msgid "Donderdag"
 msgstr "Thursday"
 
-#: .\ticketing\templates\internal\promo_dashboard.html:55
+#: .\ticketing\templates\internal\promo_dashboard.html:103
+#: .\ticketing\templates\internal\promo_dashboard.html:118
 msgid "Vrijdag"
 msgstr "Friday"
 
-#: .\ticketing\templates\internal\promo_dashboard.html:60
+#: .\ticketing\templates\internal\promo_dashboard.html:107
+msgid "Zaterdag"
+msgstr "Saturday"
+
+#: .\ticketing\templates\internal\promo_dashboard.html:108
+msgid ""
+"Dit zijn de kaarten die via onze website zijn besteld. De rest van de "
+"bestelde kaarten zijn via de cultuurraad van Zaventem verkocht."
+msgstr ""
+"These are the tickets that have been ordered via our website. The other "
+"tickets are sold via the Cultural Committee of Zaventem."
+
+#: .\ticketing\templates\internal\promo_dashboard.html:119
+msgid "Do + Vr"
+msgstr "Thu + Fri"
+
+#: .\ticketing\templates\internal\promo_dashboard.html:142
 #, fuzzy, python-format
 #| msgid ""
 #| "\n"
@@ -614,15 +642,15 @@ msgstr ""
 "transport from and to the Zaventem concert.</a></p>\n"
 "\t"
 
-#: .\ticketing\templates\internal\promo_dashboard.html:68
+#: .\ticketing\templates\internal\promo_dashboard.html:150
 msgid "Registreer verkochte papieren tickets"
 msgstr "Register sold paper tickets"
 
-#: .\ticketing\templates\internal\promo_dashboard.html:69
+#: .\ticketing\templates\internal\promo_dashboard.html:151
 msgid "Download omslag- en profielfoto's voor Facebook"
 msgstr "Download cover- and profile pictures for Facebook"
 
-#: .\ticketing\templates\internal\promo_dashboard.html:70
+#: .\ticketing\templates\internal\promo_dashboard.html:152
 msgid "Bekijk posters!"
 msgstr "See poster locations!"
 
@@ -1046,15 +1074,15 @@ msgstr "Order tickets for another concert."
 msgid "Terug naar het begin"
 msgstr "Back to the start"
 
-#: .\ticketing\views\internal.py:63
+#: .\ticketing\views\internal.py:110
 msgid "Donderdag 7 mei"
 msgstr "Thursday May 7"
 
-#: .\ticketing\views\internal.py:64
+#: .\ticketing\views\internal.py:111
 msgid "Vrijdag 8 mei"
 msgstr "Friday May 8"
 
-#: .\ticketing\views\internal.py:84
+#: .\ticketing\views\internal.py:131
 msgid "Je verkochte tickets zijn geregistreerd."
 msgstr "Your sold tickets have been registered"
 
