@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-04 13:36+0200\n"
-"PO-Revision-Date: 2015-05-04 13:37+0100\n"
+"POT-Creation-Date: 2015-05-04 19:57+0200\n"
+"PO-Revision-Date: 2015-05-04 19:58+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -541,7 +541,7 @@ msgid "Bestel online kaarten"
 msgstr "Order tickets online"
 
 #: .\ticketing\templates\internal\my_tickets_dashboard.html:237
-#: .\ticketing\templates\internal\promo_dashboard.html:155
+#: .\ticketing\templates\internal\promo_dashboard.html:163
 msgid "Afmelden"
 msgstr "Log off"
 
@@ -553,11 +553,20 @@ msgstr "Cover and profile pictures for Facebook"
 msgid "Omslag- en profielfoto's <br><small>voor Facebook</small>"
 msgstr "Cover and profile pictures <br><small>for Facebook</small>"
 
-#: .\ticketing\templates\internal\promo_dashboard.html:92
-msgid "<span>SPACE</span><br>Ticketverkoop"
-msgstr "<span>SPACE</span><br>Ticket sales"
+#: .\ticketing\templates\internal\promo_dashboard.html:99
+#: .\ticketing\templates\space\complete_order.html:14
+#: .\ticketing\templates\space\landing.html:16
+#: .\ticketing\templates\space\landing_bootstrap.html:20
+#: .\ticketing\templates\space\start_order.html:14
+#: .\ticketing\templates\space\thanks.html:14
+msgid "SPACE"
+msgstr "SPACE"
 
-#: .\ticketing\templates\internal\promo_dashboard.html:93
+#: .\ticketing\templates\internal\promo_dashboard.html:100
+msgid "Ticketverkoop"
+msgstr "Ticket sales"
+
+#: .\ticketing\templates\internal\promo_dashboard.html:102
 msgid ""
 "Het aantal verkochte kaarten is telkens het aantal kaarten dat via de "
 "website is besteld, plus het aantal verkochte papieren kaarten die door de "
@@ -567,21 +576,21 @@ msgstr ""
 "plus the number of sold paper ticktets that have been registered online by "
 "the musicians."
 
-#: .\ticketing\templates\internal\promo_dashboard.html:99
-#: .\ticketing\templates\internal\promo_dashboard.html:117
+#: .\ticketing\templates\internal\promo_dashboard.html:107
+#: .\ticketing\templates\internal\promo_dashboard.html:125
 msgid "Donderdag"
 msgstr "Thursday"
 
-#: .\ticketing\templates\internal\promo_dashboard.html:103
-#: .\ticketing\templates\internal\promo_dashboard.html:118
+#: .\ticketing\templates\internal\promo_dashboard.html:111
+#: .\ticketing\templates\internal\promo_dashboard.html:126
 msgid "Vrijdag"
 msgstr "Friday"
 
-#: .\ticketing\templates\internal\promo_dashboard.html:107
+#: .\ticketing\templates\internal\promo_dashboard.html:115
 msgid "Zaterdag"
 msgstr "Saturday"
 
-#: .\ticketing\templates\internal\promo_dashboard.html:108
+#: .\ticketing\templates\internal\promo_dashboard.html:116
 msgid ""
 "Dit zijn de kaarten die via onze website zijn besteld. De rest van de "
 "bestelde kaarten zijn via de cultuurraad van Zaventem verkocht."
@@ -589,11 +598,11 @@ msgstr ""
 "These are the tickets that have been ordered via our website. The other "
 "tickets are sold via the Cultural Committee of Zaventem."
 
-#: .\ticketing\templates\internal\promo_dashboard.html:119
+#: .\ticketing\templates\internal\promo_dashboard.html:127
 msgid "Do + Vr"
 msgstr "Thu + Fri"
 
-#: .\ticketing\templates\internal\promo_dashboard.html:142
+#: .\ticketing\templates\internal\promo_dashboard.html:150
 #, fuzzy, python-format
 #| msgid ""
 #| "\n"
@@ -642,15 +651,15 @@ msgstr ""
 "transport from and to the Zaventem concert.</a></p>\n"
 "\t"
 
-#: .\ticketing\templates\internal\promo_dashboard.html:150
+#: .\ticketing\templates\internal\promo_dashboard.html:158
 msgid "Registreer verkochte papieren tickets"
 msgstr "Register sold paper tickets"
 
-#: .\ticketing\templates\internal\promo_dashboard.html:151
+#: .\ticketing\templates\internal\promo_dashboard.html:159
 msgid "Download omslag- en profielfoto's voor Facebook"
 msgstr "Download cover- and profile pictures for Facebook"
 
-#: .\ticketing\templates\internal\promo_dashboard.html:152
+#: .\ticketing\templates\internal\promo_dashboard.html:160
 msgid "Bekijk posters!"
 msgstr "See poster locations!"
 
@@ -745,14 +754,6 @@ msgstr ""
 #: .\ticketing\templates\space\start_order.html:13
 #: .\ticketing\templates\space\thanks.html:13
 msgid "olv Roel Willems"
-msgstr ""
-
-#: .\ticketing\templates\space\complete_order.html:14
-#: .\ticketing\templates\space\landing.html:16
-#: .\ticketing\templates\space\landing_bootstrap.html:20
-#: .\ticketing\templates\space\start_order.html:14
-#: .\ticketing\templates\space\thanks.html:14
-msgid "SPACE"
 msgstr ""
 
 #: .\ticketing\templates\space\complete_order.html:19
@@ -1019,6 +1020,8 @@ msgid ""
 "Tickets voor het concert in Zaventem (zaterdag 9 mei - om 20u00 in de St-"
 "Martinuskerk) kunnen nog ter plaatse aan de kassa gekocht worden."
 msgstr ""
+"Tickets for the concert in Zaventem (Saturday May 9 - 20h30 @ Church of St "
+"Martin) can be bought at the desk."
 
 #: .\ticketing\templates\space\start_order.html:41
 msgid "Hoeveel tickets wil je bestellen?"
@@ -1137,6 +1140,9 @@ msgstr "Sat presale (€ 10)"
 #: .\vinaigrette-deleteme.py:12
 msgid "Zaventem VVK SPACE"
 msgstr "Presale Zaventem SPACE"
+
+#~ msgid "<span>SPACE</span><br>Ticketverkoop"
+#~ msgstr "<span>SPACE</span><br>Ticket sales"
 
 #~ msgid "Datum"
 #~ msgstr "Date"
