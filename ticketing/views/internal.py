@@ -35,7 +35,7 @@ def promo_dashboard(request):
 	for order in sorted(Order.objects.exclude(performance=za), key=lambda o: o.creation_date):
 		total_tickets += order.num_tickets()
 		total_graph.append({
-			'timestamp': to_timestamp(order.date),
+			'timestamp': to_timestamp(order.creation_date),
 			'num_new_tickets': order.num_tickets(),
 			'total_tickets': total_tickets,
 			'order': order,
@@ -43,7 +43,7 @@ def promo_dashboard(request):
 		if order.performance == do:
 			thu_tickets += order.num_tickets()
 			thu_graph.append({
-				'timestamp': to_timestamp(order.date),
+				'timestamp': to_timestamp(order.creation_date),
 				'num_new_tickets': order.num_tickets(),
 				'total_tickets': thu_tickets,
 				'order': order,
@@ -51,7 +51,7 @@ def promo_dashboard(request):
 		elif order.performance == vr:
 			fri_tickets += order.num_tickets()
 			fri_graph.append({
-				'timestamp': to_timestamp(order.date),
+				'timestamp': to_timestamp(order.creation_date),
 				'num_new_tickets': order.num_tickets(),
 				'total_tickets': fri_tickets,
 				'order': order,
