@@ -14,13 +14,6 @@
 		<h2 id="title-arenbergorkest" class="caps">{% trans "Arenbergorkest" %}</h2>
 		<h2 id="title-conductor" class="caps">{% trans "OLV Roel Willems" %}</h2>
 		<h1 id="title-space" class="caps">{% trans "SPACE" %}</h1>
-	<!--<p id="language-selection">
-		{% if LANGUAGE_CODE == 'en' %}
-			<em><a href="{% url 'set_lang' lang='nl' %}">(Nederlands)</a></em>
-		{% else %}
-			<em><a href="{% url 'set_lang' lang='en' %}">(Switch to English)</a></em>
-		{% endif %}
-		</p> -->
 	</div>
 	<footer class="footer">
 		<div class="container">
@@ -29,7 +22,8 @@
 					<h3 id="tagline", class="caps">Symphony orchestra<br>
 						<span class="handwritten">plays music of</span><br>
 						<span id="tagline-third-line">interstellar intensity</span></h3>
-					<p><a href="{% url 'space_ticketing:start_order' %}" class="btn btn-success order-btn">{% trans "Bestel tickets" %}</a></p>
+						<p>{% trans "Je kan vanavond nog kaarten aan de kassa kopen." %}</p><br>
+					{% comment %}<p><a href="{% url 'space_ticketing:start_order' %}" class="btn btn-success order-btn">{% trans "Bestel tickets" %}</a></p>{% endcomment %}
 					<div id="more-info-reference"><em>{% trans "Do 7 &amp; Vr 8 mei" %}</em><br>
 						{% trans "20u30 @ Aula Pieter De Somer, Leuven" %}<br>
 						<br>

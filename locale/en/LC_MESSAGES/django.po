@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-04 19:57+0200\n"
-"PO-Revision-Date: 2015-05-04 19:58+0100\n"
+"POT-Creation-Date: 2015-05-08 12:04+0200\n"
+"PO-Revision-Date: 2015-05-08 12:11+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -987,23 +987,23 @@ msgstr ""
 msgid "OLV Roel Willems"
 msgstr ""
 
-#: .\ticketing\templates\space\landing.html:32
-msgid "Bestel tickets"
-msgstr "Order tickets"
+#: .\ticketing\templates\space\landing.html:25
+msgid "Je kan vanavond nog kaarten aan de kassa kopen."
+msgstr "You can still buy tickets tonight on location."
 
-#: .\ticketing\templates\space\landing.html:33
+#: .\ticketing\templates\space\landing.html:28
 msgid "Do 7 &amp; Vr 8 mei"
 msgstr "Thu May 7 &amp; Fri May 8"
 
-#: .\ticketing\templates\space\landing.html:34
+#: .\ticketing\templates\space\landing.html:29
 msgid "20u30 @ Aula Pieter De Somer, Leuven"
 msgstr "20h30 @ Aula Pieter De Somer, Leuven"
 
-#: .\ticketing\templates\space\landing.html:36
+#: .\ticketing\templates\space\landing.html:31
 msgid "Za 9 mei"
 msgstr "Sat May 9"
 
-#: .\ticketing\templates\space\landing.html:37
+#: .\ticketing\templates\space\landing.html:32
 msgid "20u00 @ St-Martinuskerk, Zaventem"
 msgstr "20h00 @ the Church of St-Martinus, Zaventem"
 
@@ -1089,14 +1089,6 @@ msgstr "Friday May 8"
 msgid "Je verkochte tickets zijn geregistreerd."
 msgstr "Your sold tickets have been registered"
 
-#: .\ticketing\views\space.py:22
-msgid "Donderdag 7 mei - om 20u30 in Aula Pieter De Somer, Leuven"
-msgstr "Thursday May 7 – 20h30 in Aula Pieter De Somer, Leuven"
-
-#: .\ticketing\views\space.py:23
-msgid "Vrijdag 8 mei - om 20u30 in Aula Pieter De Somer, Leuven"
-msgstr "Friday May 8 – 20h30 in Aula Pieter De Somer, Leuven"
-
 #: .\vinaigrette-deleteme.py:2
 msgid "do"
 msgstr "Thu"
@@ -1140,6 +1132,15 @@ msgstr "Sat presale (€ 10)"
 #: .\vinaigrette-deleteme.py:12
 msgid "Zaventem VVK SPACE"
 msgstr "Presale Zaventem SPACE"
+
+#~ msgid "Bestel tickets"
+#~ msgstr "Order tickets"
+
+#~ msgid "Donderdag 7 mei - om 20u30 in Aula Pieter De Somer, Leuven"
+#~ msgstr "Thursday May 7 – 20h30 in Aula Pieter De Somer, Leuven"
+
+#~ msgid "Vrijdag 8 mei - om 20u30 in Aula Pieter De Somer, Leuven"
+#~ msgstr "Friday May 8 – 20h30 in Aula Pieter De Somer, Leuven"
 
 #~ msgid "<span>SPACE</span><br>Ticketverkoop"
 #~ msgstr "<span>SPACE</span><br>Ticket sales"

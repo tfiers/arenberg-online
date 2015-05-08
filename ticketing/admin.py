@@ -37,7 +37,7 @@ class OrderResource(ModelResource):
 
 	class Meta:
 		model = Order
-		fields = ('performance__short_name', 'online', 'first_name', 'last_name', 'payment_method', 'user_remarks',)
+		fields = ('performance__short_name', 'online', 'first_name', 'last_name', 'email', 'payment_method', 'user_remarks',)
 
 
 class OrderAdmin(ImportExportModelAdmin):

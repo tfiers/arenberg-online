@@ -20,7 +20,7 @@ def landing(request):
 
 performances = (
 	# ('do', _('Donderdag 7 mei - om 20u30 in Aula Pieter De Somer, Leuven')),
-	('vr', _('Vrijdag 8 mei - om 20u30 in Aula Pieter De Somer, Leuven')),
+	# ('vr', _('Vrijdag 8 mei - om 20u30 in Aula Pieter De Somer, Leuven')),
 	# ('za', _('Zaterdag 9 mei - om 20u00 in St-Martinuskerk, Zaventem')),
 )
 
