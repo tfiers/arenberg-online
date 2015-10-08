@@ -1,7 +1,7 @@
 Arenberg Online
 ===============
 
-The web app of the **Arenbergorkest**, a symphonic student orchestra based in Leuven, Belgium.
+The web app of the **Arenbergorkest**, a symphony student orchestra of the University of Leuven, Belgium.
 
 Serves the public website and a private members section.
 
