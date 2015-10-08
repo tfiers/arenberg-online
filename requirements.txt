@@ -2,3 +2,4 @@ Django==1.7
 django-crispy-forms
 solid_i18n
 pytz
+django-grappelli
