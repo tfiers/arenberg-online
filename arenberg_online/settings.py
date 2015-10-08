@@ -1,5 +1,5 @@
 """
-Django settings for arenberg_online project.
+django settings for arenberg_online project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -8,7 +8,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
-DEVELOPPING = False
+DEVELOPPING = True
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -108,7 +108,7 @@ LANGUAGES = (
     ('en', 'English'),
 )
 
-# Enable Django translation.
+# Enable django translation.
 # After you have introduced new translatable strings, run
 # 'python manage.py makemessages', then edit the .po files
 # in 'LOCALE_PATHS' (with Poedit e.g.) and finally run
@@ -154,7 +154,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = '/home/django/arenberg_online/static/'
 
 
-# Change Django's default user model (defined in the django.contrib.auth app)
+# Change django's default user model (defined in the django.contrib.auth app)
 # to use the email address of a user as its identifier instead of a custom username.
 # Except for this modification, this user model is a clone of the 
 # django.contrib.auth user model.

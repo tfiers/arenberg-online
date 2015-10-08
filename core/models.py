@@ -142,7 +142,7 @@ class Group(Model):
 
     name = CharField(max_length=150)
     category = CharField(max_length=14, choices=category_choices, default=STANDARD)
-    parents = ManyToManyField('self', symmetrical=False, related_name='children', 
+    children = ManyToManyField('self', symmetrical=False, related_name='parents', 
         blank=True)
     email_address = CharField(max_length=100, blank=True,
         help_text="If different from a sanitized version of 'name'")
