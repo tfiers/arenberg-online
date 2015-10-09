@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Toegang voor muzikanten" %}{% endblock title %}
+{% block custom_css_js %}
+<link rel="stylesheet" href="{% static 'registration/style.css' %}">
+<script src="{% static 'site-wide/bootstrap-show-password.min.js' %}"></script>
+{% endblock custom_css_js %}
+{% block content %}
+
+<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+	<h1>{% trans "Registreer" %}</h1>
+	<form method="post" action="{% url 'login' %}">
+		{% csrf_token %}
+		{% if form.errors %}
+		<p class="error">{% trans "Een van de velden is verkeerd ingevuld. Probeer nog een keer." %}</p>
+		{% endif %}
+		<div class="form-group">
+			<label for="{{ form.username.id_for_label }}">{% trans "Je naam" %}</label>
+			<input type="text" name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Lewis Armstrong' %}" value="{{ form.username.value|default_if_none:'' }}">
+		</div>
+		<div class="form-group">
+			<label for="{{ form.username.id_for_label }}">{% trans "Je instrument" %}</label>
+			<input type="text" name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Triangel' %}" value="{{ form.username.value|default_if_none:'' }}">
+		</div>
+		<div class="form-group">
+			<label for="{{ form.username.id_for_label }}">{% trans "Je e-mailadres" %}</label>
+			<input type="text" name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}" class="form-control" placeholder="{% trans 'bv. xxJohnnyLover69@msn.be' %}" value="{{ form.username.value|default_if_none:'' }}">
+		</div>
+		<div class="form-group">
+			<label for="{{ form.password.id_for_label }}">{% trans "Je wachtwoord" %}</label>
+			<input type="password" name="{{ form.password.html_name }}" id="{{ form.password.id_for_label }}" class="form-control" placeholder="{% trans 'bv. H@rdstyleWillN3verDie' %}" value="{{ form.password.value|default_if_none:'' }}" data-toggle="password">
+		</div>
+		<input type="submit" value="{% trans 'Registreren' %}" class="btn btn-primary">
+		<input type="hidden" name="next" value="{{ next }}">
+	</form>
+</div>
+
+{% endblock content %}

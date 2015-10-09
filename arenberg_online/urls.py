@@ -18,10 +18,10 @@ urlpatterns += solid_i18n_patterns('',
     # Examples:
     # url(r'^$', 'arenberg_online.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
-    url(r'^', include('ticketing.urls', namespace='space_ticketing')),
-    url(r'^home/', include('ticketing.urls', namespace='space_ticketing')),
+	url(r'^musicians/login$', auth_views.login, name='login'),#deze lijn wordt genegeerd wanneer er naar musicians/login wordt genavigeerd ... waarom?
+	url(r'^musicians/register/$', 'core.views.register', name='register'),
+    url(r'^home/','core.views.home',),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^musicians/login$', auth_views.login, name='login'),
     url(r'^musicians/adieu$', auth_views.logout, name='logout'),
     url(r'^musicians/choose-password$', 'core.views.change_default_password', name='change_password'),
     url(r'^musicians/choose-password/done$', 'core.views.password_set', name='pass_changed'),
@@ -30,5 +30,7 @@ urlpatterns += solid_i18n_patterns('',
     url(r'^naar\-zaventem$', 'polls.views.zaventem_transport', name="zaventem_transport_poll"),
     url(r'^thanks$', 'polls.views.thanks', name="thanks"),
     url(r'^music_suggestions/', include('music_suggestions.urls', namespace='music_suggestions')),
+	url(r'^','core.views.home',name='homepage'),
     url(r'^(?P<path>.*)/$', 'core.views.redirect_to_old_drupal_site', name='redirect_to_old_drupal_site'), # catch-all
+
 )

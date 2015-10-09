@@ -11,6 +11,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.conf import settings 
 from datetime import datetime
 from pytz import utc
+from django.http import HttpResponse
 
 def set_lang(request, lang='en'):
 	if lang not in ('en', 'nl'):
@@ -25,6 +26,12 @@ def set_lang(request, lang='en'):
 
 def redirect_to_old_drupal_site(request, path='/'):
 	return HttpResponseRedirect('http://arenbergorkest.studentenweb.org/'+path)
+
+def home(request):
+	return render(request, 'arenbergorkest.htm')
+	
+def register(request):
+	return render(request, 'registration/register.html')
 
 @csrf_protect
 @login_required
