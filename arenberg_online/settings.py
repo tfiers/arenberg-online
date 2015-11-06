@@ -185,10 +185,14 @@ LOGGING = {
         },
     },
     'handlers': {
+        # Set up a rotating log that can get 15 MB in size and keep 10 historical versions.
+        # From http://stackoverflow.com/a/19257221
         'file': {
             'level': 'DEBUG',
-            'class': 'logging.FileHandler',
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': os.path.join(BASE_DIR, 'logs/log.txt'),
+            'maxBytes': 15*1024*1024, # 15 MB
+            'backupCount': 10,
         },
     },
     'loggers': {
@@ -199,7 +203,7 @@ LOGGING = {
         # database queries as DEBUG messages.
         'django': {
             'handlers': ['file'],
-            'level': 'DEBUG',
+            'level': 'WARNING',
             'propagate': True,
         }
     }
