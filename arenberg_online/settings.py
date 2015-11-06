@@ -168,6 +168,45 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'core/templates'),
 )
 
+
+# Write errors encountered by django 
+# or raised from our source code to a file.
+# See the official documentation at https://docs.djangoproject.com/en/1.7/topics/logging/
+# and this blogpost: http://ianalexandr.com/blog/getting-started-with-django-logging-in-5-minutes.html
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(asctime)s %(levelname)s %(module)s %(process)d %(thread)d %(message)s',
+        },
+        'simple': {
+            'format': '%(asctime)s %(message)s',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/log.txt'),
+        },
+    },
+    'loggers': {
+        # Catch all logger of errors encountered by django.
+        # (https://docs.djangoproject.com/en/1.8/topics/logging/#django)
+        # 5xx responses are raised as ERROR messages,
+        # 4xx responses as WARNING messages,
+        # database queries as DEBUG messages.
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        }
+    }
+}
+
+
+
 # Use Bootstrap 3 for rendering forms with django-crispy-forms.
 # See: http://django-crispy-forms.readthedocs.org/en/latest/install.html#template-packs
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
