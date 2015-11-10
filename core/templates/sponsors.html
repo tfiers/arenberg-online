@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Toegang voor muzikanten" %}{% endblock title %}
+{% block custom_css_js %}
+<link rel="stylesheet" href="{% static 'registration/style.css' %}">
+<script src="{% static 'site-wide/bootstrap-show-password.min.js' %}"></script>
+{% endblock custom_css_js %}
+{% block content %}
+
+<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+	<h1>{% trans "Sponsors" %}</h1>
+</div>
+
+{% endblock content %}

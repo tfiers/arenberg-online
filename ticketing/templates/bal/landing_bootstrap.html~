@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}{% trans "Bal Masqué Concerten Arenbergorkest" %}{% endblock title %}
+{% block custom_css_js %}
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{% static 'ticketing/bal/style.css' %}">
+{% endblock custom_css_js %}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div id="header" class="col-sm-6 col-sm-offset-3">
+			<!--<div class="col-sm-2"></div>
+			<div class="col-sm-8">-->
+				<div class="container">
+					<h2 id="title-arenbergorkest" class="caps">{% trans "Arenbergorkest" %}</h2>
+					<h2 id="title-conductor" class="caps">{% trans "OLV Roel Willems" %}</h2>
+					<h1 id="title-space" class="caps">{% trans "Bal Masqué" %}</h1>
+				<!--<p id="language-selection">
+					{% if LANGUAGE_CODE == 'en' %}
+						<em><a href="{% url 'set_lang' lang='nl' %}">(Nederlands)</a></em>
+					{% else %}
+						<em><a href="{% url 'set_lang' lang='en' %}">(Switch to English)</a></em>
+					{% endif %}
+					</p> -->
+				</div>
+				<footer class="footer">
+					<div class="container">
+						<h3 id="tagline", class="caps">Symphony orchestra<br>
+						<span class="handwritten">plays music of</span><br>
+						<span id="tagline-third-line">interstellar intensity</span></h3>
+						<h3 id="music-names", class="caps fulljustify">Phantom of the Opera – Eine<span class="small-tracking">r</span> Nacht in Venedig – Pini Di Roma – The<span class="small-tracking">r</span> Dark Knight  – Second Waltz - Masquerade Suite - Scènes Napolitaines</h3>
+					</div>
+				</footer>
+			<!--</div>
+			<div class="col-sm-2"></div>-->
+		</div>
+	</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,43 @@
+#title-arenbergorkest {
+	font-size: 20px;
+}
+#title-conductor {
+	font-size: 10px;
+}
+#title-space {
+	font-size: 72px;
+}
+.footer {
+	height: 450px;
+}
+body {
+  margin-bottom: 450px;
+}
+#tagline {
+	font-size: 14px;
+}
+#tagline .handwritten {
+	font-size: 16px;
+}
+#music-names {
+	font-size: 10px;
+	letter-spacing: 0.5em;
+	margin-right: -0.5em;
+}
+.order-btn {
+	font-size: 16px;
+}
+.footer .order-btn {
+	margin-bottom: 1.5em;
+}
+#more-info-reference {
+	margin-bottom: 5em;
+	/* -- Temp -- */
+	font-size: 13px;
+	/* -- Temp -- */
+}
+/* -- Temp -- */
+#more-info-reference em {
+	font-size: 18px;
+}
+/* -- Temp -- */
