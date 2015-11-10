@@ -27,15 +27,13 @@
             <div id="cont">
                 <ul>
                     <div id="left">
-                    <li><a href="{% url 'homepage' %}">Home</a></li>
-                    <!--<li><a href="http://arenbergorkest.studentenweb.org/">{% trans "Naar oude site" %}</a></li>-->
+                    <li><a href="{% url 'space_ticketing:space_landing' %}">Home</a></li>
+                    <li><a href="http://arenbergorkest.studentenweb.org/">{% trans "Naar oude site" %}</a></li>
                     {% if user.is_authenticated %}
                     {% comment %}<li><a href="{% url 'space_ticketing:my_tickets_dashboard' %}" title="{% trans 'Mijn profiel' %}">{{ user.first_name|default:'{% trans "Mijn profiel" %}' }}</a></li>{% endcomment %}
                     <li><a href="{% url 'space_ticketing:my_tickets_dashboard' %}">{% trans "Tickets" %} {{user.first_name}}</a></li>
                     <li><a href="{% url 'space_ticketing:promo_dashboard' %}">{% trans "SPACE Concerten" %}</a></li>
-                    {% else %}
-					<li><a href="{% url 'login' %}">{% trans "Login muzikanten" %}</a></li>
-					<li><a href="{% url 'register' %}">{% trans "Registreer" %}</a></li>
+                    {% else %}<li><a href="{% url 'login' %}">{% trans "Login muzikanten" %}</a></li>
                     {% endif %}
                     </div>
                     <li id="language-select">
