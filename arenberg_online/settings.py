@@ -151,7 +151,7 @@ USE_L10N = True
 STATIC_URL = '/static/'
 
 # Only relevant when DEBUG = False (-> when you are in production).
-STATIC_ROOT = '/home/django/arenberg_online/static/'
+STATIC_ROOT = '/home/org/arenbergorkest/static'
 
 
 # Change django's default user model (defined in the django.contrib.auth app)
