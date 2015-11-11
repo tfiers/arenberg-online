@@ -32,6 +32,9 @@ def sponsors(request):
 def contact(request):
 	return render(request, 'contact.html')
 
+def home(request):
+	return render(request, 'Arenbergorkest.htm')
+
 @csrf_protect
 @login_required
 def change_default_password(request):
@@ -50,7 +53,7 @@ def change_default_password(request):
 			
 		return render(request, 'registration/password_set_form.html', {'form': form, 'default_pass': settings.DEFAULT_NEW_PASSWORD})
 	else:
-		return HttpResponseRedirect(reverse('space_ticketing:promo_dashboard'))
+		return HttpResponseRedirect(reverse('home'))
 
 @login_required
 def password_set(request):

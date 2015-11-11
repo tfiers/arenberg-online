@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Snowman Concerten Arenbergorkest" %}{% endblock title %}
+{% block custom_css_js %}
+<link rel="stylesheet" href="{% static 'ticketing/space/style.css' %}">
+<link rel="stylesheet" href="{% static 'ticketing/space/style-landscape-tablet-and-larger.css' %}" media="(min-width: 992px)">
+{% endblock custom_css_js %}
+{% block content %}
+<div id="header">
+	<div class="container">
+		<h2 id="title-arenbergorkest" class="caps">{% trans "Arenbergorkest" %}</h2>
+		<h2 id="title-conductor" class="caps">{% trans "olv Roel Willems" %}</h2>
+		<h1 id="title-space" class="caps">{% trans "Snowman" %}</h1>
+	</div>
+</div>	
+<div class="container">
+	<form action="" method="post">
+		<h1>{% trans "Tickets bestellen" %}</h1>
+		{{ wizard.management_form }}
+		{% csrf_token %}
+		<div id="recap">
+			<p>{% trans "Dit is je voorlopige bestelling:" %}</p>
+			{% if first_form.performance == "za" %}
+				{% blocktrans with tt=first_form.total_tickets tp=first_form.total_price %}
+				<p>
+					<strong>{{tt}}</strong> tickets voor samen <strong>€ {{tp}}</strong>.
+				</p>
+				{% endblocktrans %}
+			{% else %}
+				{% blocktrans with tt=first_form.total_tickets ttplural=first_form.total_tickets|pluralize s=first_form.num_student_tickets  ns=first_form.num_non_student_tickets  cc=first_form.num_culture_card_tickets %}
+				<p>
+					In totaal <strong>{{tt}}</strong> ticket{{ttplural}} (studenten: {{s}}, niet-studenten: {{ns}}, KU Leuven cultuurkaarthouders: {{cc}})<br>
+					{% endblocktrans %}
+					{% trans "Voor" %} {% if first_form.total_tickets > 1 %}{% trans "samen" %} {% endif %}<strong>€ {{ first_form.total_price }}</strong>.
+				</p>
+			{% endif %}
+			{% blocktrans with p=first_form.performance_full fn=first_form.first_name ln=first_form.last_name e=first_form.email val=wizard.steps.first%}
+			<p>
+				Voor het concert van <strong>{{p}}</strong>.<br>
+			</p>
+			<p>
+				Op naam van <strong>{{fn}}</strong> (voornaam) <strong>{{ln}}</strong>  (achternaam)<br>
+				Email: <strong>{{e}}</strong><br>
+			</p>
+			<p>
+				Klopt er iets niet? Dan kan je dat 
+				<button name="wizard_goto_step" type="submit" value="{{val}}" class="btn btn-link">Aanpassen.</button>
+			</p>
+			<p>Als alles klopt, mag je het formulier hieronder verder invullen en je bestelling definitief bevestigen.</p>
+			{% endblocktrans %}
+		</div>
+		{% if first_form.performance == "za" %}
+			<div class="form-group{% if form.payment_method.errors %} has-error{% endif %}">
+				<label for="{{ form.payment_method.id_for_label }}">{% trans "Betalingswijze" %}</label> *
+				<select name="{{ form.payment_method.html_name }}" id="{{ form.payment_method.id_for_label }}" class="form-control">
+					<option value="transfer" selected="selected">{% trans "Via overschrijving" %}</option>
+				</select>
+				<span class="help-block">
+				{% for error in form.payment_method.errors %}
+					{{ error }}<br>
+				{% endfor %}
+				</span>
+				<p>{% trans "Voor het concert in Zaventem kan enkel via overschrijving worden betaald." %}</p>
+			</div>
+		{% else %}
+			{% comment %}
+			<div class="form-group{% if form.payment_method.errors %} has-error{% endif %}">
+				<label for="{{ form.payment_method.id_for_label }}">{% trans "Betalingswijze" %}</label> *
+				<select name="{{ form.payment_method.html_name }}" id="{{ form.payment_method.id_for_label }}" class="form-control">
+					<option disabled value=""{% if form.performance.value == None %} selected="selected"{% endif %}><em>{% trans "– Kies betalingswijze –" %}</em></option>
+					{% for value, text in form.payment_method.field.choices %}
+					<option value="{{ value }}"{% if form.payment_method.value == value %} selected="selected"{% endif %}>{{ text }}</option>
+					{% endfor %}
+				</select>
+				<span class="help-block">
+				{% for error in form.payment_method.errors %}
+					{{ error }}<br>
+				{% endfor %}
+				</span>
+			</div>
+			{% endcomment %}
+			<div class="form-group{% if form.payment_method.errors %} has-error{% endif %}">
+				<label for="{{ form.payment_method.id_for_label }}">{% trans "Betalingswijze" %}</label> *
+				<select name="{{ form.payment_method.html_name }}" id="{{ form.payment_method.id_for_label }}" class="form-control">
+					<option value="cash" selected="selected">{% trans "Aan de kassa" %}</option>
+				</select>
+				<span class="help-block">
+				{% for error in form.payment_method.errors %}
+					{{ error }}<br>
+				{% endfor %}
+				</span>
+				<p>{% trans "(Er kan niet meer via overschrijving betaald worden)." %}</p>
+			</div>
+		{% endif %}
+		<div class="form-group{% if form.marketing_feedback.errors %} has-error{% endif %}">
+			<label for="{{ form.marketing_feedback.id_for_label }}">{% trans "Hoe heb je van dit concert gehoord?" %}</label> *
+			<textarea type="text" name="{{ form.marketing_feedback.html_name }}" id="{{ form.marketing_feedback.id_for_label }}" class="form-control" placeholder="{% trans 'Kennis of familie in orkest, poster ergens gezien, e-mail ontvangen, ...' %}" rows="2">{{ form.marketing_feedback.value|default_if_none:"" }}</textarea>
+			<span class="help-block">
+			{% for error in form.marketing_feedback.errors %}
+				{{ error }}<br>
+			{% endfor %}
+			</span>
+		</div>
+		<div class="form-group{% if form.referred_member.errors %} has-error{% endif %}">
+			<label for="{{ form.referred_member.id_for_label }}">{% trans "Muzikant" %}</label>
+			<p>{% trans "Ken je een muzikant en kom je dankzij hem of haar luisteren? Help hem of haar dan om de prijs voor Strafste Ticketverkoper in de wacht te slepen." %}</p>
+			<select name="{{ form.referred_member.html_name }}" id="{{ form.referred_member.id_for_label }}" class="form-control">
+				<option value=""{% if form.referred_member.value == None %} selected="selected"{% endif %}><em>{% trans "Niet van toepassing" %}</em></option>
+				{% for value, text in form.referred_member.field.choices %}
+				<option value="{{ value }}"{% if form.referred_member.value == value %} selected="selected"{% endif %}>{{ text }}</option>
+				{% endfor %}
+			</select>
+			<span class="help-block">
+			{% for error in form.referred_member.errors %}
+				{{ error }}<br>
+			{% endfor %}
+			</span>
+		</div>
+		<div class="form-group{% if form.first_concert.errors %} has-error{% endif %}">
+			<label for="{{ form.first_concert.id_for_label }}">{% trans "Dit is m'n eerste Arenberg-concert" %}</label>
+			<select name="{{ form.first_concert.html_name }}" id="{{ form.first_concert.id_for_label }}" class="form-control">
+				<option disabled value="1"{% if form.first_concert.value == None %} selected="selected"{% endif %}><em>{% trans "– Kies –" %}</em></option>
+				<option value="2"{% if form.first_concert.value == True %} selected="selected"{% endif %}>{% trans "Ja" %}</option>
+				<option value="3"{% if form.first_concert.value == False %} selected="selected"{% endif %}>{% trans "Nee" %}</option>
+			</select>
+			<span class="help-block">
+			{% for error in form.first_concert.errors %}
+				{{ error }}<br>
+			{% endfor %}
+			</span>
+		</div>
+		<div class="form-group{% if form.remarks.errors %} has-error{% endif %}">
+			<label for="{{ form.remarks.id_for_label }}">{% trans "Opmerkingen" %}</label>
+			<textarea type="text" name="{{ form.remarks.html_name }}" id="{{ form.remarks.id_for_label }}" class="form-control" placeholder="{% trans 'Eventuele vragen of speciale verzoeken.' %}" rows="1">{{ form.remarks.value|default_if_none:"" }}</textarea>
+			<span class="help-block">
+			{% for error in form.remarks.errors %}
+				{{ error }}<br>
+			{% endfor %}
+			</span>
+		</div>
+		<input type="submit" name="submit" value="{% trans 'Bestel' %}" class="btn btn-primary">
+	</form>
+</div>
+{% endblock content %}
