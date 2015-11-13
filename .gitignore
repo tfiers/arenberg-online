@@ -4,6 +4,9 @@ logs/log.txt
 # Production settings
 arenberg-secure/
 
+# Ignore files ending in tilde (temporary files.)
+*~
+
 # Django SQLite database
 *.sqlite3
 
