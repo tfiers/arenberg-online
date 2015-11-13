@@ -23,7 +23,7 @@
 						<span class="handwritten">plays music of</span><br>
 						<span id="tagline-third-line">mysterious intensity</span></h3>
 						{% comment %}<p>{% trans "Je kan vanavond nog kaarten aan de kassa kopen." %}</p>{% endcomment %}<br>
-					<p><a href="{% url 'space_ticketing:start_order' %}" class="btn btn-success order-btn">{% trans "Bestel tickets" %}</a></p>
+					<p><a href="{% url 'ticketing:start_order_bal' %}" class="btn btn-success order-btn">{% trans "Bestel tickets" %}</a></p>
 					<div id="more-info-reference"><em>{% trans "Dinsdag 1 december" %}</em><br>
 						{% trans "20u30 @ Aula Pieter De Somer, Leuven" %}<br>
 						<br>

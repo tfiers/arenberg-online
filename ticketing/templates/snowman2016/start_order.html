@@ -38,7 +38,7 @@
 			<div id="leuven">
 				<p>{% trans "Hoeveel tickets wil je bestellen voor ..." %}</p>
 				<div class="form-group{% if form.num_volwassenen_tickets.errors %} has-error{% endif %}">
-					<label for="{{ form.num_volwassenen_tickets.id_for_label }}">{% trans "Studenten en -18" %} (€5)</label>
+					<label for="{{ form.num_volwassenen_tickets.id_for_label }}">{% trans "Volwassenen" %} (€10)</label>
 					<input type="number" name="{{ form.num_volwassenen_tickets.html_name }}" id="{{ form.num_volwassenen_tickets.id_for_label }}" class="form-control" min="0" step="1" value="{{ form.num_volwassenen_tickets.value|default_if_none:'0' }}">
 					<span class="help-block">
 					{% for error in form.num_volwassenen_tickets.errors %}
@@ -47,7 +47,7 @@
 					</span>
 				</div>
 				<div class="form-group{% if form.num_kinderen_tickets.errors %} has-error{% endif %}">
-					<label for="{{ form.num_kinderen_tickets.id_for_label }}">{% trans "Niet-studenten" %} (€9)</label>
+					<label for="{{ form.num_kinderen_tickets.id_for_label }}">{% trans "Kinderen" %} (€5)</label>
 					<input type="number" name="{{ form.num_kinderen_tickets.html_name }}" id="{{ form.num_kinderen_tickets.id_for_label }}" class="form-control" min="0" step="1" value="{{ form.num_kinderen_tickets.value|default_if_none:'0' }}">
 					<span class="help-block">
 					{% for error in form.num_kinderen_tickets.errors %}

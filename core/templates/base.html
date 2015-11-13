@@ -27,15 +27,16 @@
             <div id="cont">
                 <ul>
                     <div id="left">
-                    <li><a href="{% url 'bal_ticketing:space_landing' %}">Home</a></li>
+                    <li><a href="{% url 'ticketing:bal_landing' %}">Home</a></li>
                     <li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
 		    <li><a href="{% url 'sponsors' %}">{% trans "Sponsors" %}</a></li>
-		    <li><a href="{% url 'bal_ticketing:start_order' %}">{% trans "Tickets bestellen" %}</a></li>
+		    <li><a href="{% url 'ticketing:start_order_bal' %}">{% trans "Tickets Bal Masqué" %}</a></li>
+		    <li><a href="{% url 'ticketing:start_order_snow' %}">{% trans "Tickets Snowman" %}</a></li>
                     {% if user.is_authenticated %}
-                    
-		    {% comment %}<li><a href="{% url 'bal_ticketing:my_tickets_dashboard' %}" title="{% trans 'Mijn profiel' %}">{{ user.first_name|default:'{% trans "Mijn profiel" %}' }}</a></li>
-                    <li><a href="{% url 'bal_ticketing:my_tickets_dashboard' %}">{% trans "Tickets" %} {{user.first_name}}</a></li>
-                    <li><a href="{% url 'bal_ticketing:promo_dashboard' %}">{% trans "SPACE Concerten" %}</a></li>
+                   
+		    {% comment %}<li><a href="{% url 'ticketing:my_tickets_dashboard' %}" title="{% trans 'Mijn profiel' %}">{{ user.first_name|default:'{% trans "Mijn profiel" %}' }}</a></li>
+                    <li><a href="{% url 'ticketing:my_tickets_dashboard' %}">{% trans "Tickets" %} {{user.first_name}}</a></li>
+                    <li><a href="{% url 'ticketing:promo_dashboard' %}">{% trans "SPACE Concerten" %}</a></li>
                     {% else %}<li><a href="{% url 'login' %}">{% trans "Login muzikanten" %}</a></li>
 		    {% endcomment %}
 

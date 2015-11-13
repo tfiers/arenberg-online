@@ -16,7 +16,7 @@ from core.models import User
 from ticketing.models import Order, Ticket, Performance, PriceCategory, StandardMarketingPollAnswer
 
 def landing(request):
-	return render(request, 'space/landing.html')
+	return render(request, 'snowman2016/landing.html')
 
 performances = (
 	 ('za1', _('Zaterdag 13 februari - om 17u00 in Aula Pieter De Somer, Leuven')),
@@ -28,7 +28,6 @@ class SpaceTicketingForm_1(Form):
 	num_culture_card_tickets = IntegerField(required=False, min_value=0)
 	num_student_tickets = IntegerField(required=False, min_value=0)
 	num_non_student_tickets = IntegerField(required=False, min_value=0)
-	num_zaventem_tickets = IntegerField(required=False, min_value=0)
 	first_name = CharField(required=True)
 	last_name = CharField(required=True)
 	email = EmailField(required=True)

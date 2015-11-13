@@ -16,7 +16,7 @@ from core.models import User
 from ticketing.models import Order, Ticket, Performance, PriceCategory, StandardMarketingPollAnswer
 
 def landing(request):
-	return render(request, 'space/landing.html')
+	return render(request, 'snowman2016/landing.html')
 
 performances = (
 	 ('za1', _('Zaterdag 13 februari - om 17u00 in Aula Pieter De Somer, Leuven')),
