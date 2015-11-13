@@ -69,7 +69,7 @@ def parse_form_data(form):
 
 
 def persist_data(data):
-	name_mapping = {'za1': Snowman2016_1, 'za2': Snowman2016_2} # ..th of May
+	name_mapping = {'za1': 'Snowman2016_1', 'za2': 'Snowman2016_2'} 
 	performance = Performance.objects.get(short_name__contains=name_mapping[data['performance']])
 		
 	order = Order.objects.create(

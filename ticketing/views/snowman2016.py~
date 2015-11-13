@@ -28,7 +28,6 @@ class SpaceTicketingForm_1(Form):
 	num_culture_card_tickets = IntegerField(required=False, min_value=0)
 	num_student_tickets = IntegerField(required=False, min_value=0)
 	num_non_student_tickets = IntegerField(required=False, min_value=0)
-	num_zaventem_tickets = IntegerField(required=False, min_value=0)
 	first_name = CharField(required=True)
 	last_name = CharField(required=True)
 	email = EmailField(required=True)
