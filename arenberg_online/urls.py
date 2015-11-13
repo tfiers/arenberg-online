@@ -33,5 +33,5 @@ urlpatterns += solid_i18n_patterns('',
     url(r'^naar\-zaventem$', 'polls.views.zaventem_transport', name="zaventem_transport_poll"),
     url(r'^thanks$', 'polls.views.thanks', name="thanks"),
     url(r'^music_suggestions/', include('music_suggestions.urls', namespace='music_suggestions')),
-    url(r'^(?P<path>.*)/$', 'core.views.redirect_to_old_drupal_site', name='redirect_to_old_drupal_site'), # catch-all
+    # url(r'^(?P<path>.*)/$', 'core.views.redirect_to_old_drupal_site', name='redirect_to_old_drupal_site'), # catch-all
 )
