@@ -35,9 +35,10 @@
 		    <li><a href="{% url 'ticketing:start_order_snow' %}">{% trans "Tickets Snowman" %}</a></li>
                     {% if user.is_authenticated %}
                    
-		    {% comment %}<li><a href="{% url 'ticketing:my_tickets_dashboard' %}" title="{% trans 'Mijn profiel' %}">{{ user.first_name|default:'{% trans "Mijn profiel" %}' }}</a></li>
-                    <li><a href="{% url 'ticketing:my_tickets_dashboard' %}">{% trans "Tickets" %} {{user.first_name}}</a></li>
-                    <li><a href="{% url 'ticketing:promo_dashboard' %}">{% trans "SPACE Concerten" %}</a></li>
+		    {% comment %}<li><a href="{% url 'ticketing:my_tickets_dashboard' %}" title="{% trans 'Verkochte tickets' %}">{{ user.first_name|default:'{% trans "Mijn profiel" %}' }}</a></li>
+                    <li><a href="{% url 'ticketing:promo_dashboard' %}">{% trans "Concerten" %}</a></li>
+		    <li><a href="{% url 'calendar' %}">{% trans "Kalender" %}</a></li>
+		    <li><a href="{% url 'music' %}">{% trans "Partijen" %}</a></li>
                     {% else %}<li><a href="{% url 'login' %}">{% trans "Login muzikanten" %}</a></li>
 		    {% endcomment %}
 

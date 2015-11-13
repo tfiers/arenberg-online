@@ -35,6 +35,12 @@ def contact(request):
 def home(request):
 	return render(request, 'Arenbergorkest.htm')
 
+def music(request):
+	return render(request, 'music.html')
+
+def calendar(request):
+	return render(request, 'calendar.html')
+
 @csrf_protect
 @login_required
 def change_default_password(request):
