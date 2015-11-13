@@ -205,11 +205,18 @@ LOGGING = {
             'handlers': ['file'],
             'level': 'WARNING',
             'propagate': True,
+            'formatter': 'verbose',
         },
-        # '': {
-        #     'handlers': ['file'],
-        #     'level': 'DEBUG',
-        # },
+        # To debug the code via printouts for example.
+        # Usage:
+        # import logging
+        # logger = logging.getLogger('developper_log')
+        # logger.debug('Variable x is {}'.format(x))
+        'developper_log': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'formatter': 'simple',
+        },
     }
 }
 
