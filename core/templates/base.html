@@ -28,8 +28,9 @@
                 <ul>
                     <div id="left">
                     <li><a href="{% url 'ticketing:bal_landing' %}">Home</a></li>
+		    <li><a href="{% url 'wie' %}">{% trans "Wie zijn wij?" %}</a></li>{% comment %}
                     <li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
-		    <li><a href="{% url 'sponsors' %}">{% trans "Sponsors" %}</a></li>
+		    <li><a href="{% url 'sponsors' %}">{% trans "Sponsors" %}</a></li>{% endcomment %}
 		    <li><a href="{% url 'ticketing:start_order_bal' %}">{% trans "Tickets Bal Masqué" %}</a></li>
 		    <li><a href="{% url 'ticketing:start_order_snow' %}">{% trans "Tickets Snowman" %}</a></li>
                     {% if user.is_authenticated %}

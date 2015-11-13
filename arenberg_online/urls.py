@@ -18,7 +18,7 @@ urlpatterns += solid_i18n_patterns('',
     # Examples:
     # url(r'^$', 'arenberg_online.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
-    # url(r'^$', 'core.views.home', name='home'), #will render the Arenbergorkest.htm homepage, disable because of concerts
+    url(r'^wie$', 'core.views.home', name='wie'), #will render the Arenbergorkest.htm homepage, disable because of concerts
     url(r'^', include('ticketing.urls', namespace='ticketing')),
     url(r'^home/', include('ticketing.urls', namespace='ticketing')),
     url(r'^admin/', include(admin.site.urls)),
@@ -33,5 +33,5 @@ urlpatterns += solid_i18n_patterns('',
     url(r'^naar\-zaventem$', 'polls.views.zaventem_transport', name="zaventem_transport_poll"),
     url(r'^thanks$', 'polls.views.thanks', name="thanks"),
     url(r'^music_suggestions/', include('music_suggestions.urls', namespace='music_suggestions')),
-    # url(r'^(?P<path>.*)/$', 'core.views.redirect_to_old_drupal_site', name='redirect_to_old_drupal_site'), # catch-all
+    url(r'^(?P<path>.*)/$', 'core.views.redirect_to_old_drupal_site', name='redirect_to_old_drupal_site'), # catch-all
 )
