@@ -8,10 +8,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
-DEVELOPPING = False
+import os
+# If this file exists on the file system, we are in production,
+# on the Ulyssis server, and we shouldn't be displaying debug
+# pages for errors for example. If this file is not found, we 
+# are on a developper's machine, and we can safely be in DEVELOPPING mode.
+if os.path.isfile("/home/org/arenbergorkest/we_are_in_production"):
+    DEVELOPPING = False
+else:
+    DEVELOPPING = True
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # You should clone 'https://github.com/tfiers/arenberg-secure' into a 
