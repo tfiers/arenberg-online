@@ -17,6 +17,7 @@ if os.path.isfile("/home/org/arenbergorkest/we_are_in_production"):
     DEVELOPPING = False
 else:
     DEVELOPPING = True
+DEVELOPPING = True
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
