@@ -234,7 +234,6 @@ LOGGING = {
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Email
-
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST = 'smtp.mailgun.org'
