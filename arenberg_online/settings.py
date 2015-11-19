@@ -234,16 +234,20 @@ LOGGING = {
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Email
-if DEVELOPPING:
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_PORT = 587
-    EMAIL_USE_TLS = True
-    EMAIL_HOST_USER = 'tomas.fiers@gmail.com'
-    with open(os.path.join(CONFIG_DIR, 'google_pass.txt')) as f:
-        EMAIL_HOST_PASSWORD = f.read().strip()
-else:
-    EMAIL_HOST = 'localhost'
-    EMAIL_PORT = 25
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'tomas.fiers@gmail.com'
+with open(os.path.join(CONFIG_DIR, 'google_pass.txt')) as f:
+    EMAIL_HOST_PASSWORD = f.read().strip()
+
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST = 'smtp.mailgun.org'
+# EMAIL_HOST_USER = 'postmaster@arenbergorkest.be'
+# with open(os.path.join(CONFIG_DIR, 'mailgun_password')) as f:
+#     EMAIL_HOST_PASSWORD = f.read().strip()
+
 
 if DEVELOPPING:
     POSTFIX_VIRTUAL_ALIAS_FILE = 'generated_for_postfix.txt'

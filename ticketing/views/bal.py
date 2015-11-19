@@ -97,18 +97,32 @@ def persist_data(data):
 	for i in range(data['num_student_tickets']):
 		Ticket.objects.create(
 			order = order,
-			price_category = PriceCategory.objects.get(full_name="Student VVK (vanaf winter 2015)", price=5),
+			price_category = PriceCategory.objects.get(full_name="Student VVK (vanaf winter 2014)", price=5),
 		)
 	for i in range(data['num_non_student_tickets']):
 		Ticket.objects.create(
 			order = order,
-			price_category = PriceCategory.objects.get(full_name="Niet-student in VVK (vanaf winter 2015)", price=9),
+			price_category = PriceCategory.objects.get(full_name="Niet-student in VVK (vanaf winter 2014)", price=9),
 		)
 	for i in range(data['num_culture_card_tickets']):
 		Ticket.objects.create(
 			order = order,
-			price_category = PriceCategory.objects.get(full_name="KU Leuven Cultuurkaart in VVK (vanaf winter 2015)", price=4),
+			price_category = PriceCategory.objects.get(full_name="KU Leuven Cultuurkaart in VVK (vanaf winter 2014)", price=4),
 		)
+
+# from django.conf import settings
+# import os
+# import requests
+# def send_mail_temp(subject, msg, fromm, to, html_message):
+# 	with open(os.path.join(settings.BASE_DIR, 'arenberg-secure/mailgun_api_key')) as f:
+# 		print(requests.post(
+# 	        "https://api.mailgun.net/v3/arenbergorkest.be/messages",
+# 	        auth=("api", f.read().strip()),
+# 	        data={"from": fromm,
+# 	              "to": to,
+# 	              "subject": subject,
+# 	              "text": msg,
+# 	              "html": html_message,}))
 
 def email_user(data):
 	subject = "Bestelling tickets 'Bal Masqué' concert Arenbergorkest"
@@ -116,12 +130,6 @@ def email_user(data):
 	fromm = "Arenbergorkest <webapp@arenbergorkest.be>"
 	send_mail(subject, msg, fromm, [data['email']], html_message=msg)
 	send_mail(subject, msg, fromm, ['tomas.fiers@gmail.com'], html_message=msg)
-
-def email_admin(data):
-	subject = "Bestelling tickets 'Bal Masqué' concert Arenbergorkest"
-	msg = pformat(data)
-	fromm = "Arenbergorkest <webapp@arenbergorkest.be>"
-	send_mail(subject, msg, fromm, ['tomas.fiers@gmail.com'])
 
 FORMS = [("start_order", SpaceTicketingForm_1),
 		 ("complete_order", SpaceTicketingForm_2)]
