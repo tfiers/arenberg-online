@@ -8,10 +8,10 @@
 	font-size: 72px;
 }
 .footer {
-	height: 450px;
+	height: 350px;
 }
 body {
-  margin-bottom: 450px;
+	margin-bottom: 350px;
 }
 #tagline {
 	font-size: 14px;
@@ -25,7 +25,7 @@ body {
 	margin-right: -0.5em;
 }
 .order-btn {
-	font-size: 16px;
+	font-size: 20px;
 }
 .footer .order-btn {
 	margin-bottom: 1.5em;

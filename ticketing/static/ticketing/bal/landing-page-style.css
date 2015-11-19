@@ -2,12 +2,12 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 85vw;
+  height: 70vw;
 }
 html {
   position: relative;
   min-height: 100%;
 }
 body {
-  margin-bottom: 85vw;
+  margin-bottom: 70vw;
 }

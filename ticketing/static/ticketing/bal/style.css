@@ -29,13 +29,16 @@ h1, h2, h3 {
 }
 #title-space {
 	margin-top: 0.5em;
-	margin-bottom: 0.7em;
+	margin-bottom: 0.4em;
 	font-size: 72px;
 	font-size: 13vw;
 	font-weight: bolder;
 	/* To compensate for the letter spacing after the last letter. */
 	position: relative;
 	left: 0.2em;
+}
+#explanation {
+	margin-bottom: 3.5em;
 }
 .fulljustify {
 	text-align: justify;
@@ -63,10 +66,12 @@ h1, h2, h3 {
 }
 #music-names {
 	word-wrap: break-word;
-	width: 1500px;
+	width: 100%;
 	letter-spacing: 0.2em;
-	margin-right: -0.2em;
-	margin-left: -45em;
+	line-height: 2em;
+	/*margin-right: -0.2em;*/
+	/*margin-left: -20em;*/
+	/*margin-left: -30vw;*/
 	font-size: 14px;
 	font-size: 2.2vw;
 }
@@ -74,7 +79,7 @@ h1, h2, h3 {
 	letter-spacing: 0.1em;
 }
 .order-btn {
-	font-size: 3vw;
+	font-size: 4vw;
 }
 .footer .order-btn {
 	margin-bottom: 1.5em;
@@ -89,17 +94,6 @@ h1, h2, h3 {
 	color: #666;
 	line-height: 2em;
 	/* -- Temp -- */
-}
-#more-info-reference a {
-	text-decoration: none;
-	color: #333;
-}
-#more-info-reference a:hover {
-	color: #37B;
-}
-#more-info-reference a:active {
-	background-color: black;
-	color: white;
 }
 /* -- Temp -- */
 #more-info-reference em {
