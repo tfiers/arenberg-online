@@ -29,11 +29,11 @@
                     <div id="left">
 		    {% if request.user.is_authenticated %}<li>{{ request.user.email }}</li>{% endif %}
                     <li><a href="{% url 'ticketing:bal_landing' %}">Home</a></li>
-		    <li><a href="{% url 'wie' %}">{% trans "Wie zijn wij?" %}</a></li>{% comment %}
-                    <li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
-		    <li><a href="{% url 'sponsors' %}">{% trans "Sponsors" %}</a></li>{% endcomment %}
-		    <li><a href="{% url 'ticketing:start_order_bal' %}">{% trans "Tickets Bal Masqué" %}</a></li>
-		    <li><a href="{% url 'ticketing:start_order_snow' %}">{% trans "Tickets Snowman" %}</a></li>
+		    <li><a href="{% url 'wie' %}">{% trans "Over" %}</a></li>
+            {% comment %}<li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
+            <li><a href="{% url 'sponsors' %}">{% trans "Sponsors" %}</a></li>{% endcomment %}
+            <li><a href="{% url 'ticketing:start_order_bal' %}">{% trans "Tickets Winterconcerten" %}</a></li>
+		    {% comment %}<li><a href="{% url 'ticketing:start_order_snow' %}">{% trans "Tickets Snowman" %}</a></li>{% endcomment %}
                     {% if user.is_authenticated %}
                     {% comment %}
 		    <li><a href="{% url 'ticketing:my_tickets_dashboard' %}" title="{% trans 'Verkochte tickets' %}">{{ user.first_name|default:'{% trans "Mijn profiel" %}' }}</a></li>
@@ -60,21 +60,6 @@
         {% block content %}
         <h1>You look nice today</h1>
         {% endblock content %}
-
-        <script type="text/javascript">
-            var _paq = _paq || [];
-            _paq.push(['trackPageView']);
-            _paq.push(['enableLinkTracking']);
-            (function() {
-                var u="//95.85.3.22/analytics/piwik/";
-                _paq.push(['setTrackerUrl', u+'piwik.php']);
-                _paq.push(['setSiteId', 2]);
-                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-            })();
-        </script>
-        
-        <noscript><p><img src="//95.85.3.22/analytics/piwik/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
 
     </body>
 </html>

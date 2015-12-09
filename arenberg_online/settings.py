@@ -8,10 +8,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
+import os
+# If this file exists on the file system, we are in production,
+# on the Ulyssis server, and we shouldn't be displaying debug
+# pages for errors for example. If this file is not found, we 
+# are on a developper's machine, and we can safely be in DEVELOPPING mode.
+if os.path.isfile("/home/org/arenbergorkest/we_are_in_production"):
+    DEVELOPPING = False
+else:
+    DEVELOPPING = True
 DEVELOPPING = True
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # You should clone 'https://github.com/tfiers/arenberg-secure' into a 
@@ -236,16 +244,13 @@ LOGGING = {
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Email
-if DEVELOPPING:
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_PORT = 587
-    EMAIL_USE_TLS = True
-    EMAIL_HOST_USER = 'tomas.fiers@gmail.com'
-    with open(os.path.join(CONFIG_DIR, 'google_pass.txt')) as f:
-        EMAIL_HOST_PASSWORD = f.read().strip()
-else:
-    EMAIL_HOST = 'localhost'
-    EMAIL_PORT = 25
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = 'postmaster@arenbergorkest.be'
+with open(os.path.join(CONFIG_DIR, 'mailgun_password')) as f:
+    EMAIL_HOST_PASSWORD = f.read().strip()
+
 
 if DEVELOPPING:
     POSTFIX_VIRTUAL_ALIAS_FILE = 'generated_for_postfix.txt'

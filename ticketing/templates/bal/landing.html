@@ -14,25 +14,34 @@
 		<h2 id="title-arenbergorkest" class="caps">{% trans "Arenbergorkest" %}</h2>
 		<h2 id="title-conductor" class="caps">{% trans "OLV Roel Willems" %}</h2>
 		<h1 id="title-space" class="caps">{% trans "Bal Masqué" %}</h1>
+		<h3 id="explanation">{% trans "Winterconcerten 2016" %}</h3>
 	</div>
 	<footer class="footer">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
-					<h3 id="tagline", class="caps">Symphony orchestra<br>
+					<div id="more-info-reference">
+						{% comment %}<h3 id="tagline", class="caps">Symphony orchestra<br>
 						<span class="handwritten">plays music of</span><br>
-						<span id="tagline-third-line">mysterious intensity</span></h3>
-						{% comment %}<p>{% trans "Je kan vanavond nog kaarten aan de kassa kopen." %}</p>{% endcomment %}<br>
-					<p><a href="{% url 'ticketing:start_order_bal' %}" class="btn btn-success order-btn">{% trans "Bestel tickets" %}</a></p>
-					<div id="more-info-reference"><em>{% trans "Dinsdag 1 december" %}</em><br>
+						<span id="tagline-third-line">mysterious intensity</span></h3>{% endcomment %}
+						<em>{% trans "Dinsdag 1 december" %}</em><br>
 						{% trans "20u30 @ Aula Pieter De Somer, Leuven" %}<br>
 						<br>
 						<em>{% trans "Zondag 6 december" %}</em><br>
 						{% trans "19u00 @ Aula Pieter De Somer, Leuven" %}<br>
+						<br>
+						<br>
+						<p>
+							<a href="{% url 'ticketing:start_order_bal' %}" class="btn btn-success order-btn">{% trans "Bestel tickets" %}</a>
+							<!--Kaarten weldra hier beschikbaar.-->
+						</p>
 						{% comment %}<a href="#">Meer info<br>
-						<span class="glyphicon glyphicon-chevron-down"></span>{% endcomment %}</a></div>
-					<h3 id="music-names", class="caps fulljustify">Phantom of the Opera – Johann Strauss II – Pini Di Roma – The Dark Knight  – Second Waltz - Masquerade Waltz - Scènes Napolitaines</h3>
+						<span class="glyphicon glyphicon-chevron-down"></span></a>{% endcomment %}
+					</div>
 				</div>
+			</div>
+			<div class="row">
+				<h3 id="music-names" class="caps fulljustify">Mozart – Khachaturian – Zimmer – Strauss – Webber – Shostakovich</h3>
 			</div>
 		</div>
 	</footer>	

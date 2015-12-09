@@ -1,7 +1,7 @@
 {% extends "email_base.html" %}
 {% load i18n %}
 
-{% block header_img_url %}https://gallery.mailchimp.com/2ca4cb5c77d2415aee6af6841/images/42acad62-bf34-44ee-841a-515bdcfc9025.png{% endblock header_img_url %}
+{% block header_img_url %}{% endblock header_img_url %}
 
 {% block subject %}{% trans "Bestelling tickets 'Bal Masqué' concert Arenbergorkest" %}{% endblock subject %}
 
@@ -15,17 +15,11 @@
 			<p>Dit is je bestelling:</p>
 			{% endblocktrans %}
 			
-			{% if performance == "za" %}
-				<p>
-					{% blocktrans %}<strong>{{ total_tickets }}</strong> tickets voor samen <strong>€ {{ total_price }}</strong>.{% endblocktrans %}
-				</p>
-			{% else %}
-				<p>
-					{% blocktrans with ttplural=total_tickets|pluralize%}
-					In totaal <strong>{{ total_tickets }}</strong> ticket{{ ttplural }} (studenten: {{ num_student_tickets }}, niet-studenten: {{ num_non_student_tickets }}, KU Leuven cultuurkaarthouders: {{ num_culture_card_tickets }})<br>{% endblocktrans %}
-					{% trans "Voor" %} {% if total_tickets > 1 %}{% trans "samen" %} {% endif %}<strong>€ {{ total_price }}</strong>.
-				</p>
-			{% endif %}
+			<p>
+				{% blocktrans with ttplural=total_tickets|pluralize%}
+				In totaal <strong>{{ total_tickets }}</strong> ticket{{ ttplural }} (studenten: {{ num_student_tickets }}, niet-studenten: {{ num_non_student_tickets }}, KU Leuven cultuurkaarthouders: {{ num_culture_card_tickets }})<br>{% endblocktrans %}
+				{% trans "Voor" %} {% if total_tickets > 1 %}{% trans "samen" %} {% endif %}<strong>€ {{ total_price }}</strong>.
+			</p>
 			<p>
 				{% blocktrans %}Voor het concert van <strong>{{ performance_full }}</strong>.<br>{% endblocktrans %}
 			</p>

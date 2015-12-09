@@ -17,7 +17,11 @@ urlpatterns += patterns('loginas.views',
 )
 
 urlpatterns += solid_i18n_patterns('',
+
     url(r'^wie$', 'core.views.home', name='wie'), #will render the Arenbergorkest.htm introductory page
+    # Examples:
+    # url(r'^$', 'arenberg_online.views.home', name='home'),
+    # url(r'^blog/', include('blog.urls')),
     url(r'^', include('ticketing.urls', namespace='ticketing')),
     url(r'^home/', include('ticketing.urls', namespace='ticketing')),
     url(r'^admin/', include(admin.site.urls)),
