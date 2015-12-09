@@ -32,26 +32,28 @@
 		    <li><a href="{% url 'wie' %}">{% trans "Over" %}</a></li>
             {% comment %}<li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
             <li><a href="{% url 'sponsors' %}">{% trans "Sponsors" %}</a></li>{% endcomment %}
-            <li><a href="{% url 'ticketing:start_order_bal' %}">{% trans "Tickets Winterconcerten" %}</a></li>
-		    {% comment %}<li><a href="{% url 'ticketing:start_order_snow' %}">{% trans "Tickets Snowman" %}</a></li>{% endcomment %}
+            {% comment %}<li><a href="{% url 'ticketing:start_order_bal' %}">{% trans "Tickets Lenteconcerten" %}</a></li>{% endcomment %}
+		    <li><a href="{% url 'ticketing:start_order_snow' %}">{% trans "Tickets Snowman" %}</a></li>
                     {% if user.is_authenticated %}
                     {% comment %}
 		    <li><a href="{% url 'ticketing:my_tickets_dashboard' %}" title="{% trans 'Verkochte tickets' %}">{{ user.first_name|default:'{% trans "Mijn profiel" %}' }}</a></li>
                     <li><a href="{% url 'ticketing:promo_dashboard' %}">{% trans "Concerten" %}</a></li>
-		    {% endcomment %}
+		  {% endcomment %}
 		    <li><a href="{% url 'calendar' %}">{% trans "Kalender" %}</a></li>
 		    <li><a href="{% url 'music' %}">{% trans "Partijen" %}</a></li>
 		    <li><a href="{% url 'logout' %}">{% trans "Logout" %}</a></li>
                     {% else %}
+                    {% comment %}
 		    <li><a href="{% url 'login' %}">{% trans "Login" %}</a></li>
 		    <li><a href="{% url 'register' %}">{% trans "Registreren" %}</a></li>
+                    {% endcomment %}
                     {% endif %}
                     </div>
-                    <li id="language-select">
+                    {% comment %}<li id="language-select">
                     {% if LANGUAGE_CODE == 'en' %}<a href="{% url 'set_lang' lang='nl' %}">NL</a> | <strong>EN</strong>
                     {% else %}<strong>NL</strong> | <a href="{% url 'set_lang' lang='en' %}">EN</a>
                     {% endif %}
-                    </li>
+                    </li>{% endcomment %}
 		    
                 </ul>
             </div>

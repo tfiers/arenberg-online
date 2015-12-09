@@ -244,12 +244,12 @@ LOGGING = {
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Email
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST = 'smtp.mailgun.org'
-EMAIL_HOST_USER = 'postmaster@arenbergorkest.be'
-with open(os.path.join(CONFIG_DIR, 'mailgun_password')) as f:
-    EMAIL_HOST_PASSWORD = f.read().strip()
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST = 'smtp.mailgun.org'
+# EMAIL_HOST_USER = 'postmaster@arenbergorkest.be'
+# with open(os.path.join(CONFIG_DIR, 'mailgun_password')) as f:
+#     EMAIL_HOST_PASSWORD = f.read().strip()
 
 
 if DEVELOPPING:
