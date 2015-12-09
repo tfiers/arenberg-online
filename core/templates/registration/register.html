@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load staticfiles %}
-{% block title %}{% trans "Toegang voor muzikanten" %}{% endblock title %}
+{% block title %}{% trans "Register" %}{% endblock title %}
 {% block custom_css_js %}
 <link rel="stylesheet" href="{% static 'registration/style.css' %}">
 <script src="{% static 'site-wide/bootstrap-show-password.min.js' %}"></script>
@@ -9,7 +9,16 @@
 {% block content %}
 
 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-	<h1>{% trans "Contact" %}</h1>
+	<h1>{% trans "Register" %}</h1>
+		<form method='post' action=''>{% csrf_token %}
+		    {% if form.errors %}
+		    <p class="error">{% trans "Incorrect registration." %}</p>
+		    {% endif %}
+		    {{userform}}
+		    <br>
+		    {{userprofileform}}
+		    <input type="submit">
+		</form>
 </div>
 
 {% endblock content %}

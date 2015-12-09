@@ -148,6 +148,15 @@ USE_L10N = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/home/media/media.lawrence.com/media/"
+MEDIA_ROOT = '/home/lennart/Documents/arenbergvenv/arenberg-online/core/media' #needs to be changed to the servers directory when pulled on server
+
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash if there is a path component (optional in other cases).
+# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
+MEDIA_URL = '/media/'
+
 STATIC_URL = '/static/'
 
 # Only relevant when DEBUG = False (-> when you are in production).
@@ -205,11 +214,18 @@ LOGGING = {
             'handlers': ['file'],
             'level': 'WARNING',
             'propagate': True,
+            'formatter': 'verbose',
         },
-        # '': {
-        #     'handlers': ['file'],
-        #     'level': 'DEBUG',
-        # },
+        # To debug the code via printouts for example.
+        # Usage:
+        # import logging
+        # logger = logging.getLogger('developper_log')
+        # logger.debug('Variable x is {}'.format(x))
+        'developper_log': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'formatter': 'simple',
+        },
     }
 }
 

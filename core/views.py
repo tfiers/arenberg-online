@@ -1,5 +1,5 @@
 from django.utils import translation
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.core.urlresolvers import reverse
 from django.utils.six.moves.urllib.parse import urlparse
 from django.http import HttpResponseRedirect
@@ -11,6 +11,51 @@ from django.contrib.auth import update_session_auth_hash
 from django.conf import settings 
 from datetime import datetime
 from pytz import utc
+from django.template import RequestContext
+from django.http import HttpResponseRedirect
+from core.models import Document
+from core.forms import DocumentForm
+from forms import *
+
+@csrf_protect
+def register(request):
+    if request.method == 'POST':
+        uf = UserForm(request.POST, prefix='user')
+        upf = UserProfileForm(request.POST, prefix='userprofile')
+        if uf.is_valid() * upf.is_valid():
+            user = uf.save()
+            userprofile = upf.save(commit=False)
+            userprofile.user = user
+            userprofile.save()
+            return http.HttpResponseRedirect('Arenbergorkest.htm')
+    else:
+        uf = UserForm(prefix='user')
+        upf = UserProfileForm(prefix='userprofile')
+    return render_to_response('registration/register.html', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
+
+@login_required
+def list(request):
+    """handles file upload"""
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            newdoc = Document(docfile = request.FILES['docfile'])
+            newdoc.save()
+
+            # Redirect to the document list after POST
+            return HttpResponseRedirect(reverse('arenberg-online.core.views.list'))
+    else:
+        form = DocumentForm() # A empty, unbound form
+
+    # Load documents for the list page
+    documents = Document.objects.all()
+
+    # Render list page with the documents and the form
+    return render_to_response(
+        'list.html',
+        {'documents': documents, 'form': form},
+        context_instance=RequestContext(request)
+    )
 
 def set_lang(request, lang='en'):
 	if lang not in ('en', 'nl'):
@@ -23,9 +68,6 @@ def set_lang(request, lang='en'):
 		referer = referer[3:]
 	return HttpResponseRedirect(referer)
 
-def redirect_to_old_drupal_site(request, path='/'):
-	return HttpResponseRedirect('http://arenbergorkest.studentenweb.org/'+path)
-
 def sponsors(request):
 	return render(request, 'sponsors.html')
 
@@ -35,9 +77,7 @@ def contact(request):
 def home(request):
 	return render(request, 'Arenbergorkest.htm')
 
-def music(request):
-	return render(request, 'music.html')
-
+@login_required
 def calendar(request):
 	return render(request, 'calendar.html')
 
@@ -59,7 +99,7 @@ def change_default_password(request):
 			
 		return render(request, 'registration/password_set_form.html', {'form': form, 'default_pass': settings.DEFAULT_NEW_PASSWORD})
 	else:
-		return HttpResponseRedirect(reverse('home'))
+		return HttpResponseRedirect(reverse('wie'))
 
 @login_required
 def password_set(request):
