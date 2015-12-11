@@ -62,8 +62,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         error_messages={
             'unique': _("A user with that email adress already exists."),
         })
-    first_name = CharField(_('first name'), max_length=50, blank=True)
-    last_name = CharField(_('last name'), max_length=50, blank=True)
+    first_name = CharField(_('first name'), max_length=50, blank=False)
+    last_name = CharField(_('last name'), max_length=50, blank=False)
     is_staff = BooleanField(_('staff status'), default=False,
         help_text=_('Designates whether the user can log into this admin '
                     'site.'))

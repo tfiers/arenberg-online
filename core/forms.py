@@ -10,12 +10,17 @@ class DocumentForm(forms.Form):
 
 class UserForm(forms.ModelForm):
     class Meta:
-        model = User  
-	exclude = ['is_staff','is_active','date_joined','user_permissions','last_login','is_superuser','groups']
+        model = User 
+        fields = ['first_name','last_name','email','password']
+    error_css_class = 'error'
+    #required_css_class = 'required'	
 
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        exclude = ['user','old_drupal_uid','associated_user','last_password_change']
+        fields = ['groups']
+        exclude = ['associated_user']
+    error_css_class = 'error'
+	#required_css_class = 'required'
     

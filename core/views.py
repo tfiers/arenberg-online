@@ -3,7 +3,7 @@ from django.shortcuts import render, render_to_response
 from django.core.urlresolvers import reverse
 from django.utils.six.moves.urllib.parse import urlparse
 from django.http import HttpResponseRedirect
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect #protection for forms and logins and such
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth.hashers import check_password
@@ -13,21 +13,26 @@ from datetime import datetime
 from pytz import utc
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
-from core.models import Document
-from core.forms import DocumentForm
-from forms import *
+from core.models import Document #needed for fileupload
+from core.forms import DocumentForm #needed for fileuplo
+from forms import UserForm, UserProfileForm #needed for registration
+from django.views.decorators.csrf import csrf_exempt
 
-@csrf_protect
+
+
+@csrf_exempt
 def register(request):
+    """handles the view of the registration form"""
     if request.method == 'POST':
         uf = UserForm(request.POST, prefix='user')
         upf = UserProfileForm(request.POST, prefix='userprofile')
+        print upf
         if uf.is_valid() * upf.is_valid():
             user = uf.save()
             userprofile = upf.save(commit=False)
-            userprofile.user = user
+            #userprofile.user = user
             userprofile.save()
-            return http.HttpResponseRedirect('Arenbergorkest.htm')
+            return render_to_response('Arenbergorkest.htm', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
     else:
         uf = UserForm(prefix='user')
         upf = UserProfileForm(prefix='userprofile')
