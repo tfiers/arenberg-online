@@ -26,13 +26,13 @@ def register(request):
     if request.method == 'POST':
         uf = UserForm(request.POST, prefix='user')
         upf = UserProfileForm(request.POST, prefix='userprofile')
-        print upf
         if uf.is_valid() * upf.is_valid():
-            user = uf.save()
+            user = uf.saveTotal()
             userprofile = upf.save(commit=False)
-            #userprofile.user = user
+            userprofile.associated_user = user #adds the created as associated user for the userprofile
             userprofile.save()
-            return render_to_response('Arenbergorkest.htm', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
+            #TODO: send email here, is also commented out in thanks.html
+            return render_to_response('registration/thanks.html', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
     else:
         uf = UserForm(prefix='user')
         upf = UserProfileForm(prefix='userprofile')
@@ -61,6 +61,10 @@ def list(request):
         {'documents': documents, 'form': form},
         context_instance=RequestContext(request)
     )
+
+@login_required
+def links(request):
+    return render(request, 'links.html')
 
 def set_lang(request, lang='en'):
 	if lang not in ('en', 'nl'):

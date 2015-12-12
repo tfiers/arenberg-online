@@ -122,7 +122,7 @@ class UserProfile(Model):
     associated_user = OneToOneField(User, null=True, default=None)
     old_drupal_uid = IntegerField(blank=True, null=True, default=None)
     last_password_change = DateTimeField(blank=True, null=True, default=None)
-    groups = ManyToManyField('Group', blank=True)
+    groups = ManyToManyField('Group', blank=False)
     
     def __unicode__(self):
         return u"User profile for {}".format(self.associated_user)

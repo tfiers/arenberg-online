@@ -29,7 +29,7 @@
 
                     <div id="left">
     		            
-                        {% if request.user.is_authenticated %}<li>{{ request.user.email }}</li>{% endif %}
+                        {% if request.user.is_authenticated %}<li><b>{{ request.user.first_name }}&nbsp;{{ request.user.last_name }}</b></li>{% endif %}
                         
                         <li><a href="{% url 'ticketing:bal_landing' %}">Home</a></li>
             		    <li><a href="{% url 'wie' %}">{% trans "Over ons" %}</a></li>
@@ -46,12 +46,15 @@
                         <li><a href="{% url 'ticketing:promo_dashboard' %}">{% trans "Concerten" %}</a></li>
     		            {% endcomment %}
             		    <li><a href="{% url 'calendar' %}">{% trans "Kalender" %}</a></li>
+                        {% comment %}
             		    <li><a href="{% url 'music' %}">{% trans "Partijen" %}</a></li>
+                        {% endcomment %}
+                        <li><a href="{% url 'links' %}">{% trans "Links" %}</a></li>
             		    <li><a href="{% url 'logout' %}">{% trans "Logout" %}</a></li>
 
                         {% else %}
             		    <li><a href="{% url 'login' %}">{% trans "Login" %}</a></li>
-            		    <li><a href="{% url 'core:register' %}">{% trans "Registreren" %}</a></li>
+            		    <li><a href="{% url 'register' %}">{% trans "Registreren" %}</a></li>
                         {% endif %}
 
                     </div>

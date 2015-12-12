@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Links" %}{% endblock title %}
+{% block custom_css_js %}
+<link rel="stylesheet" href="{% static 'registration/style.css' %}">
+{% endblock custom_css_js %}
+{% block content %}
+
+<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+	<h1>{% trans "Links naar muziek dit semester" %}</h1>
+	<li></li>
+</div>
+
+
+{% endblock content %}
