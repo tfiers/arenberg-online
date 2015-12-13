@@ -39,7 +39,7 @@
 						{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ userform.email.id_for_label }}">{% trans "Je emailadres" %}</label>
+				<label for="{{ userform.email.id_for_label }}">{% trans "Je e-mailadres" %}</label>
 				<input type="text" name="{{ userform.email.html_name }}" id="{{ userform.email.id_for_label }}" class="form-control" placeholder="{% trans 'bv. cantstopthetrump@whitehouse.us' %}" value="{{ userform.email.value|default_if_none:'' }}">
 			</div>
 
@@ -59,9 +59,9 @@
 						{{ error }}<br>
 					{% endfor %}
 				</span>	
-				<label for="{{ userprofileform.groups.id_for_label }}">{% trans "Je instrumentengroep" %}</label>
+				<label for="{{ userprofileform.groups.id_for_label }}">{% trans "Je instrumentengroep(en)" %}</label>
 				<select multiple name="{{ userprofileform.groups.html_name }}" id="{{ userprofileform.groups.id_for_label }}" class="form-control">
-					<option disabled value=""{% if userprofileform.groups.value == None %} selected="selected"{% endif %}><em>{% trans "– Kies instrumentengroep –" %}</em></option>
+					<option disabled value=""{% if userprofileform.groups.value == None %} selected="selected"{% endif %}><em>{% trans "– Kies instrumentengroep(en) –" %}</em></option>
 					{% for value, text in userprofileform.groups.field.choices %}
 					<option value="{{ value }}"{% if userprofileform.groups.value == value %} selected="selected"{% endif %}>{{ text }}</option>
 					{% endfor %}

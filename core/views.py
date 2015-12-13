@@ -14,13 +14,13 @@ from pytz import utc
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from core.models import Document #needed for fileupload
-from core.forms import DocumentForm #needed for fileuplo
+from core.forms import DocumentForm #needed for fileupload
 from forms import UserForm, UserProfileForm #needed for registration
 from django.views.decorators.csrf import csrf_exempt
 
 
 
-@csrf_exempt
+@csrf_protect
 def register(request):
     """handles the view of the registration form"""
     if request.method == 'POST':
@@ -32,7 +32,7 @@ def register(request):
             userprofile.associated_user = user #adds the created as associated user for the userprofile
             userprofile.save()
             #TODO: send email here, is also commented out in thanks.html
-            return render_to_response('registration/thanks.html', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
+            return render_to_response('registration/thanks_register.html', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
     else:
         uf = UserForm(prefix='user')
         upf = UserProfileForm(prefix='userprofile')
@@ -89,6 +89,10 @@ def home(request):
 @login_required
 def calendar(request):
 	return render(request, 'calendar.html')
+
+@login_required
+def logout(request):
+    return render(request, 'registration/thanks_logout.html')
 
 @csrf_protect
 @login_required

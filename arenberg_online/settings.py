@@ -107,8 +107,15 @@ DATABASES = {
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 # https://github.com/st4lk/django-solid-i18n-urls#django-solid_i18n-urls
 
+#commands (in root directory project):
+#python manage.py makemessages -all
+#python manage.py compilemessages
+#that's it
+
 # Default language, that will be used for requests without language prefix
 LANGUAGE_CODE = 'nl'
+
+LANGUAGE_BIDI = False #all left to right languages.
 
 # Supported languages
 LANGUAGES = (
