@@ -18,8 +18,6 @@ from core.forms import DocumentForm #needed for fileupload
 from forms import UserForm, UserProfileForm #needed for registration
 from django.views.decorators.csrf import csrf_exempt
 
-
-
 @csrf_protect
 def register(request):
     """handles the view of the registration form"""
@@ -65,6 +63,8 @@ def list(request):
 @login_required
 def links(request):
     return render(request, 'links.html')
+
+
 
 def set_lang(request, lang='en'):
 	if lang not in ('en', 'nl'):

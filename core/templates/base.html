@@ -31,8 +31,8 @@
                         {% if request.user.is_authenticated %}<li><b>{{ request.user.first_name }}&nbsp;{{request.user.last_name}}</b></li>{% endif %}
                         <li><a href="{% url 'ticketing:snow_landing' %}">Home</a></li>
                         <li><a href="{% url 'wie' %}">{% trans "Over" %}</a></li>
-                        {% comment %}
                         <li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
+                        {% comment %}
                         <li><a href="{% url 'sponsors' %}">{% trans "Sponsors" %}</a></li>
                         {% endcomment %}
                         <li><a href="{% url 'ticketing:start_order_snow' %}">{% trans "Tickets Snowman" %}</a></li>
@@ -41,8 +41,8 @@
                             {% comment %}
                             <li><a href="{% url 'ticketing:my_tickets_dashboard' %}" title="{% trans 'Verkochte tickets' %}">{{ user.first_name|default:'{% trans "Mijn profiel" %}' }}</a></li>
                             <li><a href="{% url 'ticketing:promo_dashboard' %}">{% trans "Concerten" %}</a></li>
-                            <li><a href="{% url 'music' %}">{% trans "Partijen" %}</a></li>
                             {% endcomment %}
+                            <li><a href="{% url 'links' %}">{% trans "Links" %}</a></li>
                             <li><a href="{% url 'suggestions:browse' %}">{% trans "Voorgestelde muziek" %}</a></li>
                             <li><a href="{% url 'calendar' %}">{% trans "Kalender" %}</a></li>
                             <li><a href="{% url 'logout' %}">{% trans "Logout" %}</a></li>
