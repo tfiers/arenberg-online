@@ -7,345 +7,208 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-12 15:52+0100\n"
+"POT-Creation-Date: 2015-05-08 12:04+0200\n"
 "PO-Revision-Date: 2015-05-08 12:11+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
 "X-Generator: Poedit 1.7.5\n"
 
-#: core/admin.py:16
+#: .\core\admin.py:16
 msgid "The two password fields didn't match."
 msgstr ""
 
-#: core/admin.py:18 core/admin.py:50
+#: .\core\admin.py:18 .\core\admin.py:50
 msgid "Password"
 msgstr ""
 
-#: core/admin.py:20
+#: .\core\admin.py:20
 msgid "Password confirmation"
 msgstr ""
 
-#: core/admin.py:22
+#: .\core\admin.py:22
 msgid "Enter the same password as above, for verification."
 msgstr ""
 
-#: core/admin.py:51
+#: .\core\admin.py:51
 msgid ""
 "Raw passwords are not stored, so there is no way to see this user's "
 "password, but you can change the password using <a href=\"password/\">this "
 "form</a>."
 msgstr ""
 
-#: core/admin.py:80
+#: .\core\admin.py:80
 msgid "Personal info"
 msgstr ""
 
-#: core/admin.py:81
+#: .\core\admin.py:81
 msgid "Permissions"
 msgstr ""
 
-#: core/admin.py:83
+#: .\core\admin.py:83
 msgid "Important dates"
 msgstr ""
 
-#: core/models.py:61
+#: .\core\models.py:57
 msgid "email address"
 msgstr ""
 
-#: core/models.py:63
+#: .\core\models.py:59
 msgid "A user with that email adress already exists."
 msgstr ""
 
-#: core/models.py:65
+#: .\core\models.py:61
 msgid "first name"
 msgstr ""
 
-#: core/models.py:66
+#: .\core\models.py:62
 msgid "last name"
 msgstr ""
 
-#: core/models.py:67
+#: .\core\models.py:63
 msgid "staff status"
 msgstr ""
 
-#: core/models.py:68
+#: .\core\models.py:64
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
 
-#: core/models.py:70
+#: .\core\models.py:66
 msgid "active"
 msgstr ""
 
-#: core/models.py:71
+#: .\core\models.py:67
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
 
-#: core/models.py:73
+#: .\core\models.py:69
 msgid "date joined"
 msgstr ""
 
-#: core/models.py:142
+#: .\core\models.py:138
 msgid "Standaard"
 msgstr "Standard"
 
-#: core/models.py:143
+#: .\core\models.py:139
 msgid "Muzikaal"
 msgstr "Musical"
 
-#: core/models.py:144
+#: .\core\models.py:140
 msgid "Project"
 msgstr "Project"
 
-#: core/templates/base.html:31
-msgid "Over ons"
-msgstr ""
+#: .\core\templates\base.html:31
+msgid "Naar oude site"
+msgstr "To old website"
 
-#: core/templates/base.html:32 core/templates/contact.html:4
-#: core/templates/contact.html.py:12
-msgid "Contact"
-msgstr ""
+#: .\core\templates\base.html:35
+msgid "Tickets"
+msgstr "Tickets"
 
-#: core/templates/base.html:33 core/templates/sponsors.html:4
-#: core/templates/sponsors.html.py:12
-msgid "Sponsors"
-msgstr ""
+#: .\core\templates\base.html:36
+msgid "SPACE Concerten"
+msgstr "SPACE Concerts"
 
-#: core/templates/base.html:34
-msgid "Tickets Bal Masqué"
-msgstr ""
+#: .\core\templates\base.html:37
+msgid "Login muzikanten"
+msgstr "Access for musicians"
 
-#: core/templates/base.html:35
-msgid "Tickets Snowman"
-msgstr "Tickets Snowman"
-
-#: core/templates/base.html:36
-msgid "Mijn profiel"
-msgstr ""
-
-#: core/templates/base.html:37
-msgid "Concerten"
-msgstr "Concerts"
-
-#: core/templates/base.html:38 core/templates/calendar.html:4
-#: core/templates/calendar.html.py:12
-msgid "Kalender"
-msgstr ""
-
-#: core/templates/base.html:39
-msgid "Partituren"
-msgstr ""
-
-#: core/templates/base.html:40 core/templates/links.html:4
-msgid "Links"
-msgstr ""
-
-#: core/templates/base.html:41
-msgid "Logout"
-msgstr ""
-
-#: core/templates/base.html:42 core/templates/registration/login.html:4
-msgid "Login"
-msgstr ""
-
-#: core/templates/base.html:43 core/templates/registration/edit.html:48
-#: core/templates/registration/register.html:71
-msgid "Registreren"
-msgstr "Register"
-
-#: core/templates/links.html:11
-msgid "Links naar muziek dit semester"
-msgstr ""
-
-#: core/templates/list.html:4 core/templates/list.html.py:12
-msgid "Partijen en muziek"
-msgstr ""
-
-#: core/templates/registration/edit.html:4
-msgid "Edit info"
-msgstr ""
-
-#: core/templates/registration/edit.html:12
-msgid "Verander je info"
-msgstr ""
-
-#: core/templates/registration/edit.html:15
-msgid ""
-"Een van de aangebrachte veranderingen is niet geldig. Probeer nog een keer."
-msgstr ""
-
-#: core/templates/registration/edit.html:19
-#: core/templates/registration/register.html:22
-msgid "Je voornaam"
-msgstr "Your first name"
-
-#: core/templates/registration/edit.html:20
-#: core/templates/registration/register.html:23
-msgid "bv. Donald"
-msgstr ""
-
-#: core/templates/registration/edit.html:24
-#: core/templates/registration/register.html:32
-msgid "Je achternaam"
-msgstr "Your last name"
-
-#: core/templates/registration/edit.html:25
-#: core/templates/registration/register.html:33
-msgid "bv. Trump"
-msgstr ""
-
-#: core/templates/registration/edit.html:29
-#: core/templates/registration/register.html:42
-msgid "Je emailadres"
-msgstr "Your email address"
-
-#: core/templates/registration/edit.html:30
-#: core/templates/registration/register.html:43
-msgid "bv. cantstopthetrump@whitehouse.us"
-msgstr ""
-
-#: core/templates/registration/edit.html:34
-#: core/templates/registration/login.html:25
-#: core/templates/registration/register.html:52
-msgid "Je wachtwoord"
-msgstr "Your password"
-
-#: core/templates/registration/edit.html:35
-#: core/templates/registration/register.html:53
-msgid "bv. ikhouvanmexicanen69"
-msgstr ""
-
-#: core/templates/registration/edit.html:39
-#: core/templates/registration/register.html:62
-msgid "Je instrumentengroep"
-msgstr ""
-
-#: core/templates/registration/edit.html:41
-#: core/templates/registration/register.html:64
-msgid "– Kies instrumentengroep –"
-msgstr "– Choose instrument group(s) –"
-
-#: core/templates/registration/edit_succes.html:2
-#: ticketing/templates/snowman2016/complete_order.html:4
-#: ticketing/templates/snowman2016/landing.html:4
-#: ticketing/templates/snowman2016/landing_bootstrap.html:5
-#: ticketing/templates/snowman2016/start_order.html:4
-#: ticketing/templates/snowman2016/thanks.html:4
-msgid "Snowman Concerten Arenbergorkest"
-msgstr "Snowman Concerts Arenbergorkest"
-
-#: core/templates/registration/logged_out.html:7
-#: core/templates/registration/logged_out.html:11
+#: .\core\templates\registration\logged_out.html:7
+#: .\core\templates\registration\logged_out.html:11
 msgid "Je bent afgemeld"
 msgstr "You are logged off"
 
-#: core/templates/registration/login.html:12
+#: .\core\templates\registration\login.html:4
+#: .\core\templates\registration\login.html:12
 msgid "Toegang voor muzikanten"
 msgstr "Access for musicians"
 
-#: core/templates/registration/login.html:16
+#: .\core\templates\registration\login.html:16
 msgid ""
-"Je e-mailadres en je wachtwoord kwamen niet overeen. Probeer het nog een "
-"keer."
+"Je e-mailadres en je wachtwoord kwamen niet overeen. Probeer het nog eens."
 msgstr "Your username and password didn't match. Please try again."
 
-#: core/templates/registration/login.html:20
-#: ticketing/templates/bal/start_order.html:87
-#: ticketing/templates/snowman2016/start_order.html:78
-#: ticketing/templates/space/start_order.html:100
+#: .\core\templates\registration\login.html:19
+#: .\ticketing\templates\space\start_order.html:100
 msgid "Je e-mailadres"
 msgstr "Your email address"
 
-#: core/templates/registration/login.html:21
+#: .\core\templates\registration\login.html:20
 msgid "bv. xxJohnnyLover69@msn.be"
 msgstr "e.g. xxJohnnyLover69@msn.be"
 
-#: core/templates/registration/login.html:26
+#: .\core\templates\registration\login.html:23
+msgid "Je wachtwoord"
+msgstr "Your password"
+
+#: .\core\templates\registration\login.html:24
 msgid "bv. H@rdstyleWillN3verDie"
 msgstr "e.g. H@rdstyleWillN3verDie"
 
-#: core/templates/registration/login.html:29
+#: .\core\templates\registration\login.html:26
 msgid "Aanmelden"
 msgstr "Log in"
 
-#: core/templates/registration/pass_changed.html:7
-#: core/templates/registration/pass_changed.html:11
+#: .\core\templates\registration\pass_changed.html:7
+#: .\core\templates\registration\pass_changed.html:11
 msgid "Je wachtwoord is ingesteld"
 msgstr "Your password has been set"
 
-#: core/templates/registration/pass_changed.html:12
-#: ticketing/templates/bal/start_order.html:95
-#: ticketing/templates/snowman2016/start_order.html:86
-#: ticketing/templates/space/start_order.html:108
+#: .\core\templates\registration\pass_changed.html:12
+#: .\ticketing\templates\space\start_order.html:108
 msgid "Ga verder"
 msgstr "Go on"
 
-#: core/templates/registration/password_set_form.html:4
-#: core/templates/registration/password_set_form.html:26
+#: .\core\templates\registration\password_set_form.html:4
+#: .\core\templates\registration\password_set_form.html:12
+#: .\core\templates\registration\password_set_form.html:27
 msgid "Stel wachtwoord in"
 msgstr "Set password"
 
-#: core/templates/registration/password_set_form.html:12
-msgid "Stel een nieuw wachtwoord in"
-msgstr "Set a new password"
+#: .\core\templates\registration\password_set_form.html:15
+#, python-format
+msgid ""
+"Kies een ander wachtwoord dan \"%(default_pass)s\". <br>Dat mag je "
+"wachtwoord van de oude website zijn."
+msgstr ""
+"Choose a password different from \"%(default_pass)s\". <br>This can be your "
+"password from the old website."
 
-#: core/templates/registration/password_set_form.html:16
-msgid "De ingegeven wachtwoorden kwamen niet overeen. Probeer het nog eens."
+#: .\core\templates\registration\password_set_form.html:17
+msgid "De wachtwoorden kwamen niet overeen. Probeer het nog eens."
 msgstr "Your username and password didn't match. Please try again."
 
-#: core/templates/registration/password_set_form.html:19
+#: .\core\templates\registration\password_set_form.html:20
 msgid "Nieuw wachtwoord"
 msgstr "New password"
 
-#: core/templates/registration/password_set_form.html:20
-#: core/templates/registration/password_set_form.html:24
+#: .\core\templates\registration\password_set_form.html:21
+#: .\core\templates\registration\password_set_form.html:25
 msgid "Volzinnen zijn de veiligste wachtwoorden. (zie www.xkcd.com/936)"
 msgstr "Full  sentences are the safest passwords. See xkcd.com/936"
 
-#: core/templates/registration/password_set_form.html:23
+#: .\core\templates\registration\password_set_form.html:24
 msgid "Nog eens je nieuwe wachtwoord"
 msgstr "New password again"
 
-#: core/templates/registration/register.html:4
-msgid "Registratie"
-msgstr "Registration"
-
-#: core/templates/registration/register.html:12
-msgid "Registratie voor nieuwe muzikanten"
-msgstr "Registration for new musicians"
-
-#: core/templates/registration/thanks_register.html:4
-msgid "Bedankt"
-msgstr "Thanks!"
-
-#: core/templates/registration/thanks_register.html:12
-msgid "Je bent succesvol geregistreerd. Nu kan je inloggen."
-msgstr ""
-
-#: core/templates/registration/thanks_register.html:13
-msgid "Je ontvangt direct een bevestigingsmail."
-msgstr ""
-
-#: polls/forms.py:16 ticketing/templates/bal/start_order.html:70
-#: ticketing/templates/snowman2016/start_order.html:61
-#: ticketing/templates/space/start_order.html:83
+#: .\polls\forms.py:16 .\ticketing\templates\space\start_order.html:83
 msgid "Je naam"
 msgstr "Your name"
 
-#: polls/forms.py:18
+#: .\polls\forms.py:18
 msgid "Voor & Achter"
 msgstr "First & Last"
 
-#: polls/forms.py:22
+#: .\polls\forms.py:22
 msgid "Je plannen"
 msgstr "Your plans"
 
-#: polls/forms.py:25
+#: .\polls\forms.py:25
 msgid ""
 "Tot wanneer plan je in het Arenbergorkest te spelen? Bijvoorbeeld: \"Tot het "
 "einde van mijn master\", \"Nog tot en met volgend semester\", of \"Dit is "
@@ -355,15 +218,15 @@ msgstr ""
 "the end of my Master's (two years to go)\", \"Until the end of next semester"
 "\", or \"This is my last semester\""
 
-#: polls/forms.py:31
+#: .\polls\forms.py:31
 msgid "Ik speel volgend semester mee in het orkest"
 msgstr "I play in the orchestra next semester"
 
-#: polls/forms.py:36
+#: .\polls\forms.py:36
 msgid "Ik wil een functie opnemen in de organisatie"
 msgstr "I want to take up responsibility for a task in the organisation"
 
-#: polls/forms.py:48
+#: .\polls\forms.py:48
 msgid ""
 "<p>Volgend semester creëren we opnieuw een concertreeks voor in Leuven, met "
 "een sterk nieuw programma. In het tweede semester plannen we een "
@@ -377,12 +240,12 @@ msgstr ""
 "in Ghent. To ensure a good balance in the orchestra, we are asking you now "
 "for your plans.</p>"
 
-#: polls/forms.py:65
+#: .\polls\forms.py:65
 msgid ""
 "<p>Concreet voor volgend semester (vink even aan als van toepassing):</p>"
 msgstr "<p>Specifically for next semester (just check the box if you do):</p>"
 
-#: polls/forms.py:73
+#: .\polls\forms.py:73
 msgid ""
 "<p>Er volgt nog meer info over wat je kan doen, maar als je het nu al weet:</"
 "p>"
@@ -390,65 +253,64 @@ msgstr ""
 "<p>More info about the specific tasks is coming up, but if you already know "
 "now:</p>"
 
-#: polls/forms.py:98
+#: .\polls\forms.py:98
 msgid "Ik ga naar Zaventem .."
 msgstr "I go to Zaventem .."
 
-#: polls/models.py:31
+#: .\polls\models.py:31
 msgid ".. met de groep"
 msgstr ".. with the group"
 
-#: polls/models.py:32
+#: .\polls\models.py:32
 msgid ".. met eigen vervoer"
 msgstr ".. by myself"
 
-#: polls/templates/new_semester.html:5 polls/templates/new_semester.html:13
-#: polls/templates/thanks.html:4
+#: .\polls\templates\new_semester.html:5
+#: .\polls\templates\new_semester.html:13 .\polls\templates\thanks.html:4
 msgid "Nieuw semester"
 msgstr "New semester"
 
-#: polls/templates/thanks.html:10 ticketing/templates/bal/thanks.html:19
-#: ticketing/templates/internal/my_tickets_dashboard.html:52
-#: ticketing/templates/snowman2016/thanks.html:19
-#: ticketing/templates/space/thanks.html:19
+#: .\polls\templates\thanks.html:10
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:52
+#: .\ticketing\templates\space\thanks.html:19
 msgid "Bedankt!"
 msgstr "Thanks!"
 
-#: polls/templates/zaventem_transport.html:5
-#: polls/templates/zaventem_transport.html:11
+#: .\polls\templates\zaventem_transport.html:5
+#: .\polls\templates\zaventem_transport.html:11
 msgid "Vervoer concert Zaventem"
 msgstr "Transport concert Zaventem"
 
-#: polls/views.py:34
+#: .\polls\views.py:34
 msgid "Gaan met die banaan"
 msgstr "Submit answers"
 
-#: postermap/models.py:24
+#: .\postermap\models.py:24
 msgid "Borstel en lijm"
 msgstr "Brush and glue"
 
-#: postermap/models.py:25
+#: .\postermap\models.py:25
 msgid "Punaises"
 msgstr "Pushpins"
 
-#: postermap/models.py:26
+#: .\postermap\models.py:26
 msgid "Plakband"
 msgstr "Tape"
 
-#: postermap/models.py:27
+#: .\postermap\models.py:27
 msgid "Anders"
 msgstr "Other"
 
-#: postermap/templates/add_space_poster.html:4
-#: postermap/templates/add_space_poster.html:65
+#: .\postermap\templates\add_space_poster.html:4
+#: .\postermap\templates\add_space_poster.html:65
 msgid "Poster toevoegen"
 msgstr "Add poster"
 
-#: postermap/templates/add_space_poster.html:28
+#: .\postermap\templates\add_space_poster.html:28
 msgid "Nieuwe poster"
 msgstr "New poster"
 
-#: postermap/templates/add_space_poster.html:66
+#: .\postermap\templates\add_space_poster.html:66
 msgid ""
 "Klik op de kaart om aan te duiden waar je de poster hebt opgehangen."
 "<br><small>(Je kan hem achteraf nog verslepen).</small>"
@@ -456,56 +318,56 @@ msgstr ""
 "Click the map to mark where you hung the poster.<br><small>(You can change "
 "this afterwards).</small>"
 
-#: postermap/templates/add_space_poster.html:74
+#: .\postermap\templates\add_space_poster.html:74
 msgid "Kies een locatie op de kaart"
 msgstr "Choose a location on the map"
 
-#: postermap/templates/add_space_poster.html:78
+#: .\postermap\templates\add_space_poster.html:78
 msgid "Naam locatie"
 msgstr "Name of location"
 
-#: postermap/templates/add_space_poster.html:79
+#: .\postermap\templates\add_space_poster.html:79
 msgid "bv. Toiletten van Restaurant De Wiering"
 msgstr "e.g. Toilets of restaurant 'De Wiering'"
 
-#: postermap/templates/add_space_poster.html:87
+#: .\postermap\templates\add_space_poster.html:87
 msgid "Wanneer heb je deze poster opgehangen?"
 msgstr "When did you put up this poster?"
 
-#: postermap/templates/add_space_poster.html:91
-#: ticketing/templates/internal/register_sold_tickets.html:71
+#: .\postermap\templates\add_space_poster.html:91
+#: .\ticketing\templates\internal\register_sold_tickets.html:71
 msgid "nl"
 msgstr "en"
 
-#: postermap/templates/add_space_poster.html:97
-#: ticketing/templates/internal/register_sold_tickets.html:77
+#: .\postermap\templates\add_space_poster.html:97
+#: .\ticketing\templates\internal\register_sold_tickets.html:77
 msgid "Standaardwaarde: vandaag"
 msgstr "Default: today"
 
-#: postermap/templates/add_space_poster.html:104
+#: .\postermap\templates\add_space_poster.html:104
 msgid "Hoeveel posters?"
 msgstr "How many posters"
 
-#: postermap/templates/add_space_poster.html:107
+#: .\postermap\templates\add_space_poster.html:107
 msgid ""
 "Als je op deze locatie meer dan één poster hebt opgehangen, kan je dat hier "
 "aangeven."
 msgstr ""
 "If you hung more than one poster at this location, you can indicate so here."
 
-#: postermap/templates/add_space_poster.html:114
+#: .\postermap\templates\add_space_poster.html:114
 msgid "Manier van ophangen"
 msgstr "Method of attachment"
 
-#: postermap/templates/add_space_poster.html:116
+#: .\postermap\templates\add_space_poster.html:116
 msgid "– Kies manier –"
 msgstr "– Choose method –"
 
-#: postermap/templates/add_space_poster.html:129
+#: .\postermap\templates\add_space_poster.html:129
 msgid "Medeplichtigen"
 msgstr "Accomplices"
 
-#: postermap/templates/add_space_poster.html:139
+#: .\postermap\templates\add_space_poster.html:139
 msgid ""
 "Heb je deze poster samen met anderen opgehangen? Dan kan je hier hun namen "
 "meegeven."
@@ -513,695 +375,198 @@ msgstr ""
 "Did you hang this poster together with someone else? Then you can enter "
 "their names here."
 
-#: postermap/templates/add_space_poster.html:146
-#: ticketing/templates/bal/complete_order.html:118
-#: ticketing/templates/bal/email.html:36
-#: ticketing/templates/internal/register_sold_tickets.html:107
-#: ticketing/templates/snowman2016/complete_order.html:135
-#: ticketing/templates/snowman2016/email.html:42
-#: ticketing/templates/space/complete_order.html:135
-#: ticketing/templates/space/email.html:42
+#: .\postermap\templates\add_space_poster.html:146
+#: .\ticketing\templates\internal\register_sold_tickets.html:107
+#: .\ticketing\templates\space\complete_order.html:135
+#: .\ticketing\templates\space\email.html:42
 msgid "Opmerkingen"
 msgstr "Remarks"
 
-#: postermap/templates/add_space_poster.html:147
+#: .\postermap\templates\add_space_poster.html:147
 msgid "Voor eventuele opmerkingen."
 msgstr "For remarks maybe."
 
-#: postermap/templates/add_space_poster.html:154
-#: postermap/templates/space_posters.html:75
+#: .\postermap\templates\add_space_poster.html:154
+#: .\postermap\templates\space_posters.html:75
 msgid "Voeg poster toe"
 msgstr "Add poster"
 
-#: postermap/templates/space_posters.html:4
-#: postermap/templates/space_posters.html:74
+#: .\postermap\templates\space_posters.html:4
+#: .\postermap\templates\space_posters.html:74
 msgid "Posterlocaties"
 msgstr "Poster locations"
 
-#: postermap/templates/space_posters.html:83
-#: postermap/templates/space_posters.html:85
+#: .\postermap\templates\space_posters.html:83
+#: .\postermap\templates\space_posters.html:85
 msgid "# Locaties"
 msgstr "# Locations"
 
-#: postermap/templates/space_posters.html:84
-#: postermap/templates/space_posters.html:85
+#: .\postermap\templates\space_posters.html:84
+#: .\postermap\templates\space_posters.html:85
 msgid "# Posters"
 msgstr "# Posters"
 
-#: postermap/templates/space_posters.html:85
+#: .\postermap\templates\space_posters.html:85
 msgid "Score"
 msgstr "Score"
 
-#: ticketing/models.py:34
+#: .\ticketing\models.py:34
 msgid "datum en eventueel uur"
 msgstr ""
 
-#: ticketing/models.py:87
+#: .\ticketing\models.py:87
 msgid "datum van online bestelling"
 msgstr ""
 
-#: ticketing/models.py:90
-#: ticketing/templates/snowman2016/complete_order.html:57
-#: ticketing/templates/space/complete_order.html:57
+#: .\ticketing\models.py:90 .\ticketing\templates\space\complete_order.html:57
 msgid "Via overschrijving"
 msgstr "By bank transfer"
 
-#: ticketing/models.py:90
-#: ticketing/templates/snowman2016/complete_order.html:87
-#: ticketing/templates/space/complete_order.html:87
+#: .\ticketing\models.py:90 .\ticketing\templates\space\complete_order.html:87
 msgid "Aan de kassa"
 msgstr "Cash at the desk"
 
-#: ticketing/models.py:94
+#: .\ticketing\models.py:94
 msgid "opmerkingen gebruiker. Voor vragen en speciale verzoeken."
 msgstr ""
 
-#: ticketing/models.py:173
+#: .\ticketing\models.py:173
 msgid "Voor antwoorden op de vraag: \"Hoe heb je van dit concert gehoord?\""
 msgstr "For answers to the question: \"How did you hear about this concert?\""
 
-#: ticketing/models.py:175
-#: ticketing/templates/internal/my_tickets_dashboard.html:192
+#: .\ticketing\models.py:175
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:192
 msgid "Ken je een muzikant en kom je dankzij hem of haar luisteren?"
 msgstr "Do you know a musician and are you coming because of him or her?"
 
-#: ticketing/templates/bal/complete_order.html:4
-#: ticketing/templates/bal/landing.html:4
-#: ticketing/templates/bal/landing_bootstrap.html:5
-#: ticketing/templates/bal/start_order.html:4
-#: ticketing/templates/bal/thanks.html:4
-#, fuzzy
-#| msgid "SPACE Concerten Arenbergorkest"
-msgid "Bal Masqué Concerten Arenbergorkest"
-msgstr "SPACE Concerts Arenbergorkest"
-
-#: ticketing/templates/bal/complete_order.html:12
-#: ticketing/templates/bal/landing.html:14
-#: ticketing/templates/bal/landing_bootstrap.html:18
-#: ticketing/templates/bal/start_order.html:12
-#: ticketing/templates/bal/thanks.html:12
-#: ticketing/templates/snowman2016/complete_order.html:12
-#: ticketing/templates/snowman2016/landing.html:14
-#: ticketing/templates/snowman2016/landing_bootstrap.html:18
-#: ticketing/templates/snowman2016/start_order.html:12
-#: ticketing/templates/snowman2016/thanks.html:12
-#: ticketing/templates/space/complete_order.html:12
-#: ticketing/templates/space/landing.html:14
-#: ticketing/templates/space/landing_bootstrap.html:18
-#: ticketing/templates/space/start_order.html:12
-#: ticketing/templates/space/thanks.html:12
-msgid "Arenbergorkest"
-msgstr ""
-
-#: ticketing/templates/bal/complete_order.html:13
-#: ticketing/templates/bal/start_order.html:13
-#: ticketing/templates/bal/thanks.html:13
-#: ticketing/templates/snowman2016/complete_order.html:13
-#: ticketing/templates/snowman2016/start_order.html:13
-#: ticketing/templates/snowman2016/thanks.html:13
-#: ticketing/templates/space/complete_order.html:13
-#: ticketing/templates/space/start_order.html:13
-#: ticketing/templates/space/thanks.html:13
-msgid "olv Roel Willems"
-msgstr ""
-
-#: ticketing/templates/bal/complete_order.html:14
-#: ticketing/templates/bal/landing.html:16
-#: ticketing/templates/bal/landing_bootstrap.html:20
-#: ticketing/templates/bal/start_order.html:14
-#: ticketing/templates/bal/thanks.html:14
-msgid "Bal Masqué"
-msgstr ""
-
-#: ticketing/templates/bal/complete_order.html:19
-#: ticketing/templates/bal/start_order.html:19
-#: ticketing/templates/snowman2016/complete_order.html:19
-#: ticketing/templates/snowman2016/start_order.html:19
-#: ticketing/templates/space/complete_order.html:19
-#: ticketing/templates/space/start_order.html:19
-msgid "Tickets bestellen"
-msgstr "Order tickets"
-
-#: ticketing/templates/bal/complete_order.html:23
-#: ticketing/templates/snowman2016/complete_order.html:23
-#: ticketing/templates/space/complete_order.html:23
-msgid "Dit is je voorlopige bestelling:"
-msgstr "This is your draft order:"
-
-#: ticketing/templates/bal/complete_order.html:25
-#: ticketing/templates/snowman2016/complete_order.html:25
-#: ticketing/templates/space/complete_order.html:25
-#, python-format
-msgid ""
-"\n"
-"\t\t\t\t<p>\n"
-"\t\t\t\t\t<strong>%(tt)s</strong> tickets voor samen <strong>€ %(tp)s</"
-"strong>.\n"
-"\t\t\t\t</p>\n"
-"\t\t\t\t"
-msgstr ""
-"\n"
-"\t\t\t\t<p>\n"
-"\t\t\t\t\t<strong>%(tt)s</strong> tickets for a total of <strong>€ %(tp)s</"
-"strong>.\n"
-"\t\t\t\t</p>\n"
-"\t\t\t\t"
-
-#: ticketing/templates/bal/complete_order.html:31
-#: ticketing/templates/snowman2016/complete_order.html:31
-#: ticketing/templates/space/complete_order.html:31
-#, python-format
-msgid ""
-"\n"
-"\t\t\t\t<p>\n"
-"\t\t\t\t\tIn totaal <strong>%(tt)s</strong> ticket%(ttplural)s (studenten: "
-"%(s)s, niet-studenten: %(ns)s, KU Leuven cultuurkaarthouders: %(cc)s)<br>\n"
-"\t\t\t\t\t"
-msgstr ""
-"\n"
-"\t\t\t\t\tA total of <strong>%(tt)s</strong> ticket%(ttplural)s (students: "
-"%(s)s, non-students: %(ns)s, KU Leuven Culture Card holders: %(cc)s)<br>"
-
-#: ticketing/templates/bal/complete_order.html:35
-#: ticketing/templates/bal/email.html:21
-#: ticketing/templates/snowman2016/complete_order.html:35
-#: ticketing/templates/snowman2016/email.html:26
-#: ticketing/templates/space/complete_order.html:35
-#: ticketing/templates/space/email.html:26
-msgid "Voor"
-msgstr "For"
-
-#: ticketing/templates/bal/complete_order.html:35
-#: ticketing/templates/bal/email.html:21
-#: ticketing/templates/snowman2016/complete_order.html:35
-#: ticketing/templates/snowman2016/email.html:26
-#: ticketing/templates/space/complete_order.html:35
-#: ticketing/templates/space/email.html:26
-msgid "samen"
-msgstr "a total of"
-
-#: ticketing/templates/bal/complete_order.html:38
-#: ticketing/templates/snowman2016/complete_order.html:38
-#: ticketing/templates/space/complete_order.html:38
-#, python-format
-msgid ""
-"\n"
-"\t\t\t<p>\n"
-"\t\t\t\tVoor het concert van <strong>%(p)s</strong>.<br>\n"
-"\t\t\t</p>\n"
-"\t\t\t<p>\n"
-"\t\t\t\tOp naam van <strong>%(fn)s</strong> (voornaam) <strong>%(ln)s</"
-"strong>  (achternaam)<br>\n"
-"\t\t\t\tEmail: <strong>%(e)s</strong><br>\n"
-"\t\t\t</p>\n"
-"\t\t\t<p>\n"
-"\t\t\t\tKlopt er iets niet? Dan kan je dat \n"
-"\t\t\t\t<button name=\"wizard_goto_step\" type=\"submit\" value=\"%(val)s\" "
-"class=\"btn btn-link\">Aanpassen.</button>\n"
-"\t\t\t</p>\n"
-"\t\t\t<p>Als alles klopt, mag je het formulier hieronder verder invullen en "
-"je bestelling definitief bevestigen.</p>\n"
-"\t\t\t"
-msgstr ""
-"\n"
-"\t\t\t<p>\n"
-"\t\t\t\tFor the performance of <strong>%(p)s</strong>.<br>\n"
-"\t\t\t</p>\n"
-"\t\t\t<p>\n"
-"\t\t\t\tBy name of <strong>%(fn)s</strong> (first name) <strong>%(ln)s</"
-"strong>  (last name)<br>\n"
-"\t\t\t\tEmail: <strong>%(e)s</strong><br>\n"
-"\t\t\t</p>\n"
-"\t\t\t<p>\n"
-"\t\t\t\tIf something is not correct, you can easily  \n"
-"\t\t\t\t<button name=\"wizard_goto_step\" type=\"submit\" value=\"%(val)s\" "
-"class=\"btn btn-link\">Change it.</button>\n"
-"\t\t\t</p>\n"
-"\t\t\t<p>If everything is OK, you may complete the form below and confirm "
-"your ticket order.</p>\n"
-"\t\t\t"
-
-#: ticketing/templates/bal/complete_order.html:54
-#: ticketing/templates/bal/email.html:27
-#: ticketing/templates/snowman2016/complete_order.html:55
-#: ticketing/templates/snowman2016/complete_order.html:85
-#: ticketing/templates/snowman2016/email.html:33
-#: ticketing/templates/space/complete_order.html:55
-#: ticketing/templates/space/complete_order.html:85
-#: ticketing/templates/space/email.html:33
-msgid "Betalingswijze"
-msgstr "Method of payment"
-
-#: ticketing/templates/bal/complete_order.html:56
-msgid "– Kies betalingswijze –"
-msgstr "– Choose method of payment –"
-
-#: ticketing/templates/bal/complete_order.html:81
-#: ticketing/templates/snowman2016/complete_order.html:98
-#: ticketing/templates/space/complete_order.html:98
-msgid "Hoe heb je van dit concert gehoord?"
-msgstr "How did you hear about this concert?"
-
-#: ticketing/templates/bal/complete_order.html:82
-#: ticketing/templates/snowman2016/complete_order.html:99
-#: ticketing/templates/space/complete_order.html:99
-msgid ""
-"Kennis of familie in orkest, poster ergens gezien, e-mail ontvangen, ..."
-msgstr "Friend in the orchestra, seen the poster somewhere, Facebook, ..."
-
-#: ticketing/templates/bal/complete_order.html:90
-#: ticketing/templates/snowman2016/complete_order.html:107
-#: ticketing/templates/space/complete_order.html:107
-msgid "Muzikant"
-msgstr "Musician"
-
-#: ticketing/templates/bal/complete_order.html:91
-#: ticketing/templates/snowman2016/complete_order.html:108
-#: ticketing/templates/space/complete_order.html:108
-msgid ""
-"Ken je een muzikant en kom je dankzij hem of haar luisteren? Help hem of "
-"haar dan om de prijs voor Strafste Ticketverkoper in de wacht te slepen."
-msgstr ""
-"Do you know a musician and are you coming because of him or her? Then help "
-"him or her to win the prize for Most Sensational Ticket Salesman."
-
-#: ticketing/templates/bal/complete_order.html:93
-#: ticketing/templates/snowman2016/complete_order.html:110
-#: ticketing/templates/space/complete_order.html:110
-msgid "Niet van toepassing"
-msgstr "Not applicable."
-
-#: ticketing/templates/bal/complete_order.html:105
-#: ticketing/templates/snowman2016/complete_order.html:122
-#: ticketing/templates/space/complete_order.html:122
-msgid "Dit is m'n eerste Arenberg-concert"
-msgstr "This is my first Arenberg concert"
-
-#: ticketing/templates/bal/complete_order.html:107
-#: ticketing/templates/internal/register_sold_tickets.html:86
-#: ticketing/templates/snowman2016/complete_order.html:124
-#: ticketing/templates/space/complete_order.html:124
-msgid "– Kies –"
-msgstr "– Choose –"
-
-#: ticketing/templates/bal/complete_order.html:108
-#: ticketing/templates/internal/register_sold_tickets.html:87
-#: ticketing/templates/snowman2016/complete_order.html:125
-#: ticketing/templates/space/complete_order.html:125
-msgid "Ja"
-msgstr "Yes"
-
-#: ticketing/templates/bal/complete_order.html:109
-#: ticketing/templates/internal/register_sold_tickets.html:88
-#: ticketing/templates/snowman2016/complete_order.html:126
-#: ticketing/templates/space/complete_order.html:126
-msgid "Nee"
-msgstr "No"
-
-#: ticketing/templates/bal/complete_order.html:119
-#: ticketing/templates/snowman2016/complete_order.html:136
-#: ticketing/templates/space/complete_order.html:136
-msgid "Eventuele vragen of speciale verzoeken."
-msgstr "Questions or special requests"
-
-#: ticketing/templates/bal/complete_order.html:126
-#: ticketing/templates/snowman2016/complete_order.html:143
-#: ticketing/templates/space/complete_order.html:143
-msgid "Bestel"
-msgstr "Order"
-
-#: ticketing/templates/bal/email.html:6
-msgid "Bestelling tickets 'Bal Masqué' concert Arenbergorkest"
-msgstr "Tickets for Bal Masqué concerts Arenbergorkest"
-
-#: ticketing/templates/bal/email.html:10
-#: ticketing/templates/snowman2016/email.html:10
-#: ticketing/templates/space/email.html:10
-#, python-format
-msgid "Beste %(first_name)s %(last_name)s,"
-msgstr "Dear %(first_name)s %(last_name)s,"
-
-#: ticketing/templates/bal/email.html:13
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\t\t\t<p>Bedankt om tickets te bestellen voor de 'SPACE' concerten van "
-#| "het Arenbergorkest!</p>\n"
-#| "\t\t\t<p>Dit is je bestelling:</p>\n"
-#| "\t\t\t"
-msgid ""
-"\n"
-"\t\t\t<p>Bedankt om tickets te bestellen voor de 'Bal Masqué' concerten van "
-"het Arenbergorkest!</p>\n"
-"\t\t\t<p>Dit is je bestelling:</p>\n"
-"\t\t\t"
-msgstr ""
-"\n"
-"\t\t\t<p>Thanks for ordering tickets for the SPACE concerts of the "
-"Arenbergorkest!</p>\n"
-"\t\t\t<p>This is your order:</p>\n"
-"\t\t\t"
-
-#: ticketing/templates/bal/email.html:19
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "\t\t\t\t\tIn totaal <strong>%(total_tickets)s</strong> ticket%(ttplural)s "
-#| "(studenten: %(num_student_tickets)s, niet-studenten: "
-#| "%(num_non_student_tickets)s, KU Leuven cultuurkaarthouders: "
-#| "%(num_culture_card_tickets)s)<br>"
-msgid ""
-"\n"
-"\t\t\t\tIn totaal <strong>%(total_tickets)s</strong> ticket%(ttplural)s "
-"(studenten: %(num_student_tickets)s, niet-studenten: "
-"%(num_non_student_tickets)s, KU Leuven cultuurkaarthouders: "
-"%(num_culture_card_tickets)s)<br>"
-msgstr ""
-"\n"
-"\t\t\t\t\tTogether <strong>%(total_tickets)s</strong> ticket%(ttplural)s "
-"(students: %(num_student_tickets)s, non-students: "
-"%(num_non_student_tickets)s, KU Leuven Culture Card holders: "
-"%(num_culture_card_tickets)s)<br>"
-
-#: ticketing/templates/bal/email.html:24
-#: ticketing/templates/snowman2016/email.html:30
-#: ticketing/templates/space/email.html:30
-#, python-format
-msgid "Voor het concert van <strong>%(performance_full)s</strong>.<br>"
-msgstr "For the performance of <strong>%(performance_full)s</strong>.<br>"
-
-#: ticketing/templates/bal/email.html:26
-#: ticketing/templates/snowman2016/email.html:32
-#: ticketing/templates/space/email.html:32
-msgid "Deze kaarten zullen klaarliggen op naam aan de kassa."
-msgstr "These tickets will be handed out at the desk on mention of your name."
-
-#: ticketing/templates/bal/email.html:29
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "\t\t\t\t<p>Gelieve <strong>€ %(total_price)s</strong> over te schrijven "
-#| "op <br>\n"
-#| "\t\t\t\t<strong>BE23 7330 2625 4391</strong><br>\n"
-#| "\t\t\t\tmet vermelding van <strong>\"SPACE\"</strong> en uw <strong>naam</"
-#| "strong>.</p>\n"
-#| "\t\t\t\t"
-msgid ""
-"\n"
-"\t\t\t\t<p>Gelieve <strong>€ %(total_price)s</strong> over te schrijven op "
-"<br>\n"
-"\t\t\t\t<strong>BE23 7330 2625 4391</strong><br>\n"
-"\t\t\t\tmet vermelding van <strong>\"Bal Masqué\"</strong> en uw "
-"<strong>naam</strong>.</p>\n"
-"\t\t\t\t"
-msgstr ""
-"\n"
-"\t\t\t<p>Please transfer <strong>€ %(total_price)s</strong> to <br>\n"
-"\t\t\t<strong>BE23 7330 2625 4391</strong><br>\n"
-"\t\t\tmentioning <strong>\"SPACE\"</strong> and your <strong>name</strong>.</"
-"p>\n"
-"\t\t\t"
-
-#: ticketing/templates/bal/email.html:42
-#: ticketing/templates/snowman2016/email.html:48
-#: ticketing/templates/space/email.html:48
-msgid ""
-"\n"
-"\t\t<p>Tot op het concert!</p>\n"
-"\t\t<p>- Het Arenbergorkest</p>\n"
-"\t\t"
-msgstr ""
-"\n"
-"\t\t<p>See you at the concert!</p>\n"
-"\t\t<p>- Arenbergorkest</p>\n"
-"\t\t"
-
-#: ticketing/templates/bal/landing.html:15
-#: ticketing/templates/bal/landing_bootstrap.html:19
-#: ticketing/templates/snowman2016/landing.html:15
-#: ticketing/templates/snowman2016/landing_bootstrap.html:19
-#: ticketing/templates/space/landing.html:15
-#: ticketing/templates/space/landing_bootstrap.html:19
-msgid "OLV Roel Willems"
-msgstr ""
-
-#: ticketing/templates/bal/landing.html:17
-msgid "Winterconcerten 2016"
-msgstr ""
-
-#: ticketing/templates/bal/landing.html:28
-msgid "Dinsdag 1 december"
-msgstr ""
-
-#: ticketing/templates/bal/landing.html:29
-#: ticketing/templates/space/landing.html:29
-msgid "20u30 @ Aula Pieter De Somer, Leuven"
-msgstr "20h30 @ Aula Pieter De Somer, Leuven"
-
-#: ticketing/templates/bal/landing.html:31
-msgid "Zondag 6 december"
-msgstr ""
-
-#: ticketing/templates/bal/landing.html:32
-#, fuzzy
-#| msgid "20u30 @ Aula Pieter De Somer, Leuven"
-msgid "19u00 @ Aula Pieter De Somer, Leuven"
-msgstr "20h30 @ Aula Pieter De Somer, Leuven"
-
-#: ticketing/templates/bal/landing.html:36
-#: ticketing/templates/snowman2016/landing.html:30
-msgid "Bestel tickets"
-msgstr "Order tickets"
-
-#: ticketing/templates/bal/start_order.html:23
-#: ticketing/templates/snowman2016/start_order.html:23
-#: ticketing/templates/space/start_order.html:23
-msgid "Voor welk concert wil je tickets bestellen?"
-msgstr "For which concert do you want to order tickets?"
-
-#: ticketing/templates/bal/start_order.html:25
-#: ticketing/templates/internal/register_sold_tickets.html:26
-#: ticketing/templates/snowman2016/start_order.html:25
-#: ticketing/templates/space/start_order.html:25
-msgid "– Kies concert –"
-msgstr "– Choose concert –"
-
-#: ticketing/templates/bal/start_order.html:39
-#: ticketing/templates/snowman2016/start_order.html:39
-#: ticketing/templates/space/start_order.html:52
-msgid "Hoeveel tickets wil je bestellen voor ..."
-msgstr "How many tickets do you want to order for ..."
-
-#: ticketing/templates/bal/start_order.html:41
-#: ticketing/templates/internal/register_sold_tickets.html:40
-#: ticketing/templates/space/start_order.html:54
-msgid "Studenten en -18"
-msgstr "Students and -18"
-
-#: ticketing/templates/bal/start_order.html:50
-#: ticketing/templates/internal/register_sold_tickets.html:49
-#: ticketing/templates/space/start_order.html:63
-msgid "Niet-studenten"
-msgstr "Non-students"
-
-#: ticketing/templates/bal/start_order.html:59
-#: ticketing/templates/internal/register_sold_tickets.html:58
-#: ticketing/templates/space/start_order.html:72
-msgid "KU Leuven Cultuurkaarthouders"
-msgstr "KU Leuven Culture Card holders"
-
-#: ticketing/templates/bal/start_order.html:71
-#: ticketing/templates/internal/my_tickets_dashboard.html:200
-#: ticketing/templates/snowman2016/start_order.html:62
-#: ticketing/templates/space/start_order.html:84
-msgid "Voornaam"
-msgstr "First name"
-
-#: ticketing/templates/bal/start_order.html:79
-#: ticketing/templates/internal/my_tickets_dashboard.html:201
-#: ticketing/templates/snowman2016/start_order.html:70
-#: ticketing/templates/space/start_order.html:92
-msgid "Achternaam"
-msgstr "Last name"
-
-#: ticketing/templates/bal/start_order.html:88
-#: ticketing/templates/snowman2016/start_order.html:79
-#: ticketing/templates/space/start_order.html:101
-msgid "E-mailadres"
-msgstr "Email address"
-
-#: ticketing/templates/bal/thanks.html:21
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "\t\t\t<p>Gelieve <strong>€ %(total_price)s</strong> over te schrijven op "
-#| "<br>\n"
-#| "\t\t\t<strong>BE23 7330 2625 4391</strong><br>\n"
-#| "\t\t\tmet vermelding van <strong>\"SPACE\"</strong> en uw <strong>naam</"
-#| "strong>.</p>\n"
-#| "\t\t\t"
-msgid ""
-"\n"
-"\t\t\t<p>Gelieve <strong>€ %(total_price)s</strong> over te schrijven op "
-"<br>\n"
-"\t\t\t<strong>BE23 7330 2625 4391</strong><br>\n"
-"\t\t\tmet vermelding van <strong>\"Bal Masqué\"</strong> en uw <strong>naam</"
-"strong>.</p>\n"
-"\t\t\t"
-msgstr ""
-"\n"
-"\t\t\t<p>Please transfer <strong>€ %(total_price)s</strong> to <br>\n"
-"\t\t\t<strong>BE23 7330 2625 4391</strong><br>\n"
-"\t\t\tmentioning <strong>\"SPACE\"</strong> and your <strong>name</strong>.</"
-"p>\n"
-"\t\t\t"
-
-#: ticketing/templates/bal/thanks.html:27
-#: ticketing/templates/snowman2016/thanks.html:27
-#: ticketing/templates/space/thanks.html:27
-msgid "Je bestelde kaarten zullen klaarliggen op naam aan de kassa."
-msgstr ""
-"The tickets you ordered will be handed out at the desk on mention of your "
-"name."
-
-#: ticketing/templates/bal/thanks.html:28
-#: ticketing/templates/snowman2016/thanks.html:28
-#: ticketing/templates/space/thanks.html:28
-msgid ""
-"Je ontvangt zometeen een e-mail met nog eens alle informatie van je "
-"bestelling."
-msgstr "You'll soon receive an email with all info again about your order."
-
-#: ticketing/templates/bal/thanks.html:29
-#: ticketing/templates/snowman2016/thanks.html:29
-#: ticketing/templates/space/thanks.html:29
-msgid "Bestel tickets voor een ander concert"
-msgstr "Order tickets for another concert."
-
-#: ticketing/templates/bal/thanks.html:30
-#: ticketing/templates/snowman2016/thanks.html:30
-#: ticketing/templates/space/thanks.html:30
-msgid "Terug naar het begin"
-msgstr "Back to the start"
-
-#: ticketing/templates/internal/my_tickets_dashboard.html:4
-#: ticketing/templates/internal/promo_dashboard.html:4
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:4
+#: .\ticketing\templates\internal\promo_dashboard.html:4
 msgid "Ticketverkoop S P A C E"
 msgstr "Ticket sales S P A C E"
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:41
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:41
 msgid "Kies vervoer voor Zaventem"
 msgstr "Choose transport Zaventem concert"
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:45
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:45
 msgid "Ticketing-overzicht"
 msgstr "Ticketing dashboard"
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:60
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:60
 msgid "Meegegeven papieren kaarten"
 msgstr "Given paper tickets"
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:67
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:67
 msgid "Datum van meegeven"
 msgstr "Date of giving"
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:68
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:68
 msgid "Kaarten voor..."
 msgstr "Tickets for ..."
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:69
-#: ticketing/templates/internal/my_tickets_dashboard.html:108
-#: ticketing/templates/internal/my_tickets_dashboard.html:204
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:69
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:108
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:204
 msgid "Aantal"
 msgstr "Number"
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:81
-#: ticketing/templates/internal/my_tickets_dashboard.html:109
-#: ticketing/templates/internal/my_tickets_dashboard.html:128
-#: ticketing/templates/internal/my_tickets_dashboard.html:224
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:81
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:109
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:128
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:224
 msgid "Totaal"
 msgstr "Total"
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:87
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:87
 msgid "(Geen)"
 msgstr "(None)"
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:97
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:97
 msgid "Geregistreerde verkochte papieren kaarten"
 msgstr "Registered sold paper tickets"
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:104
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:104
 msgid "Datum registratie"
 msgstr "Date or registration"
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:105
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:105
 msgid "Opmerking"
 msgstr "Remark"
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:106
-#: ticketing/templates/internal/my_tickets_dashboard.html:202
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:106
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:202
 msgid "Concert"
 msgstr "Concert"
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:107
-#: ticketing/templates/internal/my_tickets_dashboard.html:203
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:107
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:203
 msgid "Prijsklasse"
 msgstr "Price category"
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:135
-#: ticketing/templates/internal/my_tickets_dashboard.html:230
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:135
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:230
 msgid "(Nog geen)"
 msgstr "(None yet)"
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:137
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:137
 msgid "Registreer verkochte papieren kaarten"
 msgstr "Register sold paper tickets"
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:192
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:192
 msgid "Online bestellingen waarbij jij wordt vermeld"
 msgstr "Online orders where you are mentioned"
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:192
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:192
 msgid ""
 "Online bestellingen waarbij jou naam werd opgegeven als antwoord op de "
 "vraag: "
 msgstr "Online orders where your name was answered to the question: "
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:199
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:199
 msgid "Datum bestelling"
 msgstr "Date of order"
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:232
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:200
+#: .\ticketing\templates\space\start_order.html:84
+msgid "Voornaam"
+msgstr "First name"
+
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:201
+#: .\ticketing\templates\space\start_order.html:92
+msgid "Achternaam"
+msgstr "Last name"
+
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:232
 msgid "Bestel online kaarten"
 msgstr "Order tickets online"
 
-#: ticketing/templates/internal/my_tickets_dashboard.html:237
-#: ticketing/templates/internal/promo_dashboard.html:163
+#: .\ticketing\templates\internal\my_tickets_dashboard.html:237
+#: .\ticketing\templates\internal\promo_dashboard.html:163
 msgid "Afmelden"
 msgstr "Log off"
 
-#: ticketing/templates/internal/pictures.html:4
+#: .\ticketing\templates\internal\pictures.html:4
 msgid "Omslag- en profielfoto's voor Facebook"
 msgstr "Cover and profile pictures for Facebook"
 
-#: ticketing/templates/internal/pictures.html:20
+#: .\ticketing\templates\internal\pictures.html:20
 msgid "Omslag- en profielfoto's <br><small>voor Facebook</small>"
 msgstr "Cover and profile pictures <br><small>for Facebook</small>"
 
-#: ticketing/templates/internal/promo_dashboard.html:99
-#: ticketing/templates/space/complete_order.html:14
-#: ticketing/templates/space/landing.html:16
-#: ticketing/templates/space/landing_bootstrap.html:20
-#: ticketing/templates/space/start_order.html:14
-#: ticketing/templates/space/thanks.html:14
+#: .\ticketing\templates\internal\promo_dashboard.html:99
+#: .\ticketing\templates\space\complete_order.html:14
+#: .\ticketing\templates\space\landing.html:16
+#: .\ticketing\templates\space\landing_bootstrap.html:20
+#: .\ticketing\templates\space\start_order.html:14
+#: .\ticketing\templates\space\thanks.html:14
 msgid "SPACE"
 msgstr "SPACE"
 
-#: ticketing/templates/internal/promo_dashboard.html:100
+#: .\ticketing\templates\internal\promo_dashboard.html:100
 msgid "Ticketverkoop"
 msgstr "Ticket sales"
 
-#: ticketing/templates/internal/promo_dashboard.html:102
+#: .\ticketing\templates\internal\promo_dashboard.html:102
 msgid ""
 "Het aantal verkochte kaarten is telkens het aantal kaarten dat via de "
 "website is besteld, plus het aantal verkochte papieren kaarten die door de "
@@ -1211,21 +576,21 @@ msgstr ""
 "plus the number of sold paper ticktets that have been registered online by "
 "the musicians."
 
-#: ticketing/templates/internal/promo_dashboard.html:107
-#: ticketing/templates/internal/promo_dashboard.html:125
+#: .\ticketing\templates\internal\promo_dashboard.html:107
+#: .\ticketing\templates\internal\promo_dashboard.html:125
 msgid "Donderdag"
 msgstr "Thursday"
 
-#: ticketing/templates/internal/promo_dashboard.html:111
-#: ticketing/templates/internal/promo_dashboard.html:126
+#: .\ticketing\templates\internal\promo_dashboard.html:111
+#: .\ticketing\templates\internal\promo_dashboard.html:126
 msgid "Vrijdag"
 msgstr "Friday"
 
-#: ticketing/templates/internal/promo_dashboard.html:115
+#: .\ticketing\templates\internal\promo_dashboard.html:115
 msgid "Zaterdag"
 msgstr "Saturday"
 
-#: ticketing/templates/internal/promo_dashboard.html:116
+#: .\ticketing\templates\internal\promo_dashboard.html:116
 msgid ""
 "Dit zijn de kaarten die via onze website zijn besteld. De rest van de "
 "bestelde kaarten zijn via de cultuurraad van Zaventem verkocht."
@@ -1233,11 +598,11 @@ msgstr ""
 "These are the tickets that have been ordered via our website. The other "
 "tickets are sold via the Cultural Committee of Zaventem."
 
-#: ticketing/templates/internal/promo_dashboard.html:127
+#: .\ticketing\templates\internal\promo_dashboard.html:127
 msgid "Do + Vr"
 msgstr "Thu + Fri"
 
-#: ticketing/templates/internal/promo_dashboard.html:150
+#: .\ticketing\templates\internal\promo_dashboard.html:150
 #, fuzzy, python-format
 #| msgid ""
 #| "\n"
@@ -1286,228 +651,261 @@ msgstr ""
 "transport from and to the Zaventem concert.</a></p>\n"
 "\t"
 
-#: ticketing/templates/internal/promo_dashboard.html:158
+#: .\ticketing\templates\internal\promo_dashboard.html:158
 msgid "Registreer verkochte papieren tickets"
 msgstr "Register sold paper tickets"
 
-#: ticketing/templates/internal/promo_dashboard.html:159
+#: .\ticketing\templates\internal\promo_dashboard.html:159
 msgid "Download omslag- en profielfoto's voor Facebook"
 msgstr "Download cover- and profile pictures for Facebook"
 
-#: ticketing/templates/internal/promo_dashboard.html:160
+#: .\ticketing\templates\internal\promo_dashboard.html:160
 msgid "Bekijk posters!"
 msgstr "See poster locations!"
 
-#: ticketing/templates/internal/register_sold_tickets.html:4
-#: ticketing/templates/internal/register_sold_tickets.html:20
+#: .\ticketing\templates\internal\register_sold_tickets.html:4
+#: .\ticketing\templates\internal\register_sold_tickets.html:20
 msgid "Registreer je verkochte papieren kaarten"
 msgstr "Register your sold paper tickets"
 
-#: ticketing/templates/internal/register_sold_tickets.html:24
+#: .\ticketing\templates\internal\register_sold_tickets.html:24
 msgid "Voor welk concert?"
 msgstr "For which concert?"
 
-#: ticketing/templates/internal/register_sold_tickets.html:38
+#: .\ticketing\templates\internal\register_sold_tickets.html:26
+#: .\ticketing\templates\space\start_order.html:25
+msgid "– Kies concert –"
+msgstr "– Choose concert –"
+
+#: .\ticketing\templates\internal\register_sold_tickets.html:38
 msgid "Hoeveel kaarten heb je voor dit concert verkocht aan ..."
 msgstr "How many tickets did you sell for this concert to ..."
 
-#: ticketing/templates/internal/register_sold_tickets.html:67
+#: .\ticketing\templates\internal\register_sold_tickets.html:40
+#: .\ticketing\templates\space\start_order.html:54
+msgid "Studenten en -18"
+msgstr "Students and -18"
+
+#: .\ticketing\templates\internal\register_sold_tickets.html:49
+#: .\ticketing\templates\space\start_order.html:63
+msgid "Niet-studenten"
+msgstr "Non-students"
+
+#: .\ticketing\templates\internal\register_sold_tickets.html:58
+#: .\ticketing\templates\space\start_order.html:72
+msgid "KU Leuven Cultuurkaarthouders"
+msgstr "KU Leuven Culture Card holders"
+
+#: .\ticketing\templates\internal\register_sold_tickets.html:67
 msgid "Wanneer heb je deze kaarten verkocht?"
 msgstr "When did you sell those tickets?"
 
-#: ticketing/templates/internal/register_sold_tickets.html:84
+#: .\ticketing\templates\internal\register_sold_tickets.html:84
 msgid "Dit is hun eerste Arenberg-concert"
 msgstr "This is their first Arenberg concert"
 
-#: ticketing/templates/internal/register_sold_tickets.html:91
+#: .\ticketing\templates\internal\register_sold_tickets.html:86
+#: .\ticketing\templates\space\complete_order.html:124
+msgid "– Kies –"
+msgstr "– Choose –"
+
+#: .\ticketing\templates\internal\register_sold_tickets.html:87
+#: .\ticketing\templates\space\complete_order.html:125
+msgid "Ja"
+msgstr "Yes"
+
+#: .\ticketing\templates\internal\register_sold_tickets.html:88
+#: .\ticketing\templates\space\complete_order.html:126
+msgid "Nee"
+msgstr "No"
+
+#: .\ticketing\templates\internal\register_sold_tickets.html:91
 msgid "Of toch het eerste concert voor de meerderheid."
 msgstr "Or at least the first concert for the majority"
 
-#: ticketing/templates/internal/register_sold_tickets.html:98
+#: .\ticketing\templates\internal\register_sold_tickets.html:98
 msgid "Wie zijn de mensen aan wie je kaarten verkocht?"
 msgstr "Who are the people you sold tickets to?"
 
-#: ticketing/templates/internal/register_sold_tickets.html:99
+#: .\ticketing\templates\internal\register_sold_tickets.html:99
 msgid "Familie, klasgenootjes, kotgenoten, vrienden, ..."
 msgstr "Family, study peers, cohabitants, friends, ..."
 
-#: ticketing/templates/internal/register_sold_tickets.html:115
+#: .\ticketing\templates\internal\register_sold_tickets.html:115
 msgid "Registreer kaarten"
 msgstr "Register tickets"
 
-#: ticketing/templates/snowman2016/complete_order.html:14
-msgid "Snowman"
+#: .\ticketing\templates\space\complete_order.html:4
+#: .\ticketing\templates\space\landing.html:4
+#: .\ticketing\templates\space\start_order.html:4
+#: .\ticketing\templates\space\thanks.html:4
+msgid "SPACE Concerten Arenbergorkest"
+msgstr "SPACE Concerts Arenbergorkest"
+
+#: .\ticketing\templates\space\complete_order.html:12
+#: .\ticketing\templates\space\landing.html:14
+#: .\ticketing\templates\space\landing_bootstrap.html:18
+#: .\ticketing\templates\space\start_order.html:12
+#: .\ticketing\templates\space\thanks.html:12
+msgid "Arenbergorkest"
 msgstr ""
 
-#: ticketing/templates/snowman2016/complete_order.html:64
-#: ticketing/templates/space/complete_order.html:64
+#: .\ticketing\templates\space\complete_order.html:13
+#: .\ticketing\templates\space\start_order.html:13
+#: .\ticketing\templates\space\thanks.html:13
+msgid "olv Roel Willems"
+msgstr ""
+
+#: .\ticketing\templates\space\complete_order.html:19
+#: .\ticketing\templates\space\start_order.html:19
+msgid "Tickets bestellen"
+msgstr "Order tickets"
+
+#: .\ticketing\templates\space\complete_order.html:23
+msgid "Dit is je voorlopige bestelling:"
+msgstr "This is your draft order:"
+
+#: .\ticketing\templates\space\complete_order.html:25
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t<p>\n"
+"\t\t\t\t\t<strong>%(tt)s</strong> tickets voor samen <strong>€ %(tp)s</"
+"strong>.\n"
+"\t\t\t\t</p>\n"
+"\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t<p>\n"
+"\t\t\t\t\t<strong>%(tt)s</strong> tickets for a total of <strong>€ %(tp)s</"
+"strong>.\n"
+"\t\t\t\t</p>\n"
+"\t\t\t\t"
+
+#: .\ticketing\templates\space\complete_order.html:31
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t<p>\n"
+"\t\t\t\t\tIn totaal <strong>%(tt)s</strong> ticket%(ttplural)s (studenten: "
+"%(s)s, niet-studenten: %(ns)s, KU Leuven cultuurkaarthouders: %(cc)s)<br>\n"
+"\t\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t\tA total of <strong>%(tt)s</strong> ticket%(ttplural)s (students: "
+"%(s)s, non-students: %(ns)s, KU Leuven Culture Card holders: %(cc)s)<br>"
+
+#: .\ticketing\templates\space\complete_order.html:35
+#: .\ticketing\templates\space\email.html:26
+msgid "Voor"
+msgstr "For"
+
+#: .\ticketing\templates\space\complete_order.html:35
+#: .\ticketing\templates\space\email.html:26
+msgid "samen"
+msgstr "a total of"
+
+#: .\ticketing\templates\space\complete_order.html:38
+#, python-format
+msgid ""
+"\n"
+"\t\t\t<p>\n"
+"\t\t\t\tVoor het concert van <strong>%(p)s</strong>.<br>\n"
+"\t\t\t</p>\n"
+"\t\t\t<p>\n"
+"\t\t\t\tOp naam van <strong>%(fn)s</strong> (voornaam) <strong>%(ln)s</"
+"strong>  (achternaam)<br>\n"
+"\t\t\t\tEmail: <strong>%(e)s</strong><br>\n"
+"\t\t\t</p>\n"
+"\t\t\t<p>\n"
+"\t\t\t\tKlopt er iets niet? Dan kan je dat \n"
+"\t\t\t\t<button name=\"wizard_goto_step\" type=\"submit\" value=\"%(val)s\" "
+"class=\"btn btn-link\">Aanpassen.</button>\n"
+"\t\t\t</p>\n"
+"\t\t\t<p>Als alles klopt, mag je het formulier hieronder verder invullen en "
+"je bestelling definitief bevestigen.</p>\n"
+"\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t<p>\n"
+"\t\t\t\tFor the performance of <strong>%(p)s</strong>.<br>\n"
+"\t\t\t</p>\n"
+"\t\t\t<p>\n"
+"\t\t\t\tBy name of <strong>%(fn)s</strong> (first name) <strong>%(ln)s</"
+"strong>  (last name)<br>\n"
+"\t\t\t\tEmail: <strong>%(e)s</strong><br>\n"
+"\t\t\t</p>\n"
+"\t\t\t<p>\n"
+"\t\t\t\tIf something is not correct, you can easily  \n"
+"\t\t\t\t<button name=\"wizard_goto_step\" type=\"submit\" value=\"%(val)s\" "
+"class=\"btn btn-link\">Change it.</button>\n"
+"\t\t\t</p>\n"
+"\t\t\t<p>If everything is OK, you may complete the form below and confirm "
+"your ticket order.</p>\n"
+"\t\t\t"
+
+#: .\ticketing\templates\space\complete_order.html:55
+#: .\ticketing\templates\space\complete_order.html:85
+#: .\ticketing\templates\space\email.html:33
+msgid "Betalingswijze"
+msgstr "Method of payment"
+
+#: .\ticketing\templates\space\complete_order.html:64
 msgid ""
 "Voor het concert in Zaventem kan enkel via overschrijving worden betaald."
 msgstr "For the Zaventem concert, only payment by bank transfer is possible."
 
-#: ticketing/templates/snowman2016/complete_order.html:94
-#: ticketing/templates/space/complete_order.html:94
+#: .\ticketing\templates\space\complete_order.html:94
 msgid "(Er kan niet meer via overschrijving betaald worden)."
 msgstr "(Payment via bank transfer is no longer possible)."
 
-#: ticketing/templates/snowman2016/email.html:6
-#, fuzzy
-#| msgid "Bestelling tickets 'SPACE' concert Arenbergorkest"
-msgid "Bestelling tickets 'Snowman' concert Arenbergorkest"
-msgstr "Tickets for SPACE concert Arenbergorkest"
+#: .\ticketing\templates\space\complete_order.html:98
+msgid "Hoe heb je van dit concert gehoord?"
+msgstr "How did you hear about this concert?"
 
-#: ticketing/templates/snowman2016/email.html:13
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\t\t\t<p>Bedankt om tickets te bestellen voor de 'SPACE' concerten van "
-#| "het Arenbergorkest!</p>\n"
-#| "\t\t\t<p>Dit is je bestelling:</p>\n"
-#| "\t\t\t"
+#: .\ticketing\templates\space\complete_order.html:99
 msgid ""
-"\n"
-"\t\t\t<p>Bedankt om tickets te bestellen voor de 'Snowman' concerten van het "
-"Arenbergorkest!</p>\n"
-"\t\t\t<p>Dit is je bestelling:</p>\n"
-"\t\t\t"
-msgstr ""
-"\n"
-"\t\t\t<p>Thanks for ordering tickets for the SPACE concerts of the "
-"Arenbergorkest!</p>\n"
-"\t\t\t<p>This is your order:</p>\n"
-"\t\t\t"
+"Kennis of familie in orkest, poster ergens gezien, e-mail ontvangen, ..."
+msgstr "Friend in the orchestra, seen the poster somewhere, Facebook, ..."
 
-#: ticketing/templates/snowman2016/email.html:20
-#: ticketing/templates/space/email.html:20
-#, python-format
+#: .\ticketing\templates\space\complete_order.html:107
+msgid "Muzikant"
+msgstr "Musician"
+
+#: .\ticketing\templates\space\complete_order.html:108
 msgid ""
-"<strong>%(total_tickets)s</strong> tickets voor samen <strong>€ "
-"%(total_price)s</strong>."
+"Ken je een muzikant en kom je dankzij hem of haar luisteren? Help hem of "
+"haar dan om de prijs voor Strafste Ticketverkoper in de wacht te slepen."
 msgstr ""
-"<strong>%(total_tickets)s</strong> tickets for a total of <strong>€ "
-"%(total_price)s</strong>."
+"Do you know a musician and are you coming because of him or her? Then help "
+"him or her to win the prize for Most Sensational Ticket Salesman."
 
-#: ticketing/templates/snowman2016/email.html:24
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "\t\t\t\t\tIn totaal <strong>%(total_tickets)s</strong> ticket%(ttplural)s "
-#| "(studenten: %(num_student_tickets)s, niet-studenten: "
-#| "%(num_non_student_tickets)s, KU Leuven cultuurkaarthouders: "
-#| "%(num_culture_card_tickets)s)<br>"
-msgid ""
-"\n"
-"\t\t\t\t\tIn totaal <strong>%(total_tickets)s</strong> ticket%(ttplural)s "
-"(volwassenen: %(num_volwassenen_tickets)s, kinderen: "
-"%(num_non_kinderen_tickets)s)<br>"
-msgstr ""
-"\n"
-"\t\t\t\t\tTogether <strong>%(total_tickets)s</strong> ticket%(ttplural)s "
-"(students: %(num_student_tickets)s, non-students: "
-"%(num_non_student_tickets)s, KU Leuven Culture Card holders: "
-"%(num_culture_card_tickets)s)<br>"
+#: .\ticketing\templates\space\complete_order.html:110
+msgid "Niet van toepassing"
+msgstr "Not applicable."
 
-#: ticketing/templates/snowman2016/email.html:35
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "\t\t\t\t<p>Gelieve <strong>€ %(total_price)s</strong> over te schrijven "
-#| "op <br>\n"
-#| "\t\t\t\t<strong>BE23 7330 2625 4391</strong><br>\n"
-#| "\t\t\t\tmet vermelding van <strong>\"SPACE\"</strong> en uw <strong>naam</"
-#| "strong>.</p>\n"
-#| "\t\t\t\t"
-msgid ""
-"\n"
-"\t\t\t\t<p>Gelieve <strong>€ %(total_price)s</strong> over te schrijven op "
-"<br>\n"
-"\t\t\t\t<strong>BE23 7330 2625 4391</strong><br>\n"
-"\t\t\t\tmet vermelding van <strong>\"Snowman\"</strong> en uw <strong>naam</"
-"strong>.</p>\n"
-"\t\t\t\t"
-msgstr ""
-"\n"
-"\t\t\t<p>Please transfer <strong>€ %(total_price)s</strong> to <br>\n"
-"\t\t\t<strong>BE23 7330 2625 4391</strong><br>\n"
-"\t\t\tmentioning <strong>\"SPACE\"</strong> and your <strong>name</strong>.</"
-"p>\n"
-"\t\t\t"
+#: .\ticketing\templates\space\complete_order.html:122
+msgid "Dit is m'n eerste Arenberg-concert"
+msgstr "This is my first Arenberg concert"
 
-#: ticketing/templates/snowman2016/landing.html:16
-#: ticketing/templates/snowman2016/landing_bootstrap.html:20
-#: ticketing/templates/snowman2016/start_order.html:14
-#: ticketing/templates/snowman2016/thanks.html:14
-msgid "SNOWMAN"
-msgstr ""
+#: .\ticketing\templates\space\complete_order.html:136
+msgid "Eventuele vragen of speciale verzoeken."
+msgstr "Questions or special requests"
 
-#: ticketing/templates/snowman2016/landing.html:31
-#: ticketing/templates/space/landing.html:28
-msgid "Do 7 &amp; Vr 8 mei"
-msgstr "Thu May 7 &amp; Fri May 8"
+#: .\ticketing\templates\space\complete_order.html:143
+msgid "Bestel"
+msgstr "Order"
 
-#: ticketing/templates/snowman2016/landing.html:32
-#, fuzzy
-#| msgid "20u30 @ Aula Pieter De Somer, Leuven"
-msgid "17:00 @ Aula Pieter De Somer, Leuven"
-msgstr "20h30 @ Aula Pieter De Somer, Leuven"
-
-#: ticketing/templates/snowman2016/landing.html:33
-#: ticketing/templates/space/landing.html:31
-msgid "Za 9 mei"
-msgstr "Sat May 9"
-
-#: ticketing/templates/snowman2016/landing.html:34
-#, fuzzy
-#| msgid "20u30 @ Aula Pieter De Somer, Leuven"
-msgid "18u30 @ Aula Pieter De Somer, Leuven"
-msgstr "20h30 @ Aula Pieter De Somer, Leuven"
-
-#: ticketing/templates/snowman2016/start_order.html:41
-msgid "Volwassenen"
-msgstr ""
-
-#: ticketing/templates/snowman2016/start_order.html:50
-msgid "Kinderen"
-msgstr ""
-
-#: ticketing/templates/snowman2016/thanks.html:21
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "\t\t\t<p>Gelieve <strong>€ %(total_price)s</strong> over te schrijven op "
-#| "<br>\n"
-#| "\t\t\t<strong>BE23 7330 2625 4391</strong><br>\n"
-#| "\t\t\tmet vermelding van <strong>\"SPACE\"</strong> en uw <strong>naam</"
-#| "strong>.</p>\n"
-#| "\t\t\t"
-msgid ""
-"\n"
-"\t\t\t<p>Gelieve <strong>€ %(total_price)s</strong> over te schrijven op "
-"<br>\n"
-"\t\t\t<strong>BE23 7330 2625 4391</strong><br>\n"
-"\t\t\tmet vermelding van <strong>\"SNOWMAN\"</strong> en uw <strong>naam</"
-"strong>.</p>\n"
-"\t\t\t"
-msgstr ""
-"\n"
-"\t\t\t<p>Please transfer <strong>€ %(total_price)s</strong> to <br>\n"
-"\t\t\t<strong>BE23 7330 2625 4391</strong><br>\n"
-"\t\t\tmentioning <strong>\"SPACE\"</strong> and your <strong>name</strong>.</"
-"p>\n"
-"\t\t\t"
-
-#: ticketing/templates/space/complete_order.html:4
-#: ticketing/templates/space/landing.html:4
-#: ticketing/templates/space/start_order.html:4
-#: ticketing/templates/space/thanks.html:4
-msgid "SPACE Concerten Arenbergorkest"
-msgstr "SPACE Concerts Arenbergorkest"
-
-#: ticketing/templates/space/email.html:6
+#: .\ticketing\templates\space\email.html:6
 msgid "Bestelling tickets 'SPACE' concert Arenbergorkest"
 msgstr "Tickets for SPACE concert Arenbergorkest"
 
-#: ticketing/templates/space/email.html:13
+#: .\ticketing\templates\space\email.html:10
+#, python-format
+msgid "Beste %(first_name)s %(last_name)s,"
+msgstr "Dear %(first_name)s %(last_name)s,"
+
+#: .\ticketing\templates\space\email.html:13
 msgid ""
 "\n"
 "\t\t\t<p>Bedankt om tickets te bestellen voor de 'SPACE' concerten van het "
@@ -1521,7 +919,16 @@ msgstr ""
 "\t\t\t<p>This is your order:</p>\n"
 "\t\t\t"
 
-#: ticketing/templates/space/email.html:24
+#: .\ticketing\templates\space\email.html:20
+#, python-format
+msgid ""
+"<strong>%(total_tickets)s</strong> tickets voor samen <strong>€ "
+"%(total_price)s</strong>."
+msgstr ""
+"<strong>%(total_tickets)s</strong> tickets for a total of <strong>€ "
+"%(total_price)s</strong>."
+
+#: .\ticketing\templates\space\email.html:24
 #, python-format
 msgid ""
 "\n"
@@ -1536,7 +943,16 @@ msgstr ""
 "%(num_non_student_tickets)s, KU Leuven Culture Card holders: "
 "%(num_culture_card_tickets)s)<br>"
 
-#: ticketing/templates/space/email.html:35
+#: .\ticketing\templates\space\email.html:30
+#, python-format
+msgid "Voor het concert van <strong>%(performance_full)s</strong>.<br>"
+msgstr "For the performance of <strong>%(performance_full)s</strong>.<br>"
+
+#: .\ticketing\templates\space\email.html:32
+msgid "Deze kaarten zullen klaarliggen op naam aan de kassa."
+msgstr "These tickets will be handed out at the desk on mention of your name."
+
+#: .\ticketing\templates\space\email.html:35
 #, python-format
 msgid ""
 "\n"
@@ -1554,19 +970,52 @@ msgstr ""
 "p>\n"
 "\t\t\t"
 
-#: ticketing/templates/space/landing.html:25
+#: .\ticketing\templates\space\email.html:48
+msgid ""
+"\n"
+"\t\t<p>Tot op het concert!</p>\n"
+"\t\t<p>- Het Arenbergorkest</p>\n"
+"\t\t"
+msgstr ""
+"\n"
+"\t\t<p>See you at the concert!</p>\n"
+"\t\t<p>- Arenbergorkest</p>\n"
+"\t\t"
+
+#: .\ticketing\templates\space\landing.html:15
+#: .\ticketing\templates\space\landing_bootstrap.html:19
+msgid "OLV Roel Willems"
+msgstr ""
+
+#: .\ticketing\templates\space\landing.html:25
 msgid "Je kan vanavond nog kaarten aan de kassa kopen."
 msgstr "You can still buy tickets tonight on location."
 
-#: ticketing/templates/space/landing.html:32
+#: .\ticketing\templates\space\landing.html:28
+msgid "Do 7 &amp; Vr 8 mei"
+msgstr "Thu May 7 &amp; Fri May 8"
+
+#: .\ticketing\templates\space\landing.html:29
+msgid "20u30 @ Aula Pieter De Somer, Leuven"
+msgstr "20h30 @ Aula Pieter De Somer, Leuven"
+
+#: .\ticketing\templates\space\landing.html:31
+msgid "Za 9 mei"
+msgstr "Sat May 9"
+
+#: .\ticketing\templates\space\landing.html:32
 msgid "20u00 @ St-Martinuskerk, Zaventem"
 msgstr "20h00 @ the Church of St-Martinus, Zaventem"
 
-#: ticketing/templates/space/landing_bootstrap.html:5
+#: .\ticketing\templates\space\landing_bootstrap.html:5
 msgid "S P A C E Concerten Arenbergorkest"
 msgstr "S P A C E Concerts Arenbergorkest"
 
-#: ticketing/templates/space/start_order.html:31
+#: .\ticketing\templates\space\start_order.html:23
+msgid "Voor welk concert wil je tickets bestellen?"
+msgstr "For which concert do you want to order tickets?"
+
+#: .\ticketing\templates\space\start_order.html:31
 msgid ""
 "Tickets voor het concert in Zaventem (zaterdag 9 mei - om 20u00 in de St-"
 "Martinuskerk) kunnen nog ter plaatse aan de kassa gekocht worden."
@@ -1574,15 +1023,23 @@ msgstr ""
 "Tickets for the concert in Zaventem (Saturday May 9 - 20h30 @ Church of St "
 "Martin) can be bought at the desk."
 
-#: ticketing/templates/space/start_order.html:41
+#: .\ticketing\templates\space\start_order.html:41
 msgid "Hoeveel tickets wil je bestellen?"
 msgstr "How many tickets do you want to order?"
 
-#: ticketing/templates/space/start_order.html:42
+#: .\ticketing\templates\space\start_order.html:42
 msgid "Een ticket voor Zaventem kost €10"
 msgstr "A ticket for Zaventem is €10"
 
-#: ticketing/templates/space/thanks.html:21
+#: .\ticketing\templates\space\start_order.html:52
+msgid "Hoeveel tickets wil je bestellen voor ..."
+msgstr "How many tickets do you want to order for ..."
+
+#: .\ticketing\templates\space\start_order.html:101
+msgid "E-mailadres"
+msgstr "Email address"
+
+#: .\ticketing\templates\space\thanks.html:21
 #, python-format
 msgid ""
 "\n"
@@ -1600,90 +1057,87 @@ msgstr ""
 "p>\n"
 "\t\t\t"
 
-#: ticketing/views/bal.py:22
-#, fuzzy
-#| msgid "Donderdag 7 mei - om 20u30 in Aula Pieter De Somer, Leuven"
-msgid "Dinsdag 1 december - om 20u30 in Aula Pieter De Somer, Leuven"
-msgstr "Thursday May 7 – 20h30 in Aula Pieter De Somer, Leuven"
+#: .\ticketing\templates\space\thanks.html:27
+msgid "Je bestelde kaarten zullen klaarliggen op naam aan de kassa."
+msgstr ""
+"The tickets you ordered will be handed out at the desk on mention of your "
+"name."
 
-#: ticketing/views/bal.py:23
-#, fuzzy
-#| msgid "Donderdag 7 mei - om 20u30 in Aula Pieter De Somer, Leuven"
-msgid "Zondag 6 december - om 19u00 in Aula Pieter De Somer, Leuven"
-msgstr "Thursday May 7 – 20h30 in Aula Pieter De Somer, Leuven"
+#: .\ticketing\templates\space\thanks.html:28
+msgid ""
+"Je ontvangt zometeen een e-mail met nog eens alle informatie van je "
+"bestelling."
+msgstr "You'll soon receive an email with all info again about your order."
 
-#: ticketing/views/internal.py:110
+#: .\ticketing\templates\space\thanks.html:29
+msgid "Bestel tickets voor een ander concert"
+msgstr "Order tickets for another concert."
+
+#: .\ticketing\templates\space\thanks.html:30
+msgid "Terug naar het begin"
+msgstr "Back to the start"
+
+#: .\ticketing\views\internal.py:110
 msgid "Donderdag 7 mei"
 msgstr "Thursday May 7"
 
-#: ticketing/views/internal.py:111
+#: .\ticketing\views\internal.py:111
 msgid "Vrijdag 8 mei"
 msgstr "Friday May 8"
 
-#: ticketing/views/internal.py:131
+#: .\ticketing\views\internal.py:131
 msgid "Je verkochte tickets zijn geregistreerd."
 msgstr "Your sold tickets have been registered"
 
-#: ticketing/views/snowman2016.py:22
-#, fuzzy
-#| msgid "Donderdag 7 mei - om 20u30 in Aula Pieter De Somer, Leuven"
-msgid "Zaterdag 13 februari - om 17u00 in Aula Pieter De Somer, Leuven"
-msgstr "Thursday May 7 – 20h30 in Aula Pieter De Somer, Leuven"
+#: .\vinaigrette-deleteme.py:2
+msgid "do"
+msgstr "Thu"
 
-#: ticketing/views/snowman2016.py:23
-#, fuzzy
-#| msgid "Donderdag 7 mei - om 20u30 in Aula Pieter De Somer, Leuven"
-msgid "Zaterdag 13 februari - om 18u30 in Aula Pieter De Somer, Leuven"
-msgstr "Thursday May 7 – 20h30 in Aula Pieter De Somer, Leuven"
+#: .\vinaigrette-deleteme.py:3
+msgid "vr"
+msgstr "Fri"
 
-#~ msgid "Naar oude site"
-#~ msgstr "To old website"
+#: .\vinaigrette-deleteme.py:4
+msgid "za"
+msgstr "Sat"
 
-#~ msgid "SPACE Concerten"
-#~ msgstr "SPACE Concerts"
+#: .\vinaigrette-deleteme.py:5
+msgid "KUL Cult.kaart in VVK (€ 4)"
+msgstr "KUL Cult. Card - presale (€ 4)"
 
-#~ msgid "Login muzikanten"
-#~ msgstr "Access for musicians"
+#: .\vinaigrette-deleteme.py:6
+msgid "KU Leuven Cultuurkaart in VVK (vanaf winter 2014)"
+msgstr "KU Leuven Culture Card - presale (from Winter 2014 on)"
 
-#~ msgid ""
-#~ "Kies een ander wachtwoord dan \"%(default_pass)s\". <br>Dat mag je "
-#~ "wachtwoord van de oude website zijn."
-#~ msgstr ""
-#~ "Choose a password different from \"%(default_pass)s\". <br>This can be "
-#~ "your password from the old website."
+#: .\vinaigrette-deleteme.py:7
+msgid "stud. VVK (€ 5)"
+msgstr "Stud. presale (€ 5)"
 
-#~ msgid "do"
-#~ msgstr "Thu"
+#: .\vinaigrette-deleteme.py:8
+msgid "Student VVK (vanaf winter 2014)"
+msgstr "Student - presale (from Winter 2014 on)"
 
-#~ msgid "vr"
-#~ msgstr "Fri"
+#: .\vinaigrette-deleteme.py:9
+msgid "Nt-stud. VVK (€ 9)"
+msgstr "Non-stud. presale (€ 9)"
 
-#~ msgid "za"
-#~ msgstr "Sat"
+#: .\vinaigrette-deleteme.py:10
+msgid "Niet-student in VVK (vanaf winter 2014)"
+msgstr "Non-student - presale (from Winter 2014 on)"
 
-#~ msgid "KUL Cult.kaart in VVK (€ 4)"
-#~ msgstr "KUL Cult. Card - presale (€ 4)"
+#: .\vinaigrette-deleteme.py:11
+msgid "za VVK (€ 10)"
+msgstr "Sat presale (€ 10)"
 
-#~ msgid "KU Leuven Cultuurkaart in VVK (vanaf winter 2014)"
-#~ msgstr "KU Leuven Culture Card - presale (from Winter 2014 on)"
+#: .\vinaigrette-deleteme.py:12
+msgid "Zaventem VVK SPACE"
+msgstr "Presale Zaventem SPACE"
 
-#~ msgid "stud. VVK (€ 5)"
-#~ msgstr "Stud. presale (€ 5)"
+#~ msgid "Bestel tickets"
+#~ msgstr "Order tickets"
 
-#~ msgid "Student VVK (vanaf winter 2014)"
-#~ msgstr "Student - presale (from Winter 2014 on)"
-
-#~ msgid "Nt-stud. VVK (€ 9)"
-#~ msgstr "Non-stud. presale (€ 9)"
-
-#~ msgid "Niet-student in VVK (vanaf winter 2014)"
-#~ msgstr "Non-student - presale (from Winter 2014 on)"
-
-#~ msgid "za VVK (€ 10)"
-#~ msgstr "Sat presale (€ 10)"
-
-#~ msgid "Zaventem VVK SPACE"
-#~ msgstr "Presale Zaventem SPACE"
+#~ msgid "Donderdag 7 mei - om 20u30 in Aula Pieter De Somer, Leuven"
+#~ msgstr "Thursday May 7 – 20h30 in Aula Pieter De Somer, Leuven"
 
 #~ msgid "Vrijdag 8 mei - om 20u30 in Aula Pieter De Somer, Leuven"
 #~ msgstr "Friday May 8 – 20h30 in Aula Pieter De Somer, Leuven"
@@ -1693,6 +1147,9 @@ msgstr "Thursday May 7 – 20h30 in Aula Pieter De Somer, Leuven"
 
 #~ msgid "Datum"
 #~ msgstr "Date"
+
+#~ msgid "– Kies betalingswijze –"
+#~ msgstr "– Choose method of payment –"
 
 #~ msgid "Zaterdag 9 mei - om 20u00 in St-Martinuskerk, Zaventem"
 #~ msgstr "Saturday May 9 – 20h00 in the Church of St-Martinus, Zaventem"

@@ -48,9 +48,9 @@ h1, h2, h3 {
 #tagline {
 	letter-spacing: 0em;
 	font-size: 14px;
-	font-size: 3vw;
+	font-size: 3vw
 	font-weight: 900;
-	margin-bottom: 5em;
+	margin-bottom: 1.0em;
 }
 #tagline .handwritten {
 	font-family: 'Damion', cursive;

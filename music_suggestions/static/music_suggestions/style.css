@@ -2,10 +2,16 @@
 	margin-top: 30px;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 500px) {
 	#btn-suggest {
 		float: right;
 	}
+}
+
+.toofattable  {
+	margin-left:10%;
+	margin-right:10%;
+	width:80%;
 }
 
 form {

@@ -68,6 +68,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'solid_i18n.middleware.SolidLocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -118,6 +119,7 @@ LANGUAGE_CODE = 'nl'
 LANGUAGE_BIDI = False #all left to right languages.
 
 # Supported languages
+ugettext = lambda s: s
 LANGUAGES = (
     ('nl', 'Nederlands'),
     ('en', 'English'),

@@ -40,7 +40,6 @@ class SuggestPieceOfMusicForm(forms.Form):
 		'title_input',
 		'url_input',
 		'sheet_music_input',
-		'name_input',
 		FormActions(
 			Submit('submit', 'Stel voor', css_class="btn-success"),
 		),

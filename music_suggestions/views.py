@@ -6,13 +6,13 @@ from music_suggestions.models import PieceOfMusic
 from music_suggestions.forms import SuggestPieceOfMusicForm
 from django.contrib.auth.decorators import login_required
 
-# @login_required(login_url='/login/')
+@login_required
 def browse_suggested_pieces(request):
 	return render(request, 
 		'browse_suggested_pieces.html', 
 		{'suggested_pieces': PieceOfMusic.objects.all()})
 
-# @login_required(login_url='/login/')
+@login_required
 def suggest_piece(request):
 	# If this is a POST request we need to process the form data.
 	if request.method == 'POST':
@@ -25,9 +25,7 @@ def suggest_piece(request):
 				title = form.cleaned_data['title_input'],
 				link_to_recording = form.cleaned_data['url_input'],
 				sheet_music = form.cleaned_data['sheet_music_input'],
-				suggested_by_string = form.cleaned_data['name_input']
-				# suggested_by = User.objects.get(first_name="Dummy"),
-				# suggested_by = request.user,
+				suggested_by_string = str(request.user.first_name) +" "+ str(request.user.last_name)
 			)
 			return HttpResponseRedirect(reverse('music_suggestions:browse'))
 
