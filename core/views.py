@@ -29,6 +29,7 @@ def register(request):
             userprofile = upf.save(commit=False)
             userprofile.associated_user = user #adds the created as associated user for the userprofile
             userprofile.save()
+            userprofile.groups = upf.cleaned_data["groups"] #adds the groups. doesn't save because it's a m2m relationship. other options: using super() or save_m2m()
             #TODO: send email here, is also commented out in thanks.html
             return render_to_response('registration/thanks_register.html', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
     else:
