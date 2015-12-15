@@ -28,7 +28,7 @@
                 <ul>
                     
                     <div id="left">
-                        {% if request.user.is_authenticated %}<li><b>{{ request.user.first_name }}&nbsp;{{request.user.last_name}}</b></li>{% endif %}
+                        {% if request.user.is_authenticated %}<li><a href="{% url 'edit' %}"><b>{{ request.user.first_name }}&nbsp;{{request.user.last_name}}</b></a></li>{% endif %}
                         <li><a href="{% url 'ticketing:snow_landing' %}">Home</a></li>
                         <li><a href="{% url 'wie' %}">{% trans "Over" %}</a></li>
                         <li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>

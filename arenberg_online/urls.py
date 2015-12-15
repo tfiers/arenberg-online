@@ -32,6 +32,7 @@ urlpatterns += solid_i18n_patterns('',
     #url(r'^musicians/music$', 'core.views.list', name='music'), #rudimentary start for files downloadable from server, probably not going to be used so commented out to disable the link
     url(r'^musicians/calendar$', 'core.views.calendar', name='calendar'),
     url(r'^musicians/links$', 'core.views.links', name='links'),
+    url(r'^musicians/edit$', 'core.views.edit', name='edit'),
     url(r'^musicians/login$', auth_views.login, name='login'),
     url(r'^musicians/adieu$', auth_views.logout, name='logout'),
     url(r'^musicians/choose-password$', 'core.views.change_default_password', name='change_password'),

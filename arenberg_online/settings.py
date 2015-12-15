@@ -27,7 +27,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # (Next to for example the 'arenberg_online' and 'core' directories).
 CONFIG_DIR = os.path.join(BASE_DIR, 'arenberg-secure')
 
-
 # When deploying, check this list:
 # https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
