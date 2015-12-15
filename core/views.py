@@ -103,10 +103,6 @@ def change_default_password(request):
 		if request.method == 'POST':
 			form = SetPasswordForm(user=request.user, data=request.POST)
 			if form.is_valid():
-				form.user.userprofile.last_password_change = datetime.now(utc)
-				form.user.userprofile.save()
-				form.save()
-				update_session_auth_hash(request, form.user)
 				return HttpResponseRedirect(reverse('pass_changed'))
 		else:
 			form = SetPasswordForm(user=request.user)

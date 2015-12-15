@@ -20,7 +20,7 @@
 					{% endfor %}
 				</span>
 				<label for="{{ userform.first_name.id_for_label }}">{% trans "Je voornaam" %}</label>
-				<input type="text" name="{{ userform.first_name.html_name }}" id="{{ userform.first_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Donald' %}" value="{{ userform.first_name.value|default_if_none:'' }}">
+				<input type="text" name="{{ userform.first_name.html_name }}" id="{{ userform.first_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Ana' %}" value="{{ userform.first_name.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
@@ -30,7 +30,7 @@
 					{% endfor %}
 				</span>
 				<label for="{{ userform.last_name.id_for_label }}">{% trans "Je achternaam" %}</label>
-				<input type="text" name="{{ userform.last_name.html_name }}" id="{{ userform.last_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Trump' %}" value="{{ userform.last_name.value|default_if_none:'' }}">
+				<input type="text" name="{{ userform.last_name.html_name }}" id="{{ userform.last_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Banana' %}" value="{{ userform.last_name.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
@@ -40,7 +40,7 @@
 					{% endfor %}
 				</span>
 				<label for="{{ userform.email.id_for_label }}">{% trans "Je e-mailadres" %}</label>
-				<input type="text" name="{{ userform.email.html_name }}" id="{{ userform.email.id_for_label }}" class="form-control" placeholder="{% trans 'bv. cantstopthetrump@whitehouse.us' %}" value="{{ userform.email.value|default_if_none:'' }}">
+				<input type="text" name="{{ userform.email.html_name }}" id="{{ userform.email.id_for_label }}" class="form-control" placeholder="{% trans 'bv. anabanana@fruit.org' %}" value="{{ userform.email.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
@@ -50,7 +50,7 @@
 					{% endfor %}
 				</span>
 				<label for="{{ userform.password.id_for_label }}">{% trans "Je wachtwoord" %}</label>
-				<input type="password" name="{{ userform.password.html_name }}" id="{{ userform.password.id_for_label }}" class="form-control" placeholder="{% trans 'bv. ikhouvanmexicanen69' %}" value="{{ userform.password.value|default_if_none:'' }}" data-toggle="password">
+				<input type="password" name="{{ userform.password.html_name }}" id="{{ userform.password.id_for_label }}" class="form-control" placeholder="{% trans 'bv. ikbeneigenlijkeenpeer' %}" value="{{ userform.password.value|default_if_none:'' }}" data-toggle="password">
 			</div>
 
 			<div class="form-group">
