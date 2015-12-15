@@ -64,7 +64,7 @@
 				<p> Je huidige groepen zijn: {{request.user.userprofile.groups_as_string}}.</p>
 				<select multiple name="{{ UserProfileFormUpdate.groups.html_name }}" id="{{ UserProfileFormUpdate.groups.id_for_label }}" class="form-control">
 					<option disabled value=""{% if UserProfileFormUpdate.groups.value == None %} selected="selected"{% endif %}><em>{% trans "– Kies instrumentengroep(en) –" %}</em></option>
-					{% for value, text in uUserProfileFormUpdate.groups.field.choices %}
+					{% for value, text in UserProfileFormUpdate.groups.field.choices %}
 					<option value="{{ value }}"{% if UserProfileFormUpdate.groups.value == value %} selected="selected"{% endif %}>{{ text }}</option>
 					{% endfor %}
 				</select>

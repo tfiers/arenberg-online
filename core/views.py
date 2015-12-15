@@ -15,7 +15,7 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from core.models import Document #needed for fileupload
 from core.forms import DocumentForm #needed for fileupload
-from forms import UserForm, UserProfileForm, UserFormUpdate, UserProfileFormUpdate #needed for registration
+from forms import UserForm, UserProfileForm #needed for registration
 from django.views.decorators.csrf import csrf_exempt
 
 @csrf_protect
@@ -41,34 +41,25 @@ def register(request):
 @login_required
 def edit(request):
     """handles the view of the edit form, to edit user info"""
-    if request.method == 'POST':
-        uf = UserFormUpdate(request.POST, user=request.user, instance=request.user,prefix='user')
-        upf = UserProfileFormUpdate(request.POST, instance=request.user.userprofile,prefix='userprofile')
-       
-        uf.data = uf.data.copy()
-        upf.data = upf.data.copy()
-        #deleting empty fiels, they won't be updated
-        if request.POST.get('first_name', False) == False:
-            uf.data.pop("first_name", None)
-        if request.POST.get('last_name', False) == False:
-            uf.data.pop("last_name", None)
-        if request.POST.get('password', False) == False: 
-            uf.data.pop("password", None)
-        if request.POST.get('groups', False) == False:
-            uf.data.pop("groups", None)      
+    return render(request, 'registration/edit.html')
+
+    # if request.method == 'POST':
+    #     uf = UserFormUpdate(request.POST, user=request.user, instance=request.user,prefix='user')
+    #     upf = UserProfileFormUpdate(request.POST, instance=request.user.userprofile,prefix='userprofile')
+    
         
-        if uf.is_valid() * upf.is_valid():
-            user = uf.saveTotal()
-            # userprofile = upf.save(commit=False)
-            # userprofile.associated_user = user #adds the created as associated user for the userprofile
-            userprofile.save()
-            userprofile.groups = upf.cleaned_data["groups"] #adds the groups. doesn't save before because it's a m2m relationship. other options: using super() or save_m2m()
-            #TODO: send email here, is also commented out in thanks.html
-            return render_to_response('registration/thanks_edit.html', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
-    else:
-        uf = UserFormUpdate(prefix='user')
-        upf = UserProfileFormUpdate(prefix='userprofile')
-    return render_to_response('registration/edit.html', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
+    #     if uf.is_valid() * upf.is_valid():
+    #         user = uf.saveTotal()
+    #         # userprofile = upf.save(commit=False)
+    #         # userprofile.associated_user = user #adds the created as associated user for the userprofile
+    #         userprofile.save()
+    #         userprofile.groups = upf.cleaned_data["groups"] #adds the groups. doesn't save before because it's a m2m relationship. other options: using super() or save_m2m()
+    #         #TODO: send email here, is also commented out in thanks.html
+    #         return render_to_response('registration/thanks_edit.html', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
+    # else:
+    #     uf = UserFormUpdate(instance=request.user, prefix='user')
+    #     upf = UserProfileFormUpdate(instance=request.user.userprofile, prefix='userprofile')
+    # return render_to_response('registration/edit.html', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
 
 @login_required
 def list(request):
