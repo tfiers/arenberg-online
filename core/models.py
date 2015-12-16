@@ -70,7 +70,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = BooleanField(_('active'), default=True,
         help_text=_('Designates whether this user should be treated as '
                     'active. Unselect this instead of deleting accounts.'))
+
+    approved = BooleanField(_('approved'), default=False,
+        help_text=_('Designates whether this user is approved and may view the login only content.'))
     date_joined = DateTimeField(_('date joined'), default=timezone.now)
+
 
     objects = UserManager()
 

@@ -15,8 +15,15 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User 
         fields = ['first_name','last_name','email','password']
+
+    # def __init__(self, *args, **kwargs):
+    #     super(UserForm, self).__init__(*args, **kwargs)
+
+    #     self.fields['password'].required = False
+    #     self.fields['confirmpassword'].required = False
     
     error_css_class = 'error' 
+    confirmpassword = CharField('confirmpassword', max_length=50, blank=False)
 
     def saveTotal(self, commit=True): #overwrite needed to store password correctly
         user = super(UserForm, self).save(commit=False)
@@ -24,6 +31,15 @@ class UserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+    def clean_confirmpassword(self):
+        password1 = self.cleaned_data.get('password')
+        password2 = self.cleaned_data.get('confirmpassword2')
+
+        if not password2:
+            raise forms.ValidationError("You must confirm your password")
+        if password1 != password2:
+            raise forms.ValidationError("Your passwords do not match")
+        return password2
 
 
 
