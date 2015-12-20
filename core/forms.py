@@ -4,6 +4,7 @@ from models import *
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
 from django.template import RequestContext
+from django.utils.translation import ugettext_lazy as _
 
 class DocumentForm(forms.Form):
     docfile = forms.FileField(
@@ -11,19 +12,20 @@ class DocumentForm(forms.Form):
     )
 
 class UserForm(forms.ModelForm):
+
+    confirmpassword = forms.CharField(widget=forms.PasswordInput(),required=True)
+    confirmemail = forms.EmailField(required=True)
     
     class Meta:
         model = User 
         fields = ['first_name','last_name','email','password']
-
-    # def __init__(self, *args, **kwargs):
-    #     super(UserForm, self).__init__(*args, **kwargs)
-
-    #     self.fields['password'].required = False
-    #     self.fields['confirmpassword'].required = False
+        widgets = {
+            'password': forms.PasswordInput(),
+        }
     
     error_css_class = 'error' 
-    confirmpassword = CharField('confirmpassword', max_length=50, blank=False)
+
+
 
     def saveTotal(self, commit=True): #overwrite needed to store password correctly
         user = super(UserForm, self).save(commit=False)
@@ -31,15 +33,22 @@ class UserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
-    def clean_confirmpassword(self):
-        password1 = self.cleaned_data.get('password')
-        password2 = self.cleaned_data.get('confirmpassword2')
+    
+    def clean_password(self):
+        #assert self.data["password"] != None
+        if self.cleaned_data.get('password') != self.cleaned_data.get('confirmpassword'):
+            raise forms.ValidationError('The passwords are not the same.')
+        return self.cleaned_data.get('password')
 
-        if not password2:
-            raise forms.ValidationError("You must confirm your password")
-        if password1 != password2:
-            raise forms.ValidationError("Your passwords do not match")
-        return password2
+    def clean_email(self):
+        if self.cleaned_data.get('email') != self.cleaned_data.get('confirmemail'):
+            raise forms.ValidationError('The e-mail addresses are not the same.')
+        return self.cleaned_data.get('email')
+    
+    def clean(self,*args, **kwargs):
+        self.clean_password()
+        self.clean_email()
+        return super(UserForm, self).clean(*args, **kwargs)
 
 
 
@@ -48,6 +57,6 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['groups']
-        exclude = ['associated_user'] #excluded and added later
+        exclude = ['associated_user'] #excluded and added later in views.py
     
     error_css_class = 'error'

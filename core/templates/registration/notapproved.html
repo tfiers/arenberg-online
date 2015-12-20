@@ -4,10 +4,10 @@
 {% block custom_css_js %}
 <link rel="stylesheet" href="{% static 'registration/style.css' %}">
 {% endblock custom_css_js %}
-{% block title %}{% trans "Je bent afgemeld" %}{% endblock title %}
+{% block title %}{% trans "Niet goedgekeurd" %}{% endblock title %}
 {% block content %}
 	<div class="text-center" id="ciao-msg">
-		<h1><span class="glyphicon glyphicon-eject"></span></h1>
-		<h3><b>{% trans "Je bent afgemeld" %}</b></h3>
+		<h1><span class="glyphicon glyphicon-pause"></span></h1>
+		<h3>{% trans "Je nieuwe account is nog niet goedgekeurd" %}</h3>
 	</div>
 {% endblock content %}

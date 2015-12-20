@@ -10,7 +10,7 @@
 
 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 	<h1>{% trans "Registratie voor nieuwe muzikanten" %}</h1>
-		<form method='post' action="{% url 'register' %}">
+		<form method='post' encrypt="multipart/form-data" action="{% url 'register' %}">
 			{% csrf_token %}
 
 			<div class="form-group">
@@ -19,6 +19,9 @@
 						{{ error }}<br>
 					{% endfor %}
 				</span>
+			{% for hidden in form.hidden_fields %}
+    			{{ hidden }}
+			{% endfor %}
 				<label for="{{ userform.first_name.id_for_label }}">{% trans "Je voornaam" %}</label>
 				<input type="text" name="{{ userform.first_name.html_name }}" id="{{ userform.first_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Ana' %}" value="{{ userform.first_name.value|default_if_none:'' }}">
 			</div>
@@ -45,6 +48,16 @@
 
 			<div class="form-group">
 				<span class="error">
+					{% for error in userform.confirmemail.errors %}
+						{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ userform.confirmemail.id_for_label }}">{% trans "Bevestig je e-mailadres" %}</label>
+				<input type="text" name="{{ userform.confirmemail.html_name }}" id="{{ userform.confirmemail.id_for_label }}" class="form-control" placeholder="{% trans 'Again? *sigh*' %}" value="{{ userform.confirmemail.value|default_if_none:'' }}">
+			</div>
+
+			<div class="form-group">
+				<span class="error">
 					{% for error in userform.password.errors %}
 						<br>{{ error }}<br>
 					{% endfor %}
@@ -60,7 +73,7 @@
 					{% endfor %}
 				</span>
 				<label for="{{ userform.confirmpassword.id_for_label }}">{% trans "Bevestig je wachtwoord" %}</label>
-				<input type="password" name="{{ userform.confirmpassword.html_name }}" id="{{ userform.confirmpassword.id_for_label }}" class="form-control" placeholder="{% trans 'bv. ikbenstiekemeenpeer' %}" value="{{ userform.confirmpassword.value|default_if_none:'' }}" data-toggle="password">
+				<input type="password" name="{{ userform.confirmpassword.html_name }}" id="{{ userform.confirmpassword.id_for_label }}" class="form-control" placeholder="{% trans 'Oh no, again again? *sigh*' %}" value="{{ userform.confirmpassword.value|default_if_none:'' }}" data-toggle="password">
 			</div>
 
 			<div class="form-group">
@@ -80,7 +93,7 @@
 
 		    <input type="submit" value="{% trans 'Registreren' %}" class="btn btn-primary">
 
-		    <input type="hidden" name="next" value="{{ next }}">
+		    <!-- <input type="hidden" name="next" value="{{ next }}"> -->
 		</form>
 </div>
 

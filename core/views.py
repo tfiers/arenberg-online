@@ -64,6 +64,8 @@ def edit(request):
 @login_required
 def list(request):
     """handles file upload"""
+    if not request.user.approved:
+        return render(request, 'registration/notapproved.html')
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
@@ -87,6 +89,8 @@ def list(request):
 
 @login_required
 def links(request):
+    if not request.user.approved:
+        return render(request, 'registration/notapproved.html')
     return render(request, 'links.html')
 
 
@@ -113,7 +117,10 @@ def home(request):
 
 @login_required
 def calendar(request):
-	return render(request, 'calendar.html')
+    if not request.user.approved:
+        return render(request, 'registration/notapproved.html')
+    else: #valueerror (calendar returned None instead of httprespons object) if this else is removed
+	   return render(request, 'calendar.html')
 
 @login_required
 def logout(request):

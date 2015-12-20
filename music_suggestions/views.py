@@ -8,12 +8,16 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def browse_suggested_pieces(request):
+	if not request.user.approved:
+		return render(request, 'registration/notapproved.html')
 	return render(request, 
 		'browse_suggested_pieces.html', 
 		{'suggested_pieces': PieceOfMusic.objects.all()})
 
 @login_required
 def suggest_piece(request):
+	if not request.user.approved:
+		return render(request, 'registration/notapproved.html')
 	# If this is a POST request we need to process the form data.
 	if request.method == 'POST':
 		# Create a form instance and populate it with data from the request:
