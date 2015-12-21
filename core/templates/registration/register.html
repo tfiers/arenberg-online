@@ -48,6 +48,16 @@
 
 			<div class="form-group">
 				<span class="error">
+					{% for error in userform.email2.errors %}
+						{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ userform.email2.id_for_label }}">{% trans "Je e-mailadres opnieuw" %}</label>
+				<input type="text" name="{{ userform.email2.html_name }}" id="{{ userform.email2.id_for_label }}" class="form-control" placeholder="{% trans 'bv. anabanana@fruit.org' %}" value="{{ userform.email2.value|default_if_none:'' }}">
+			</div>
+
+			<div class="form-group">
+				<span class="error">
 					{% for error in userform.password1.errors %}
 						<br>{{ error }}<br>
 					{% endfor %}
