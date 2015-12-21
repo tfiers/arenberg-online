@@ -3,6 +3,10 @@
 	padding-right: 10px;
 }
 
+.navbar-default .navbar-nav .navbar-right {
+	width: 10%;
+}
+
 /* navbar */
 .navbar-default {
     background-color: #FFFFFF;

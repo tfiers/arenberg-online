@@ -33,21 +33,25 @@
                         <li><a href="{% url 'wie' %}">{%trans "Over" %}</a></li>
 
                         <li><a href="{% url 'ticketing:snow_landing' %}">Home</a></li>
-                        
-<!--                         <li class="active"><a href="{% url 'ticketing:snow_landing' %}">Home</a></li> -->
-                        
+
+                        <li><a href="{% url 'ticketing:start_order_snow' %}">{%trans "Bestel tickets" %}</a></li>
+
+                        <li><a href="{% url 'contact' %}">{%trans "Contact" %}</a></li>
+
+                        {% comment %}
+                        <li><a href="{% url 'sponsors' %}">{% trans "Sponsors" %}</a></li>
+                        {% endcomment %}
+
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Muzikanten" %}<span class="caret"></span></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{%trans "Language" %}<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    {% if user.is_authenticated %}
-                                    <li><a href="{% url 'edit' %}">{% trans "Edit personal info" %}</a></li>
-                                    <li><a href="{% url 'logout' %}">{% trans "Uitloggen" %}</a></li>
-                                    {% else %}
-                                    <li><a href="{% url 'login' %}">{% trans "Inloggen" %}</a></li>
-                                    <li><a href="{% url 'register' %}">{% trans "Registreren" %}</a></li>
-                                    {% endif %}
+                                    <li><a href="{% url 'set_lang' lang='nl' %}">Nederlands</a></li>
+                                    <li><a href="{% url 'set_lang' lang='en' %}">English</a></li>
                                 </ul>
                         </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
 
                         {% if user.is_authenticated %}
                         {% if request.user.approved %}
@@ -57,34 +61,34 @@
                                     <li><a href="{% url 'links' %}">{% trans "Links" %}</a></li>
                                     <li><a href="{% url 'calendar' %}">{% trans "Kalender" %}</a></li>
                                     <li><a href="{% url 'suggestions:browse' %}">{% trans "Voorgestelde muziek" %}</a></li>
-                                    {% comment %}
-                                    <li><a href="{% url 'ticketing:my_tickets_dashboard' %}" title="{% trans 'Verkochte tickets' %}">{{ user.first_name|default:'{% trans "Mijn verkochte tickets" %}' }}</a></li>
-                                    <li><div><a href="{% url 'ticketing:promo_dashboard' %}">{% trans "Concerten" %}</a></div></li>
-                                    {% endcomment %}
                                 </ul>
                         </li>
                         {% endif %}                        
                         {% endif %}
 
-                        <li><a href="{% url 'contact' %}">{%trans "Contact" %}</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Muzikant" %}<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    {% if user.is_authenticated %}
+                                    {% if request.user.approved %}
+                                    <li><a href="{% url 'ticketing:my_tickets_dashboard' %}" title="{% trans 'Verkochte tickets' %}">{% trans "Mijn verkochte tickets" %}</a></li>
+                                    {% comment %}
+                                    <li><div><a href="{% url 'ticketing:promo_dashboard' %}">{% trans "Concerten" %}</a></div></li>
+                                    {% endcomment %}
+                                    {% endif %}
+                                    <li><a href="{% url 'edit' %}">{% trans "Wijzig je profiel" %}</a></li>
+                                    <li><a href="{% url 'logout' %}">{% trans "Uitloggen" %}</a></li>
+                                    {% else %}
+                                    <li><a href="{% url 'login' %}">{% trans "Inloggen" %}</a></li>
+                                    <li><a href="{% url 'register' %}">{% trans "Registreren" %}</a></li>
+                                    {% endif %}
+                                </ul>
+                        </li>
 
-                        {% comment %}
-                        <li><a href="{% url 'sponsors' %}">{% trans "Sponsors" %}</a></li>
-                        {% endcomment %}
-
-                    </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
                         {% if request.user.is_authenticated %}
                         <li><a>Welkom, <b>{{ request.user.first_name }}&nbsp;{{request.user.last_name}}</b></a></li>
                         {% endif %}
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{%trans "Language" %}<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{% url 'set_lang' lang='nl' %}">Nederlands</a></li>
-                                    <li><a href="{% url 'set_lang' lang='en' %}">English</a></li>
-                                </ul>
-                        </li>
+
                     </ul>
                 </div>
             </div>
