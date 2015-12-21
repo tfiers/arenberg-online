@@ -56,8 +56,10 @@
                         {% if user.is_authenticated %}
                         {% if request.user.approved %}
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Info" %}<span class="caret"></span></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Orkest" %}<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
+                                    <li><a href="{% url 'ticketing:promo_dashboard' %}">{% trans "Ticketverkoop" %}</a></li>
+                                    <li><a href="{% url 'ticketing:posters' %}">{% trans "Posters" %}</a></li>
                                     <li><a href="{% url 'links' %}">{% trans "Links" %}</a></li>
                                     <li><a href="{% url 'calendar' %}">{% trans "Kalender" %}</a></li>
                                     <li><a href="{% url 'suggestions:browse' %}">{% trans "Voorgestelde muziek" %}</a></li>
@@ -72,9 +74,6 @@
                                     {% if user.is_authenticated %}
                                     {% if request.user.approved %}
                                     <li><a href="{% url 'ticketing:my_tickets_dashboard' %}" title="{% trans 'Verkochte tickets' %}">{% trans "Mijn verkochte tickets" %}</a></li>
-                                    {% comment %}
-                                    <li><div><a href="{% url 'ticketing:promo_dashboard' %}">{% trans "Concerten" %}</a></div></li>
-                                    {% endcomment %}
                                     {% endif %}
                                     <li><a href="{% url 'edit' %}">{% trans "Wijzig je profiel" %}</a></li>
                                     <li><a href="{% url 'logout' %}">{% trans "Uitloggen" %}</a></li>
@@ -86,7 +85,7 @@
                         </li>
 
                         {% if request.user.is_authenticated %}
-                        <li><a>Welkom, <b>{{ request.user.first_name }}&nbsp;{{request.user.last_name}}</b></a></li>
+                        <li><a>{%trans "Welkom" %}, <b>{{ request.user.first_name }}&nbsp;{{request.user.last_name}}</b></a></li>
                         {% endif %}
 
                     </ul>

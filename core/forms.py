@@ -12,9 +12,6 @@ class DocumentForm(forms.Form):
     )
 
 class UserForm(forms.ModelForm):
-
-    confirmpassword = forms.CharField(widget=forms.PasswordInput(),required=True)
-    confirmemail = forms.EmailField(required=True)
     
     class Meta:
         model = User 
@@ -33,22 +30,6 @@ class UserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
-    
-    def clean_password(self):
-        #assert self.data["password"] != None
-        if self.cleaned_data.get('password') != self.cleaned_data.get('confirmpassword'):
-            raise forms.ValidationError('The passwords are not the same.')
-        return self.cleaned_data.get('password')
-
-    def clean_email(self):
-        if self.cleaned_data.get('email') != self.cleaned_data.get('confirmemail'):
-            raise forms.ValidationError('The e-mail addresses are not the same.')
-        return self.cleaned_data.get('email')
-    
-    def clean(self,*args, **kwargs):
-        self.clean_password()
-        self.clean_email()
-        return super(UserForm, self).clean(*args, **kwargs)
 
 
 

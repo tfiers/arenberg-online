@@ -48,16 +48,6 @@
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in userform.confirmemail.errors %}
-						{{ error }}<br>
-					{% endfor %}
-				</span>
-				<label for="{{ userform.confirmemail.id_for_label }}">{% trans "Bevestig je e-mailadres" %}</label>
-				<input type="text" name="{{ userform.confirmemail.html_name }}" id="{{ userform.confirmemail.id_for_label }}" class="form-control" placeholder="{% trans 'Again? *sigh*' %}" value="{{ userform.confirmemail.value|default_if_none:'' }}">
-			</div>
-
-			<div class="form-group">
-				<span class="error">
 					{% for error in userform.password.errors %}
 						<br>{{ error }}<br>
 					{% endfor %}
@@ -66,15 +56,6 @@
 				<input type="password" name="{{ userform.password.html_name }}" id="{{ userform.password.id_for_label }}" class="form-control" placeholder="{% trans 'bv. ikbenstiekemeenpeer' %}" value="{{ userform.password.value|default_if_none:'' }}" data-toggle="password">
 			</div>
 
-			<div class="form-group">
-				<span class="error">
-					{% for error in userform.confirmpassword.errors %}
-						<br>{{ error }}<br>
-					{% endfor %}
-				</span>
-				<label for="{{ userform.confirmpassword.id_for_label }}">{% trans "Bevestig je wachtwoord" %}</label>
-				<input type="password" name="{{ userform.confirmpassword.html_name }}" id="{{ userform.confirmpassword.id_for_label }}" class="form-control" placeholder="{% trans 'Oh no, again again? *sigh*' %}" value="{{ userform.confirmpassword.value|default_if_none:'' }}" data-toggle="password">
-			</div>
 
 			<div class="form-group">
 				<span class="error">

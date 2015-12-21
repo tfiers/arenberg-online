@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load staticfiles %}
-{% block title %}{% trans "Ticketverkoop S P A C E" %}{% endblock title %}
+{% block title %}{% trans "Ticketverkoop" %}{% endblock title %}
 {% block custom_css_js %}
 <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
 <style type="text/css">
@@ -96,8 +96,7 @@
 
 <div class="col-sm-9 col-sm-offset-3 header">
     <div class="title">
-    	<h1>{% trans "SPACE" %}</h1>
-        <h2>{% trans "Ticketverkoop" %}</h2>
+    	<h1>{% trans "Ticketverkoop" %}</h1>
     </div>
     <a data-toggle="tooltip" title="{% trans 'Het aantal verkochte kaarten is telkens het aantal kaarten dat via de website is besteld, plus het aantal verkochte papieren kaarten die door de muzikanten online zijn geregistreerd.' %}"><span class="glyphicon glyphicon-info-sign"></span></a>
 </div>
@@ -111,11 +110,6 @@
         {% trans "Vrijdag" %}<br>
         <span class="large-number">{{num_vr}}</span>
     </p>
-    <p class="figures">
-        {% trans "Zaterdag" %}
-        <a data-toggle="tooltip" title="{% trans 'Dit zijn de kaarten die via onze website zijn besteld. De rest van de bestelde kaarten zijn via de cultuurraad van Zaventem verkocht.' %}"><span class="glyphicon glyphicon-info-sign"></span></a><br>
-		<span class="medium-number">{{num_za}}</span>
-	</p>
 </div>
 
 <div class="col-sm-6 column">
@@ -150,17 +144,12 @@
 	{% blocktrans %}
 	<p id="text">Wil je die tellers mee omhooghelpen? <br>Verkoop onze concerten dan aan vrienden, familie en vage kenissen, en laat hen ..</p>
     <ul>
-    	<li>.. ofwel <a href="{{order_online}}">online tickets bestellen;</a></li>
+    	<li>.. ofwel online tickets bestellen;</li>
     	<li>.. ofwel papieren tickets van jou kopen.</li>
     </ul>
-	<p>Telkens je papieren tickets verkocht hebt, geef je dat hier even in:<br>
+	<p>Of gebruik een van onze omslag- of profielfoto's op Facebook voor pubiciteit!   :<br>
 	{% endblocktrans %}
-	<a href="{% url 'space_ticketing:register_sold_tickets' %}" class="btn btn-success" role="button">{% trans "Registreer verkochte papieren tickets" %}</a><br>
-	<a href="{% url 'space_ticketing:facebook_pictures' %}" class="btn btn-success" role="button">{% trans "Download omslag- en profielfoto's voor Facebook" %}</a><br>
-	<a href="{% url 'space_ticketing:space_posters' %}" class="btn btn-success" role="button">{% trans "Bekijk posters!" %}</a><br>
-	</p>
-	<p class="low">
-		{{user.first_name}} <em>({{user.email}})</em> &nbsp; – &nbsp; <a href="{% url 'logout' %}">{% trans "Afmelden" %}</a>
+	<a href="{% url 'ticketing:facebook_pictures' %}" class="btn btn-success" role="button">{% trans "Download omslag- en profielfoto's voor Facebook" %}</a><br>
 	</p>
 </div>
 

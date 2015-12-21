@@ -10,78 +10,8 @@
 
 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 	<h1>{% trans "Aanpassen van gebruikersinfo" %}</h1>
-	<p>Indien je een veld openlaat, blijft dat veld ongewijzigd. Wel moet je je huidige wachtwoord nog eens invoeren ter bevestiging indien je iets hebt aangepast.</p>
-		<form method='post' action="{% url 'edit' %}">
-			{% csrf_token %}
-
-			<div class="form-group">
-				<span class="error">
-					{% for error in UserFormUpdate.first_name.errors %}
-						{{ error }}<br>
-					{% endfor %}
-				</span>
-				<label for="{{ UserFormUpdate.first_name.id_for_label }}">{% trans "Je nieuwe voornaam" %}</label>
-				<input type="text" name="{{ UserFormUpdate.first_name.html_name }}" id="{{ UserFormUpdate.first_name.id_for_label }}" class="form-control" placeholder="{{request.user.first_name}}" value="{{ UserFormUpdate.first_name.value|default_if_none:'' }}">
-			</div>
-
-			<div class="form-group">
-				<span class="error">
-					{% for error in UserFormUpdate.last_name.errors %}
-							{{ error }}<br>
-					{% endfor %}
-				</span>
-				<label for="{{ UserFormUpdate.last_name.id_for_label }}">{% trans "Je nieuwe achternaam" %}</label>
-				<input type="text" name="{{ UserFormUpdate.last_name.html_name }}" id="{{ UserFormUpdate.last_name.id_for_label }}" class="form-control" placeholder="{{request.user.last_name}}" value="{{ UserFormUpdate.last_name.value|default_if_none:'' }}">
-			</div>
-
-			<div class="form-group">
-				<span class="error">
-					{% for error in UserFormUpdate.email.errors %}
-						{{ error }}<br>
-					{% endfor %}
-				</span>
-				<label for="{{ UserFormUpdate.email.id_for_label }}">{% trans "Je nieuwe e-mailadres" %}</label>
-				<input type="text" name="{{ UserFormUpdate.email.html_name }}" id="{{ UserFormUpdate.email.id_for_label }}" class="form-control" placeholder="{{request.user.email}}" value="{{ UserFormUpdate.email.value|default_if_none:'' }}">
-			</div>
-
-			<div class="form-group">
-				<span class="error">
-					{% for error in UserFormUpdate.password.errors %}
-						<br>{{ error }}<br>
-					{% endfor %}
-				</span>
-				<label for="{{ UserFormUpdate.password.id_for_label }}">{% trans "Je nieuwe wachtwoord" %}</label>
-				<input type="password" name="{{ UserFormUpdate.password.html_name }}" id="{{ UserFormUpdate.password.id_for_label }}" class="form-control" placeholder="{% trans 'datgaikhiernietzetten' %}" value="{{ UserFormUpdate.password.value|default_if_none:'' }}" data-toggle="password">
-			</div>
-
-			<div class="form-group">
-				<span class="error">
-					{% for error in UserProfileFormUpdate.groups.errors %}
-						{{ error }}<br>
-					{% endfor %}
-				</span>	
-				<label for="{{ UserProfileFormUpdate.groups.id_for_label }}">{% trans "Je nieuwe instrumentengroep(en)" %}</label>
-				<p> Je huidige groepen zijn: {{request.user.userprofile.groups_as_string}}.</p>
-				<select multiple name="{{ UserProfileFormUpdate.groups.html_name }}" id="{{ UserProfileFormUpdate.groups.id_for_label }}" class="form-control">
-					<option disabled value=""{% if UserProfileFormUpdate.groups.value == None %} selected="selected"{% endif %}><em>{% trans "– Kies instrumentengroep(en) –" %}</em></option>
-					{% for value, text in UserProfileFormUpdate.groups.field.choices %}
-					<option value="{{ value }}"{% if UserProfileFormUpdate.groups.value == value %} selected="selected"{% endif %}>{{ text }}</option>
-					{% endfor %}
-				</select>
-			</div>
-
-			<div class="form-group">
-				<span class="error">
-					{% for error in UserFormUpdate.old_password.errors %}
-						<br>{{ error }}<br>
-					{% endfor %}
-				</span>
-				<label for="{{ UserFormUpdate.old_password.id_for_label }}">{% trans "Je huidige wachtwoord (ter bevestiging)" %}</label>
-				<input type="password" name="{{ UserFormUpdate.old_password.html_name }}" id="{{ UserFormUpdate.old_password.id_for_label }}" class="form-control" placeholder="{% trans 'datgaikhiernietzetten' %}" value="{{ UserFormUpdate.old_password.value|default_if_none:'' }}" data-toggle="password">
-			</div>
-
-		    <input type="submit" value="{% trans 'Pas aan' %}" class="btn btn-primary">
-		</form>
+	<p></p>
+		
 </div>
 
 {% endblock content %}

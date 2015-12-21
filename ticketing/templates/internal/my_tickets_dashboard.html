@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load staticfiles %}
-{% block title %}{% trans "Ticketverkoop S P A C E" %}{% endblock title %}
+{% block title %}{% trans "Ticketverkoop" %}{% endblock title %}
 {% block custom_css_js %}
 <style type="text/css">
 	h1 {
@@ -42,7 +42,7 @@
 	{% endif %}
 
 	<div class="page-header">
-	  <h1>{% trans "Ticketing-overzicht" %} <small class="pull-right">{{user}}</small></h1>
+	  <h1>{% trans "Ticketing-overzicht" %} </h1>
 	</div>
 
 	{% if messages %}
@@ -133,7 +133,7 @@
 			{% else %}
 				<p><em>{% trans "(Nog geen)" %}</em></p>
 			{% endif %}
-			<a href="{% url 'space_ticketing:register_sold_tickets' %}" class="btn btn-success" role="button">{% trans "Registreer verkochte papieren kaarten" %}</a>
+			<a href="{% url 'ticketing:register_sold_tickets' %}" class="btn btn-success" role="button">{% trans "Registreer verkochte papieren kaarten" %}</a>
 		</div>
 	</div>
 
@@ -227,13 +227,9 @@
 			{% else %}
 				<p><em>{% trans "(Nog geen)" %}</em></p>
 			{% endif %}
-			<a href="{% url 'space_ticketing:space_landing' %}" class="btn btn-success" role="button">{% trans "Bestel online kaarten" %}</a>
+			<a href="{% url 'ticketing:snow_landing' %}" class="btn btn-success" role="button">{% trans "Bestel online kaarten" %}</a>
 		</div>
 	</div>
-
-	<p class="low">
-		{{user.first_name}} <em>({{user.email}})</em> &nbsp; – &nbsp; <a href="{% url 'logout' %}">{% trans "Afmelden" %}</a>
-	</p>
 </div>
 
 <script type="text/javascript">

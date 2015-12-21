@@ -19,7 +19,7 @@ class PosterForm(ModelForm):
 				  'count', 'hung_by', 'remarks', 'attachment_type']
 
 @login_required
-def add_space_poster(request):
+def add_poster(request):
 	if request.method == 'POST':
 		form = PosterForm(request.POST, instance=Poster(
 			entered_by=request.user, entered_on=datetime.now(utc),
@@ -31,16 +31,16 @@ def add_space_poster(request):
 			return HttpResponseRedirect(reverse('space_ticketing:space_posters'))
 	else:
 		form = PosterForm(initial={'hanging_date': datetime.now().strftime('%Y-%m-%d %H:%M')})
-	return render(request, 'add_space_poster.html', {'form': form})
+	return render(request, 'add_poster.html', {'form': form})
 
 @login_required
-def space_posters(request):
+def posters(request):
 	context = {}
 	context['posters'] = []
 	for poster in Poster.objects.all():
 		context['posters'].append(poster)
 	context['leaders'] = get_poster_leaders(request.user)
-	return render (request, 'space_posters.html', context)
+	return render (request, 'posters.html', context)
 
 def get_poster_leaders(current_user):
 	leaders = []
