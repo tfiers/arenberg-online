@@ -112,6 +112,11 @@ DATABASES = {
 #python manage.py compilemessages
 #that's it
 
+#specifies the current production
+#now only this variable has to be changed to:
+#- change the displayed posters to a new production, old ones still in database but not displayed by postermap views and templates
+CURRENT_PRODUCTION = "Snowman2016"
+
 # Default language, that will be used for requests without language prefix
 LANGUAGE_CODE = 'nl'
 
@@ -186,7 +191,7 @@ STATIC_ROOT = '/home/org/arenbergorkest/www/static'
 AUTH_USER_MODEL = 'core.User'
 
 LOGIN_URL = 'login' # Defined in urls.py
-LOGIN_REDIRECT_URL = 'change_password' # Defined in urls.py
+LOGIN_REDIRECT_URL = 'ticketing:snow_landing' # Defined in urls.py
 
 TEMPLATE_DIRS = (
     # Location for general templates not specific to an app:

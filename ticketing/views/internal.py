@@ -8,6 +8,7 @@ from datetime import date, datetime
 from pytz import utc
 from pprint import pformat
 from core.models import User
+from core.views import notapproved
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from ticketing.models import ( Order, Ticket, Performance, PriceCategory, 
@@ -17,22 +18,24 @@ from django.forms import ( Form, ChoiceField, IntegerField, NullBooleanField,
 from django.contrib import messages
 import django.utils.timezone as django_tz
 from django.db.models import Q
+from django.conf import settings #needed for automatisation, with settings.CURRENT_PRODUCTION
 
 @login_required
 def promo_dashboard(request):
-	do = Performance.objects.get(date__contains=date(2015,5,7))
-	vr = Performance.objects.get(date__contains=date(2015,5,8))
-	za = Performance.objects.get(date__contains=date(2015,5,9))
+	if not request.user.approved:
+		return HttpResponseRedirect(reverse('arenberg-online.core.views.notapproved'))
+	#AUTOMATISATION NEEDED, see comment at imports
+	concert1 = Performance.objects.get(short_name__contains="lente1")
+	concert2 = Performance.objects.get(short_name__contains="lente2")
 	data = {
-		'num_do' : Ticket.objects.filter(order__performance=do).count(),
-		'num_vr' : Ticket.objects.filter(order__performance=vr).count(),
-		'num_za' : Ticket.objects.filter(order__performance=za).count(),
+		'num_za' : Ticket.objects.filter(order__performance=concert1).count(),
+		'num_zo' : Ticket.objects.filter(order__performance=concert2).count(),
 		# 'num_by_musician_do' : Ticket.objects.filter(order__performance=do, order__standardmarketingpollanswer__referred_member=request.user).count(),
 		# 'num_by_musician_vr' : Ticket.objects.filter(order__performance=vr, order__standardmarketingpollanswer__referred_member=request.user).count(),
 	}
-	total_graph, thu_graph, fri_graph = [], [], []
-	total_tickets, thu_tickets, fri_tickets = 0, 0, 0
-	for order in sorted(Order.objects.exclude(performance=za), key=lambda o: o.creation_date):
+	total_graph, concert1_graph, concert2_graph = [], [], []
+	total_tickets, concert1_tickets, concert2_tickets = 0, 0, 0
+	for order in sorted(Order.objects.filter(performance__in=(concert1,concert2)),key=lambda o: o.creation_date):
 		total_tickets += order.num_tickets()
 		total_graph.append({
 			'timestamp': to_timestamp(order.creation_date),
@@ -40,25 +43,25 @@ def promo_dashboard(request):
 			'total_tickets': total_tickets,
 			'order': order,
 		})
-		if order.performance == do:
-			thu_tickets += order.num_tickets()
-			thu_graph.append({
+		if order.performance == concert1:
+			concert1_tickets += order.num_tickets()
+			sat_graph.append({
 				'timestamp': to_timestamp(order.creation_date),
 				'num_new_tickets': order.num_tickets(),
-				'total_tickets': thu_tickets,
+				'total_tickets': sat_tickets,
 				'order': order,
 			})
-		elif order.performance == vr:
-			fri_tickets += order.num_tickets()
-			fri_graph.append({
+		elif order.performance == concert2:
+			concert2_tickets += order.num_tickets()
+			sun_graph.append({
 				'timestamp': to_timestamp(order.creation_date),
 				'num_new_tickets': order.num_tickets(),
-				'total_tickets': fri_tickets,
+				'total_tickets': sun_tickets,
 				'order': order,
 			})
 	data['total_graph'] = total_graph
-	data['thu_graph'] = thu_graph
-	data['fri_graph'] = fri_graph
+	data['concert1_graph'] = concert1_graph
+	data['concert2_graph'] = concert2_graph
 
 	user_totals = []
 	for user in User.objects.all():
@@ -84,9 +87,6 @@ def facebook_pictures(request):
 def my_tickets_dashboard(request):
 	data = {}
 
-	transport_chosen = (ZaventemTransport.objects.filter(musician=request.user).count() > 0)
-	data['display_CTA'] = not transport_chosen
-
 	data['ticket_distributions'] = \
 		GivenPaperTickets.objects.filter(given_to=request.user)
 	data['total_tickets_given'] = \
@@ -107,8 +107,8 @@ def my_tickets_dashboard(request):
 	return render(request, 'internal/my_tickets_dashboard.html', data)
 
 performances = (
-	('do', _('Donderdag 7 mei')),
-	('vr', _('Vrijdag 8 mei')),
+	('za', _('Zaterdag 20 februari')),
+	('zo', _('Zondag 14 februari')),
 )
 
 class ReportedSaleForm(Form):
@@ -150,8 +150,8 @@ def parse_form_data(form):
 	return data
 
 def persist_data(data, user):
-	day_mapping = {'do': 7, 'vr': 8} # ..th of May
-	performance = Performance.objects.get(date__contains=date(2015,5,day_mapping[data['performance']]))
+	short_name_mapping = {'za': Snowman2016_2, 'zo': Snowman2016_1} 
+	performance = Performance.objects.get(short_name__contains=short_name_mapping['performance'])
 		
 	order = Order.objects.create(
 		performance = performance,

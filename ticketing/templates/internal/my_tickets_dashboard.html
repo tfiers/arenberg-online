@@ -37,10 +37,6 @@
 {% block content %}
 <div class="col-sm-6 col-sm-offset-3">
 
-	{% if display_CTA %}
-		<p><a href="{% url 'zaventem_transport_poll' %}" class="btn btn-warning" role="button">{% trans "Kies vervoer voor Zaventem" %}</a><br>
-	{% endif %}
-
 	<div class="page-header">
 	  <h1>{% trans "Ticketing-overzicht" %} </h1>
 	</div>
@@ -133,7 +129,7 @@
 			{% else %}
 				<p><em>{% trans "(Nog geen)" %}</em></p>
 			{% endif %}
-			<a href="{% url 'ticketing:register_sold_tickets' %}" class="btn btn-success" role="button">{% trans "Registreer verkochte papieren kaarten" %}</a>
+			<a href="{% url 'ticketing:register_sold_tickets' %}" class="btn btn-danger" role="button">{% trans "Registreer verkochte papieren kaarten" %}</a>
 		</div>
 	</div>
 
@@ -227,7 +223,7 @@
 			{% else %}
 				<p><em>{% trans "(Nog geen)" %}</em></p>
 			{% endif %}
-			<a href="{% url 'ticketing:snow_landing' %}" class="btn btn-success" role="button">{% trans "Bestel online kaarten" %}</a>
+			<a href="{% url 'ticketing:snow_landing' %}" class="btn btn-danger" role="button">{% trans "Bestel online kaarten" %}</a>
 		</div>
 	</div>
 </div>

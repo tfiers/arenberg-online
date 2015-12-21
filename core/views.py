@@ -25,9 +25,10 @@ def register(request):
         uf = UserForm(request.POST, prefix='user')
         upf = UserProfileForm(request.POST, prefix='userprofile')
         if uf.is_valid() * upf.is_valid():
-            user = uf.saveTotal()
+            user = uf.save()
             userprofile = upf.save(commit=False)
             userprofile.associated_user = user #adds the created as associated user for the userprofile
+            userprofile.last_password_change = datetime.now(utc) #setting last password change
             userprofile.save()
             userprofile.groups = upf.cleaned_data["groups"] #adds the groups. doesn't save because it's a m2m relationship. other options: using super() or save_m2m()
             #TODO: send email here, is also commented out in thanks.html
@@ -115,6 +116,9 @@ def contact(request):
 def home(request):
 	return render(request, 'Arenbergorkest.htm')
 
+def notapproved(request):
+    return render(request, 'registration/notapproved.html')
+
 @login_required
 def calendar(request):
     if not request.user.approved:
@@ -123,25 +127,33 @@ def calendar(request):
 	   return render(request, 'calendar.html')
 
 @login_required
+def activities(request):
+    if not request.user.approved:
+        return render(request, 'registration/notapproved.html')
+    else: #valueerror (calendar returned None instead of httprespons object) if this else is removed
+       return render(request, 'activities.html')
+
+
+@login_required
 def logout(request):
     return render(request, 'registration/thanks_logout.html')
 
-@csrf_protect
-@login_required
-def change_default_password(request):
-	if check_password(settings.DEFAULT_NEW_PASSWORD, request.user.password):
-		# User hasn't changed his default password yet.
-		if request.method == 'POST':
-			form = SetPasswordForm(user=request.user, data=request.POST)
-			if form.is_valid():
-				return HttpResponseRedirect(reverse('pass_changed'))
-		else:
-			form = SetPasswordForm(user=request.user)
+# @csrf_protect
+# @login_required
+# def change_default_password(request):
+# 	if check_password(settings.DEFAULT_NEW_PASSWORD, request.user.password):
+# 		# User hasn't changed his default password yet.
+# 		if request.method == 'POST':
+# 			form = SetPasswordForm(user=request.user, data=request.POST)
+# 			if form.is_valid():
+# 				return HttpResponseRedirect(reverse('pass_changed'))
+# 		else:
+# 			form = SetPasswordForm(user=request.user)
 			
-		return render(request, 'registration/password_set_form.html', {'form': form, 'default_pass': settings.DEFAULT_NEW_PASSWORD})
-	else:
-		return HttpResponseRedirect(reverse('wie'))
+# 		return render(request, 'registration/password_set_form.html', {'form': form, 'default_pass': settings.DEFAULT_NEW_PASSWORD})
+# 	else:
+# 		return HttpResponseRedirect(reverse('wie'))
 
-@login_required
-def password_set(request):
-	return render(request, 'registration/pass_changed.html')
+# @login_required
+# def password_set(request):
+# 	return render(request, 'registration/pass_changed.html')

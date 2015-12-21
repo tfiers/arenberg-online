@@ -4,7 +4,9 @@ from django.db.models import ( Model, FloatField, ForeignKey,
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from core.models import User
+from ticketing.models import Production
 from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
 
 class Poster(Model):
 	latitude = FloatField()
@@ -13,6 +15,7 @@ class Poster(Model):
 	for_what = GenericForeignKey('for_what_type', 'for_what_id')
 	for_what_type = ForeignKey(ContentType)
 	for_what_id = PositiveSmallIntegerField()
+	production = ForeignKey(Production)
 	location_name = CharField(max_length=400, blank=True)
 	count = PositiveSmallIntegerField(default=1)
 	hung_by = ManyToManyField(User, blank=True, related_name='hung_posters')

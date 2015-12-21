@@ -71,8 +71,8 @@ a[data-toggle="tooltip"] {
 {% block content %}
 
 <div class="center">
-	<h1>{% trans "Posterlocaties" %}</h1>
-	<a href="{% url 'ticketing:add_poster' %}" class="btn btn-success" role="button">{% trans "Voeg poster toe" %}</a>
+	<h1>{% trans "Posters" %} {{production}}</h1>
+	<a href="{% url 'ticketing:add_poster' %}" class="btn btn-danger" role="button">{% trans "Voeg poster toe" %}</a>
 </div>
 <div id="map-canvas"></div>
 <div class="center">
