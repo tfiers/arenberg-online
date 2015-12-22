@@ -113,9 +113,8 @@ DATABASES = {
 #that's it
 
 #specifies the current production
-#now only this variable has to be changed to:
-#- change the displayed posters to a new production, old ones still in database but not displayed by postermap views and templates
-CURRENT_PRODUCTION = "Lente2016"
+#included for future automatisation of ticketing, needed for poster
+CURRENT_PRODUCTION = "lente2016"
 
 # Default language, that will be used for requests without language prefix
 LANGUAGE_CODE = 'nl'

@@ -18,7 +18,7 @@ def new_semester(request):
 		# to the database.
 		if form.is_valid():
 			answer = NewSemester.objects.create(
-				# user = request.user,
+				user = request.user,
 				plans = form.cleaned_data['plans_input'],
 				next_semester = form.cleaned_data['next_semester_input'],
 				engage = form.cleaned_data['engage_input'],

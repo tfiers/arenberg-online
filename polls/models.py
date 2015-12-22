@@ -15,7 +15,7 @@ class PollAnswer(Model):
 		super(PollAnswer, self).save(*args, **kwargs)
 
 class NewSemester(Model):
-	# user = OneToOneField(User)
+	user = OneToOneField(User,null=True) #user is added automatically in views, so it isn't a big problem, but this is a quick dirty fix: null should be False
 	plans = TextField(blank=True)
 	next_semester = BooleanField(default=False)
 	engage = BooleanField(default=False)
