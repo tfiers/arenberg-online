@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load staticfiles %}
-{% block title %}{% trans "Ticketverkoop" %}{% endblock title %}
+{% block title %}{% trans "Mijn verkochte tickets" %}{% endblock title %}
 {% block custom_css_js %}
 <style type="text/css">
 	h1 {
-		font-family: 'Lato', sans-serif;
+		font-family: sans-serif;
 	}
 	.page-header h1 {
 		margin-bottom: 0;
@@ -38,7 +38,7 @@
 <div class="col-sm-6 col-sm-offset-3">
 
 	<div class="page-header">
-	  <h1>{% trans "Ticketing-overzicht" %} </h1>
+	  <h1>{% trans "Mijn verkochte tickets" %} </h1>
 	</div>
 
 	{% if messages %}

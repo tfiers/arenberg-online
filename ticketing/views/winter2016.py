@@ -19,14 +19,15 @@ def landing(request):
 	return render(request, 'snowman2016/landing.html')
 
 performances = (
-	 ('zo', _('Zondag 14 februari - om 17u00 in Aula Pieter De Somer, Leuven')),
-	 ('za', _('Zaterdag 20 februari - om 17u00 in AMUZ, Antwerpen')),
+	 ('za1', _('Zaterdag 13 februari - om 17u00 in Aula Pieter De Somer, Leuven')),
+	 ('za2', _('Zaterdag 13 februari - om 18u30 in Aula Pieter De Somer, Leuven')),
 )
 
 class SpaceTicketingForm_1(Form):
 	performance = ChoiceField(required=True, choices=performances)
-	num_volwassenen_tickets = IntegerField(required=False, min_value=0)
-	num_kinderen_tickets = IntegerField(required=False, min_value=0)
+	num_culture_card_tickets = IntegerField(required=False, min_value=0)
+	num_student_tickets = IntegerField(required=False, min_value=0)
+	num_non_student_tickets = IntegerField(required=False, min_value=0)
 	first_name = CharField(required=True)
 	last_name = CharField(required=True)
 	email = EmailField(required=True)
@@ -68,7 +69,7 @@ def parse_form_data(form):
 
 
 def persist_data(data):
-	name_mapping = {'zo': 'Snowman2016_1', 'za': 'Snowman2016_2'} 
+	name_mapping = {'za1': 'Snowman2016_1', 'za2': 'Snowman2016_2'} 
 	performance = Performance.objects.get(short_name__contains=name_mapping[data['performance']])
 		
 	order = Order.objects.create(
@@ -137,6 +138,6 @@ class MultipageTicketingForm(SessionWizardView):
 		form_data.update(form_dict['complete_order'].cleaned_data)
 		data = parse_form_data(form_data)
 		persist_data(data)
-		# email_user(data)
+		email_user(data)
 		# email_admin(data)
 		return render_to_response('snowman2016/thanks.html', data)

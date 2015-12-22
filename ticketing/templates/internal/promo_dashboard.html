@@ -9,16 +9,21 @@
 		margin-bottom: 65px;
     }
     .header .title {
-        font-family: 'Lato';
         letter-spacing: 0.00em;
         word-spacing: 0.25em;
         line-height: 1.8em;
+    }
+    #explanation {
+        letter-spacing: 0.00em;
+        word-spacing: 0.00em;
+        line-height: 0.0em;
+        margin-bottom: -20px;
     }
     .header h1 {
         font-size: 60px;
         letter-spacing: 0.05em;
         font-weight: bolder;
-        margin-bottom: 25px;
+        margin-bottom: 10px;
     }
     .header h2 {
         font-size: 30px;
@@ -43,7 +48,7 @@
 		line-height: 0.8em;
 	}
 	.chart {
-		margin-top: 30px;
+		margin-top: 10px;
 		max-width: 600px;
 	}
 	p .figures {
@@ -61,7 +66,7 @@
 		margin-bottom: 0;
 	}
 	#text {
-		margin-top: 60px;
+		margin-top: -25px;
 	}
 	a[data-toggle="tooltip"] {
 		font-size: 12px;
@@ -101,7 +106,7 @@
 <div class="col-sm-9 col-sm-offset-3 header">
     <div class="title">
     	<h1>{% trans "Ticketverkoop" %}</h1>
-            <a data-toggle="tooltip" title="{% trans 'Het aantal verkochte kaarten is telkens het aantal kaarten dat via de website is besteld, plus het aantal verkochte papieren kaarten die door de muzikanten online zijn geregistreerd.' %}"><span class="glyphicon glyphicon-info-sign"></span></a>
+        <p id="explanation">{% trans 'Het aantal verkochte kaarten is telkens het aantal kaarten dat via de website is besteld, plus het aantal verkochte papieren kaarten die door de muzikanten online zijn geregistreerd.' %}</p>
     </div>
 
 </div>
@@ -112,12 +117,13 @@
         <span class="large-number">{{num_do}}</span>
     </p>
     <p class="figures">
-        {% trans "Vrijdag" %}<br>
-        <span class="large-number">{{num_vr}}</span>
+        {% trans "Zondag" %}<br>
+        <span class="large-number">{{num_zo}}</span>
     </p>
 </div>
 
 <div class="col-sm-6 column">
+
 	<div role="tabpanel" id="tabs">
 		<!-- Nav tabs -->
 		<ul id="pill" class="nav nav-pills" role="tablist">
@@ -131,6 +137,7 @@
 			<div role="tabpanel" class="tab-pane fade in active" id="tab-thu"><div class="chart" id="chart-thu"></div></div>
 			<div role="tabpanel" class="tab-pane fade" id="tab-fri"><div class="chart" id="chart-fri"></div></div>
 			<div role="tabpanel" class="tab-pane fade" id="tab-total"><div class="chart" id="chart-total"></div></div>
+
 		</div>
 	</div>
 </div>
@@ -143,7 +150,7 @@
     {% endfor %}
     </ol>
 </div>
-
+    
 <div class="col-sm-9 col-sm-offset-3">
 	{% url 'space_ticketing:space_landing' as order_online %}
 	{% blocktrans %}
@@ -152,12 +159,13 @@
     	<li>.. ofwel online tickets bestellen;</li>
     	<li>.. ofwel papieren tickets van jou kopen.</li>
     </ul>
-	<p>Of gebruik een van onze omslag- of profielfoto's op Facebook voor pubiciteit!   :<br>
+	<p>Of gebruik een van onze omslag- of profielfoto's op Facebook voor pubiciteit!<br>
 	{% endblocktrans %}
 	<a href="{% url 'ticketing:facebook_pictures' %}" class="btn btn-danger" role="button">{% trans "Download omslag- en profielfoto's voor Facebook" %}</a><br>
 	</p>
 </div>
 
+    
 <script type="text/javascript">
 $(function () {
 	$('[data-toggle="tooltip"]').tooltip();

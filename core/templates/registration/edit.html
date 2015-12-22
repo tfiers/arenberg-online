@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load staticfiles %}
-{% block title %}{% trans "Edit info" %}{% endblock title %}
+{% block title %}{% trans "Wijzig gebruikersinfo" %}{% endblock title %}
 {% block custom_css_js %}
 <link rel="stylesheet" href="{% static 'registration/style.css' %}">
 <script src="{% static 'site-wide/bootstrap-show-password.min.js' %}"></script>
@@ -9,9 +9,78 @@
 {% block content %}
 
 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-	<h1>{% trans "Aanpassen van gebruikersinfo" %}</h1>
-	<p></p>
-		
+	<h1>{% trans "Wijzig je gebruikersinfo" %}</h1>
+	<p>{%trans "Je huidige gebruikersinfo (behalve je groepen) is automatisch ingevuld. Duid je groepen aan, Pas aan wat je wil veranderen en dien in." %}</p>
+		<form method='post' encrypt="multipart/form-data" action="{% url 'edit' %}">
+			{% csrf_token %}
+
+			<div class="form-group">
+				<span class="error">
+					{% for error in userform.first_name.errors %}
+						{{ error }}<br>
+					{% endfor %}
+				</span>
+			{% for hidden in form.hidden_fields %}
+    			{{ hidden }}
+			{% endfor %}
+				<label for="{{ userform.first_name.id_for_label }}">{% trans "Je voornaam" %}</label>
+				<input type="text" name="{{ userform.first_name.html_name }}" id="{{ userform.first_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Ana' %}" value="{{ userform.first_name.value|default_if_none:'' }}">
+			</div>
+
+			<div class="form-group">
+				<span class="error">
+					{% for error in userform.last_name.errors %}
+							{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ userform.last_name.id_for_label }}">{% trans "Je achternaam" %}</label>
+				<input type="text" name="{{ userform.last_name.html_name }}" id="{{ userform.last_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Banana' %}" value="{{ userform.last_name.value|default_if_none:'' }}">
+			</div>
+
+			<div class="form-group">
+				<span class="error">
+					{% for error in userform.email.errors %}
+						{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ userform.email.id_for_label }}">{% trans "Je e-mailadres" %}</label>
+				<input type="text" name="{{ userform.email.html_name }}" id="{{ userform.email.id_for_label }}" class="form-control" placeholder="{% trans 'bv. anabanana@fruit.org' %}" value="{{ userform.email.value|default_if_none:'' }}">
+			</div>
+
+			<div class="form-group">
+				<span class="error">
+					{% for error in userprofileform.groups.errors %}
+						{{ error }}<br>
+					{% endfor %}
+				</span>	
+				<label for="{{ userprofileform.groups.id_for_label }}">{% trans "Je instrumentengroep(en), ctrl + click om meerdere te selecteren" %}</label>
+				<select multiple name="{{ userprofileform.groups.html_name }}" id="{{ userprofileform.groups.id_for_label }}" class="form-control">
+					<option disabled value=""{% if userprofileform.groups.value == None %} selected="selected"{% endif %}><em>{% trans "– Kies instrumentengroep(en) –" %}</em></option>
+					{% for value, text in userprofileform.groups.field.choices %}
+					<option value="{{ value }}"{% if userprofileform.groups.value == value %} selected="selected"{% endif %}>{{ text }}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+
+			<hr>
+			<hr>
+
+			<div class="form-group">
+				<span class="error">
+					{% for error in userform.password2.errors %}
+						<br>{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ userform.password2.id_for_label }}">{% trans "Je huidige wachtwoord ter bevestiging" %}</label>
+				<input type="password" name="{{ userform.password2.html_name }}" id="{{ userform.password2.id_for_label }}" class="form-control" placeholder="{% trans 'bv. ikbenstiekemeenpeer' %}" value="{{ userform.password2.value|default_if_none:'' }}" data-toggle="password">
+			</div>
+
+
+		    <input type="submit" value="{% trans 'Pas aan' %}" class="btn btn-danger">
+
+		    <!-- <input type="hidden" name="next" value="{{ next }}"> -->
+		</form>
 </div>
 
 {% endblock content %}

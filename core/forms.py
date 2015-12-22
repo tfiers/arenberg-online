@@ -1,10 +1,14 @@
 from django import forms
 from django.contrib.auth.models import check_password
+from django.contrib.auth.models import User
 from models import *
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
+from core.models import Group
+from django.contrib.admin import widgets
+
 
 class DocumentForm(forms.Form):
     docfile = forms.FileField(
@@ -25,14 +29,12 @@ class UserForm(forms.ModelForm):
     email = forms.EmailField(label=_("e-mail"))
     email2 = forms.EmailField(label=_("e-mail opnieuw"))
 
-
     class Meta:
         model = User
         fields = ("first_name","last_name")
 
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
-        #self.fields['email'].widget.attrs.update({'autofocus': ''})
 
     def clean_email2(self):
         email1 = self.cleaned_data.get("email")
@@ -42,8 +44,7 @@ class UserForm(forms.ModelForm):
                 self.error_messages['email_mismatch'],
                 code='email_mismatch',
             )
-        #self.instance.email = self.cleaned_data.get('email')
-        #password_validation.validate_password(self.cleaned_data.get('password2'), self.instance) #password validation, like check whether >6 chars and such, cannot import it from auth, outdated django?
+
         return email2
 
     def clean_password2(self):
@@ -54,8 +55,6 @@ class UserForm(forms.ModelForm):
                 self.error_messages['password_mismatch'],
                 code='password_mismatch',
             )
-        #self.instance.email = self.cleaned_data.get('email')
-        #password_validation.validate_password(self.cleaned_data.get('password2'), self.instance) #password validation, like check whether >6 chars and such, cannot import it from auth, outdated django?
         return password2
 
     def save(self, commit=True):
@@ -66,13 +65,52 @@ class UserForm(forms.ModelForm):
             user.save()
         return user
 
-
-
 class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
         fields = ['groups']
         exclude = ['associated_user'] #excluded and added later in views.py
+    
+    error_css_class = 'error'
+
+class UserEdit(forms.ModelForm):
+
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super(UserEdit, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = User
+        fields = ("first_name","last_name","email")    
+
+    password2 = forms.CharField(
+        label=_("password2"),
+        widget=forms.PasswordInput(attrs={'autofocus': ''}),
+    )
+
+    def clean_password2(self):
+        """
+        Validates that the password2 field is correct.
+        """
+        password2 = self.cleaned_data["password2"]
+        if not self.user.check_password(password2):
+            raise forms.ValidationError(_("Your password was entered incorrectly. Please enter it again."))
+        return password2
+
+
+class UserProfileEdit(forms.ModelForm):
+
+    class Meta:
+        model = UserProfile
+        fields = ['groups']
+        exclude = ['associated_user'] #excluded and added later in views.py
+        widgets={'groups': forms.CheckboxSelectMultiple}
+
+    def __init__(self, user, *args, **kwargs):
+        self.user=user
+        super(UserProfileEdit, self).__init__(*args, **kwargs)
+
+    #groups = forms.ModelMultipleChoiceField(queryset=Group.objects.all(), widget=widgets.FilteredSelectMultiple("verbose name", is_stacked=False))
     
     error_css_class = 'error'

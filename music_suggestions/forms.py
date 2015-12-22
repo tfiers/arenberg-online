@@ -41,7 +41,7 @@ class SuggestPieceOfMusicForm(forms.Form):
 		'url_input',
 		'sheet_music_input',
 		FormActions(
-			Submit('submit', 'Stel voor', css_class="btn-success"),
+			Submit('submit', 'Stel voor', css_class="btn-danger"),
 		),
 
 	)

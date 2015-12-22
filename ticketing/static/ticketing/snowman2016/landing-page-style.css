@@ -1,15 +1,6 @@
 .footer {
-  position: absolute;
-  padding-bottom: 20px;
-  bottom: 0;
-  width: 100%;
-  height: 85vw;
 }
-html {
-  position: relative;
-  min-height: 100%;
-}
-body {
 
-  margin-bottom: 0vw;
+#header {
+	margin-bottom: -1500px;
 }

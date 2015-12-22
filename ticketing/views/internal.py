@@ -28,7 +28,7 @@ def promo_dashboard(request):
 	concert1 = Performance.objects.get(short_name__contains="lente1")
 	concert2 = Performance.objects.get(short_name__contains="lente2")
 	data = {
-		'num_za' : Ticket.objects.filter(order__performance=concert1).count(),
+		'num_do' : Ticket.objects.filter(order__performance=concert1).count(),
 		'num_zo' : Ticket.objects.filter(order__performance=concert2).count(),
 		# 'num_by_musician_do' : Ticket.objects.filter(order__performance=do, order__standardmarketingpollanswer__referred_member=request.user).count(),
 		# 'num_by_musician_vr' : Ticket.objects.filter(order__performance=vr, order__standardmarketingpollanswer__referred_member=request.user).count(),
@@ -45,18 +45,18 @@ def promo_dashboard(request):
 		})
 		if order.performance == concert1:
 			concert1_tickets += order.num_tickets()
-			sat_graph.append({
+			concert1_graph.append({
 				'timestamp': to_timestamp(order.creation_date),
 				'num_new_tickets': order.num_tickets(),
-				'total_tickets': sat_tickets,
+				'total_tickets': concert1_tickets,
 				'order': order,
 			})
 		elif order.performance == concert2:
 			concert2_tickets += order.num_tickets()
-			sun_graph.append({
+			concert2_graph.append({
 				'timestamp': to_timestamp(order.creation_date),
 				'num_new_tickets': order.num_tickets(),
-				'total_tickets': sun_tickets,
+				'total_tickets': concert2_tickets,
 				'order': order,
 			})
 	data['total_graph'] = total_graph

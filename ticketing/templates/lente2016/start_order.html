@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Lenteconcerten Arenbergorkest" %}{% endblock title %}
+{% block custom_css_js %}
+<link rel="stylesheet" href="{% static 'ticketing/lente2016/style.css' %}">
+<link rel="stylesheet" href="{% static 'ticketing/lente2016/style-landscape-tablet-and-larger.css' %}" media="(min-width: 992px)">
+{% endblock custom_css_js %}
+{% block content %}
+<div id="header">
+	<div class="container">
+		<h2 id="title-arenbergorkest" class="caps">{% trans "Arenbergorkest" %}</h2>
+		<h2 id="title-conductor" class="caps">{% trans "olv Roel Willems" %}</h2>
+		<h1 id="title-space" class="caps">{% trans "Lenteconcerten" %}</h1>
+	</div>
+</div>  
+<div class="container">
+	<form action="" method="post">
+		<h1>{% trans "Tickets bestellen" %}</h1>
+		{{ wizard.management_form }}
+		{% csrf_token %}
+		<div class="form-group{% if form.performance.errors %} has-error{% endif %}">
+			<label for="{{ form.performance.id_for_label }}">{% trans "Voor welk concert wil je tickets bestellen?" %}</label>
+				<select name="{{ form.performance.html_name }}" id="{{ form.performance.id_for_label }}" class="form-control">
+				<option disabled value=""{% if form.performance.value == None %} selected="selected"{% endif %}><em>{% trans "– Kies concert –" %}</em></option>
+				{% for value, text in form.performance.field.choices %}
+				<option value="{{ value }}"{% if form.performance.value == value %} selected="selected"{% endif %}>{{ text }}</option>
+				{% endfor %}
+			</select>
+			<span class="help-block">
+			{% for error in form.performance.errors %}
+				<br>{{ error }}
+			{% endfor %}
+			</span>
+		</div>
+		<br>
+		<div id="num_tickets">
+			<div id="leuven">
+				<p>{% trans "Hoeveel tickets wil je bestellen voor ..." %}</p>
+				<div class="form-group{% if form.num_student_tickets.errors %} has-error{% endif %}">
+					<label for="{{ form.num_student_tickets.id_for_label }}">{% trans "Studenten" %} (€5)</label>
+					<input type="number" name="{{ form.num_student_tickets.html_name }}" id="{{ form.num_student_tickets.id_for_label }}" class="form-control" min="0" step="1" value="{{ form.num_student_tickets.value|default_if_none:'0' }}">
+					<span class="help-block">
+					{% for error in form.num_student_tickets.errors %}
+						{{ error }}<br>
+					{% endfor %}
+					</span>
+				</div>
+				<div class="form-group{% if form.num_culture_card_tickets.errors %} has-error{% endif %}">
+					<label for="{{ form.num_culture_card_tickets.id_for_label }}">{% trans "Studenten met cultuurkaart" %} (€4)</label>
+					<input type="number" name="{{ form.num_culture_card_tickets.html_name }}" id="{{ form.num_culture_card_tickets.id_for_label }}" class="form-control" min="0" step="1" value="{{ form.num_culture_card_tickets.value|default_if_none:'0' }}">
+					<span class="help-block">
+					{% for error in form.num_cultue_card_tickets.errors %}
+						{{ error }}<br>
+					{% endfor %}
+					</span>
+				</div>
+				<div class="form-group{% if form.num_non_student_tickets.errors %} has-error{% endif %}">
+					<label for="{{ form.num_non_student_tickets.id_for_label }}">{% trans "Niet-studenten" %} (€9)</label>
+					<input type="number" name="{{ form.num_non_student_tickets.html_name }}" id="{{ form.num_non_student_tickets.id_for_label }}" class="form-control" min="0" step="1" value="{{ form.num_non_student_tickets.value|default_if_none:'0' }}">
+					<span class="help-block">
+					{% for error in form.num_non_student_tickets.errors %}
+						{{ error }}<br>
+					{% endfor %}
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="form-group{% if form.first_name.errors %} has-error{% endif %}">
+			<label for="{{ form.first_name.id_for_label }}">{% trans "Je naam" %}</label>
+			<input type="text" name="{{ form.first_name.html_name }}" id="{{ form.first_name.id_for_label }}" class="form-control" placeholder="{% trans 'Voornaam' %}" value="{{ form.first_name.value|default_if_none:'' }}">
+			<span class="help-block">
+			{% for error in form.first_name.errors %}
+				{{ error }}<br>
+			{% endfor %}
+			</span>
+		</div>
+		<div class="form-group{% if form.last_name.errors %} has-error{% endif %}">
+			<input type="text" name="{{ form.last_name.html_name }}" id="{{ form.last_name.id_for_label }}" class="form-control" placeholder="{% trans 'Achternaam' %}" value="{{ form.last_name.value|default_if_none:'' }}">
+			<span class="help-block">
+			{% for error in form.last_name.errors %}
+				{{ error }}<br>
+			{% endfor %}
+			</span>
+		</div>
+		<div class="form-group{% if form.email.errors %} has-error{% endif %}">
+			<label for="{{ form.email.id_for_label }}">{% trans "Je e-mailadres" %}</label>
+			<input type="email" name="{{ form.email.html_name }}" id="{{ form.email.id_for_label }}" class="form-control" placeholder="{% trans 'E-mailadres' %}" value="{{ form.email.value|default_if_none:'' }}">
+			<span class="help-block">
+			{% for error in form.email.errors %}
+				{{ error }}<br>
+			{% endfor %}
+			</span>
+		</div>
+		<input type="submit" name="submit" value="{% trans 'Ga verder' %}"class="btn btn-danger">
+	</form>
+</div>
+<script>
+	only_show_relevant_num_inputs(0);
+	$('#{{ form.performance.id_for_label }}').change(function() {
+		only_show_relevant_num_inputs(200);
+	})
+	function only_show_relevant_num_inputs(animation_time) {
+		opt = $('#{{ form.performance.id_for_label }}').val();
+		if (opt == "") {
+			$('#num_tickets').hide(animation_time);
+		} 
+		else {
+			$('#num_tickets').show(animation_time);
+			$('#leuven').show(animation_time);
+			
+		}
+	}
+</script>
+{% endblock content %}

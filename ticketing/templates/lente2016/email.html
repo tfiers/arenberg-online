@@ -1,0 +1,53 @@
+{% extends "email_base.html" %}
+{% load i18n %}
+
+{% block header_img_url %}{% endblock header_img_url %}
+
+{% block subject %}{% trans "Bestelling tickets Lenteconcert Arenbergorkest" %}{% endblock subject %}
+
+{% block content %}
+	
+		<p><strong>{% blocktrans %}Beste {{ first_name }} {{ last_name }},{% endblocktrans %}</strong></p>
+		<br>
+		<div id="content">
+			{% blocktrans %}
+			<p>Bedankt om tickets te bestellen voor de Lenteconcerten van het Arenbergorkest!</p>
+			<p>Dit is je bestelling:</p>
+			{% endblocktrans %}
+			
+			{% if performance == "za" %}
+				<p>
+					{% blocktrans %}<strong>{{ total_tickets }}</strong> tickets voor samen <strong>€ {{ total_price }}</strong>.{% endblocktrans %}
+				</p>
+			{% else %}
+				<p>
+					{% blocktrans with ttplural=total_tickets|pluralize%}
+					In totaal <strong>{{ total_tickets }}</strong> ticket{{ ttplural }} (Studenten met cultuurkaart: {{ num_cult_tickets }}, studenten zonder cultuurkaart: {{ num_stud_tickets }}, niet-studenten: {{ num_niet_tickets }})<br>{% endblocktrans %}
+					{% trans "Voor" %} {% if total_tickets > 1 %}{% trans "samen" %} {% endif %}<strong>€ {{ total_price }}</strong>.
+				</p>
+			{% endif %}
+			<p>
+				{% blocktrans %}Voor het concert van <strong>{{ performance_full }}</strong>.<br>{% endblocktrans %}
+			</p>
+			<p>{% trans "Deze kaarten zullen klaarliggen op naam aan de kassa." %}</p>
+			<p>{% trans "Betalingswijze" %}: <strong>{{ payment_method_full|lower }}</strong>.</p>
+			{% if payment_method == "transfer" %}
+				{% blocktrans %}
+				<p>Gelieve <strong>€ {{ total_price }}</strong> over te schrijven op <br>
+				<strong>BE23 7330 2625 4391</strong><br>
+				met vermelding van <strong>"LENTE"</strong> en uw <strong>naam</strong>.</p>
+				{% endblocktrans %}
+			{% endif %}
+			{% if remarks != "" %}
+				<p>{% trans "Opmerkingen" %}:<br>
+				<strong>{{ remarks }}</strong>
+				</p>
+			{% endif %}
+		</div>
+		<br>
+		{% blocktrans %}
+		<p>Tot op het concert!</p>
+		<p>- Het Arenbergorkest</p>
+		{% endblocktrans %}
+
+{% endblock content %}

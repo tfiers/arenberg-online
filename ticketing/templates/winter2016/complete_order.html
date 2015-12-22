@@ -3,8 +3,8 @@
 {% load staticfiles %}
 {% block title %}{% trans "Snowman Concerten Arenbergorkest" %}{% endblock title %}
 {% block custom_css_js %}
-<link rel="stylesheet" href="{% static 'ticketing/snowman2016/style.css' %}">
-<link rel="stylesheet" href="{% static 'ticketing/snowman2016/style-landscape-tablet-and-larger.css' %}" media="(min-width: 992px)">
+<link rel="stylesheet" href="{% static 'ticketing/space/style.css' %}">
+<link rel="stylesheet" href="{% static 'ticketing/space/style-landscape-tablet-and-larger.css' %}" media="(min-width: 992px)">
 {% endblock custom_css_js %}
 {% block content %}
 <div id="header">
@@ -21,12 +21,20 @@
 		{% csrf_token %}
 		<div id="recap">
 			<p>{% trans "Dit is je voorlopige bestelling:" %}</p>
-				{% blocktrans with tt=first_form.total_tickets ttplural=first_form.total_tickets|pluralize v=first_form.num_volwassenen_tickets  k=first_form.num_kinderen_tickets %}
+			{% if first_form.performance == "za" %}
+				{% blocktrans with tt=first_form.total_tickets tp=first_form.total_price %}
 				<p>
-					In totaal <strong>{{tt}}</strong> ticket{{ttplural}} (volwassenen: {{v}}, kinderen: {{k}})<br>
+					<strong>{{tt}}</strong> tickets voor samen <strong>€ {{tp}}</strong>.
+				</p>
+				{% endblocktrans %}
+			{% else %}
+				{% blocktrans with tt=first_form.total_tickets ttplural=first_form.total_tickets|pluralize s=first_form.num_student_tickets  ns=first_form.num_non_student_tickets  cc=first_form.num_culture_card_tickets %}
+				<p>
+					In totaal <strong>{{tt}}</strong> ticket{{ttplural}} (studenten: {{s}}, niet-studenten: {{ns}}, KU Leuven cultuurkaarthouders: {{cc}})<br>
 					{% endblocktrans %}
 					{% trans "Voor" %} {% if first_form.total_tickets > 1 %}{% trans "samen" %} {% endif %}<strong>€ {{ first_form.total_price }}</strong>.
 				</p>
+			{% endif %}
 			{% blocktrans with p=first_form.performance_full fn=first_form.first_name ln=first_form.last_name e=first_form.email val=wizard.steps.first%}
 			<p>
 				Voor het concert van <strong>{{p}}</strong>.<br>
@@ -37,7 +45,7 @@
 			</p>
 			<p>
 				Klopt er iets niet? Dan kan je dat 
-				<button name="wizard_goto_step" type="submit" value="{{val}}" class="btn btn-danger">Aanpassen</button>
+				<button name="wizard_goto_step" type="submit" value="{{val}}" class="btn btn-danger">Aanpassen.</button>
 			</p>
 			<p>Als alles klopt, mag je het formulier hieronder verder invullen en je bestelling definitief bevestigen.</p>
 			{% endblocktrans %}
@@ -53,6 +61,7 @@
 					{{ error }}<br>
 				{% endfor %}
 				</span>
+				<p>{% trans "Voor het concert in Zaventem kan enkel via overschrijving worden betaald." %}</p>
 			</div>
 		{% else %}
 			{% comment %}
@@ -81,6 +90,7 @@
 					{{ error }}<br>
 				{% endfor %}
 				</span>
+				<p>{% trans "(Er kan niet meer via overschrijving betaald worden)." %}</p>
 			</div>
 		{% endif %}
 		<div class="form-group{% if form.marketing_feedback.errors %} has-error{% endif %}">

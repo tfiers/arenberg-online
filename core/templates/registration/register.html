@@ -83,7 +83,7 @@
 						{{ error }}<br>
 					{% endfor %}
 				</span>	
-				<label for="{{ userprofileform.groups.id_for_label }}">{% trans "Je instrumentengroep(en)" %}</label>
+				<label for="{{ userprofileform.groups.id_for_label }}">{% trans "Je instrumentengroep(en), ctrl + click om meerdere te selecteren" %}</label>
 				<select multiple name="{{ userprofileform.groups.html_name }}" id="{{ userprofileform.groups.id_for_label }}" class="form-control">
 					<option disabled value=""{% if userprofileform.groups.value == None %} selected="selected"{% endif %}><em>{% trans "– Kies instrumentengroep(en) –" %}</em></option>
 					{% for value, text in userprofileform.groups.field.choices %}

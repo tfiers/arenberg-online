@@ -19,14 +19,15 @@ def landing(request):
 	return render(request, 'snowman2016/landing.html')
 
 performances = (
-	 ('zo', _('Zondag 14 februari - om 17u00 in Aula Pieter De Somer, Leuven')),
-	 ('za', _('Zaterdag 20 februari - om 17u00 in AMUZ, Antwerpen')),
+	 ('do', _('Donderdag 5 mei - om 20u30 in Aula Pieter De Somer, Leuven')),
+	 ('zo', _('Zondag 8 mei - om 19u30 in Aula Pieter De Somer, Leuven')),
 )
 
 class SpaceTicketingForm_1(Form):
 	performance = ChoiceField(required=True, choices=performances)
-	num_volwassenen_tickets = IntegerField(required=False, min_value=0)
-	num_kinderen_tickets = IntegerField(required=False, min_value=0)
+	num_culture_card_tickets = IntegerField(required=False, min_value=0)
+	num_student_tickets = IntegerField(required=False, min_value=0)
+	num_non_student_tickets = IntegerField(required=False, min_value=0)
 	first_name = CharField(required=True)
 	last_name = CharField(required=True)
 	email = EmailField(required=True)
@@ -48,8 +49,9 @@ def parse_form_data(form):
 	data = {}
 	data['performance']              = form.get('performance', '')
 	data['performance_full']		 = dict(performances).get(data['performance'], '')
-	data['num_volwassenen_tickets'] = int(form.get('num_volwassenen_tickets', 0))
-	data['num_kinderen_tickets']      = int(form.get('num_kinderen_tickets', 0))
+	data['num_culture_card_tickets'] = int(form.get('num_culture_card_tickets', 0))
+	data['num_student_tickets']      = int(form.get('num_student_tickets', 0))
+	data['num_non_student_tickets']  = int(form.get('num_non_student_tickets', 0))
 	data['first_name']               = form.get('first_name', '')
 	data['last_name']                = form.get('last_name', '')
 	data['email']                    = form.get('email', '')
@@ -61,14 +63,13 @@ def parse_form_data(form):
 	data['remarks']                  = form.get('remarks', '')
 
 
-	data['total_tickets'] = data['num_kinderen_tickets'] + data['num_volwassenen_tickets'] 
-	data['total_price'] = 5*data['num_kinderen_tickets'] + 10*data['num_volwassenen_tickets']
-
+	data['total_tickets'] = data['num_culture_card_tickets'] + data['num_non_student_tickets'] + data['num_student_tickets'] 
+	data['total_price'] = 4*data['num_culture_card_tickets'] + 9*data['num_non_student_tickets'] + 5*data['num_student_tickets'] 
 	return data
 
 
 def persist_data(data):
-	name_mapping = {'zo': 'Snowman2016_1', 'za': 'Snowman2016_2'} 
+	name_mapping = {'do': 'lente1', 'zo': 'lente2'} 
 	performance = Performance.objects.get(short_name__contains=name_mapping[data['performance']])
 		
 	order = Order.objects.create(
@@ -91,26 +92,32 @@ def persist_data(data):
 		first_concert = data['first_concert'],
 	)
 
-	for i in range(data['num_kinderen_tickets']):
+	for i in range(data['num_culture_card_tickets']):
 		Ticket.objects.create(
 			order = order,
-			price_category = PriceCategory.objects.get(full_name="Kinderen", price=5),
+			price_category = PriceCategory.objects.get(short_name="cultuurkaart", price=4),
 		)
-	for i in range(data['num_volwassenen_tickets']):
+	for i in range(data['num_student_tickets']):
 		Ticket.objects.create(
 			order = order,
-			price_category = PriceCategory.objects.get(full_name="Volwassenen", price=10),
+			price_category = PriceCategory.objects.get(short_name="niet-student", price=9),
+		)
+
+	for i in range(data['num_non_student_tickets']):
+		Ticket.objects.create(
+			order = order,
+			price_category = PriceCategory.objects.get(short_name="student", price=5),
 		)
 
 def email_user(data):
-	subject = "Bestelling tickets 'Snowman' concert Arenbergorkest"
-	msg = render_to_string('snowman2016/email.html', data)
+	subject = "Bestelling tickets Lenteconcert Arenbergorkest"
+	msg = render_to_string('lente2016/email.html', data)
 	fromm = "Arenbergorkest <webapp@arenbergorkest.be>"
 	send_mail(subject, msg, fromm, [data['email']], html_message=msg)
 	send_mail(subject, msg, fromm, ['tomas.fiers@gmail.com'], html_message=msg)
 
 def email_admin(data):
-	subject = "Bestelling tickets 'Snowman' concert Arenbergorkest"
+	subject = "Bestelling tickets Lenteconcert Arenbergorkest"
 	msg = pformat(data)
 	fromm = "Arenbergorkest <webapp@arenbergorkest.be>"
 	send_mail(subject, msg, fromm, ['tomas.fiers@gmail.com'])
@@ -118,8 +125,8 @@ def email_admin(data):
 FORMS = [("start_order", SpaceTicketingForm_1),
 		 ("complete_order", SpaceTicketingForm_2)]
 
-TEMPLATES = {"start_order": "snowman2016/start_order.html",
-			 "complete_order": "snowman2016/complete_order.html"}
+TEMPLATES = {"start_order": "lente2016/start_order.html",
+			 "complete_order": "lente2016/complete_order.html"}
 
 class MultipageTicketingForm(SessionWizardView):
 	def get_template_names(self):
@@ -139,4 +146,4 @@ class MultipageTicketingForm(SessionWizardView):
 		persist_data(data)
 		# email_user(data)
 		# email_admin(data)
-		return render_to_response('snowman2016/thanks.html', data)
+		return render_to_response('lente2016/thanks.html', data)
