@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Lijst muzikanten" %}{% endblock title %}
+{% block custom_css_js %}
+<link rel="stylesheet" href="{% static 'registration/style.css' %}">
+<script src="{% static 'site-wide/bootstrap-show-password.min.js' %}"></script>
+{% endblock custom_css_js %}
+{% block content %}
+
+<div id="toofattable" class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+	<h1>{% trans "Muzikanten" %}</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Voornaam</th>
+					<th>Achternaam</th>
+					<th>E-mail</th>
+					<th>Groep(en)</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for m,p in musicians %}
+				<tr>
+					<td class="col-xs-1">{{ m.first_name }}</td>
+					<td class="col-xs-1">{{ m.last_name }}</td>
+					<td class="col-xs-1">{{ m.email }}</td>	
+					<td class="col-xs-3">{{ p.groups_as_string }}</td>	
+				</tr>
+				{% endfor %}	
+			</tbody>
+		</table>
+</div>
+
+{% endblock content %}

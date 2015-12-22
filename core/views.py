@@ -13,10 +13,9 @@ from datetime import datetime
 from pytz import utc
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
-from core.models import Document #needed for fileupload
-from core.forms import DocumentForm #needed for fileupload
-from forms import UserForm, UserProfileForm, UserEdit, UserProfileEdit #needed for registration
-from django.views.decorators.csrf import csrf_exempt
+from core.models import  User, UserProfile #needed for fileupload
+from forms import UserForm, UserProfileForm, UserEdit, UserProfileEdit #needed for registration and edit profile forms
+import gc
 
 @csrf_protect
 def register(request):
@@ -108,6 +107,21 @@ def activities(request):
     else: #valueerror (calendar returned None instead of httprespons object) if this else is removed
        return render(request, 'activities.html')
 
+@login_required
+def musicianlist(request):
+    if not request.user.approved:
+        return render(request, 'registration/notapproved.html')
+    #get all users, iterate over that query to 
+    us = []
+    uup = []
+    iterator = queryset_iterator(User.objects.all()) 
+    for u in iterator: 
+        us.append(u)
+        uup.append(u.userprofile)
+    zipped = zip(us,uup)
+    #ziet er nu zo uit (getest): [(<User: user1>, <UserProfile: User profile for user1>), (<User: user2>, <UserProfile: User profile for user2>),...]
+    return render(request, 'musicianlist.html', {'musicians': zipped})
+
 
 @login_required
 def logout(request):
@@ -126,10 +140,32 @@ def change_password(request):
             return HttpResponseRedirect(reverse('pass_changed'))
     else:
         form = PasswordChangeForm(user=request.user)
-        
     return render(request, 'registration/password_set_form.html', {'form': form})
 
 
 @login_required
 def password_set(request):
 	return render(request, 'registration/pass_changed.html')
+
+def queryset_iterator(queryset, chunksize=1000):
+    '''''
+    Iterate over a Django Queryset ordered by the primary key
+
+    This method loads a maximum of chunksize (default: 1000) rows in it's
+    memory at the same time while django normally would load all rows in it's
+    memory. Using the iterator() method only causes it to not preload all the
+    classes.
+
+    Note that the implementation of the iterator does not support ordered query sets.
+
+    Example:
+    my_queryset = queryset_iterator(MyItem.objects.all()) for item in my_queryset: item.do_something()
+    '''
+    pk = 0
+    last_pk = queryset.order_by('-pk')[0].pk
+    queryset = queryset.order_by('pk')
+    while pk < last_pk:
+        for row in queryset.filter(pk__gt=pk)[:chunksize]:
+            pk = row.pk
+            yield row
+        gc.collect()
