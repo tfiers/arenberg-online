@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from ticketing.views import internal, snowman2016, lente2016, winter2016
+from ticketing.views import internal, snowman2016, lente2016
 from postermap.views import add_poster, posters
 from django.views.generic import RedirectView
 
