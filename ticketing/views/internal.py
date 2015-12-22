@@ -25,8 +25,8 @@ def promo_dashboard(request):
 	if not request.user.approved:
 		return HttpResponseRedirect(reverse('arenberg-online.core.views.notapproved'))
 	#AUTOMATISATION NEEDED, see comment at imports
-	concert1 = Performance.objects.get(short_name__contains="lente1")
-	concert2 = Performance.objects.get(short_name__contains="lente2")
+	concert1 = Performance.objects.get(short_name__contains="lente2016_1")
+	concert2 = Performance.objects.get(short_name__contains="lente2016_2")
 	data = {
 		'num_do' : Ticket.objects.filter(order__performance=concert1).count(),
 		'num_zo' : Ticket.objects.filter(order__performance=concert2).count(),
@@ -81,10 +81,14 @@ def to_timestamp(dt):
 
 @login_required
 def facebook_pictures(request):
+	if not request.user.approved:
+		return HttpResponseRedirect(reverse('notapproved'))
 	return render(request, 'internal/pictures.html', {})
 
 @login_required
 def my_tickets_dashboard(request):
+	if not request.user.approved:
+		return HttpResponseRedirect(reverse('notapproved'))
 	data = {}
 
 	data['ticket_distributions'] = \
@@ -124,6 +128,8 @@ class ReportedSaleForm(Form):
 
 @login_required
 def register_sold_tickets(request):
+	if not request.user.approved:
+		return HttpResponseRedirect(reverse('notapproved'))
 	if request.method == 'POST':
 		form = ReportedSaleForm(request.POST)
 		if form.is_valid():

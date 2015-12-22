@@ -88,7 +88,7 @@ class UserAdmin(django.contrib.auth.admin.UserAdmin):
             'fields': ('email', 'password1', 'password2'),
         }),
     )
-    list_display = ('email', 'first_name', 'last_name', 'is_staff', 'date_joined', 'last_login')
+    list_display = ('email', 'first_name', 'last_name', 'is_staff', 'approved', 'date_joined', 'last_login')
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('-date_joined',)
     change_form_template = 'loginas/change_form.html'

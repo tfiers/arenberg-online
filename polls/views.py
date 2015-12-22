@@ -10,6 +10,8 @@ def thanks(request):
 	return render(request, 'thanks.html')
 
 def new_semester(request):
+	if not request.user.approved:
+		return HttpResponseRedirect(reverse('notapproved'))
 	#prevents UNIQUE constraint failed by filling same form out twice
 	if NewSemester.objects.filter(user=request.user):
 		return HttpResponseRedirect(reverse('thanks'))
@@ -37,14 +39,14 @@ def new_semester(request):
 	response.content = response.content.replace("Submit form", (_("Gaan met die banaan")).encode('utf-8'))
 	return response
 
-@login_required
-def zaventem_transport(request):
-	if request.method == 'POST':
-		form = ZaventemTransportForm(request.POST, instance=ZaventemTransport(musician=request.user))
-		if form.is_valid():
-			form.save()
-			return HttpResponseRedirect(reverse('thanks'))
-	else:
-		form = ZaventemTransportForm()
+# @login_required
+# def zaventem_transport(request):
+# 	if request.method == 'POST':
+# 		form = ZaventemTransportForm(request.POST, instance=ZaventemTransport(musician=request.user))
+# 		if form.is_valid():
+# 			form.save()
+# 			return HttpResponseRedirect(reverse('thanks'))
+# 	else:
+# 		form = ZaventemTransportForm()
 
-	return render(request, 'zaventem_transport.html', {'form': form})
+# 	return render(request, 'zaventem_transport.html', {'form': form})
