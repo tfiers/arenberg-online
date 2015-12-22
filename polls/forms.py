@@ -12,14 +12,9 @@ from polls.models import ZaventemTransport
 
 class NewSemesterPoll(forms.Form):
 
-	name_input = forms.CharField(
-		label = _("Je naam"),
-		widget = forms.TextInput(
-			attrs={'placeholder': _("Voor & Achter")}),
-	)
-
 	plans_input = forms.CharField(
 	    label = _("Je plannen"),
+	    required = True,
 	    # Using the crispy-forms shortcut to specify the placeholder escapes the special characters twice.
 	    widget = forms.Textarea(
 	    	attrs={'placeholder': _('Tot wanneer plan je in het Arenbergorkest te spelen? ' \
@@ -46,15 +41,11 @@ class NewSemesterPoll(forms.Form):
 		Div(
 			Div(
 				HTML(_(u"<p>Volgend semester creëren we opnieuw een concertreeks voor in Leuven, " \
-						"met een sterk nieuw programma. In het tweede semester plannen " \
-						"we een samenwerking met het Gents Universitair Koor, met concerten " \
-						"in Leuven en in Gent. Om een goede bezetting te kunnen voorzien, " \
-						"vragen we je nu al naar je plannen.</p>")),
+						"met een sterk nieuw programma. Om een goede bezetting te kunnen garanderen vragen we nu al naar je plannen.</p>")),
 				css_class="col-sm-offset-3 col-sm-6",
 			),
 			css_class="form-group space-below",
 		),
-		Field('name_input'),
 		Field('plans_input', rows="3"),
 		# The next form inputs require the dev-version of django-crispy-forms, to be layouted correctly.
 		# (Specifically, this commit: https://github.com/maraujop/django-crispy-forms/commit/5c3a268)
@@ -80,7 +71,7 @@ class NewSemesterPoll(forms.Form):
 			# Note: using _("Gaan met die banaan") for the button label (value) doesn't work.
 			# The same string apears in both the English and Dutch versions.
 			# See views.py for the workaround we use for this.
-			Submit(name='submit', value="Submit form", css_class="btn-success "),
+			Submit(name='submit', value="Submit form", css_class="btn-danger"),
 			css_class="text-center",
 		),
 	)
@@ -90,7 +81,7 @@ class ZaventemTransportForm(ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(ZaventemTransportForm, self).__init__(*args, **kwargs)
 		self.helper = FormHelper(self)
-		self.helper.layout.append(Submit(name='submit', value="Go", css_class="btn-success"))
+		self.helper.layout.append(Submit(name='submit', value="Go", css_class="btn-danger"))
 	class Meta:
 		model = ZaventemTransport
 		fields = ['transport']

@@ -22,7 +22,7 @@ class PosterForm(ModelForm):
 @login_required
 def add_poster(request):
 	if request.method == 'POST':
-		form = PosterForm(request.POST, instance=Poster(production=settings.CURRENT_PRODUCTION,
+		form = PosterForm(request.POST, instance=Poster( #production=settings.CURRENT_PRODUCTION,
 			entered_by=request.user, entered_on=datetime.now(utc),
 			for_what=Production.objects.get(name=settings.CURRENT_PRODUCTION)))
 		form.full_clean() 

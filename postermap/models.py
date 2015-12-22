@@ -15,7 +15,7 @@ class Poster(Model):
 	for_what = GenericForeignKey('for_what_type', 'for_what_id')
 	for_what_type = ForeignKey(ContentType)
 	for_what_id = PositiveSmallIntegerField()
-	production = ForeignKey(Production)
+	# production = ForeignKey(Production,default=Production.objects.get(name=settings.CURRENT_PRODUCTION))
 	location_name = CharField(max_length=400, blank=True)
 	count = PositiveSmallIntegerField(default=1)
 	hung_by = ManyToManyField(User, blank=True, related_name='hung_posters')

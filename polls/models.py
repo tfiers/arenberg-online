@@ -1,6 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import (
-	Model, CharField, TextField, BooleanField, DateTimeField, ForeignKey )
+	Model, CharField, TextField, BooleanField, DateTimeField, ForeignKey, OneToOneField )
 from core.models import User
 from datetime import datetime
 from pytz import utc
@@ -15,7 +15,7 @@ class PollAnswer(Model):
 		super(PollAnswer, self).save(*args, **kwargs)
 
 class NewSemester(Model):
-	name = CharField(max_length=200)
+	# user = OneToOneField(User)
 	plans = TextField(blank=True)
 	next_semester = BooleanField(default=False)
 	engage = BooleanField(default=False)

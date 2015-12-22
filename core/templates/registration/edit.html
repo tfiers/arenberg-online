@@ -10,7 +10,7 @@
 
 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 	<h1>{% trans "Wijzig je gebruikersinfo" %}</h1>
-	<p>{%trans "Je huidige gebruikersinfo (behalve je groepen) is automatisch ingevuld. Duid je groepen aan, Pas aan wat je wil veranderen en dien in." %}</p>
+	<p>{%trans "Je huidige gebruikersinfo (behalve je groepen) is automatisch ingevuld. Duid je (eventueel veranderde) groepen aan, pas aan wat je wilt veranderen en dien in." %}</p>
 		<form method='post' encrypt="multipart/form-data" action="{% url 'edit' %}">
 			{% csrf_token %}
 
