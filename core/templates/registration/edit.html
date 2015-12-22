@@ -39,6 +39,36 @@
 
 			<div class="form-group">
 				<span class="error">
+					{% for error in userform.birthdate.errors %}
+							{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ userform.birthdate.id_for_label }}">{% trans "Je geboortedatum" %}</label>
+				<input type="text" name="{{ userform.birthdate.html_name }}" id="{{ userform.birthdate.id_for_label }}" class="form-control" placeholder="{% trans 'bv. 08-12-1996' %}" value="{{ request.user.birthdate|date:'d-m-Y' }}">
+			</div>
+
+			<div class="form-group">
+				<span class="error">
+					{% for error in userform.study.errors %}
+							{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ userform.study.id_for_label }}">{% trans "Je studierichting" %}</label>
+				<input type="text" name="{{ userform.study.html_name }}" id="{{ userform.study.id_for_label }}" class="form-control" placeholder="{% trans 'bv. 08-12-1996' %}" value="{{ userform.study.value|default_if_none:'' }}">
+			</div>
+
+			<div class="form-group">
+				<span class="error">
+					{% for error in userform.phone_number.errors %}
+							{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ userform.phone_number.id_for_label }}">{% trans "Je GSM nummer" %}</label>
+				<input type="text" name="{{ userform.phone_number.html_name }}" id="{{ userform.phone_number.id_for_label }}" class="form-control" placeholder="{% trans 'bv. 0469696969' %}" value="{{ request.user.phone_number }}">
+			</div>
+
+			<div class="form-group">
+				<span class="error">
 					{% for error in userform.email.errors %}
 						{{ error }}<br>
 					{% endfor %}

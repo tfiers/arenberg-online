@@ -7,7 +7,8 @@ from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from core.models import Group
-from django.contrib.admin import widgets
+from datetime import datetime
+from django.forms.extras.widgets import SelectDateWidget
 
 
 class DocumentForm(forms.Form):
@@ -21,13 +22,11 @@ class UserForm(forms.ModelForm):
         'password_mismatch': _("The two password fields didn't match."),
         'email_mismatch': _("The two e-mail fields didn't match."),
     }
-    password1 = forms.CharField(label=_("Password"),
-        widget=forms.PasswordInput)
-    password2 = forms.CharField(label=_("Password confirmation"),
-        widget=forms.PasswordInput,
-        help_text=_("Enter the same password as before, for verification."))
+    password1 = forms.CharField(label=_("Password"),widget=forms.PasswordInput)
+    password2 = forms.CharField(label=_("Password confirmation"),widget=forms.PasswordInput,help_text=_("Enter the same password as before, for verification."))
     email = forms.EmailField(label=_("e-mail"))
     email2 = forms.EmailField(label=_("e-mail opnieuw"))
+    birthdate = forms.DateField(input_formats=['%d-%m-%Y'], required=True) #manually added to make sure input_formats work
 
     class Meta:
         model = User
@@ -40,27 +39,21 @@ class UserForm(forms.ModelForm):
         email1 = self.cleaned_data.get("email")
         email2 = self.cleaned_data.get("email2")
         if email1 and email2 and email1 != email2:
-            raise forms.ValidationError(
-                self.error_messages['email_mismatch'],
-                code='email_mismatch',
-            )
-
+            raise forms.ValidationError(self.error_messages['email_mismatch'],code='email_mismatch',)
         return email2
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
-            raise forms.ValidationError(
-                self.error_messages['password_mismatch'],
-                code='password_mismatch',
-            )
+            raise forms.ValidationError(self.error_messages['password_mismatch'],code='password_mismatch',)
         return password2
 
     def save(self, commit=True):
         user = super(UserForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         user.email = self.cleaned_data['email']
+        user.birthdate = self.cleaned_data['birthdate']
         if commit:
             user.save()
         return user
@@ -82,12 +75,10 @@ class UserEdit(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ("first_name","last_name","email")    
+        fields = ("first_name","last_name","phone_number","study","email")    
 
-    password2 = forms.CharField(
-        label=_("password2"),
-        widget=forms.PasswordInput(attrs={'autofocus': ''}),
-    )
+    password2 = forms.CharField(label=_("password2"),widget=forms.PasswordInput(attrs={'autofocus': ''}),)
+    birthdate = forms.DateField(input_formats=['%d-%m-%Y'], required=True) #manually added to make sure inpu formats work, initial value created in HTML template
 
     def clean_password2(self):
         """
@@ -105,7 +96,6 @@ class UserProfileEdit(forms.ModelForm):
         model = UserProfile
         fields = ['groups']
         exclude = ['associated_user'] #excluded and added later in views.py
-        widgets={'groups': forms.CheckboxSelectMultiple}
 
     def __init__(self, user, *args, **kwargs):
         self.user=user

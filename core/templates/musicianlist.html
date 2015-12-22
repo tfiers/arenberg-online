@@ -13,10 +13,13 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Voornaam</th>
-					<th>Achternaam</th>
-					<th>E-mail</th>
-					<th>Groep(en)</th>
+					<th>{%trans "Voornaam" %}</th>
+					<th>{%trans "Achternaam" %}</th>
+					<th>{%trans "Geboortedatum" %}</th>
+					<th>{%trans "Studeerrichting" %}</th>
+					<th>{%trans "GSM nummer" %}</th>
+					<th>{%trans "E-mail" %}</th>
+					<th>{%trans "Groepen" %}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -24,6 +27,9 @@
 				<tr>
 					<td class="col-xs-1">{{ m.first_name }}</td>
 					<td class="col-xs-1">{{ m.last_name }}</td>
+					<td class="col-xs-1">{{ m.birthdate }}</td>	
+					<td class="col-xs-1">{{ m.study }}</td>	
+					<td class="col-xs-1">{{ m.phone_number }}</td>	
 					<td class="col-xs-1">{{ m.email }}</td>	
 					<td class="col-xs-3">{{ p.groups_as_string }}</td>	
 				</tr>

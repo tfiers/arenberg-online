@@ -1,7 +1,8 @@
+import datetime
 from django.db import models
 from django.core.mail import send_mail
 from django.db.models import (
-    EmailField, CharField, BooleanField, DateTimeField, Model,
+    EmailField, CharField, BooleanField, DateTimeField, DateField, Model,
     OneToOneField, IntegerField, ManyToManyField, ForeignKey )
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
@@ -64,8 +65,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         })
     first_name = CharField(_('first name'), max_length=50, blank=False)
     last_name = CharField(_('last name'), max_length=50, blank=False)
-    phone_number = CharField(_('phone_number'), max_length=15, blank=False) #had to configure default, unlike first_name and last_name: otherwise migration problems
-    study = CharField(_('study'), max_length=50, blank=False) #had to configure default, unlike first_name and last_name: otherwise migration problems
+    phone_number = CharField(_('phone_number'), max_length=15, blank=False) 
+    study = CharField(_('study'), max_length=50, blank=False) 
+    birthdate = DateField(_('birthdate'), max_length=50, default=datetime.date.today) 
     is_staff = BooleanField(_('staff status'), default=False,
         help_text=_('Designates whether the user can log into this admin '
                     'site.'))

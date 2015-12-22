@@ -38,11 +38,21 @@
 
 			<div class="form-group">
 				<span class="error">
+					{% for error in userform.birthdate.errors %}
+							{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ userform.birthdate.id_for_label }}">{% trans "Je geboortedatum (dd-mm-jjjj)" %}</label>
+				<input type="date" name="{{ userform.birthdate.html_name }}" id="{{ userform.birthdate.id_for_label }}" class="form-control" placeholder="{% trans 'bv. 08-12-1996' %}" value="{{ userform.birthdate.value|default_if_none:'' }}">
+			</div>
+
+			<div class="form-group">
+				<span class="error">
 					{% for error in userform.study.errors %}
 							{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ userform.study.id_for_label }}">{% trans "Je studie" %}</label>
+				<label for="{{ userform.study.id_for_label }}">{% trans "Je studierichting" %}</label>
 				<input type="text" name="{{ userform.study.html_name }}" id="{{ userform.study.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Fruitologie' %}" value="{{ userform.study.value|default_if_none:'' }}">
 			</div>
 
