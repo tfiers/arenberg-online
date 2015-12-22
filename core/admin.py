@@ -77,7 +77,7 @@ class UserAdmin(django.contrib.auth.admin.UserAdmin):
     add_form = UserCreationForm
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Personal info'), {'fields': ('first_name', 'last_name')}),
+        (_('Personal info'), {'fields': ('first_name', 'last_name','study','phone_number')}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser', 'approved',
                                        'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
@@ -88,7 +88,7 @@ class UserAdmin(django.contrib.auth.admin.UserAdmin):
             'fields': ('email', 'password1', 'password2'),
         }),
     )
-    list_display = ('email', 'first_name', 'last_name', 'is_staff', 'approved', 'date_joined', 'last_login')
+    list_display = ('email', 'first_name', 'last_name', 'study', 'phone_number', 'is_staff', 'approved', 'date_joined', 'last_login')
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('-date_joined',)
     change_form_template = 'loginas/change_form.html'

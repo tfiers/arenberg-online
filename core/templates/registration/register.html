@@ -38,6 +38,26 @@
 
 			<div class="form-group">
 				<span class="error">
+					{% for error in userform.study.errors %}
+							{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ userform.study.id_for_label }}">{% trans "Je studie" %}</label>
+				<input type="text" name="{{ userform.study.html_name }}" id="{{ userform.study.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Fruitologie' %}" value="{{ userform.study.value|default_if_none:'' }}">
+			</div>
+
+			<div class="form-group">
+				<span class="error">
+					{% for error in userform.phone_number.errors %}
+							{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ userform.phone_number.id_for_label }}">{% trans "Je gsm nummer (aan elkaar geschreven)" %}</label>
+				<input type="text" name="{{ userform.phone_number.html_name }}" id="{{ userform.phone_number.id_for_label }}" class="form-control" placeholder="{% trans 'bv. 0469696969' %}" value="{{ userform.phone_number.value|default_if_none:'' }}">
+			</div>
+
+			<div class="form-group">
+				<span class="error">
 					{% for error in userform.email.errors %}
 						{{ error }}<br>
 					{% endfor %}

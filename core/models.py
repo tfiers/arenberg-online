@@ -64,6 +64,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         })
     first_name = CharField(_('first name'), max_length=50, blank=False)
     last_name = CharField(_('last name'), max_length=50, blank=False)
+    phone_number = CharField(_('phone_number'), max_length=15, blank=False) #had to configure default, unlike first_name and last_name: otherwise migration problems
+    study = CharField(_('study'), max_length=50, blank=False) #had to configure default, unlike first_name and last_name: otherwise migration problems
     is_staff = BooleanField(_('staff status'), default=False,
         help_text=_('Designates whether the user can log into this admin '
                     'site.'))
