@@ -3,7 +3,7 @@ from polls.models import NewSemester
 from polls.models import ZaventemTransport
 
 class NewSemesterAdmin(admin.ModelAdmin):
-	list_display = ('next_semester', 'plans', 'engage')
+	list_display = ('user','next_semester', 'plans', 'engage')
 	# ordering = ('-id',)
 
 class ZaventemTransportAdmin(admin.ModelAdmin):

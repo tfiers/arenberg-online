@@ -10,6 +10,9 @@ def thanks(request):
 	return render(request, 'thanks.html')
 
 def new_semester(request):
+	#prevents UNIQUE constraint failed by filling same form out twice
+	if NewSemester.objects.filter(user=request.user):
+		return HttpResponseRedirect(reverse('thanks'))
 	# If this is a POST request we need to process the form data.
 	if request.method == 'POST':
 		# Create a form instance and populate it with data from the request:

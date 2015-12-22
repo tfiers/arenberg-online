@@ -16,13 +16,15 @@ class PollAnswer(Model):
 
 class NewSemester(Model):
 	user = OneToOneField(User,null=True) #user is added automatically in views, so it isn't a big problem, but this is a quick dirty fix: null should be False
+	#DO NOT CONVERT BACK, CHANGING NULL=TRUE TO NULL=FALSE MIGHT BREAK DATABASE/MIGRATIONS IN DJANGO 1.7.1
 	plans = TextField(blank=True)
 	next_semester = BooleanField(default=False)
 	engage = BooleanField(default=False)
 
 	def __unicode__(self):
-		return u"Answer by {} - Playing next semester: {}".format(
-			self.name, "Yes" if self.next_semester else "No")
+		if self.user==None: #protection because null=True on user field
+			return u"Playing next semester: {}".format("Yes" if self.next_semester else "No")
+		return u"Answer by {} - Playing next semester: {}".format(self.user, "Yes" if self.next_semester else "No")
 
 class ZaventemTransport(PollAnswer):
 	musician = ForeignKey(User)
