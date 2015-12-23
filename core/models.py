@@ -131,7 +131,7 @@ class UserProfile(Model):
     old_drupal_uid = IntegerField(blank=True, null=True, default=None)
     last_password_change = DateTimeField(blank=True, null=True, default=None)
     groups = ManyToManyField('Group', blank=False)
-    avatar = models.ImageField(upload_to='/static/avatars/',default='/static/images/avatar.jpg')
+    avatar = models.ImageField(upload_to='static/images/avatars',default='static/images/defaultavatar.png')
     
     def __unicode__(self):
         return u"User profile for {}".format(self.associated_user)
@@ -139,9 +139,6 @@ class UserProfile(Model):
     @property   
     def groups_as_string(self):
         return ", ".join([str(g) for g in self.groups.all()])
-    @property   
-    def groups_as_list(self):
-        return [str(g) for g in self.groups.all()]
 
 
 class Group(Model):

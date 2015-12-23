@@ -22,7 +22,7 @@ def register(request):
     """handles the view of the registration form"""
     if request.method == 'POST':
         uf = UserForm(request.POST, prefix='user')
-        upf = UserProfileForm(request.POST, prefix='userprofile')
+        upf = UserProfileForm(request.POST, request.FILES, prefix='userprofile')
         if uf.is_valid() * upf.is_valid():
             user = uf.save()
             userprofile = upf.save(commit=False)
@@ -43,7 +43,7 @@ def edit(request):
     """handles the view of the edit form, to edit user info"""
     if request.method == 'POST':
         uf = UserEditForm(request.user,request.POST, instance=request.user, prefix='user')
-        upf = UserProfileEditForm(request.POST, instance = request.user.userprofile, prefix='userprofile')
+        upf = UserProfileEditForm(request.POST, request.FILES, instance = request.user.userprofile, prefix='userprofile')
         if uf.is_valid() * upf.is_valid():
             user = uf.save()
             userprofile = upf.save(commit=False)

@@ -25,7 +25,7 @@
 			<tbody>
 				{% for m,p in musicians %}
 				<tr>
-					<td class="col-xs-1">{{ m.first_name }}</td>
+					<td class="col-xs-1"><img src="{{p.avatar}}"></td>
 					<td class="col-xs-1">{{ m.last_name }}</td>
 					<td class="col-xs-1">{{ m.birthdate }}</td>	
 					<td class="col-xs-1">{{ m.study }}</td>	

@@ -41,6 +41,8 @@ TEMPLATE_DEBUG = DEVELOPPING
 ALLOWED_HOSTS = ['95.85.3.22', '.arenbergorkest.be']
 
 
+
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -172,14 +174,7 @@ USE_L10N = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/home/lennart/Documents/arenbergvenv/arenberg-online/core/media' #needs to be changed to the servers directory when pulled on server
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash if there is a path component (optional in other cases).
-# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/media/'
+FILEBROWSER_DIRECTORY = os.path.join(BASE_DIR, 'core/static')
 
 STATIC_URL = '/static/'
 

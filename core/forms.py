@@ -11,6 +11,7 @@ from datetime import datetime
 from django.forms.extras.widgets import SelectDateWidget
 
 
+
 class DocumentForm(forms.Form):
     docfile = forms.FileField(
         label='Select a file',
@@ -59,7 +60,7 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ['groups']
+        fields = ['groups','avatar']
         exclude = ['associated_user'] #excluded and added later in views.py
         widgets = {'groups': forms.CheckboxSelectMultiple()}
     
@@ -92,8 +93,10 @@ class UserProfileEditForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ['groups']
+        fields = ['groups','avatar']
         exclude = ['associated_user'] #excluded and added later in views.py
         widgets = {'groups': forms.CheckboxSelectMultiple()}
     
     error_css_class = 'error'
+
+

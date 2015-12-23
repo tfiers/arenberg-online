@@ -7,3 +7,4 @@ django-loginas
 django-vinaigrette
 django-grappelli
 django-import-export
+pillow

@@ -36,6 +36,14 @@
 				<input type="text" name="{{ userform.last_name.html_name }}" id="{{ userform.last_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Banana' %}" value="{{ userform.last_name.value|default_if_none:'' }}">
 			</div>
 
+
+			<div class="form-group">
+			<label for="{{ userprofileform.avatar.id_for_label }}">{% trans "Je afbeelding (max. 100x100 px, 20kb)" %}</label>
+			<div>
+			{{userprofileform.avatar}}
+			</div>
+			</div>
+
 			<div class="form-group">
 				<span class="error">
 					{% for error in userform.birthdate.errors %}
