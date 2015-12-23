@@ -22,7 +22,7 @@
 			{% for hidden in form.hidden_fields %}
     			{{ hidden }}
 			{% endfor %}
-				<label for="{{ userform.first_name.id_for_label }}">{% trans "Je voornaam" %}</label>
+				<label for="{{ useredit.first_name.id_for_label }}">{% trans "Je voornaam" %}</label>
 				<input type="text" name="{{ userform.first_name.html_name }}" id="{{ userform.first_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Ana' %}" value="{{ userform.first_name.value|default_if_none:'' }}">
 			</div>
 
@@ -32,7 +32,7 @@
 							{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ userform.last_name.id_for_label }}">{% trans "Je achternaam" %}</label>
+				<label for="{{ useredit.last_name.id_for_label }}">{% trans "Je achternaam" %}</label>
 				<input type="text" name="{{ userform.last_name.html_name }}" id="{{ userform.last_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Banana' %}" value="{{ userform.last_name.value|default_if_none:'' }}">
 			</div>
 
@@ -42,8 +42,10 @@
 							{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ userform.birthdate.id_for_label }}">{% trans "Je geboortedatum (dd-mm-jjjj)" %}</label>
-				<input type="date" name="{{ userform.birthdate.html_name }}" id="{{ userform.birthdate.id_for_label }}" class="form-control" placeholder="{% trans 'bv. 08-12-1996' %}" value="{{ userform.birthdate.value|default_if_none:'' }}">
+				<label for="{{ userform.birthdate.id_for_label }}">{% trans "Je geboortedatum" %}</label>
+					<div class="date"> <!-- for putting it on the next line -->
+						{{userform.birthdate}}
+					</div>
 			</div>
 
 			<div class="form-group">
@@ -106,25 +108,22 @@
 				<input type="password" name="{{ userform.password2.html_name }}" id="{{ userform.password2.id_for_label }}" class="form-control" placeholder="{% trans 'bv. ikbenstiekemeenpeer' %}" value="{{ userform.password2.value|default_if_none:'' }}" data-toggle="password">
 			</div>
 
-
 			<div class="form-group">
 				<span class="error">
 					{% for error in userprofileform.groups.errors %}
-						{{ error }}<br>
+							{{ error }}<br>
 					{% endfor %}
-				</span>	
-				<label for="{{ userprofileform.groups.id_for_label }}">{% trans "Je instrumentengroep(en), ctrl + click om meerdere te selecteren" %}</label>
-				<select multiple name="{{ userprofileform.groups.html_name }}" id="{{ userprofileform.groups.id_for_label }}" class="form-control">
-					<option disabled value=""{% if userprofileform.groups.value == None %} selected="selected"{% endif %}><em>{% trans "– Kies instrumentengroep(en) –" %}</em></option>
-					{% for value, text in userprofileform.groups.field.choices %}
-					<option value="{{ value }}"{% if userprofileform.groups.value == value %} selected="selected"{% endif %}>{{ text }}</option>
+				</span>
+				<label for="{{ userprofileform.groups.id_for_label }}">{% trans "Je groep(en)" %}</label>
+				<div style="overflow: auto; width : 300px; height : 150px; " id="checkbox">
+					{% for g in userprofileform.groups %}
+						<li id="checkboxselectmultiple"><small>{{ g }}</small></li>
 					{% endfor %}
-				</select>
+				</div>
 			</div>
 
 		    <input type="submit" value="{% trans 'Registreren' %}" class="btn btn-danger">
 
-		    <!-- <input type="hidden" name="next" value="{{ next }}"> -->
 		</form>
 </div>
 

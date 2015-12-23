@@ -18,19 +18,16 @@ class DocumentForm(forms.Form):
 
 class UserForm(forms.ModelForm):
 
-    error_messages = {
-        'password_mismatch': _("The two password fields didn't match."),
-        'email_mismatch': _("The two e-mail fields didn't match."),
-    }
+    error_messages = {'password_mismatch': _("The two password fields didn't match."),'email_mismatch': _("The two e-mail fields didn't match."),}
     password1 = forms.CharField(label=_("Password"),widget=forms.PasswordInput)
     password2 = forms.CharField(label=_("Password confirmation"),widget=forms.PasswordInput,help_text=_("Enter the same password as before, for verification."))
     email = forms.EmailField(label=_("e-mail"))
     email2 = forms.EmailField(label=_("e-mail opnieuw"))
-    birthdate = forms.DateField(input_formats=['%d-%m-%Y'], required=True) #manually added to make sure input_formats work
 
     class Meta:
         model = User
-        fields = ("first_name","last_name","phone_number","study")
+        fields = ("first_name","last_name","phone_number","study","birthdate")
+        widgets = {'birthdate': SelectDateWidget(years=range(1914,datetime.now().year))}
 
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
@@ -64,21 +61,22 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ['groups']
         exclude = ['associated_user'] #excluded and added later in views.py
+        widgets = {'groups': forms.CheckboxSelectMultiple()}
     
     error_css_class = 'error'
 
-class UserEdit(forms.ModelForm):
+class UserEditForm(forms.ModelForm):
 
     def __init__(self, user, *args, **kwargs):
         self.user = user
-        super(UserEdit, self).__init__(*args, **kwargs)
+        super(UserEditForm, self).__init__(*args, **kwargs)
 
     class Meta:
         model = User
-        fields = ("first_name","last_name","phone_number","study","email")    
+        fields = ("first_name","last_name","phone_number","study","email","birthdate")  
+        widgets = {'birthdate': SelectDateWidget(years=range(1914,datetime.now().year))}  
 
     password2 = forms.CharField(label=_("password2"),widget=forms.PasswordInput(attrs={'autofocus': ''}),)
-    birthdate = forms.DateField(input_formats=['%d-%m-%Y'], required=True) #manually added to make sure inpu formats work, initial value created in HTML template
 
     def clean_password2(self):
         """
@@ -90,17 +88,12 @@ class UserEdit(forms.ModelForm):
         return password2
 
 
-class UserProfileEdit(forms.ModelForm):
+class UserProfileEditForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
         fields = ['groups']
         exclude = ['associated_user'] #excluded and added later in views.py
-
-    def __init__(self, user, *args, **kwargs):
-        self.user=user
-        super(UserProfileEdit, self).__init__(*args, **kwargs)
-
-    #groups = forms.ModelMultipleChoiceField(queryset=Group.objects.all(), widget=widgets.FilteredSelectMultiple("verbose name", is_stacked=False))
+        widgets = {'groups': forms.CheckboxSelectMultiple()}
     
     error_css_class = 'error'

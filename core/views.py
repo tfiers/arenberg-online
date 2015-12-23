@@ -13,8 +13,8 @@ from datetime import datetime
 from pytz import utc
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
-from core.models import  User, UserProfile #needed for fileupload
-from forms import UserForm, UserProfileForm, UserEdit, UserProfileEdit #needed for registration and edit profile forms
+from core.models import  User, UserProfile
+from forms import UserForm, UserProfileForm, UserEditForm, UserProfileEditForm #needed for registration and edit profile forms
 import gc
 
 @csrf_protect
@@ -42,10 +42,8 @@ def register(request):
 def edit(request):
     """handles the view of the edit form, to edit user info"""
     if request.method == 'POST':
-        ufdata = {'first_name' : request.user.first_name, 'last_name' : request.user.last_name, 'email' : request.user.email}
-        upfdata = {'groups' : request.user.userprofile.groups}
-        uf = UserEdit(request.user,request.POST, instance=request.user, initial=ufdata, prefix='user')
-        upf = UserProfileEdit(request.user,request.POST, instance = request.user.userprofile, initial=upfdata, prefix='userprofile')
+        uf = UserEditForm(request.user,request.POST, instance=request.user, prefix='user')
+        upf = UserProfileEditForm(request.POST, instance = request.user.userprofile, prefix='userprofile')
         if uf.is_valid() * upf.is_valid():
             user = uf.save()
             userprofile = upf.save(commit=False)
@@ -54,13 +52,12 @@ def edit(request):
             userprofile.save()
             userprofile.groups = upf.cleaned_data["groups"] #adds the groups. doesn't save because it's a m2m relationship. other options: using super() or save_m2m()
             #TODO: send email here, is also commented out in thanks.html
-            return render_to_response('registration/thanks_edit.html', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
+            return render_to_response('registration/thanks_edit.html', dict(usereditform=uf, userprofileeditform=upf), context_instance=RequestContext(request))
     else:
-        ufdata = {'first_name' : request.user.first_name, 'last_name' : request.user.last_name, 'email' : request.user.email}
-        upfdata = {'groups' : request.user.userprofile.groups}
-        uf = UserEdit(request.user,instance=request.user, initial=ufdata, prefix='user')
-        upf = UserProfileEdit(request.user,instance = request.user.userprofile, initial=upfdata,prefix='userprofile')
-    return render_to_response('registration/edit.html', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
+        uf = UserEditForm(request.user,instance=request.user,  prefix='user')
+        upf = UserProfileEditForm(instance = request.user.userprofile, prefix='userprofile')
+    return render_to_response('registration/edit.html', dict(usereditform=uf, userprofileeditform=upf), context_instance=RequestContext(request)) 
+    #the keys in the dict actually determine the var names you have to use for the forms in the template
 
 @login_required
 def links(request):
@@ -154,7 +151,7 @@ def queryset_iterator(queryset, chunksize=1000):
     This method loads a maximum of chunksize (default: 1000) rows in it's
     memory at the same time while django normally would load all rows in it's
     memory. Using the iterator() method only causes it to not preload all the
-    classes.
+    classes. This reduces memory usage for large tables
 
     Note that the implementation of the iterator does not support ordered query sets.
 

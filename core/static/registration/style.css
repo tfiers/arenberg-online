@@ -46,4 +46,10 @@ td {
 
 .btn {
 	margin-bottom: 20px;
+	margin-top: 10px;
+}
+
+#id_userprofile-groups {
+    list-style-type: none;
+    margin-left: -40px;
 }

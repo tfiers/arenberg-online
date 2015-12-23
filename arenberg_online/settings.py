@@ -135,6 +135,9 @@ LANGUAGES = (
 # 'python manage.py compilemessges'.
 USE_I18N = True
 
+#this also determines the order of day month year in date widgets
+DATE_FORMAT = "j N, Y"
+
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
@@ -162,7 +165,8 @@ TIME_ZONE = 'Europe/Brussels'
 # Store dates in UTC, display them in TIME_ZONE by default.
 USE_TZ = True
 
-USE_L10N = True
+#on false so date_time works
+USE_L10N = False
 
 
 # Static files (CSS, JavaScript, Images)

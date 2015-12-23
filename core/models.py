@@ -138,6 +138,9 @@ class UserProfile(Model):
     @property   
     def groups_as_string(self):
         return ", ".join([str(g) for g in self.groups.all()])
+    @property   
+    def groups_as_list(self):
+        return [str(g) for g in self.groups.all()]
 
 
 class Group(Model):
@@ -160,7 +163,8 @@ class Group(Model):
         help_text="If different from a sanitized version of 'name'")
 
     def __unicode__(self):
-        return u"Group '{}' of type '{}'".format(self.name, self.category)
+        # return u"Group '{}' of type '{}'".format(self.name, self.category)
+        return self.name
 
     @property   
     def parents_as_string(self):
