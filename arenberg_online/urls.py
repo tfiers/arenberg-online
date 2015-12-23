@@ -41,5 +41,5 @@ urlpatterns += solid_i18n_patterns('',
     # url(r'^naar\-zaventem$', 'polls.views.zaventem_transport', name="zaventem_transport_poll"),
     url(r'^thanks$', 'polls.views.thanks', name="thanks"),
     url(r'^music_suggestions/', include('music_suggestions.urls', namespace='music_suggestions')),
-) 
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

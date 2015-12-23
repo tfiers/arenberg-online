@@ -131,7 +131,7 @@ class UserProfile(Model):
     old_drupal_uid = IntegerField(blank=True, null=True, default=None)
     last_password_change = DateTimeField(blank=True, null=True, default=None)
     groups = ManyToManyField('Group', blank=False)
-    avatar = models.ImageField(upload_to='static/images/avatars',default='static/images/defaultavatar.png')
+    avatar = models.ImageField(upload_to='media/images/avatars',default='media/images/defaultavatar.png')
     
     def __unicode__(self):
         return u"User profile for {}".format(self.associated_user)

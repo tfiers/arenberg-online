@@ -105,7 +105,7 @@
 
                         {% if request.user.is_authenticated %}
                         <li><a>{%trans "Welkom" %}, <b>{{ request.user.first_name }}&nbsp;{{request.user.last_name}}</b></a></li>
-                            <img src="{{request.user.userprofile.avatar}}">
+                            <img src="{{request.user.userprofile.avatar.url}}">
                         {% endif %}
 
                     </ul>

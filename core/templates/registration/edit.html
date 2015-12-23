@@ -38,7 +38,7 @@
 
 			<div class="form-group">
 				<label for="{{ userprofileeditform.avatar.id_for_label }}">{% trans "Je afbeelding (max. 100x100 px, 20kb)" %}</label>
-				<div><img src="{{request.user.userprofile.avatar}}"></div>
+				<div><img src="{{request.user.userprofile.avatar.url}}"></div>
 				<div>
 					{{userprofileeditform.avatar}}
 				</div>

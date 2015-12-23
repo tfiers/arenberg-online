@@ -174,7 +174,12 @@ USE_L10N = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-FILEBROWSER_DIRECTORY = os.path.join(BASE_DIR, 'core/static')
+FILEBROWSER_DIRECTORY = os.path.join(BASE_DIR, 'core/media')
+
+#absolute filepath to media, change when on server
+MEDIA_ROOT = '/home/lennart/Documents/arenbergvenv/arenberg-online/core/media'
+
+MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
 
