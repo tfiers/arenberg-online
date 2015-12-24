@@ -14,7 +14,7 @@ from pytz import utc
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from core.models import  User, UserProfile
-from forms import UserForm, UserProfileForm, UserEditForm, UserProfileEditForm #needed for registration and edit profile forms
+from forms import UserForm, UserProfileForm, UserEditForm, UserProfileEditForm, CustomPasswordChangeForm #needed for registration and edit profile forms
 import gc
 
 @csrf_protect
@@ -50,6 +50,8 @@ def edit(request):
             userprofile.associated_user = user #adds the created as associated user for the userprofile
             userprofile.last_password_change = datetime.now(utc) #setting last password change
             userprofile.save()
+            if not upf.cleaned_data["avatar"] == None:
+                userprofile.avatar = upf.cleaned_data["avatar"]
             userprofile.groups = upf.cleaned_data["groups"] #adds the groups. doesn't save because it's a m2m relationship. other options: using super() or save_m2m()
             #TODO: send email here, is also commented out in thanks.html
             return render_to_response('registration/thanks_edit.html', dict(usereditform=uf, userprofileeditform=upf), context_instance=RequestContext(request))
@@ -128,7 +130,7 @@ def logout(request):
 @login_required
 def change_password(request):
     if request.method == 'POST':
-        form = PasswordChangeForm(user=request.user, data=request.POST)
+        form = CustomPasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
             form.user.userprofile.last_password_change = datetime.now(utc)
             form.user.userprofile.save()
@@ -136,7 +138,7 @@ def change_password(request):
             update_session_auth_hash(request, form.user)
             return HttpResponseRedirect(reverse('pass_changed'))
     else:
-        form = PasswordChangeForm(user=request.user)
+        form = CustomPasswordChangeForm(user=request.user)
     return render(request, 'registration/password_set_form.html', {'form': form})
 
 

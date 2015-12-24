@@ -10,7 +10,7 @@
 
 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 	<h1>{% trans "Registratie voor nieuwe muzikanten" %}</h1>
-		<form method='post' encrypt="multipart/form-data" action="{% url 'register' %}">
+		<form method='post' enctype="multipart/form-data" action="{% url 'register' %}">
 			{% csrf_token %}
 
 			<div class="form-group">

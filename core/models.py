@@ -161,8 +161,7 @@ class Group(Model):
         help_text="If different from a sanitized version of 'name'")
 
     def __unicode__(self):
-        # return u"Group '{}' of type '{}'".format(self.name, self.category)
-        return self.name
+        return u"{} ({})".format(self.name, self.category)
 
     @property   
     def parents_as_string(self):

@@ -9,13 +9,12 @@ from django.utils.translation import ugettext_lazy as _
 from core.models import Group
 from datetime import datetime
 from django.forms.extras.widgets import SelectDateWidget
+from django.core.files.images import get_image_dimensions
 
-
-
-class DocumentForm(forms.Form):
-    docfile = forms.FileField(
-        label='Select a file',
-    )
+MIN_LENGTH = 8
+MAX_FILESIZE = 20*1024 #in bytes
+MAX_HEIGHT = 50 #in px
+MAX_WIDTH = 50 #in px
 
 class UserForm(forms.ModelForm):
 
@@ -39,6 +38,12 @@ class UserForm(forms.ModelForm):
         if email1 and email2 and email1 != email2:
             raise forms.ValidationError(self.error_messages['email_mismatch'],code='email_mismatch',)
         return email2
+
+    def clean_password1(self):
+        password1 = self.cleaned_data.get("password1")
+        if len(password1)<MIN_LENGTH:
+            raise forms.ValidationError(_("The password must be at least 8 characters long."))
+        return password1
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -65,6 +70,14 @@ class UserProfileForm(forms.ModelForm):
         widgets = {'groups': forms.CheckboxSelectMultiple()}
     
     error_css_class = 'error'
+
+    def clean_avatar(self):
+        image = self.cleaned_data.get('image',False)
+        # w, h = get_image_dimensions(image)
+        if image:
+            if image._size > MAX_FILESIZE: #or w > MAX_WIDTH or h > MAX_HEIGHT
+                raise ValidationError(_("Image dimensions or size too large."))
+            return avatar
 
 class UserEditForm(forms.ModelForm):
 
@@ -98,5 +111,81 @@ class UserProfileEditForm(forms.ModelForm):
         widgets = {'groups': forms.CheckboxSelectMultiple()}
     
     error_css_class = 'error'
+
+    def clean_avatar(self):
+        image = self.cleaned_data.get('image',False)
+        # w, h = get_image_dimensions(image)
+        if image:
+            if image._size > MAX_FILESIZE: #or w > MAX_WIDTH or h > MAX_HEIGHT
+                raise ValidationError(_("Image dimensions or size too large."))
+            return avatar
+            
+class SetPasswordForm(forms.Form):
+    """
+    A form that lets a user change set their password without entering the old
+    password
+    """
+    error_messages = {
+        'password_mismatch': _("The two new password fields didn't match."),
+    }
+    new_password1 = forms.CharField(label=_("New password"),
+                                    widget=forms.PasswordInput)
+    new_password2 = forms.CharField(label=_("New password confirmation"),
+                                    widget=forms.PasswordInput)
+
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super(SetPasswordForm, self).__init__(*args, **kwargs)
+
+    def clean_new_password1(self):
+        password1 = self.cleaned_data.get('new_password1')
+        #password check
+        if len(password1)<MIN_LENGTH:
+            raise forms.ValidationError("The password must be at least 8 characters long.")
+        return password1
+
+    def clean_new_password2(self):
+        password1 = self.cleaned_data.get('new_password1')
+        password2 = self.cleaned_data.get('new_password2')
+        if password1 and password2:
+            if password1 != password2:
+                raise forms.ValidationError(self.error_messages['password_mismatch'],code='password_mismatch',)
+        return password2
+
+    def save(self, commit=True):
+        password = self.cleaned_data["new_password1"]
+        self.user.set_password(password)
+        if commit:
+            self.user.save()
+        return self.user
+
+
+class CustomPasswordChangeForm(SetPasswordForm):
+    """
+    A form that lets a user change their password by entering their old
+    password.
+    """
+    error_messages = dict(SetPasswordForm.error_messages, **{
+        'password_incorrect': _("Your old password was entered incorrectly. "
+                                "Please enter it again."),
+    })
+    old_password = forms.CharField(
+        label=_("Old password"),
+        widget=forms.PasswordInput(attrs={'autofocus': ''}),
+    )
+
+    field_order = ['old_password', 'new_password1', 'new_password2']
+
+    def clean_old_password(self):
+        """
+        Validates that the old_password field is correct.
+        """
+        old_password = self.cleaned_data["old_password"]
+        if not self.user.check_password(old_password):
+            raise forms.ValidationError(
+                self.error_messages['password_incorrect'],
+                code='password_incorrect',
+            )
+        return old_password
 
 

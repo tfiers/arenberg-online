@@ -10,8 +10,8 @@
 
 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 	<h1>{% trans "Wijzig je gebruikersinfo" %}</h1>
-	<p>{%trans "Je huidige gebruikersinfo is automatisch ingevuld. Verander wat je wil aanpassen en dien in." %}</p>
-		<form method='post' encrypt="multipart/form-data" action="{% url 'edit' %}">
+	<p>{%trans "Je huidige gebruikersinfo is automatisch ingevuld. Verander naar wens en dien in." %}</p>
+		<form method='post' enctype="multipart/form-data" action="{% url 'edit' %}">
 			{% csrf_token %}
 			<div class="form-group">
 				<span class="error">
@@ -37,7 +37,7 @@
 			</div>
 
 			<div class="form-group">
-				<label for="{{ userprofileeditform.avatar.id_for_label }}">{% trans "Je afbeelding (max. 100x100 px, 20kb)" %}</label>
+				<label for="{{ userprofileeditform.avatar.id_for_label }}">{% trans "Je foto (niet verplicht) (max. 50x50 pixels, 20kb grootte)" %}</label>
 				<div><img src="{{request.user.userprofile.avatar.url}}"></div>
 				<div>
 					{{userprofileeditform.avatar}}
