@@ -37,8 +37,14 @@
 			</div>
 
 			<div class="form-group">
+				<span class="error">
+					{% for error in userprofileeditform.avatar.errors %}
+							{{ error }}<br>
+					{% endfor %}
+				</span>
 				<label for="{{ userprofileeditform.avatar.id_for_label }}">{% trans "Je foto (niet verplicht) (max. 50x50 pixels, 20kb grootte)" %}</label>
 				<div><img src="{{request.user.userprofile.avatar.url}}"></div>
+				<br>
 				<div>
 					{{userprofileeditform.avatar}}
 				</div>

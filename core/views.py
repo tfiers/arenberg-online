@@ -50,8 +50,6 @@ def edit(request):
             userprofile.associated_user = user #adds the created as associated user for the userprofile
             userprofile.last_password_change = datetime.now(utc) #setting last password change
             userprofile.save()
-            if not upf.cleaned_data["avatar"] == None:
-                userprofile.avatar = upf.cleaned_data["avatar"]
             userprofile.groups = upf.cleaned_data["groups"] #adds the groups. doesn't save because it's a m2m relationship. other options: using super() or save_m2m()
             #TODO: send email here, is also commented out in thanks.html
             return render_to_response('registration/thanks_edit.html', dict(usereditform=uf, userprofileeditform=upf), context_instance=RequestContext(request))

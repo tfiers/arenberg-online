@@ -1,0 +1,1 @@
+leave defaultavatar here, if default = 'media/...' in imagefield for userprofile, django adds an extra 'media/' before it. but if you leave the 'media' away in the default field, it wont find the media folder ...so a media folder nested in a media folder was the easiest solution

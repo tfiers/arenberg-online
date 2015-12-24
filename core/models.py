@@ -8,6 +8,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 from django.contrib.auth.models import (
     AbstractBaseUser, PermissionsMixin, BaseUserManager )
+import os
+from django.conf import settings
 
 class Document(models.Model):
     docfile = models.FileField(upload_to='uploads/')
@@ -131,7 +133,8 @@ class UserProfile(Model):
     old_drupal_uid = IntegerField(blank=True, null=True, default=None)
     last_password_change = DateTimeField(blank=True, null=True, default=None)
     groups = ManyToManyField('Group', blank=False)
-    avatar = models.ImageField(upload_to='media/images/avatars',default='media/images/defaultavatar.png')
+    avatar = models.ImageField(upload_to='images/avatars',default='media/defaultavatar.png')
+    #upload_to works, images stored in core/media/images/avatars succesfully
     
     def __unicode__(self):
         return u"User profile for {}".format(self.associated_user)

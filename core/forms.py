@@ -10,11 +10,14 @@ from core.models import Group
 from datetime import datetime
 from django.forms.extras.widgets import SelectDateWidget
 from django.core.files.images import get_image_dimensions
+from PIL import Image
 
 MIN_LENGTH = 8
 MAX_FILESIZE = 20*1024 #in bytes
 MAX_HEIGHT = 50 #in px
 MAX_WIDTH = 50 #in px
+MIN_PHONE_NUMBER_LENGTH = 9
+MAX_PHONE_NUMBER_LENGTH = 10
 
 class UserForm(forms.ModelForm):
 
@@ -38,6 +41,12 @@ class UserForm(forms.ModelForm):
         if email1 and email2 and email1 != email2:
             raise forms.ValidationError(self.error_messages['email_mismatch'],code='email_mismatch',)
         return email2
+
+    def clean_phone_number(self):
+        pn = self.cleaned_data.get("phone_number")
+        if (not len(pn) in range(MIN_PHONE_NUMBER_LENGTH,MAX_PHONE_NUMBER_LENGTH+1)) and not pn.isdigit():
+            raise forms.ValidationError(_("Invalid phone number."))
+        return pn
 
     def clean_password1(self):
         password1 = self.cleaned_data.get("password1")
@@ -72,12 +81,15 @@ class UserProfileForm(forms.ModelForm):
     error_css_class = 'error'
 
     def clean_avatar(self):
-        image = self.cleaned_data.get('image',False)
-        # w, h = get_image_dimensions(image)
+        image = self.cleaned_data.get('avatar',False)
         if image:
-            if image._size > MAX_FILESIZE: #or w > MAX_WIDTH or h > MAX_HEIGHT
-                raise ValidationError(_("Image dimensions or size too large."))
-            return avatar
+            try:
+                width, height = get_image_dimensions(image)
+                if width > MAX_WIDTH or height > MAX_HEIGHT or image.size>MAX_FILESIZE: #or w > MAX_WIDTH or h > MAX_HEIGHT
+                    raise forms.ValidationError(_("Image dimensions or size too large."))
+            except IOError: #needed because otherwise you'd get this error when registering without an image input (=with default avatar)
+                return image
+            return image
 
 class UserEditForm(forms.ModelForm):
 
@@ -91,6 +103,12 @@ class UserEditForm(forms.ModelForm):
         widgets = {'birthdate': SelectDateWidget(years=range(1914,datetime.now().year))}  
 
     password2 = forms.CharField(label=_("password2"),widget=forms.PasswordInput(attrs={'autofocus': ''}),)
+
+    def clean_phone_number(self):
+        pn = self.cleaned_data.get("phone_number")
+        if (not len(pn) in range(MIN_PHONE_NUMBER_LENGTH,MAX_PHONE_NUMBER_LENGTH+1)) and not pn.isdigit():
+            raise forms.ValidationError(_("Invalid phone number."))
+        return pn
 
     def clean_password2(self):
         """
@@ -113,12 +131,12 @@ class UserProfileEditForm(forms.ModelForm):
     error_css_class = 'error'
 
     def clean_avatar(self):
-        image = self.cleaned_data.get('image',False)
-        # w, h = get_image_dimensions(image)
+        image = self.cleaned_data.get('avatar',False)
         if image:
-            if image._size > MAX_FILESIZE: #or w > MAX_WIDTH or h > MAX_HEIGHT
-                raise ValidationError(_("Image dimensions or size too large."))
-            return avatar
+            width, height = get_image_dimensions(image)
+            if width > MAX_WIDTH or height > MAX_HEIGHT or image.size>MAX_FILESIZE: #or w > MAX_WIDTH or h > MAX_HEIGHT
+                raise forms.ValidationError(_("Image dimensions or size too large."))
+            return image
             
 class SetPasswordForm(forms.Form):
     """
