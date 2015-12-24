@@ -65,6 +65,7 @@ INSTALLED_APPS = (
     # 'debug_toolbar', # http://stackoverflow.com/questions/2361985/profiling-django
     'loginas', # https://github.com/stochastic-technologies/django-loginas
     'vinaigrette', # For translation of database values. See https://github.com/ecometrica/django-vinaigrette
+    'fullcalendar' #https://github.com/rodrigoamaral/django-fullcalendar
 )
 
 MIDDLEWARE_CLASSES = (
@@ -113,6 +114,15 @@ DATABASES = {
 #python manage.py makemessages -all
 #python manage.py compilemessages
 #that's it
+
+#if you want to change fullcalendar default paths for css and such
+# FULLCALENDAR = {
+#     'css_url': <path_or_url_to_css_file>,
+#     'print_css_url': <path_or_url_to_print_css_file>,
+#     'javascript_url': <path_or_url_to_javascript_file>,
+#     'jquery_url': <path_or_url_to_jquery_file>,
+#     'jquery_ui_url': <path_or_url_to_jquery_ui_file>,
+# }
 
 #specifies the current production
 #included for future automatisation of ticketing, needed for poster

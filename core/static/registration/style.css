@@ -53,3 +53,15 @@ td {
     list-style-type: none;
     margin-left: -40px;
 }
+
+#rep {
+	margin-left:20%;
+	float:left; 
+	width:30%;
+}
+
+#act {
+	float:left; 
+	width:30%;
+	margin-right: 20%;
+}

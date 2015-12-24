@@ -73,6 +73,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = BooleanField(_('staff status'), default=False,
         help_text=_('Designates whether the user can log into this admin '
                     'site.'))
+    is_board = BooleanField(_('board'), default=False,
+        help_text=_('Designates whether the user is part of the board and can view board content.'))
     is_active = BooleanField(_('active'), default=True,
         help_text=_('Designates whether this user should be treated as '
                     'active. Unselect this instead of deleting accounts.'))

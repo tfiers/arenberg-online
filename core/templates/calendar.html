@@ -8,9 +8,9 @@
 {% endblock custom_css_js %}
 {% block content %}
 
-<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-	<h1>{% trans "Kalender repetities" %}</h1>
-		<body>
+<div style='float:left; width:30%' id="rep">
+	<h1>{% trans "Repetities" %}</h1>
+		<div>
 		<b>Do 11 feb</b> Repetitie
 		<br><br>
 		<b>Do 18 feb</b> Repetitie
@@ -40,7 +40,15 @@
 		<b>Do 5 mei</b> Concert I
 		<br><br>
 		<b>Zo 8 mei</b> Concert II
-		</body>
+		</div>
+</div>
+
+<div style='float:left; width:30%' id="act" >
+	<h1>{% trans "Activiteiten" %}</h1>
+		<div>
+		<b>Vr 8 – Zo 10 apr</b> Repetitieweekend (laatste weekend paasvakantie)
+		<br><br>
+		</div>
 </div>
 
 {% endblock content %}

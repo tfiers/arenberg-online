@@ -98,11 +98,18 @@ def calendar(request):
 	   return render(request, 'calendar.html')
 
 @login_required
-def activities(request):
+def fullcalendar(request):
     if not request.user.approved:
         return render(request, 'registration/notapproved.html')
-    else: #valueerror (calendar returned None instead of httprespons object) if this else is removed
-       return render(request, 'activities.html')
+    else: 
+       return render(request, 'fullcalendar.html')
+
+@login_required
+def boardcalendar(request):
+    if not request.user.approved or not request.user.is_board:
+        return render(request, 'registration/notapproved.html')
+    else: 
+       return render(request, 'boardcalendar.html')
 
 @login_required
 def musicianlist(request):

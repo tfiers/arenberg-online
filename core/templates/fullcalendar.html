@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load fullcalendar_tags %}
+{% load staticfiles %}
+{% block title %}{% trans "Mijn kalender" %}{% endblock title %}
+{% block custom_css_js %}
+<link rel="stylesheet" href="{% static 'registration/style.css' %}">
+<script src="{% static 'site-wide/bootstrap-show-password.min.js' %}"></script>
+{% endblock custom_css_js %}
+{% block content %}
+<!DOCTYPE html>
+<head>
+    {% fullcalendar_css %}
+    {% fullcalendar_print_css %}
+    {% fullcalendar_jquery %}
+    {% fullcalendar_jquery_ui %}
+    {% fullcalendar_javascript %}
+    {% calendar_init event_url %}
+</head>
+
+<div style='width:60%; margin-left:20%; margin-right:20%;'class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+	<h1>{% trans "Mijn kalender" %}</h1>
+	{% calendar %}
+</div>
+
+
+{% endblock content %}
