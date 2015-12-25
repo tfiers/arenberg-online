@@ -59,20 +59,23 @@
 
                     <ul class="nav navbar-nav navbar-right">
 
-                        <li><a href="{% url 'fullcalendar' %}">{%trans "Mijn kalender" %}</a></li>
+                        {% if user.is_authenticated %}
+                        {% if request.user.approved %}
+                        <li><a href="{% url 'calendarview' %}">{%trans "Kalender" %}</a></li>
+                        {% endif %}
+                        {% endif %}
 
-                        {% if user.is_board %}
+<!--                         {% if user.is_board %}
                         {% if user.is_authenticated %}
                         {% if request.user.approved %}
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Bestuur" %}<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{% url 'boardcalendar' %}" title="{% trans 'Vergaderingen' %}">{% trans "Kalender vergaderingen" %}</a></li>
                                 </ul>
                         </li>
                         {% endif %}                        
                         {% endif %}
-                        {% endif %}
+                        {% endif %} -->
 
                         {% if user.is_authenticated %}
                         {% if request.user.approved %}

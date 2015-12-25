@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Kalender" %}{% endblock title %}
+{% block custom_css_js %}
+<link rel="stylesheet" href="{% static 'registration/style.css' %}">
+<script src="{% static 'site-wide/bootstrap-show-password.min.js' %}"></script>
+{% endblock custom_css_js %}
+{% block content %}
+
+<div style='width:80%; margin-left:10%; margin-right:10%;'class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+
+
+
+	<div id="calendar">
+	  {{Calendar}}
+	</div>
+
+	<div id="leftmonthbutton">
+		<a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-arrow-left"></span> {{PreviousMonthName}}</a>
+	</div>
+
+	<div id="todaybutton">
+		<a href="#" class="btn btn-danger"> Today</a>
+	</div>
+
+	<div id="rightmonthbutton">
+		<a href="#" class="btn btn-danger">{{NextMonthName}} <span class="glyphicon glyphicon-arrow-right"></span></a>
+	</div>
+
+</div>
+
+
+{% endblock content %}

@@ -16,6 +16,10 @@ urlpatterns += patterns('loginas.views',
     url(r"^login/user/(?P<user_id>.+)/$", "user_login", name="loginas-user-login"),
 )
 
+urlpatterns += patterns('',
+    
+)
+
 urlpatterns += solid_i18n_patterns('',
 
     url(r'^wie$', 'core.views.home', name='wie'), #will render the Arenbergorkest.htm introductory page
@@ -33,14 +37,12 @@ urlpatterns += solid_i18n_patterns('',
     url(r'^musicians/list$', 'core.views.musicianlist', name='musicianlist'),
     url(r'^musicians/links$', 'core.views.links', name='links'),
     url(r'^musicians/edit$', 'core.views.edit', name='edit'),
-    url(r'^musicians/boardcalendar$', 'core.views.boardcalendar', name='boardcalendar'),
-    url(r'^musicians/fullcalendar$', auth_views.login, name='login'),
-    url(r'^musicians/login$', 'core.views.fullcalendar', name='fullcalendar'),
+    #url(r'^musicians/calendarview/(?P<pYear>\d{4})/(?P<pMonth>\d{2})/$', 'core.views.calendarview', name="calendarview"),
+    url(r'^musicians/login$', auth_views.login, name='login'),
+    url(r'^musicians/calendarview$', 'core.views.calendarview', name='calendarview'),
     url(r'^musicians/adieu$', auth_views.logout, name='logout'),
     url(r'^meer\-orkest$', 'polls.views.new_semester', name="new_semester_poll"),
-    # url(r'^musicians/naar\-zaventem$', RedirectView.as_view(pattern_name='zaventem_transport_poll')),
-    # url(r'^naar\-zaventem$', 'polls.views.zaventem_transport', name="zaventem_transport_poll"),
     url(r'^thanks$', 'polls.views.thanks', name="thanks"),
     url(r'^music_suggestions/', include('music_suggestions.urls', namespace='music_suggestions')),
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #needed for user avatars
 

@@ -1,4 +1,4 @@
-from core.models import User, UserProfile, Group, AlternativeGroupName
+from core.models import User, UserProfile, Group, AlternativeGroupName, Event
 from django import forms
 from django.contrib import admin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
@@ -105,3 +105,4 @@ admin.site.register(User, UserAdmin)
 admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(Group, GroupAdmin)
 admin.site.register(AlternativeGroupName)
+admin.site.register(Event)

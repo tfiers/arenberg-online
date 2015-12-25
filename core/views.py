@@ -13,11 +13,15 @@ from datetime import datetime
 from pytz import utc
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
-from core.models import  User, UserProfile
+from core.models import  User, UserProfile, Event
+from core.htmlcalendar import Calendar
+# from core.templatetags.event_tags import ContestCalendar
 from forms import UserForm, UserProfileForm, UserEditForm, UserProfileEditForm, CustomPasswordChangeForm #needed for registration and edit profile forms
 import gc
 import datetime
 import calendar
+from django.utils.safestring import mark_safe
+
 
 @csrf_protect
 def register(request):
@@ -100,13 +104,6 @@ def repcalendar(request):
 	   return render(request, 'calendar.html')
 
 @login_required
-def boardcalendar(request):
-    if not request.user.approved or not request.user.is_board:
-        return render(request, 'registration/notapproved.html')
-    else: 
-       return render(request, 'boardcalendar.html')
-
-@login_required
 def musicianlist(request):
     if not request.user.approved:
         return render(request, 'registration/notapproved.html')
@@ -169,66 +166,66 @@ def queryset_iterator(queryset, chunksize=1000):
             yield row
         gc.collect()
 
-# @login_required
-# def fullcalendar(request):
-#     if not request.user.approved:
-#         return render(request, 'registration/notapproved.html')
-#     else: 
-#        return render(request, 'fullcalendar.html')
+#CALENDAR FUNCTIONS AND VIEWS
 
-def named_month(month_number):
+def named_month(pMonthNumber):
     """
-    Return the name of the month, given the number.
+    Return the name of the month, given the month number
     """
-    return datetime.date(1900, month_number, 1).strftime("%B")
+    return datetime.date(1900, pMonthNumber, 1).strftime('%B')
 
-def this_month(request):
+def calendarhome(request):
     """
-    Show calendar of events this month.
+    Show calendar of events this month
     """
-    today = datetime.now()
-    return calendar(request, today.year, today.month)
+    lToday = datetime.datetime.now()
+    return calendarview(request, lToday.year, lToday.month)
 
-def fullcalendar(request,   series_id=None):
+@login_required
+def calendarview(request, pYear=datetime.datetime.now().year, pMonth=datetime.datetime.now().month):
     """
-    Show calendar of events for a given month of a given year.
-    ``series_id``
-    The event series to show. None shows all event series.
-
+    Show calendar of events for specified month and year
     """
-    now = datetime.datetime.now()
-    my_year = int(now.year)
-    my_month = int(now.month)
-    my_calendar_from_month = datetime.date(my_year, my_month, calendar.monthrange(my_year, my_month)[0])
-    my_calendar_to_month = datetime.date(my_year, my_month, calendar.monthrange(my_year, my_month)[1])
+    if not request.user.approved:
+        return render(request, 'registration/notapproved.html')
+    else:
+        lYear = int(pYear)
+        lMonth = int(pMonth)
+        if request.method == 'GET' and "year" in request.GET and "month" in request.GET:
+            m = request.GET["month"]
+            y = request.GET["year"]
+            if m != None and y != None:
+                lYear = request.GET['year']
+                lMonth = request.GET['month']
+        lCalendarFromMonth = datetime.date(lYear, lMonth, 1)
+        lCalendarToMonth = datetime.date(lYear, lMonth, calendar.monthrange(lYear, lMonth)[1])
+        lContestEvents = Event.objects.filter(date_of_event__gte=lCalendarFromMonth, date_of_event__lte=lCalendarToMonth)
+        lCalendar = Calendar(lContestEvents).formatmonth(lYear, lMonth)
+        lPreviousYear = lYear
+        lPreviousMonth = lMonth - 1
+        if lPreviousMonth == 0:
+            lPreviousMonth = 12
+            lPreviousYear = lYear - 1
+        lNextYear = lYear
+        lYearCorrect = lYear
+        lNextMonth = lMonth + 1
+        if lNextMonth == 13:
+            lNextMonth = 1
+            lYearCorrect
+            lNextYear = lYear + 1
+        lYearAfterThis = lYear + 1
+        lYearBeforeThis = lYear - 1
 
-    # my_events = Event.objects.filter(date_and_time__gte=my_calendar_from_month).filter(date_and_time__lte=my_calendar_to_month)
-    # if series_id:
-    #     my_events = my_events.filter(series=series_id)
-
-    # Calculate values for the calendar controls. 1-indexed (Jan = 1)
-    my_previous_year = my_year
-    my_previous_month = my_month - 1
-    if my_previous_month == 0:
-        my_previous_year = my_year - 1
-        my_previous_month = 12
-    my_next_year = my_year
-    my_next_month = my_month + 1
-    if my_next_month == 13:
-        my_next_year = my_year + 1
-        my_next_month = 1
-    my_year_after_this = my_year + 1
-    my_year_before_this = my_year - 1
-    return render_to_response("fullcalendar.html", { #'events_list': my_events,
-                                                        'month': my_month,
-                                                        'month_name': named_month(my_month),
-                                                        'year': my_year,
-                                                        'previous_month': my_previous_month,
-                                                        'previous_month_name': named_month(my_previous_month),
-                                                        'previous_year': my_previous_year,
-                                                        'next_month': my_next_month,
-                                                        'next_month_name': named_month(my_next_month),
-                                                        'next_year': my_next_year,
-                                                        'year_before_this': my_year_before_this,
-                                                        'year_after_this': my_year_after_this,
-    }, context_instance=RequestContext(request))
+        return render(request, 'calendarview.html', {'Calendar' : mark_safe(lCalendar),
+                                                           'Month' : lMonth,
+                                                           'MonthName' : named_month(lMonth),
+                                                           'Year' : lYear,
+                                                           'PreviousMonth' : lPreviousMonth,
+                                                           'PreviousMonthName' : named_month(lPreviousMonth),
+                                                           'PreviousYear' : lPreviousYear,
+                                                           'NextMonth' : lNextMonth,
+                                                           'NextMonthName' : named_month(lNextMonth),
+                                                           'NextYear' : lNextYear,
+                                                           'YearBeforeThis' : lYearBeforeThis,
+                                                           'YearAfterThis' : lYearAfterThis,
+                                                       })

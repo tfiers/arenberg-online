@@ -2,7 +2,7 @@ import datetime
 from django.db import models
 from django.core.mail import send_mail
 from django.db.models import (
-    EmailField, CharField, BooleanField, DateTimeField, DateField, Model,
+    EmailField, CharField, BooleanField, DateTimeField, TimeField,DateField, Model,
     OneToOneField, IntegerField, ManyToManyField, ForeignKey )
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
@@ -10,6 +10,7 @@ from django.contrib.auth.models import (
     AbstractBaseUser, PermissionsMixin, BaseUserManager )
 import os
 from django.conf import settings
+import datetime
 
 class Document(models.Model):
     docfile = models.FileField(upload_to='uploads/')
@@ -189,6 +190,10 @@ class AlternativeGroupName(Model):
     def __unicode__(self):
         return u"Alternative name '{}' for {}".format(self.name, self.group)
 
-# class Event(Model):
-#     date_and_time = 
-#     name = 
+class Event(Model):
+    name = CharField(max_length=20,default="Repetitie")
+    location  =CharField(max_length=20,default="STUK")
+    start_hour = TimeField(default=datetime.time(20,0))
+    date_of_event = DateField(max_length=50, default=datetime.date.today) 
+    board = BooleanField(default=False,help_text=_('Designates whether the event is for is_board users only.'))
+    absolute_url = CharField(max_length=100,null=True,blank=True)
