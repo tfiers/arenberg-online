@@ -188,3 +188,7 @@ class AlternativeGroupName(Model):
 
     def __unicode__(self):
         return u"Alternative name '{}' for {}".format(self.name, self.group)
+
+# class Event(Model):
+#     date_and_time = 
+#     name = 

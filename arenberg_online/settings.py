@@ -65,7 +65,6 @@ INSTALLED_APPS = (
     # 'debug_toolbar', # http://stackoverflow.com/questions/2361985/profiling-django
     'loginas', # https://github.com/stochastic-technologies/django-loginas
     'vinaigrette', # For translation of database values. See https://github.com/ecometrica/django-vinaigrette
-    'fullcalendar' #https://github.com/rodrigoamaral/django-fullcalendar
 )
 
 MIDDLEWARE_CLASSES = (
