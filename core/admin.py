@@ -100,9 +100,12 @@ class UserProfileAdmin(admin.ModelAdmin):
 class GroupAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'parents_as_string')
 
+class EventAdmin(admin.ModelAdmin):
+    list_display = ('name', 'location','date_of_event', 'start_hour','end_hour','event_color', 'absolute_url', 'board')
+
 
 admin.site.register(User, UserAdmin)
 admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(Group, GroupAdmin)
 admin.site.register(AlternativeGroupName)
-admin.site.register(Event)
+admin.site.register(Event, EventAdmin)

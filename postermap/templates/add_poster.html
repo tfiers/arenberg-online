@@ -65,7 +65,7 @@ ul.TokensContainer {
 	<h1>{% trans "Poster toevoegen" %}</h1>
 	<p>{% trans "Klik op de kaart om aan te duiden waar je de poster hebt opgehangen.<br><small>(Je kan hem achteraf nog verslepen).</small>" %}</p>
 	<div id="map-canvas"></div>
-	<form method="post">
+	<form role='form' method="post">
 		{% csrf_token %}
 		<input id="id_latitude" name="latitude" type="hidden">
 		<input id="id_longitude" name="longitude" type="hidden">

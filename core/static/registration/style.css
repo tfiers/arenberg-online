@@ -7,10 +7,6 @@ h1 {
 	color: #E60;
 }
 
-.linkies {
-	/*font-size:165%;*/
-}
-
 #ciao-msg {
 	margin-top: 140px;
 }
@@ -68,18 +64,18 @@ td {
 
 /*kalender*/
 
-#leftmonthbutton {
+#calendarbutton {
 	float:left;
-	width:47.5%;
+	padding-right:20px;
 }
 
-#todaybutton {
-	float:left;
-	text-align: center;
+#calendaraddbutton {
+	float:right;
+	padding-left:20px;	
 }
-
-#rightmonthbutton {
-	float:right;	
+#calendarlistbutton {
+	float:right;
+	padding-left:20px;	
 }
 
 #calendar table {
@@ -89,42 +85,58 @@ td {
 #calendar table tr th {
     text-align: center;
     font-size: 16px;
-/*    background-color: #316497;*/
     color: #111;
 }
 
 #calendar .month {
-	font-size: 30px;
-	padding-bottom: 30px;
+	font-size: 40px;
+	padding-bottom: 15px;
+	font-family: sans-serif;
+	font-weight: normal;
 }
 
 #calendar .mon {
-    border: 1px solid #adadad;
+	font-family: sans-serif;
+	font-weight: normal;
+	font-size: 18px;
 }
 
 #calendar .tue {
-    border: 1px solid #adadad;
+    font-family: sans-serif;
+   	font-weight: normal;
+ 	font-size: 18px;
 }
 
 #calendar .wed {
-    border: 1px solid #adadad;
+    font-family: sans-serif;
+   	font-weight: normal;
+ 	font-size: 18px;
+
 }
 
 #calendar .thu {
-    border: 1px solid #adadad;
+    font-family: sans-serif;
+   	font-weight: normal;
+ 	font-size: 18px;
 }
 
 
 #calendar .fri {
-    border: 1px solid #adadad;
+    font-family: sans-serif;
+   	font-weight: normal;
+ 	font-size: 18px;
 }
 
 #calendar .sat {
-    border: 1px solid #adadad;
+    font-family: sans-serif;
+   	font-weight: normal;
+ 	font-size: 18px;
 }
 
 #calendar .sun {
-    border: 1px solid #adadad;
+    font-family: sans-serif;
+   	font-weight: normal;
+ 	font-size: 18px;
 }
 
 #calendar table tr td {
@@ -151,14 +163,13 @@ td {
 
 #calendar .dayNumber {
     font-size: 14px !important;
-    font-weight: bold;
 }
 
 #calendar a {
     font-size: 10px;
 }
 
-#calendarfield {
+#calendarfield1 {
 	font-size:14px !important;
 	color:#ffffff;
 	background-color: #d86762; 
@@ -168,3 +179,50 @@ td {
 	margin-bottom: :3px;
 	margin-top: 3px;
 }
+
+#calendarfield1 {
+	font-size:14px !important;
+	color:#ffffff;
+	background-color: #d86762; 
+	-moz-border-radius: 6px; 
+	border-radius: 6px; /* standards-compliant: (IE) */ 
+	text-align: center;
+	margin-bottom: :3px;
+	margin-top: 3px;
+}
+
+#calendarfield2 {
+	font-size:14px !important;
+	color:#ffffff;
+	background-color: #FF8600; 
+	-moz-border-radius: 6px; 
+	border-radius: 6px; /* standards-compliant: (IE) */ 
+	text-align: center;
+	margin-bottom: :3px;
+	margin-top: 3px;
+}
+
+
+#calendarfield3 {
+	font-size:14px !important;
+	color:#ffffff;
+	background-color: #79973F; 
+	-moz-border-radius: 6px; 
+	border-radius: 6px; /* standards-compliant: (IE) */ 
+	text-align: center;
+	margin-bottom: :3px;
+	margin-top: 3px;
+}
+
+
+#calendarfield4 {
+	font-size:14px !important;
+	color:#ffffff;
+	background-color: #465E84; 
+	-moz-border-radius: 6px; 
+	border-radius: 6px; /* standards-compliant: (IE) */ 
+	text-align: center;
+	margin-bottom: :3px;
+	margin-top: 3px;
+}
+

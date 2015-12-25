@@ -206,4 +206,23 @@ class CustomPasswordChangeForm(SetPasswordForm):
             )
         return old_password
 
+class AddEventForm(forms.ModelForm):
+    """
+    Form that lets you add an event, which will be displayed on the calendar.
+    """
+
+    class Meta:
+        model = Event
+        fields = ['name', 'location','date_of_event', 'start_hour','end_hour','event_color', 'absolute_url', 'board']
+        widgets = {'date_of_event': SelectDateWidget()}
+
+    def clean_event_color(self):
+        color = self.cleaned_data['event_color']
+        if not color == "1" or not color == "2" or not color == "3" or not color == "4" or not color == "5" or not color == "42":
+            raise forms.ValidationError("Invalid number input.")
+        elif color == "42":
+            raise forms.ValidationError("The meaning of life isn't a color code.")
+        return colo
+
+
 

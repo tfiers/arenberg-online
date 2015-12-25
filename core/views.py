@@ -16,7 +16,7 @@ from django.http import HttpResponseRedirect
 from core.models import  User, UserProfile, Event
 from core.htmlcalendar import Calendar
 # from core.templatetags.event_tags import ContestCalendar
-from forms import UserForm, UserProfileForm, UserEditForm, UserProfileEditForm, CustomPasswordChangeForm #needed for registration and edit profile forms
+from forms import UserForm, UserProfileForm, UserEditForm, UserProfileEditForm, CustomPasswordChangeForm, AddEventForm #needed for registration and edit profile forms
 import gc
 import datetime
 import calendar
@@ -102,6 +102,26 @@ def repcalendar(request):
         return render(request, 'registration/notapproved.html')
     else: #valueerror (calendar returned None instead of httprespons object) if this else is removed
 	   return render(request, 'calendar.html')
+
+@login_required
+def calendarview_add(request):
+    if not request.user.approved or not request.user.is_board:
+        return render(request, 'registration/notapproved.html')
+    # If this is a POST request we need to process the form data.
+    if request.method == 'POST':
+        # Create a form instance and populate it with data from the request:
+        form = AddEventForm(request.POST)
+        # If the data entered is valid, save a new music piece suggestion
+        # to the database.
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('calendarview'))
+
+    # If this is a GET request (or any other type of request) we'll create a blank form.
+    else:
+        form = AddEventForm()
+
+    return render(request,'calendarview_add.html',{'addeventform': form})
 
 @login_required
 def musicianlist(request):
@@ -199,7 +219,7 @@ def calendarview(request, pYear=datetime.datetime.now().year, pMonth=datetime.da
                 lMonth = request.GET['month']
         lCalendarFromMonth = datetime.date(lYear, lMonth, 1)
         lCalendarToMonth = datetime.date(lYear, lMonth, calendar.monthrange(lYear, lMonth)[1])
-        lContestEvents = Event.objects.filter(date_of_event__gte=lCalendarFromMonth, date_of_event__lte=lCalendarToMonth)
+        lContestEvents = Event.objects.filter(date_of_event__gte=lCalendarFromMonth, date_of_event__lte=lCalendarToMonth).order_by("start_hour")
         lCalendar = Calendar(lContestEvents).formatmonth(lYear, lMonth)
         lPreviousYear = lYear
         lPreviousMonth = lMonth - 1
@@ -207,11 +227,9 @@ def calendarview(request, pYear=datetime.datetime.now().year, pMonth=datetime.da
             lPreviousMonth = 12
             lPreviousYear = lYear - 1
         lNextYear = lYear
-        lYearCorrect = lYear
         lNextMonth = lMonth + 1
         if lNextMonth == 13:
             lNextMonth = 1
-            lYearCorrect
             lNextYear = lYear + 1
         lYearAfterThis = lYear + 1
         lYearBeforeThis = lYear - 1
@@ -226,6 +244,6 @@ def calendarview(request, pYear=datetime.datetime.now().year, pMonth=datetime.da
                                                            'NextMonth' : lNextMonth,
                                                            'NextMonthName' : named_month(lNextMonth),
                                                            'NextYear' : lNextYear,
-                                                           'YearBeforeThis' : lYearBeforeThis,
-                                                           'YearAfterThis' : lYearAfterThis,
+                                                           #'YearBeforeThis' : lYearBeforeThis,
+                                                           #'YearAfterThis' : lYearAfterThis,
                                                        })

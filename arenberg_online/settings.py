@@ -149,6 +149,8 @@ USE_I18N = True
 #this also determines the order of day month year in date widgets
 DATE_FORMAT = "j N, Y"
 
+TIME_INPUT_FORMATS = ('%H:%M',)
+
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )

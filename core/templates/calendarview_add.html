@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Voeg event toe" %}{% endblock title %}
+{% block custom_css_js %}
+<link rel="stylesheet" href="{% static 'registration/style.css' %}">
+<script src="{% static 'site-wide/bootstrap-show-password.min.js' %}"></script>
+{% endblock custom_css_js %}
+{% block content %}
+
+<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+	<h1>{% trans "Voeg event toe" %}</h1>
+	<form role='form' method="post" action="{% url 'calendarview_add' %}">
+		{% csrf_token %}
+
+			<div class="form-group">
+				<span class="error">
+					{% for error in addeventform.name.errors %}
+							{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ addeventform.name.id_for_label }}">{% trans "Naam van het event" %}</label>
+				<input type="text" name="{{ addeventform.name.html_name }}" id="{{ addeventform.name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Grote Arenbergorkest Schuimfuif' %}" value="{{ addeventform.name.value|default_if_none:'' }}">
+			</div>
+
+			<div class="form-group">
+				<span class="error">
+					{% for error in addeventform.location.errors %}
+							{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ addeventform.location.id_for_label }}">{% trans "Locatie" %}</label>
+				<input type="text" name="{{ addeventform.location.html_name }}" id="{{ addeventform.location.id_for_label }}" class="form-control" placeholder="{% trans 'bv. het bureau van Louis Tobback' %}" value="{{ addeventform.location.value|default_if_none:'' }}">
+			</div>
+
+			<div class="form-group">
+				<span class="error">
+					{% for error in addeventform.date_of_event.errors %}
+							{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ addeventform.date_of_event.id_for_label }}">{% trans "Datum van het gebeuren" %}</label>
+					<div class="date"> <!-- for putting it on the next line -->
+						{{addeventform.date_of_event}}
+					</div>
+			</div>
+
+
+			<div class="form-group">
+				<span class="error">
+					{% for error in addeventform.start_hour.errors %}
+							{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ addeventform.start_hour.id_for_label }}">{% trans "Startuur" %}</label>
+					<div> <!-- for putting it on the next line -->
+						{{addeventform.start_hour}}
+					</div>
+			</div>
+
+			<div class="form-group">
+				<span class="error">
+					{% for error in addeventform.end_hour.errors %}
+							{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ addeventform.end_hour.id_for_label }}">{% trans "Einduur" %}</label>
+					<div> <!-- for putting it on the next line -->
+						{{addeventform.end_hour}}
+					</div>
+			</div>
+
+			<div class="form-group">
+				<span class="error">
+					{% for error in addeventform.event_color.errors %}
+							{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ addeventform.event_color.id_for_label }}">{% trans "Kleurcode (1 = repetitie, 2 = concert, 3 = activiteit, 5 = repetitieweekend)" %}</label>
+				<input type="text" name="{{ addeventform.event_color.html_name }}" id="{{ addeventform.event_color.id_for_label }}" class="form-control" placeholder="{% trans 'bv. 42' %}" value="{{ addeventform.event_color.value|default_if_none:'' }}">
+			</div>
+
+			<div class="form-group">
+				<span class="error">
+					{% for error in addeventform.absolute_url.errors %}
+							{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ addeventform.absolute_url.id_for_label }}">{% trans "En dan nog eventueel een link (niet verplicht)" %}</label>
+				<input type="text" name="{{ addeventform.absolute_url.html_name }}" id="{{ addeventform.absolute_url.id_for_label }}" class="form-control" placeholder="{% trans 'bv. http://www.thunderdome.com/home/' %}" value="{{ addeventform.absolute_url.value|default_if_none:'' }}">
+			</div>
+
+			<label for="{{ addeventform.board.id_for_label }}">{% trans "Enkel voor bestuur? Vink dan aan!" %}</label>
+			<div class="form-group"> <!-- errors not really possible ... -->	
+				{{addeventform.board}}
+			</div>
+
+
+		<input type="submit" value="{% trans 'Voeg toe' %}" class="btn btn-danger">
+		
+	</form>
+</div>
+
+{% endblock content %}
