@@ -1,4 +1,5 @@
 from django import forms
+from music_suggestions.models import PieceOfMusic
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
@@ -45,3 +46,8 @@ class SuggestPieceOfMusicForm(forms.Form):
 		),
 
 	)
+
+class SuggestForm(forms.ModelForm):
+	class Meta:
+		model = PieceOfMusic
+		exclude = ['suggested_by', 'suggested_by_string']

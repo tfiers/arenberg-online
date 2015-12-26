@@ -1,19 +1,51 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load staticfiles %}
-{% load crispy_forms_tags %}
-{% block title %}Stel een muziekstuk voor{% endblock title %}
+{% block title %}{% trans "Stel muziekstuk voor" %}{% endblock title %}
 {% block custom_css_js %}
-<link rel="stylesheet" href="{% static 'music_suggestions/style.css' %}">
+<link rel="stylesheet" href="{% static 'registration/style.css' %}">
+<script src="{% static 'site-wide/bootstrap-show-password.min.js' %}"></script>
 {% endblock custom_css_js %}
 {% block content %}
-	<div class="col-sm-12">
-		<div class="row">
-			<div class="col-sm-offset-2 col-sm-8">
-				<h1>Stel een muziekstuk voor</h1>
-			</div>
+
+<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+	<h1>{% trans "Stel zelf een muziekstuk voor" %}</h1>
+	<form role='form' method="post" action="{% url 'suggestions:suggest' %}">
+		{% csrf_token %}
+
+		<div class="form-group">
+			<span class="error">
+				{% for error in suggestform.title.errors %}
+						{{ error }}<br>
+				{% endfor %}
+			</span>
+			<label for="{{ suggestform.title.id_for_label }}">{% trans "Titel" %}</label>
+			<input type="text" name="{{ suggestform.title.html_name }}" id="{{ suggestform.title.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Ludwig van Beethoven - Allegro Con Brio uit Symfonie No. 5' %}" value="{{ suggestform.title.value|default_if_none:'' }}">
 		</div>
-		<div class="row">
-			{% crispy form %}
+
+		<div class="form-group">
+			<span class="error">
+				{% for error in suggestform.link_to_recording.errors %}
+						{{ error }}<br>
+				{% endfor %}
+			</span>
+			<label for="{{ suggestform.link_to_recording.id_for_label }}">{% trans "Link naar opname" %}</label>
+			<input type="text" name="{{ suggestform.link_to_recording.html_name }}" id="{{ suggestform.link_to_recording.id_for_label }}" class="form-control" placeholder="{% trans 'bv. https://www.youtube.com/watch?v=DuvIiteKIg4' %}" value="{{ suggestform.link_to_recording.value|default_if_none:'' }}">
 		</div>
-	</div>
+
+		<div class="form-group">
+			<span class="error">
+				{% for error in suggestform.sheet_music.errors %}
+						{{ error }}<br>
+				{% endfor %}
+			</span>
+			<label for="{{ suggestform.sheet_music.id_for_label }}">{% trans "Link naar partijen" %}</label>
+			<textarea class="form-control" rows="8" id="comment" placeholder="Hier kan je eventueel meegeven hoe we aan de partituren kunnen geraken. Je kan bijvoorbeeld een link geven naar IMSLP, naar een online muziekwinkel (bv. bij halleonard.com of jwpepper.com) of naar een stuk op MuseScore (https://musescore.com/sheetmusic). Heb jij de partituur? Heeft ons orkest de partituur al? Gaat het enkel om een directiepartij ('score'), enkel om de 'parts', of om beide ('score+parts')? Hebben we papieren en/of ingescande versies, of hebben we ook digitale semantische versies (MusicXML, MuseScore, Sibelius, Finale)?">{{suggestform.sheet_music}}</textarea>
+		</div>
+
+		<input type="submit" value="{% trans 'Stel voor' %}" class="btn btn-danger">
+		
+	</form>
+</div>
+
 {% endblock content %}

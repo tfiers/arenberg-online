@@ -23,6 +23,7 @@
 					<th>Link naar opname</th>
 					<th>Voorgesteld door</th>
 					<th>Partituren</th>
+					<th>Stemmen</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,10 +31,9 @@
 				<tr>
 					<td class="col-xs-6"><strong>{{ piece.title }}</strong></td>
 					<td class="col-xs-2"><a href="{{ piece.link_to_recording }}">Luister</a></td>
-					{# <td><a href="{{ piece.link_to_recording }}">{{ piece.title }}</a></td> #}
 					<td class="col-xs-2">{{ piece.suggested_by_string }}</td>
 					<td class="col-xs-2 sheet-music">{{ piece.sheet_music }}</td>
-					{# <td><a href="#">♥</a></td> #}
+					<td><a href="#">♥</a></td> 
 				</tr>
 				{% endfor %}
 			</tbody>

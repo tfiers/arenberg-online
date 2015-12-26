@@ -152,7 +152,7 @@ td {
 }
 
 #calendar td.filled {
-    background-color: #99ccff;
+/*    background-color: #99ccff;*/
 }
 
 #calendar td.today {
