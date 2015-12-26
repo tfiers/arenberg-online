@@ -6,7 +6,7 @@ from core.models import User
 class PieceOfMusic(Model):
 	title = CharField(max_length=200, unique=True)
 	link_to_recording = URLField(unique=True, blank=True)
-	sheet_music = TextField(blank=True)
+	sheet_music = TextField(null=True,blank=True)
 	suggested_by = ForeignKey(User, blank=True, null=True)
 	suggested_by_string = CharField(max_length=200, blank=True)
 
