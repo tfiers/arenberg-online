@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load staticfiles %}
 {% block title %}Voorgestelde muziek{% endblock title %}
 {% block custom_css_js %}
@@ -13,27 +14,31 @@
 		<div class="col-sm-4">
 			<a class="btn btn-danger" href="{% url 'music_suggestions:suggest' %}" id="btn-suggest">Stel een muziekstuk voor</a>
 		</div>
-	</div>
-
+	</div>	
+	{{liked}}
 	<div class="row">
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Titel</th>
-					<th>Link naar opname</th>
-					<th>Voorgesteld door</th>
-					<th>Partituren</th>
-					<th>Stemmen</th>
+					<th>{%trans "Titel" %}</th>
+					<th>{%trans 'Link naar opname' %}</th>
+					<th>{%trans 'Voorgesteld door' %}</th>
+					<th>{%trans 'Partituren' %}</th>
+					<th>{%trans 'Ik hou hiervan!' %}</th>
 				</tr>
 			</thead>
 			<tbody>
-				{% for piece in suggested_pieces %}
+				{% for piece,like,liked in suggested_pieces %}
 				<tr>
-					<td class="col-xs-6"><strong>{{ piece.title }}</strong></td>
+					<td class="col-xs-4"><strong>{{ piece.title }}</strong></td>
 					<td class="col-xs-2"><a href="{{ piece.link_to_recording }}">Luister</a></td>
 					<td class="col-xs-2">{{ piece.suggested_by_string }}</td>
-					<td class="col-xs-2 sheet-music">{{ piece.sheet_music }}</td>
-					<td><a href="#">♥</a></td> 
+					<td class="col-xs-3 sheet-music">{{ piece.sheet_music }}</td>
+					{% if liked %}
+					<td style="font-size:20px;" class="col-xs-2"><a href="{%url 'suggestions:browse' piece.title %}">{{like}} <span class="glyphicon glyphicon-heart"></a></td>
+					{% else %}
+					<td style="font-size:20px;" class="col-xs-2"><a href="{%url 'suggestions:browse' piece.title %}">{{like}} <span class="glyphicon glyphicon-heart-empty"></a></td>
+					{% endif %}
 				</tr>
 				{% endfor %}
 			</tbody>
