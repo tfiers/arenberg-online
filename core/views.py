@@ -31,7 +31,7 @@ def register(request):
         if uf.is_valid() * upf.is_valid():
             user = uf.save()
             #birthday event creation is not done by using a modelform here, could have been though. maybe in the future. 
-            Event.objects.create(name='Birthday {} {}'.format(user.first_name,user.last_name),event_color="4", date_of_event=uf.cleaned_data['birthdate'], birthday_user=user)
+            Event.objects.create(name='{} {}'.format(user.first_name,user.last_name),event_color="4", date_of_event=uf.cleaned_data['birthdate'], birthday_user=user)
             userprofile = upf.save(commit=False)
             userprofile.associated_user = user #adds the created as associated user for the userprofile
             userprofile.last_password_change = datetime.datetime.now(utc) #setting last password change

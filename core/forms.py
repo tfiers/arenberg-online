@@ -225,11 +225,11 @@ class AddEventForm(forms.ModelForm):
 
     def clean_event_color(self):
         color = self.cleaned_data['event_color']
-        if not color == "1" or not color == "2" or not color == "3" or not color == "4" or not color == "5" or not color == "42":
-            raise forms.ValidationError("Invalid number input.")
+        if not color == "1" and not color == "2" and not color == "3" and not color == "4" and not color == "5" and not color == "42":
+            raise forms.ValidationError('Invalid number "{}".'.format(color))
         elif color == "42":
             raise forms.ValidationError("The meaning of life isn't a color code.")
-        return colo
+        return color
 
 
 

@@ -189,12 +189,12 @@ class AlternativeGroupName(Model):
         return u"Alternative name '{}' for {}".format(self.name, self.group)
 
 class Event(Model):
-    name = CharField(max_length=50,default="Repetitie")
-    location  = CharField(max_length=20,null=True,blank=True)
+    name = CharField(max_length=50)
+    location  = CharField(max_length=50,null=True,blank=True)
     start_hour = TimeField(null=True, blank=True)
     end_hour = TimeField(null=True, blank=True)
     event_color = CharField(max_length=1,default="1",help_text=_("Color code on calendar. Default (1) is red (rehearsal). 2 = concert, 3 = organised event, 4 = birthday, 5 = repetitieweekend."))
-    date_of_event = DateField(max_length=50, default=datetime.date.today) 
+    date_of_event = DateField(max_length=50) 
     board = BooleanField(default=False,help_text=_('Designates whether the event is for is_board users only.'))
     absolute_url = CharField(max_length=100,null=True,blank=True,help_text=_("It's possible to make the event link to a page (opened in a tab)."))
     birthday_user = OneToOneField(User,null=True,blank=True,help_text=_("If this event is a birthday, this attr holds the user."))

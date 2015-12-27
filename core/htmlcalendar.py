@@ -18,41 +18,49 @@ class Calendar(HTMLCalendar):
             today = date.today()
             if today == date(self.year, self.month, day):
                 cssclass += ' today'
+            body = []
+
             if day in self.events:
                 cssclass += ' filled'
-                body = []
-                for e in self.events.get(day):
+                for e in self.events[day]: 
                     #there could be a bug in here, if second if is made an elif, every 1 show up again in the style of 5
                     #added extra %s for formatting with calendarfield styles
                     if e.event_color == "1" or e.event_color == "2" or e.event_color == "3": #repetitie, concert en event
+                        #if there's a real url
                         if not e.absolute_url == '' and not e.absolute_url == None:
-                            body.append('<a id = "calendarfield%s" href="%s" target="_blank">' %(e.event_color,e.absolute_url)) #opens the page in new tab, calenderfield id for css
+                            body.append('<div id="calendarfield%s"><a href="%s" target="_blank">' %(e.event_color,e.absolute_url)) #opens the page in new tab, calenderfield id for css
+                            body.append(esc(e.name+' @'+e.location+' '+e.start_hour.strftime("%H:%M"))) 
+                            body.append('</a></div>')
+                        #else render without "a" tag
                         else:
                             body.append('<div id="calendarfield%s">' %e.event_color)
-                        body.append(esc(e.name+' @'+e.location+' '+e.start_hour.strftime("%H:%M"))) 
-                        if not e.absolute_url == '' and not e.absolute_url == None:
-                            body.append('</a><br/>')
-                        else:
+                            body.append(esc(e.name+' @'+e.location+' '+e.start_hour.strftime("%H:%M"))) 
                             body.append('</div>')
+                    
                     elif e.event_color == "5": #weekend: zelfde opmaak als 1 maar zegt enkel "repetitieweekend"
+                        #if there's a real url
                         if not e.absolute_url == '' and not e.absolute_url == None:
-                            body.append('<a id = "calendarfield%s" href="%s" target="_blank">' %(e.event_color,e.absolute_url)) #opens the page in new tab, calenderfield id for css
+                            body.append('<div id="calendarfield%s"><a href="%s" target="_blank">' %(e.event_color,e.absolute_url)) #opens the page in new tab, calenderfield id for css
+                            body.append(esc(e.name))
+                            body.append('</a></div>')
+                        #else render without "a" tag
                         else:
                             body.append('<div id="calendarfield%s">' %e.event_color)
-                        body.append(esc(e.name)) 
-                        if not e.absolute_url == '' and not e.absolute_url == None:
-                            body.append('</a><br/>')
-                        else:
+                            body.append(esc(e.name)) 
                             body.append('</div>')
+                return self.day_cell(cssclass, '<div class="dayNumber">%d</div> %s' % (day, ''.join(body)))
+
             if day in self.bdays:
                 cssclass += ' filled'
-                body = []
                 for b in self.bdays[day]:
                     body.append('<div id="calendarfield%s">' %b.event_color)
+                    body.append('Birthday ')
                     body.append(esc(b.name)) #voor verjaardag 
                     body.append('</div>')
                 return self.day_cell(cssclass, '<div class="dayNumber">%d</div> %s' % (day, ''.join(body)))
+
             return self.day_cell(cssclass, '<div class="dayNumber">%d</div>' % day)
+            
         return self.day_cell('noday', '&nbsp;')
 
     def formatmonth(self, year, month):

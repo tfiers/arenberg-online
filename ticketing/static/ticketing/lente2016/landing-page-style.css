@@ -1,6 +1,4 @@
 .footer {
-  position: absolute;
-  padding-bottom: 20px;
   bottom: 0;
   width: 100%;
   height: 85vw;
@@ -10,6 +8,5 @@ html {
   min-height: 100%;
 }
 body {
-
-  margin-bottom: 0vw;
+  margin-bottom: 85vw;
 }
