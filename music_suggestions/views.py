@@ -14,7 +14,8 @@ def browse_suggested_pieces(request, titlelike=None):
 	pieces = []
 	likes = []
 	liked = []
-	iterator = queryset_iterator(PieceOfMusic.objects.all().order_by('title'))
+	pi = PieceOfMusic.objects.all().order_by('title')
+	iterator = queryset_iterator(pi)
 	#conditions for creating a vote object
 	if titlelike != None:
 		voteobject = Vote.objects.filter(receiving_piece__title=titlelike,voter=request.user)
@@ -24,20 +25,24 @@ def browse_suggested_pieces(request, titlelike=None):
 		elif voteobject and titlepiece:
 			voteobject.delete()
 	#listing every suggested piece and its votes
-	for p in iterator: 
-		#get piece
-		pieces.append(p)
-		#get number of total votes
-		votes = Vote.objects.filter(receiving_piece__title=p.title).count() #the amount of vote objects in every index number of the list is counted in the template
-	   	likes.append(votes)
-	   	#did user like it him-/herself?
-	   	voted = Vote.objects.filter(receiving_piece__title=p.title,voter=request.user)
-	   	if voted:
-	   		liked.append(True)
-	   	else:
-	   		liked.append(False)
-   	zipped = zip(pieces,likes,liked)
-	return render(request,'browse_suggested_pieces.html',{'suggested_pieces': zipped, "liked":liked})
+	#if pi is a safety measure, the query_set iterator cannot handle empty querysets
+	if pi:
+		for p in iterator: 
+			#get piece
+			pieces.append(p)
+			#get number of total votes
+			votes = Vote.objects.filter(receiving_piece__title=p.title).count() #the amount of vote objects in every index number of the list is counted in the template
+		   	likes.append(votes)
+		   	#did user like it him-/herself?
+		   	voted = Vote.objects.filter(receiving_piece__title=p.title,voter=request.user)
+		   	if voted:
+		   		liked.append(True)
+		   	else:
+		   		liked.append(False)
+	   	zipped = zip(pieces,likes,liked)
+	else:
+		zipped=None
+	return render(request,'browse_suggested_pieces.html',{'suggested_pieces': zipped})
 
 @login_required
 def suggest_piece(request):
@@ -78,6 +83,8 @@ def queryset_iterator(queryset, chunksize=1000):
 
     Example:
     my_queryset = queryset_iterator(MyItem.objects.all()) for item in my_queryset: item.do_something()
+
+    WILL GIVE AN ERROR IF QUERYSET IS EMPTY!!!
     '''
     pk = 0
     last_pk = queryset.order_by('-pk')[0].pk

@@ -22,15 +22,15 @@ MAX_PHONE_NUMBER_LENGTH = 12
 class UserForm(forms.ModelForm):
 
     error_messages = {'password_mismatch': _("The two password fields didn't match."),'email_mismatch': _("The two e-mail fields didn't match."),}
-    password1 = forms.CharField(label=_("Password"),widget=forms.PasswordInput)
-    password2 = forms.CharField(label=_("Password confirmation"),widget=forms.PasswordInput,help_text=_("Enter the same password as before, for verification."))
+    password1 = forms.CharField(required=True,label=_("Password"),widget=forms.PasswordInput)
+    password2 = forms.CharField(required=True,label=_("Password confirmation"),widget=forms.PasswordInput,help_text=_("Enter the same password as before, for verification."))
     email = forms.EmailField(label=_("e-mail"))
     email2 = forms.EmailField(label=_("e-mail opnieuw"))
+    birthdate = forms.DateField(required=True, widget=SelectDateWidget(years=range(1914,datetime.now().year)))
 
     class Meta:
         model = User
-        fields = ("first_name","last_name","phone_number","study","birthdate")
-        widgets = {'birthdate': SelectDateWidget(years=range(1914,datetime.now().year))}
+        fields = ("first_name","last_name","phone_number","study")
 
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
@@ -65,7 +65,6 @@ class UserForm(forms.ModelForm):
         user = super(UserForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         user.email = self.cleaned_data['email']
-        user.birthdate = self.cleaned_data['birthdate']
         if commit:
             user.save()
         return user
@@ -99,8 +98,7 @@ class UserEditForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ("first_name","last_name","phone_number","study","email","birthdate")  
-        widgets = {'birthdate': SelectDateWidget(years=range(1914,datetime.now().year))}  
+        fields = ("first_name","last_name","phone_number","study","email") 
 
     password2 = forms.CharField(label=_("password2"),widget=forms.PasswordInput(attrs={'autofocus': ''}),)
 
@@ -134,9 +132,18 @@ class UserProfileEditForm(forms.ModelForm):
         image = self.cleaned_data.get('avatar',False)
         if image:
             width, height = get_image_dimensions(image)
-            if width > MAX_WIDTH or height > MAX_HEIGHT or image.size>MAX_FILESIZE: #or w > MAX_WIDTH or h > MAX_HEIGHT
+            if width > MAX_WIDTH or height > MAX_HEIGHT or image.size>MAX_FILESIZE:
                 raise forms.ValidationError(_("Image dimensions or size too large."))
             return image
+
+class BirthdayEditForm(forms.ModelForm):
+    """
+    Modelform specifically for already created birthday type Events.
+    """
+    class Meta:
+        model = Event
+        fields = ['date_of_event']
+        widgets = {'date_of_event': SelectDateWidget(years=range(1914,datetime.now().year))}  
             
 class SetPasswordForm(forms.Form):
     """

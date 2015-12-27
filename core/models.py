@@ -70,7 +70,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = CharField(_('last name'), max_length=50, blank=False)
     phone_number = CharField(_('phone_number'), max_length=15, blank=False) 
     study = CharField(_('study'), max_length=50, blank=False) 
-    birthdate = DateField(_('birthdate'), max_length=50, default=datetime.date.today) 
     is_staff = BooleanField(_('staff status'), default=False,
         help_text=_('Designates whether the user can log into this admin '
                     'site.'))
@@ -137,7 +136,6 @@ class UserProfile(Model):
     last_password_change = DateTimeField(blank=True, null=True, default=None)
     groups = ManyToManyField('Group', blank=False)
     avatar = models.ImageField(upload_to='images/avatars',default='media/defaultavatar.png')
-    #upload_to works, images stored in core/media/images/avatars succesfully
     
     def __unicode__(self):
         return u"User profile for {}".format(self.associated_user)
@@ -191,14 +189,15 @@ class AlternativeGroupName(Model):
         return u"Alternative name '{}' for {}".format(self.name, self.group)
 
 class Event(Model):
-    name = CharField(max_length=20,default="Repetitie")
-    location  = CharField(max_length=20,default="STUK")
-    start_hour = TimeField(default=datetime.time(20,0))
-    end_hour = TimeField(default=datetime.time(22,15))
+    name = CharField(max_length=50,default="Repetitie")
+    location  = CharField(max_length=20,null=True,blank=True)
+    start_hour = TimeField(null=True, blank=True)
+    end_hour = TimeField(null=True, blank=True)
     event_color = CharField(max_length=1,default="1",help_text=_("Color code on calendar. Default (1) is red (rehearsal). 2 = concert, 3 = organised event, 4 = birthday, 5 = repetitieweekend."))
     date_of_event = DateField(max_length=50, default=datetime.date.today) 
     board = BooleanField(default=False,help_text=_('Designates whether the event is for is_board users only.'))
     absolute_url = CharField(max_length=100,null=True,blank=True,help_text=_("It's possible to make the event link to a page (opened in a tab)."))
+    birthday_user = OneToOneField(User,null=True,blank=True,help_text=_("If this event is a birthday, this attr holds the user."))
 
     def __unicode__(self):
         return u"'{}', {}".format(self.name, self.date_of_event)

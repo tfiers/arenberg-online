@@ -52,13 +52,13 @@
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in usereditform.birthdate.errors %}
+					{% for error in birthdayeditform.birthdate.errors %}
 							{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ usereditform.birthdate.id_for_label }}">{% trans "Je geboortedatum" %}</label>
+				<label for="{{birthdayeditform.birthdate.id_for_label }}">{% trans "Je geboortedatum" %}</label>
 					<div class="date"> 
- 						{{usereditform.birthdate}}
+ 						{{birthdayeditform.date_of_event}}
 					</div>
 			</div>
 

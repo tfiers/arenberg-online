@@ -35,7 +35,6 @@ urlpatterns += solid_i18n_patterns('',
     url(r'^musicians/calendar$', 'core.views.repcalendar', name='calendar'),
     url(r'^musicians/accessrestricted$', 'core.views.notapproved', name='notapproved'),
     url(r'^musicians/list$', 'core.views.musicianlist', name='musicianlist'),
-    url(r'^musicians/links$', 'core.views.links', name='links'),
     url(r'^musicians/edit$', 'core.views.edit', name='edit'),
     url(r'^musicians/calendarview/(?P<pYear>\d+)/(?P<pMonth>\d+)/$', 'core.views.calendarview', name="calendarview"), #regex url dispatcher for calendar
     url(r'^musicians/calendarview$', 'core.views.calendarview', name='calendarview'),

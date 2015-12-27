@@ -1,15 +1,21 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load staticfiles %}
-{% block title %}{% trans "Lijst muzikanten" %}{% endblock title %}
+{% block title %}Voorgestelde muziek{% endblock title %}
 {% block custom_css_js %}
-<link rel="stylesheet" href="{% static 'registration/style.css' %}">
-<script src="{% static 'site-wide/bootstrap-show-password.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'music_suggestions/style.css' %}"> <!-- for the same style as the browse suggested pieces -->
 {% endblock custom_css_js %}
 {% block content %}
-
-<div id="toofattable" class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-	<h1>{% trans "Muzikanten" %}</h1>
+<div class="toofattable">
+	<div class="row">
+		<div class="col-sm-8">
+			<h1>Muzikanten</h1>
+		</div>
+		<div class="col-sm-4">
+			<a class="btn btn-danger" href="https://docs.google.com/spreadsheets/d/1dgbjE_WvsUkrdU9eTVa2JIjJ4-9QscD4bdC6FRENlPo/edit?pli=1#gid=0" target='_blank' id="btn-suggest">Oude muzikantenlijst</a>
+		</div>
+	</div>	
+	<div class="row">
 		<table class="table">
 			<thead>
 				<tr>
@@ -38,6 +44,6 @@
 				{% endfor %}	
 			</tbody>
 		</table>
+	</div>
 </div>
-
 {% endblock content %}

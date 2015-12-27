@@ -65,18 +65,6 @@
                         {% endif %}
                         {% endif %}
 
-<!--                         {% if user.is_board %}
-                        {% if user.is_authenticated %}
-                        {% if request.user.approved %}
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Bestuur" %}<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                </ul>
-                        </li>
-                        {% endif %}                        
-                        {% endif %}
-                        {% endif %} -->
-
                         {% if user.is_authenticated %}
                         {% if request.user.approved %}
                         <li class="dropdown">
@@ -96,33 +84,33 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Orkest" %}<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="https://www.dropbox.com/sh/zbzfkiit0eyl77v/AAAJSX1O-5OCxcpQyfCY2VsVa?dl=0" target='_blank'>{% trans "Partituren" %}</a></li>
-                                    <li><a href="{% url 'links' %}">{% trans "Nuttige links" %}</a></li>
                                     <li><a href="{% url 'musicianlist' %}">{% trans "Lijst muzikanten" %}</a></li>
                                     <li><a href="{% url 'suggestions:browse' %}">{% trans "Stel muziekstuk voor" %}</a></li>
-                                    <li><a href="{% url 'new_semester_poll' %}">{% trans "Enquête volgend academiejaar" %}</a></li>
-
+                                    <li><a href="{% url 'new_semester_poll' %}">{% trans "Enquête toekomst" %}</a></li>
+                                    
                                 </ul>
                         </li>
                         {% endif %}                        
                         {% endif %}
 
+                        {%if user.is_authenticated %}
+                        <img src="{{request.user.userprofile.avatar.url}}"> 
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Muzikant" %}<span class="caret"></span></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href=""><b>{{ request.user.first_name }}&nbsp;{{request.user.last_name}}</b><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    {% if user.is_authenticated %}
                                     <li><a href="{% url 'edit' %}">{% trans "Wijzig gebruikersinfo" %}</a></li>
                                     <li><a href="{% url 'change_password' %}">{% trans "Verander wachtwoord" %}</a></li>
                                     <li><a href="{% url 'logout' %}">{% trans "Uitloggen" %}</a></li>
-                                    {% else %}
-                                    <li><a href="{% url 'login' %}">{% trans "Inloggen" %}</a></li>
-                                    <li><a href="{% url 'register' %}">{% trans "Registreren" %}</a></li>
-                                    {% endif %}
                                 </ul>
                         </li>
-
-                        {% if request.user.is_authenticated %}
-                        <li><a>{%trans "Welkom" %}, <b>{{ request.user.first_name }}&nbsp;{{request.user.last_name}}</b></a></li>
-                            <img src="{{request.user.userprofile.avatar.url}}">
+                        {% else %}
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Muzikant" %}<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'login' %}">{% trans "Inloggen" %}</a></li>
+                                    <li><a href="{% url 'register' %}">{% trans "Registreren" %}</a></li>
+                                </ul>
+                        </li>
                         {% endif %}
 
                     </ul>

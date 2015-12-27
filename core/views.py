@@ -15,8 +15,7 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from core.models import  User, UserProfile, Event
 from core.htmlcalendar import Calendar
-# from core.templatetags.event_tags import ContestCalendar
-from forms import UserForm, UserProfileForm, UserEditForm, UserProfileEditForm, CustomPasswordChangeForm, AddEventForm #needed for registration and edit profile forms
+from forms import BirthdayEditForm, UserForm, UserProfileForm, UserEditForm, UserProfileEditForm, CustomPasswordChangeForm, AddEventForm #needed for registration and edit profile forms
 import gc
 import datetime
 import calendar
@@ -27,20 +26,22 @@ from django.utils.safestring import mark_safe
 def register(request):
     """handles the view of the registration form"""
     if request.method == 'POST':
-        uf = UserForm(request.POST, prefix='user')
-        upf = UserProfileForm(request.POST, request.FILES, prefix='userprofile')
+        uf = UserForm(request.POST, prefix='userform')
+        upf = UserProfileForm(request.POST, request.FILES, prefix='userprofileform')
         if uf.is_valid() * upf.is_valid():
             user = uf.save()
+            #birthday event creation is not done by using a modelform here, could have been though. maybe in the future. 
+            Event.objects.create(name='Birthday {} {}'.format(user.first_name,user.last_name),event_color="4", date_of_event=uf.cleaned_data['birthdate'], birthday_user=user)
             userprofile = upf.save(commit=False)
             userprofile.associated_user = user #adds the created as associated user for the userprofile
-            userprofile.last_password_change = datetime.now(utc) #setting last password change
+            userprofile.last_password_change = datetime.datetime.now(utc) #setting last password change
             userprofile.save()
             userprofile.groups = upf.cleaned_data["groups"] #adds the groups. doesn't save because it's a m2m relationship. other options: using super() or save_m2m()
             #TODO: send email here, is also commented out in thanks.html
             return render_to_response('registration/thanks_register.html', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
     else:
-        uf = UserForm(prefix='user')
-        upf = UserProfileForm(prefix='userprofile')
+        uf = UserForm(prefix='userform')
+        upf = UserProfileForm(prefix='userprofileform')
     return render_to_response('registration/register.html', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
 
 @csrf_protect
@@ -48,28 +49,27 @@ def register(request):
 def edit(request):
     """handles the view of the edit form, to edit user info"""
     if request.method == 'POST':
-        uf = UserEditForm(request.user,request.POST, instance=request.user, prefix='user')
-        upf = UserProfileEditForm(request.POST, request.FILES, instance = request.user.userprofile, prefix='userprofile')
+        uf = UserEditForm(request.user,request.POST, instance=request.user, prefix='usereditform')
+        upf = UserProfileEditForm(request.POST, request.FILES, instance = request.user.userprofile, prefix='userprofileeditform')
+        buser = Event.objects.get(birthday_user=request.user)
+        ubf = BirthdayEditForm(request.POST,instance=buser, prefix='birthdayeditform')
         if uf.is_valid() * upf.is_valid():
             user = uf.save()
+            ubf.save()
             userprofile = upf.save(commit=False)
             userprofile.associated_user = user #adds the created as associated user for the userprofile
-            userprofile.last_password_change = datetime.now(utc) #setting last password change
+            userprofile.last_password_change = datetime.datetime.now(utc) #setting last password change
             userprofile.save()
             userprofile.groups = upf.cleaned_data["groups"] #adds the groups. doesn't save because it's a m2m relationship. other options: using super() or save_m2m()
             #TODO: send email here, is also commented out in thanks.html
-            return render_to_response('registration/thanks_edit.html', dict(usereditform=uf, userprofileeditform=upf), context_instance=RequestContext(request))
+            return render_to_response('registration/thanks_edit.html', dict(usereditform=uf, userprofileeditform=upf, birthdayeditform=ubf), context_instance=RequestContext(request))
     else:
-        uf = UserEditForm(request.user,instance=request.user,  prefix='user')
-        upf = UserProfileEditForm(instance = request.user.userprofile, prefix='userprofile')
-    return render_to_response('registration/edit.html', dict(usereditform=uf, userprofileeditform=upf), context_instance=RequestContext(request)) 
+        uf = UserEditForm(request.user,instance=request.user,  prefix='usereditform')
+        upf = UserProfileEditForm(instance = request.user.userprofile, prefix='userprofileeditform')
+        buser = Event.objects.get(birthday_user=request.user)
+        ubf = BirthdayEditForm(instance=buser, prefix='birthdayeditform')
+    return render_to_response('registration/edit.html', dict(usereditform=uf, userprofileeditform=upf, birthdayeditform=ubf), context_instance=RequestContext(request)) 
     #the keys in the dict actually determine the var names you have to use for the forms in the template
-
-@login_required
-def links(request):
-    if not request.user.approved:
-        return render(request, 'registration/notapproved.html')
-    return render(request, 'links.html')
 
 
 
@@ -130,12 +130,17 @@ def musicianlist(request):
     #get all users, iterate over that query to 
     us = []
     uup = []
-    iterator = queryset_iterator(User.objects.all()) 
-    for u in iterator: 
-        us.append(u)
-        uup.append(u.userprofile)
-    zipped = zip(us,uup)
-    #ziet er nu zo uit (getest): [(<User: user1>, <UserProfile: User profile for user1>), (<User: user2>, <UserProfile: User profile for user2>),...]
+    users = User.objects.all()
+    iterator = queryset_iterator(users)
+    #if users is a safety measure for if there are no users. queryset iterator cannot handle empty querysets. will not happen for users, but stays here in case the code is copied.
+    if users: 
+        for u in iterator: 
+            us.append(u)
+            uup.append(u.userprofile)
+        zipped = zip(us,uup)
+        #ziet er nu zo uit (getest): [(<User: user1>, <UserProfile: User profile for user1>), (<User: user2>, <UserProfile: User profile for user2>),...]
+    else:
+        zipped=None
     return render(request, 'musicianlist.html', {'musicians': zipped})
 
 
@@ -149,7 +154,7 @@ def change_password(request):
     if request.method == 'POST':
         form = CustomPasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
-            form.user.userprofile.last_password_change = datetime.now(utc)
+            form.user.userprofile.last_password_change = datetime.datetime.now(utc)
             form.user.userprofile.save()
             form.save()
             update_session_auth_hash(request, form.user)
@@ -176,6 +181,8 @@ def queryset_iterator(queryset, chunksize=1000):
 
     Example:
     my_queryset = queryset_iterator(MyItem.objects.all()) for item in my_queryset: item.do_something()
+
+    WILL GIVE AN ERROR IF QUERYSET IS EMPTY!!!
     '''
     pk = 0
     last_pk = queryset.order_by('-pk')[0].pk
@@ -211,16 +218,11 @@ def calendarview(request, pYear=datetime.datetime.now().year, pMonth=datetime.da
     else:
         lYear = int(pYear)
         lMonth = int(pMonth)
-        if request.method == 'GET' and "year" in request.GET and "month" in request.GET:
-            m = request.GET["month"]
-            y = request.GET["year"]
-            if m != None and y != None:
-                lYear = request.GET['year']
-                lMonth = request.GET['month']
         lCalendarFromMonth = datetime.date(lYear, lMonth, 1)
         lCalendarToMonth = datetime.date(lYear, lMonth, calendar.monthrange(lYear, lMonth)[1])
-        lContestEvents = Event.objects.filter(date_of_event__gte=lCalendarFromMonth, date_of_event__lte=lCalendarToMonth).order_by("start_hour")
-        lCalendar = Calendar(lContestEvents).formatmonth(lYear, lMonth)
+        lEvents = Event.objects.filter(date_of_event__gte=lCalendarFromMonth, date_of_event__lte=lCalendarToMonth).order_by("start_hour")
+        lBirthDays = Event.objects.filter(event_color=4,date_of_event__month=lMonth) #get all birthdays in the current month
+        lCalendar = Calendar(lEvents,lBirthDays).formatmonth(lYear, lMonth)
         lPreviousYear = lYear
         lPreviousMonth = lMonth - 1
         if lPreviousMonth == 0:
@@ -231,8 +233,6 @@ def calendarview(request, pYear=datetime.datetime.now().year, pMonth=datetime.da
         if lNextMonth == 13:
             lNextMonth = 1
             lNextYear = lYear + 1
-        lYearAfterThis = lYear + 1
-        lYearBeforeThis = lYear - 1
 
         return render(request, 'calendarview.html', {'Calendar' : mark_safe(lCalendar),
                                                            'Month' : lMonth,
@@ -244,6 +244,4 @@ def calendarview(request, pYear=datetime.datetime.now().year, pMonth=datetime.da
                                                            'NextMonth' : lNextMonth,
                                                            'NextMonthName' : named_month(lNextMonth),
                                                            'NextYear' : lNextYear,
-                                                           #'YearBeforeThis' : lYearBeforeThis,
-                                                           #'YearAfterThis' : lYearAfterThis,
                                                        })
