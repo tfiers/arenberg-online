@@ -68,7 +68,7 @@
                         {% if user.is_authenticated %}
                         {% if request.user.approved %}
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Concert" %}<span class="caret"></span></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Lenteconcerten" %}<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="{% url 'ticketing:my_tickets_dashboard' %}" title="{% trans 'Verkochte tickets' %}">{% trans "Mijn verkochte tickets" %}</a></li>
                                     <li><a href="{% url 'ticketing:promo_dashboard' %}">{% trans "Ticketverkoop" %}</a></li>

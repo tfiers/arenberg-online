@@ -101,7 +101,9 @@ def repcalendar(request):
     if not request.user.approved:
         return render(request, 'registration/notapproved.html')
     else: #valueerror (calendar returned None instead of httprespons object) if this else is removed
-	   return render(request, 'calendar.html')
+        events = Event.objects.filter(date_of_event__gte=datetime.datetime.now()).order_by("date_of_event")
+        bdays = Event.objects.filter(event_color=4).order_by("date_of_event")
+        return render(request, 'calendar.html',{'events':events,"birthdays":bdays})
 
 @login_required
 def calendarview_add(request):

@@ -218,10 +218,21 @@ class AddEventForm(forms.ModelForm):
     Form that lets you add an event, which will be displayed on the calendar.
     """
 
+    def __init__(self, *args, **kwargs):
+        super(AddEventForm, self).__init__(*args, **kwargs)
+        #set 'em all required, in models most are not required because of birthday events with most fields null
+        self.fields['name'].required = True
+        self.fields['location'].required = True
+        self.fields['start_hour'].required = True
+        self.fields['end_hour'].required = True
+        self.fields['event_color'].required = True
+
     class Meta:
         model = Event
         fields = ['name', 'location','date_of_event', 'start_hour','end_hour','event_color', 'absolute_url', 'board']
         widgets = {'date_of_event': SelectDateWidget()}
+        #not yet displayed, for when crispy forms will be used with all these forms
+        help_texts = {'event_color':_("1 = repetitie, 2 = concert, 3 = activiteit, 5 = repetitieweekend")}
 
     def clean_event_color(self):
         color = self.cleaned_data['event_color']
