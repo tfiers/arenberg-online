@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{%trans "Suggesties website" %}{% endblock title %}
+{% block custom_css_js %}
+<link rel="stylesheet" href="{% static 'music_suggestions/style.css' %}">
+{% endblock custom_css_js %}
+{% block content %}
+<div class="toofattable">
+	<div class="row">
+		<div class="col-sm-8">
+			<h1>{%trans "Voorgestelde features website" %}</h1>
+		</div>
+		<div class="col-sm-4">
+			<a class="btn btn-danger" href="{% url 'suggestions:suggest_feature' %}" id="btn-suggest">{%trans "Heb je een idee?" %}</a>
+		</div>
+	</div>	
+	<div class="row">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>{%trans "Feature" %}</th>
+					<th>{%trans 'Uitleg' %}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for feat in features %}
+				<tr>
+					<td class="col-xs-1"><strong>{{ feat.name }}</strong></td>
+					<td class="col-xs-3">{{ feat.description }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock content %}

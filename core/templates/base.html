@@ -61,13 +61,7 @@
 
                         {% if user.is_authenticated %}
                         {% if request.user.approved %}
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Jouw mening!" %}<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{% url 'suggestions:browse' %}">{% trans "Stel muziekstuk voor" %}</a></li>
-                                    <li><a href="{% url 'new_semester_poll' %}">{% trans "Enquête je toekomst" %}</a></li>
-                                </ul>
-                        </li>
+                        <li><a href="{%url 'suggestions:browse_feature' %}"><i>{% trans "Suggesties website" %}</i></a></li>
                         {% endif %}
                         {% endif %}
 
@@ -91,6 +85,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="{% url 'calendarview' %}">{%trans "Kalender" %}</a></li>
                                     <li><a href="https://www.dropbox.com/sh/zbzfkiit0eyl77v/AAAJSX1O-5OCxcpQyfCY2VsVa?dl=0" target='_blank'>{% trans "Partituren" %}</a></li>
+                                    <li><a href="{% url 'suggestions:browse' %}">{% trans "Stel muziekstuk voor" %}</a></li>
                                     <li><a href="{% url 'musicianlist' %}">{% trans "Lijst muzikanten" %}</a></li>          
                                 </ul>
                         </li>
@@ -102,6 +97,7 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href=""><b>{{ request.user.first_name }}&nbsp;{{request.user.last_name}}</b><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
+                                    <li><a href="{% url 'new_semester_poll' %}">{% trans "Enquête je toekomst" %}</a></li>
                                     <li><a href="{% url 'edit' %}">{% trans "Wijzig gebruikersinfo" %}</a></li>
                                     <li><a href="{% url 'change_password' %}">{% trans "Verander wachtwoord" %}</a></li>
                                     <li><a href="{% url 'logout' %}">{% trans "Uitloggen" %}</a></li>

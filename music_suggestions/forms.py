@@ -1,5 +1,6 @@
 from django import forms
-from music_suggestions.models import PieceOfMusic
+from music_suggestions.models import PieceOfMusic, Feature
+from django.utils.translation import ugettext as _
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
@@ -10,14 +11,14 @@ class SuggestPieceOfMusicForm(forms.ModelForm):
 		model=PieceOfMusic
 		exclude=['suggested_by', 'suggested_by_string']
 		labels = {
-			'title': "Titel",
-			'link_to_recording': "Link naar opname",
-			'sheet_music': "Partituren",
+			'title': _("Titel"),
+			'link_to_recording': _("Link naar opname"),
+			'sheet_music': _("Partituren"),
 		}
 		help_texts = {
-			'title':"Bijvoorbeeld \"Ludwig van Beethoven - Allegro Con Brio uit Symfonie No. 5\".",
-			'link_to_recording':"Een YouTube URL bijvoorbeeld.",
-			'sheet_music': ("Hier kan je eventueel meegeven hoe we aan de partituren kunnen geraken. "
+			'title':_("Bijvoorbeeld \"Ludwig van Beethoven - Allegro Con Brio uit Symfonie No. 5\"."),
+			'link_to_recording':_("Een YouTube URL bijvoorbeeld."),
+			'sheet_music': _("Hier kan je eventueel meegeven hoe we aan de partituren kunnen geraken. "
 	    "Je kan bijvoorbeeld een link geven naar IMSLP, naar een online muziekwinkel "
 	    "(bv. bij halleonard.com of jwpepper.com) of naar een stuk op MuseScore (https://musescore.com/sheetmusic). "
 	    "Heb jij de partituur? Heeft ons orkest de partituur al? "
@@ -34,7 +35,33 @@ class SuggestPieceOfMusicForm(forms.ModelForm):
 		'link_to_recording',
 		'sheet_music',
 		FormActions(
-			Submit('submit', 'Stel voor', css_class="btn-danger"),
+			Submit('submit', _('Stel voor'), css_class="btn-danger"),
+		),
+
+	)
+
+class SuggestFeatureForm(forms.ModelForm):
+	class Meta:
+		model=Feature
+		exclude=['suggested_by'] #, 'suggested_by_string'
+		labels = {
+			'name': "Naam",
+			'link_to_recording': "Link naar opname",
+		}
+		help_texts = {
+			'name':_("Naam van de feature die je wil voorstellen."),
+			'desciption':_("De bijbehorende beschrijving."),
+		}
+	helper = FormHelper()
+	helper.form_action = 'suggestions:suggest_feature'
+	helper.form_class = 'form-horizontal'
+	helper.label_class = 'col-sm-2'
+	helper.field_class = 'col-sm-8'
+	helper.layout = Layout(
+		'name',
+		'description',
+		FormActions(
+			Submit('submit', _('Stel voor'), css_class="btn-danger"),
 		),
 
 	)

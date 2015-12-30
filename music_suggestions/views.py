@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from core.models import User
-from music_suggestions.models import PieceOfMusic, Vote
-from music_suggestions.forms import SuggestPieceOfMusicForm
+from music_suggestions.models import PieceOfMusic, Feature, Vote
+from music_suggestions.forms import SuggestPieceOfMusicForm, SuggestFeatureForm
 from django.contrib.auth.decorators import login_required
 import gc
 
@@ -69,6 +69,35 @@ def suggest_piece(request):
 	return render(request,
 		'suggest_piece_of_music.html',
 		{'form': form})
+
+@login_required
+def browse_features(request, titlelike=None):
+	if not request.user.approved:
+		return HttpResponseRedirect(reverse('notapproved'))
+	features = Feature.objects.all()
+	return render(request,'browse_suggested_features.html',{'features': features})
+
+@login_required
+def suggest_feature(request):
+	if not request.user.approved:
+		return HttpResponseRedirect(reverse('notapproved'))
+	# If this is a POST request we need to process the form data.
+	if request.method == 'POST':
+		# Create a MODELform instance and populate it with data from the request:
+		form = SuggestFeatureForm(request.POST)
+		# If the data entered is valid, save it MODELform data to the database
+		if form.is_valid():
+			#commit is false to be able to add current user and such to the fields
+			feat=form.save(commit=False)
+			feat.suggested_by = request.user
+			feat.save()
+			return HttpResponseRedirect(reverse('suggestions:browse_feature'))
+
+	# If this is a GET request (or any other type of request) we'll create a blank form.
+	else:
+		form = SuggestFeatureForm()
+
+	return render(request,'suggest_feature.html',{'form': form})
 
 def queryset_iterator(queryset, chunksize=1000):
     '''''

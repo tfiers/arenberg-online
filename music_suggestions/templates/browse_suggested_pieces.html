@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load staticfiles %}
-{% block title %}Voorgestelde muziek{% endblock title %}
+{% block title %}{%trans "Voorgestelde muziek" %}{% endblock title %}
 {% block custom_css_js %}
 <link rel="stylesheet" href="{% static 'music_suggestions/style.css' %}">
 {% endblock custom_css_js %}
@@ -9,10 +9,10 @@
 <div class="toofattable">
 	<div class="row">
 		<div class="col-sm-8">
-			<h1>Voorgestelde muziek</h1>
+			<h1>{%trans "Voorgestelde muziek" %}</h1>
 		</div>
 		<div class="col-sm-4">
-			<a class="btn btn-danger" href="{% url 'music_suggestions:suggest' %}" id="btn-suggest">Stel een muziekstuk voor</a>
+			<a class="btn btn-danger" href="{% url 'music_suggestions:suggest' %}" id="btn-suggest">{%trans "Stel een muziekstuk voor" %}</a>
 		</div>
 	</div>	
 	<div class="row">
