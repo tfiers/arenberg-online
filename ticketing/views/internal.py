@@ -67,9 +67,9 @@ def promo_dashboard(request):
 	for user in User.objects.all():
 		user_totals.append({
 			'user': user,
-			'num_tickets': Ticket.objects.filter(
-				Q(order__seller=user) | 
-				Q(order__standardmarketingpollanswer__referred_member=user)).count()
+			#only get tickets of the two current productions, UNTESTED
+			'num_tickets': Ticket.objects.filter(Q(order__performance=concert1)&(Q(order__seller=user)|Q(order__standardmarketingpollanswer__referred_member=user))).count()
+			 + Ticket.objects.filter(Q(order__performance=concert2)&(Q(order__seller=user)|Q(order__standardmarketingpollanswer__referred_member=user))).count()
 		})
 	data['user_totals'] = sorted(user_totals, key=lambda obj: -obj['num_tickets'])[0:5]
 
