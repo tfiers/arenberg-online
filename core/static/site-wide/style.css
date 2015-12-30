@@ -9,10 +9,13 @@
 .navbar-default {
     background-color: #FFFFFF;
     border-color: #FFFFFF;
+    margin-bottom:10px;
+    height:50px;
 }
 
 .navbar-default .navbar-nav .navbar-right {
     width: 10%;
+    border-bottom: solid #ffffff;
 }
 
 /* title */
@@ -31,18 +34,25 @@
 .navbar-default .navbar-nav > li > a:focus {
     color: #333;
     background-color: #ffffff;
+/*    border-bottom: solid #d86762;*/
 }
 .navbar-default .navbar-nav > .active > a, 
 .navbar-default .navbar-nav > .active > a:hover, 
 .navbar-default .navbar-nav > .active > a:focus {
-    color: #555;
+    color: #ff0000;
     background-color: #E7E7E7;
 }
+
+.navbar-default .navbar-nav > .active {
+    border-bottom: solid #d86762;
+}
+
 .navbar-default .navbar-nav > .open > a, 
 .navbar-default .navbar-nav > .open > a:hover, 
 .navbar-default .navbar-nav > .open > a:focus {
     color: #555;
     background-color: #ffffff;
+    padding-top:-20px;
 }
 /* caret */
 .navbar-default .navbar-nav > .dropdown > a .caret {

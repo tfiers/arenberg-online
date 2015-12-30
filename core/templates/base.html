@@ -49,7 +49,7 @@
                         {% endcomment %}
 
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{%trans "Taal" %}<span class="caret"></span></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Language<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="{% url 'set_lang' lang='nl' %}">Nederlands</a></li>
                                     <li><a href="{% url 'set_lang' lang='en' %}">English</a></li>
@@ -61,7 +61,13 @@
 
                         {% if user.is_authenticated %}
                         {% if request.user.approved %}
-                        <li><a href="{% url 'calendarview' %}">{%trans "Kalender" %}</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Jouw mening!" %}<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'suggestions:browse' %}">{% trans "Stel muziekstuk voor" %}</a></li>
+                                    <li><a href="{% url 'new_semester_poll' %}">{% trans "Enquête je toekomst" %}</a></li>
+                                </ul>
+                        </li>
                         {% endif %}
                         {% endif %}
 
@@ -83,11 +89,9 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Orkest" %}<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
+                                    <li><a href="{% url 'calendarview' %}">{%trans "Kalender" %}</a></li>
                                     <li><a href="https://www.dropbox.com/sh/zbzfkiit0eyl77v/AAAJSX1O-5OCxcpQyfCY2VsVa?dl=0" target='_blank'>{% trans "Partituren" %}</a></li>
-                                    <li><a href="{% url 'musicianlist' %}">{% trans "Lijst muzikanten" %}</a></li>
-                                    <li><a href="{% url 'suggestions:browse' %}">{% trans "Stel muziekstuk voor" %}</a></li>
-                                    <li><a href="{% url 'new_semester_poll' %}">{% trans "Enquête toekomst" %}</a></li>
-                                    
+                                    <li><a href="{% url 'musicianlist' %}">{% trans "Lijst muzikanten" %}</a></li>          
                                 </ul>
                         </li>
                         {% endif %}                        

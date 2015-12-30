@@ -19,7 +19,7 @@ class Calendar(HTMLCalendar):
             if today == date(self.year, self.month, day):
                 cssclass += ' today'
             body = []
-
+            body.append('<div style="overflow-y: auto; height:100px">')
             if day in self.events:
                 cssclass += ' filled'
                 for e in self.events[day]: 
@@ -29,12 +29,12 @@ class Calendar(HTMLCalendar):
                         #if there's a real url
                         if not e.absolute_url == '' and not e.absolute_url == None:
                             body.append('<div id="calendarfield%s"><a href="%s" target="_blank">' %(e.event_color,e.absolute_url)) #opens the page in new tab, calenderfield id for css
-                            body.append(esc(e.name+' @'+e.location+' '+e.start_hour.strftime("%H:%M"))) 
+                            body.append(esc(e.name+' @'+e.location+' '+e.start_hour.strftime("%H:%M")+'-'+e.end_hour.strftime("%H:%M"))) 
                             body.append('</a></div>')
                         #else render without "a" tag
                         else:
                             body.append('<div id="calendarfield%s">' %e.event_color)
-                            body.append(esc(e.name+' @'+e.location+' '+e.start_hour.strftime("%H:%M"))) 
+                            body.append(esc(e.name+' @'+e.location+' '+e.start_hour.strftime("%H:%M")+'-'+e.end_hour.strftime("%H:%M"))) 
                             body.append('</div>')
                     
                     elif e.event_color == "5": #weekend: zelfde opmaak als 1 maar zegt enkel "repetitieweekend"
@@ -42,12 +42,13 @@ class Calendar(HTMLCalendar):
                         if not e.absolute_url == '' and not e.absolute_url == None:
                             body.append('<div id="calendarfield%s"><a href="%s" target="_blank">' %(e.event_color,e.absolute_url)) #opens the page in new tab, calenderfield id for css
                             body.append(esc(e.name))
-                            body.append('</a></div>')
+                            body.append('</a>')
                         #else render without "a" tag
                         else:
                             body.append('<div id="calendarfield%s">' %e.event_color)
                             body.append(esc(e.name)) 
                             body.append('</div>')
+                body.append('</div>')
                 return self.day_cell(cssclass, '<div class="dayNumber">%d</div> %s' % (day, ''.join(body)))
 
             if day in self.bdays:
@@ -57,8 +58,10 @@ class Calendar(HTMLCalendar):
                     body.append('Birthday ')
                     body.append(esc(b.name)) #voor verjaardag 
                     body.append('</div>')
-                return self.day_cell(cssclass, '<div class="dayNumber">%d</div> %s' % (day, ''.join(body)))
 
+                body.append('</div>')
+                return self.day_cell(cssclass, '<div class="dayNumber">%d</div> %s' % (day, ''.join(body)))
+            body.append('</div>')
             return self.day_cell(cssclass, '<div class="dayNumber">%d</div>' % day)
             
         return self.day_cell('noday', '&nbsp;')
