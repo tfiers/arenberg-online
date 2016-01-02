@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from datetime import date
 from ticketing.models import Ticket, Performance
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.translation import ugettext_lazy as _
 from datetime import date, datetime
 from pytz import utc

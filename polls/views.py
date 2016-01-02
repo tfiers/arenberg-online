@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from polls.forms import NewSemesterPoll, SuggestPieceOfMusicForm, SuggestFeatureForm
 from polls.models import NewSemester, PieceOfMusic, Feature, Vote
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from core.models import User
 import gc
 

@@ -106,7 +106,7 @@ def repcalendar(request):
     return render(request, 'calendar.html',{'events':events,"birthdays":bdays})
 
 @login_required
-@user_passes_test(approved_check,login_url='/accessrestricted')
+@user_passes_test(lambda u:u.approved,login_url='/accessrestricted')
 def calendarview_add(request):
     # If this is a POST request we need to process the form data.
     if request.method == 'POST':
