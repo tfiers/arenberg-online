@@ -16,7 +16,7 @@ urlpatterns += solid_i18n_patterns('',
     url(r'^', include('ticketing.urls', namespace='ticketing')),
     url(r'^musicians/polls', include('polls.urls', namespace='polls')),
     url(r'^home/', include('ticketing.urls', namespace='ticketing')), #landing page next concert is homepage (doesn't add anything to url in ticketing.urls.py)
-    url(r'^musicians/', include('core.urls', namespace='musicians')),
+    url(r'^musicians', include('core.urls', namespace='musicians')),
     url(r'^admin/', include(admin.site.urls)),
     #general pages, also in core, rendered here so they don't have the musicians prefix
     url(r'^wie$', 'core.views.home', name='wie'), #will render the Arenbergorkest.htm introductory page

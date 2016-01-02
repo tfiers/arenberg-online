@@ -96,6 +96,9 @@ def home(request):
 def notapproved(request):
     return render(request, 'registration/notapproved.html')
 
+def axed(request):
+    return render(request, 'registration/axed.html')
+
 @login_required
 def repcalendar(request):
     if not request.user.approved:

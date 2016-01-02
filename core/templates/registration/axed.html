@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block custom_css_js %}
+<link rel="stylesheet" href="{% static 'registration/style.css' %}">
+{% endblock custom_css_js %}
+{% block title %}{% trans "Te veel inlogpogingen" %}{% endblock title %}
+{% block content %}
+	<div class="text-center" id="ciao-msg">
+		<h1><span class="glyphicon glyphicon-pause"></span></h1>
+		<h3>{% trans "Je hebt te vaak te hard gefaald in te loggen, probeer over een paar minuutjes nog eens!" %}</h3>
+	</div>
+{% endblock content %}

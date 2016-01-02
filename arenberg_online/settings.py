@@ -62,6 +62,7 @@ INSTALLED_APPS = (
     #'debug_toolbar', # http://stackoverflow.com/questions/2361985/profiling-django NOT YET INSTALLED
     'crispy_forms', # https://github.com/maraujop/django-crispy-forms
     'vinaigrette', # For translation of database values. See https://github.com/ecometrica/django-vinaigrette
+    'axes', #protection against bruteforce password attacks, something django does NOT protect against 
 
     #local project apps, implementing parts of the website, chained together by settings.py and urls.py in main folder arenberg-online
     'core', # Users, user profiles, instruments and groups.
@@ -80,6 +81,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware', #not setting it up means only our site can iframe itself, other sites can't iframe us
+    'axes.middleware.FailedLoginMiddleware', #to enable middleware of axes
 )
 
 PASSWORD_HASHERS = (
@@ -106,6 +108,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
     "django.core.context_processors.request", # Now the request will be available in each template.
 )
+
+#axes settings
+AXES_LOGIN_FAILURE_LIMIT = 10 #after 10 tries ...
+AXES_USE_USER_AGENT = False #... IP will be blocked ...
+from datetime import timedelta
+AXES_COOLOFF_TIME=timedelta(seconds = 300) #... for 5 minutes
+AXES_LOCKOUT_URL = 'stop' #this makes it redirect to musicians/stop (in core/urls.py) when too many attempts have been made, AXES_LOCKOUT_TEMPLATE not needed
 
 
 # Database
