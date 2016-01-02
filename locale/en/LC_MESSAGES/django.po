@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 20:05+0100\n"
+"POT-Creation-Date: 2016-01-02 20:49+0100\n"
 "PO-Revision-Date: 2015-05-08 12:11+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -361,7 +361,8 @@ msgstr "End hour"
 #: core/templates/calendarview_add.html:79
 msgid ""
 "Kleurcode (1 = repetitie, 2 = concert, 3 = activiteit, 5 = repetitieweekend)"
-msgstr "Color code (1 = rehearsal, 2 = concert, 3 = activity, 5 = rehearsal weekend)"
+msgstr ""
+"Color code (1 = rehearsal, 2 = concert, 3 = activity, 5 = rehearsal weekend)"
 
 #: core/templates/calendarview_add.html:80
 msgid "bv. 42"
@@ -382,6 +383,49 @@ msgstr "For board only?"
 #: core/templates/calendarview_add.html:99
 msgid "Voeg toe"
 msgstr "Add event"
+
+#: core/templates/contact.html:14
+msgid ""
+"\n"
+"\t<p>\n"
+"\tWilt u het Arenbergorkest contacteren? Stuur dan een mail naar <a href="
+"\"mailto:bestuur@arenbergorkest.be\">bestuur@arenbergorkest.be</a>. We "
+"antwoorden met plezier op al uw vragen!\n"
+"\t</p>\n"
+"\t<p>\n"
+"\tBent je muzikant en kan je niet komen volgende repetie? Stuur dan een mail "
+"naar <a href=\"mailto:afwezig@arenbergorkest.be\">afwezig@arenbergorkest.be</"
+"a>. \n"
+"\t</p>\n"
+"\t<p>\n"
+"\tU kan zich ook abonneren op ons YouTube kanaal (met opnames van vroegere "
+"concerten!) of onze Facebookpagina liken! Klik daarvoor bovenaan op de "
+"icoontjes.\n"
+"\t</p>\n"
+"\t"
+msgstr ""
+"\n"
+"\t<p>\n"
+"\tDo you want to contact the Arenberg Orchestra? Send a mail to: <a href="
+"\"mailto:bestuur@arenbergorkest.be\">bestuur@arenbergorkest.be</a>. We "
+"answer all your questions with great pleasure!\n"
+"\t</p>\n"
+"\t<p>\n"
+"\tAre you a musician and will you be absent next rehearsal? "
+"Send a mail "
+"to <a href=\"mailto:afwezig@arenbergorkest.be\">afwezig@arenbergorkest.be</"
+"a>. \n"
+"\t</p>\n"
+"\t<p>\n"
+"\tYou can subscribe to our YouTube channel (with recordings of earlier "
+"concerts!) or like our Facebook page! To go to either of those, click "
+"the icons at the top of the page.\n"
+"\t</p>\n"
+"\t"
+
+#: core/templates/musicianlist.html:15
+msgid "Oude muzikantenlijst"
+msgstr "Old list of musicians"
 
 #: core/templates/musicianlist.html:22
 msgid "Afbeelding"
@@ -427,8 +471,7 @@ msgstr "Too much login attempts"
 msgid ""
 "Je hebt te vaak te hard gefaald in te loggen, probeer over een paar "
 "minuutjes nog eens!"
-msgstr "You've attempted to log in too often, try again in a few "
-"minutes"
+msgstr "You've attempted to log in too often, try again in a few minutes"
 
 #: core/templates/registration/edit.html:12
 msgid "Wijzig je gebruikersinfo"
@@ -438,8 +481,9 @@ msgstr "Edit user info"
 msgid ""
 "Je huidige gebruikersinfo is automatisch ingevuld. Verander naar wens en "
 "dien in."
-msgstr "Your current user info is filled in automatically. Change "
-"what you want to change and submit"
+msgstr ""
+"Your current user info is filled in automatically. Change what you want to "
+"change and submit"
 
 #: core/templates/registration/edit.html:25
 #: core/templates/registration/register.html:25
@@ -453,8 +497,6 @@ msgstr "e.g. Ana"
 
 #: core/templates/registration/edit.html:35
 #: core/templates/registration/register.html:35
-#, fuzzy
-#| msgid "Achternaam"
 msgid "Je achternaam"
 msgstr "Your last name"
 
@@ -647,8 +689,9 @@ msgstr "You've succesfully registered. You can login now."
 msgid ""
 "De content voor muzikanten kan je bekijken zodra je account goedgekeurd is "
 "door de beheerder."
-msgstr "You're able to view the musicians-only content as soon "
-"as your account is approved"
+msgstr ""
+"You're able to view the musicians-only content as soon as your account is "
+"approved"
 
 #: core/templates/sponsors.html:4 core/templates/sponsors.html.py:12
 msgid "Sponsors"
@@ -712,7 +755,8 @@ msgstr "Link to recording"
 #: polls/forms.py:89
 msgid ""
 "Bijvoorbeeld \"Ludwig van Beethoven - Allegro Con Brio uit Symfonie No. 5\"."
-msgstr "For example \"Ludwig van Beethoven - Allegro Con Brio uit Symfonie No. 5\"."
+msgstr ""
+"For example \"Ludwig van Beethoven - Allegro Con Brio uit Symfonie No. 5\"."
 
 #: polls/forms.py:90
 msgid "Een YouTube URL bijvoorbeeld."
@@ -1103,8 +1147,7 @@ msgstr ""
 "    \t<li>.. OR <a href=\"%(order_online)s\">order tickets online</a></li>\n"
 "    \t<li>.. OR buy paper tickets from you.</li>\n"
 "    </ul>\n"
-"\t<p>Or use one of our Facebook profile pictures for "
-"publicity!<br>\n"
+"\t<p>Or use one of our Facebook profile pictures for publicity!<br>\n"
 "\t"
 
 #: ticketing/templates/internal/promo_dashboard.html:164
@@ -1234,6 +1277,7 @@ msgid "samen"
 msgstr "a total of"
 
 #: ticketing/templates/lente2016/complete_order.html:30
+#, python-format
 msgid ""
 "\n"
 "\t\t\t<p>\n"
@@ -1364,6 +1408,7 @@ msgid "Deze kaarten zullen klaarliggen op naam aan de kassa."
 msgstr "These tickets will be handed out at the desk on mention of your name."
 
 #: ticketing/templates/lente2016/email.html:35
+#, python-format
 msgid ""
 "\n"
 "\t\t\t\t<p>Gelieve <strong>€ %(total_price)s</strong> over te schrijven op "
@@ -1376,8 +1421,8 @@ msgstr ""
 "\n"
 "\t\t\t<p>Please transfer <strong>€ %(total_price)s</strong> to <br>\n"
 "\t\t\t<strong>BE23 7330 2625 4391</strong><br>\n"
-"\t\t\tmentioning <strong>\"SPRING\"</strong> and your <strong>name</strong>.</"
-"p>\n"
+"\t\t\tmentioning <strong>\"SPRING\"</strong> and your <strong>name</strong>."
+"</p>\n"
 "\t\t\t"
 
 #: ticketing/templates/lente2016/email.html:48
@@ -1461,6 +1506,7 @@ msgid "Ga verder"
 msgstr "Go on"
 
 #: ticketing/templates/lente2016/thanks.html:21
+#, python-format
 msgid ""
 "\n"
 "\t\t\t<p>Gelieve <strong>€ %(total_price)s</strong> over te schrijven op "
@@ -1473,8 +1519,8 @@ msgstr ""
 "\n"
 "\t\t\t<p>Please transfer <strong>€ %(total_price)s</strong> to <br>\n"
 "\t\t\t<strong>BE23 7330 2625 4391</strong><br>\n"
-"\t\t\tmentioning <strong>\"SPRING\"</strong> and your <strong>name</strong>.</"
-"p>\n"
+"\t\t\tmentioning <strong>\"SPRING\"</strong> and your <strong>name</strong>."
+"</p>\n"
 "\t\t\t"
 
 #: ticketing/templates/lente2016/thanks.html:27

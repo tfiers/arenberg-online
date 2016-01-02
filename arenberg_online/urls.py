@@ -21,7 +21,8 @@ urlpatterns += solid_i18n_patterns('',
     url(r'^wie$', 'core.views.home', name='wie'), #will render the Arenbergorkest.htm introductory page
     url(r'^sponsors$', 'core.views.sponsors', name='sponsors'), 
     url(r'^contact$', 'core.views.contact', name='contact'),
-    url(r'^accessrestricted$', 'core.views.notapproved', name='notapproved'),
+    url(r'^accessrestricted$', 'core.views.notapproved', name='notapproved'), 
+    #moved here so @user_passes tests correctly go to this page, if it's musicians/accesrestricted it always becomes musicians/musicians/accesestricted and then url not found
     url(r'^musicians/', include('core.urls', namespace='musicians')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #needed for user avatars
 

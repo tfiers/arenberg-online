@@ -12,7 +12,6 @@ from django.conf import settings
 from datetime import datetime
 from pytz import utc
 from django.template import RequestContext
-from django.http import HttpResponseRedirect
 from core.models import  User, UserProfile, Event
 from core.htmlcalendar import Calendar
 from forms import BirthdayEditForm, UserForm, UserProfileForm, UserEditForm, UserProfileEditForm, CustomPasswordChangeForm, AddEventForm
@@ -116,7 +115,7 @@ def calendarview_add(request):
         # to the database.
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('calendarview'))
+            return HttpResponseRedirect(reverse('musicians/calendarview'))
 
     # If this is a GET request (or any other type of request) we'll create a blank form.
     else:
@@ -161,7 +160,7 @@ def change_password(request):
             form.user.userprofile.save()
             form.save()
             update_session_auth_hash(request, form.user)
-            return HttpResponseRedirect(reverse('pass_changed'))
+            return HttpResponseRedirect(reverse('musicians:pass_changed'))
     else:
         form = CustomPasswordChangeForm(user=request.user)
     return render(request, 'registration/password_set_form.html', {'form': form})

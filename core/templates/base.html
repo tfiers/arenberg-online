@@ -59,7 +59,7 @@
 
                         {% if user.is_authenticated %}
                         {% if request.user.approved %}
-                        <li><a href="{%url 'polls:browse_feature' %}"><i>{% trans "Suggesties website" %}</i></a></li>
+                        <li><a href="{%url 'polls:browse_feature' %}">{% trans "Suggesties website" %}</a></li>
 
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Lenteconcerten" %}<span class="caret"></span></a>
@@ -89,7 +89,9 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="{% url 'musicians:edit' %}">{% trans "Wijzig gebruikersinfo" %}</a></li>
                                     <li><a href="{% url 'musicians:change_password' %}">{% trans "Verander wachtwoord" %}</a></li>
+                                    {% if request.user.approved %}
                                     <li><a href="{% url 'polls:new_semester_poll' %}">{% trans "Enquête je toekomst" %}</a></li>
+                                    {% endif %}
                                     <li><a href="{% url 'musicians:logout' %}">{% trans "Uitloggen" %}</a></li>
                                 </ul>
                         </li>
