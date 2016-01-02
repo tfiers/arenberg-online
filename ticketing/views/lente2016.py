@@ -2,7 +2,7 @@
 
 from django.forms import (
 	Form, IntegerField, CharField, EmailField, ChoiceField, NullBooleanField )
-from django.contrib.formtools.wizard.views import SessionWizardView
+from formtools.wizard.views import SessionWizardView
 from django.shortcuts import render, render_to_response
 from django.template.loader import render_to_string
 from django.http import HttpResponseRedirect

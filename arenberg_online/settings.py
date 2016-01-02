@@ -56,13 +56,13 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.formtools', # For multi-page forms.
 
     #installed apps from repos and such
     #'debug_toolbar', # http://stackoverflow.com/questions/2361985/profiling-django NOT YET INSTALLED
     'crispy_forms', # https://github.com/maraujop/django-crispy-forms
     'vinaigrette', # For translation of database values. See https://github.com/ecometrica/django-vinaigrette
     'axes', #protection against bruteforce password attacks, something django does NOT protect against 
+    'formtools', #new way of formtools
 
     #local project apps, implementing parts of the website, chained together by settings.py and urls.py in main folder arenberg-online
     'core', # Users, user profiles, instruments and groups.

@@ -1,4 +1,4 @@
-Django==1.7
+Django==1.8.7
 django-crispy-forms
 solid_i18n
 pytz
@@ -6,5 +6,7 @@ unidecode
 django-vinaigrette
 django-grappelli
 django-import-export
+django-axes
+django-formtools
 pillow
 bcrypt
