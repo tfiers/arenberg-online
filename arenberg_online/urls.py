@@ -12,15 +12,16 @@ urlpatterns = patterns ('',
 )
 
 urlpatterns += solid_i18n_patterns('',
-    #first include all app urls and such
+    #first include all SPECIAL app url.py files
     url(r'^', include('ticketing.urls', namespace='ticketing')),
     url(r'^musicians/polls', include('polls.urls', namespace='polls')),
     url(r'^home/', include('ticketing.urls', namespace='ticketing')), #landing page next concert is homepage (doesn't add anything to url in ticketing.urls.py)
-    url(r'^musicians', include('core.urls', namespace='musicians')),
     url(r'^admin/', include(admin.site.urls)),
-    #general pages, also in core, rendered here so they don't have the musicians prefix
+    #then the URL's for the main app CORE
     url(r'^wie$', 'core.views.home', name='wie'), #will render the Arenbergorkest.htm introductory page
     url(r'^sponsors$', 'core.views.sponsors', name='sponsors'), 
     url(r'^contact$', 'core.views.contact', name='contact'),
+    url(r'^accessrestricted$', 'core.views.notapproved', name='notapproved'),
+    url(r'^musicians/', include('core.urls', namespace='musicians')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #needed for user avatars
 

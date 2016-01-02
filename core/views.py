@@ -3,7 +3,7 @@ from django.shortcuts import render, render_to_response
 from django.core.urlresolvers import reverse
 from django.utils.six.moves.urllib.parse import urlparse
 from django.http import HttpResponseRedirect
-from django.views.decorators.csrf import csrf_protect #protection for forms and logins and such
+from django.views.decorators.csrf import csrf_protect #CSRF attack prevention
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.hashers import check_password
@@ -15,12 +15,11 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from core.models import  User, UserProfile, Event
 from core.htmlcalendar import Calendar
-from forms import BirthdayEditForm, UserForm, UserProfileForm, UserEditForm, UserProfileEditForm, CustomPasswordChangeForm, AddEventForm #needed for registration and edit profile forms
+from forms import BirthdayEditForm, UserForm, UserProfileForm, UserEditForm, UserProfileEditForm, CustomPasswordChangeForm, AddEventForm
 import gc
 import datetime
 import calendar
 from django.utils.safestring import mark_safe
-
 
 @csrf_protect
 def register(request):
@@ -100,18 +99,15 @@ def axed(request):
     return render(request, 'registration/axed.html')
 
 @login_required
+@user_passes_test(lambda u:u.approved,login_url='/accessrestricted')
 def repcalendar(request):
-    if not request.user.approved:
-        return render(request, 'registration/notapproved.html')
-    else: #valueerror (calendar returned None instead of httprespons object) if this else is removed
-        events = Event.objects.filter(date_of_event__gte=datetime.datetime.now()).order_by("date_of_event")
-        bdays = Event.objects.filter(event_color=4).order_by("date_of_event")
-        return render(request, 'calendar.html',{'events':events,"birthdays":bdays})
+    events = Event.objects.filter(date_of_event__gte=datetime.datetime.now()).order_by("date_of_event")
+    bdays = Event.objects.filter(event_color=4).order_by("date_of_event")
+    return render(request, 'calendar.html',{'events':events,"birthdays":bdays})
 
 @login_required
+@user_passes_test(approved_check,login_url='/accessrestricted')
 def calendarview_add(request):
-    if not request.user.approved or not request.user.is_board:
-        return render(request, 'registration/notapproved.html')
     # If this is a POST request we need to process the form data.
     if request.method == 'POST':
         # Create a form instance and populate it with data from the request:
@@ -129,9 +125,8 @@ def calendarview_add(request):
     return render(request,'calendarview_add.html',{'addeventform': form})
 
 @login_required
+@user_passes_test(lambda u:u.approved,login_url='/accessrestricted')
 def musicianlist(request):
-    if not request.user.approved:
-        return render(request, 'registration/notapproved.html')
     #get all users, iterate over that query to 
     us = []
     uup = []
@@ -217,39 +212,37 @@ def calendarhome(request):
     return calendarview(request, lToday.year, lToday.month)
 
 @login_required
+@user_passes_test(lambda u:u.approved,login_url='/accessrestricted')
 def calendarview(request, pYear=datetime.datetime.now().year, pMonth=datetime.datetime.now().month):
     """
     Show calendar of events for specified month and year
     """
-    if not request.user.approved:
-        return render(request, 'registration/notapproved.html')
-    else:
-        lYear = int(pYear)
-        lMonth = int(pMonth)
-        lCalendarFromMonth = datetime.date(lYear, lMonth, 1)
-        lCalendarToMonth = datetime.date(lYear, lMonth, calendar.monthrange(lYear, lMonth)[1])
-        lEvents = Event.objects.filter(date_of_event__gte=lCalendarFromMonth, date_of_event__lte=lCalendarToMonth).order_by("start_hour")
-        lBirthDays = Event.objects.filter(event_color=4,date_of_event__month=lMonth) #get all birthdays in the current month
-        lCalendar = Calendar(lEvents,lBirthDays).formatmonth(lYear, lMonth)
-        lPreviousYear = lYear
-        lPreviousMonth = lMonth - 1
-        if lPreviousMonth == 0:
-            lPreviousMonth = 12
-            lPreviousYear = lYear - 1
-        lNextYear = lYear
-        lNextMonth = lMonth + 1
-        if lNextMonth == 13:
-            lNextMonth = 1
-            lNextYear = lYear + 1
+    lYear = int(pYear)
+    lMonth = int(pMonth)
+    lCalendarFromMonth = datetime.date(lYear, lMonth, 1)
+    lCalendarToMonth = datetime.date(lYear, lMonth, calendar.monthrange(lYear, lMonth)[1])
+    lEvents = Event.objects.filter(date_of_event__gte=lCalendarFromMonth, date_of_event__lte=lCalendarToMonth).order_by("start_hour")
+    lBirthDays = Event.objects.filter(event_color=4,date_of_event__month=lMonth) #get all birthdays in the current month
+    lCalendar = Calendar(lEvents,lBirthDays).formatmonth(lYear, lMonth)
+    lPreviousYear = lYear
+    lPreviousMonth = lMonth - 1
+    if lPreviousMonth == 0:
+        lPreviousMonth = 12
+        lPreviousYear = lYear - 1
+    lNextYear = lYear
+    lNextMonth = lMonth + 1
+    if lNextMonth == 13:
+        lNextMonth = 1
+        lNextYear = lYear + 1
 
-        return render(request, 'calendarview.html', {'Calendar' : mark_safe(lCalendar),
-                                                           'Month' : lMonth,
-                                                           'MonthName' : named_month(lMonth),
-                                                           'Year' : lYear,
-                                                           'PreviousMonth' : lPreviousMonth,
-                                                           'PreviousMonthName' : named_month(lPreviousMonth),
-                                                           'PreviousYear' : lPreviousYear,
-                                                           'NextMonth' : lNextMonth,
-                                                           'NextMonthName' : named_month(lNextMonth),
-                                                           'NextYear' : lNextYear,
-                                                       })
+    return render(request, 'calendarview.html', {'Calendar' : mark_safe(lCalendar),
+                                                       'Month' : lMonth,
+                                                       'MonthName' : named_month(lMonth),
+                                                       'Year' : lYear,
+                                                       'PreviousMonth' : lPreviousMonth,
+                                                       'PreviousMonthName' : named_month(lPreviousMonth),
+                                                       'PreviousYear' : lPreviousYear,
+                                                       'NextMonth' : lNextMonth,
+                                                       'NextMonthName' : named_month(lNextMonth),
+                                                       'NextYear' : lNextYear,
+                                                   })

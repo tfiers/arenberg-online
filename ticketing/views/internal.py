@@ -20,9 +20,8 @@ from django.db.models import Q
 from django.conf import settings #needed for automatisation, with settings.CURRENT_PRODUCTION
 
 @login_required
+@user_passes_test(lambda u:u.approved,login_url='/accessrestricted')
 def promo_dashboard(request):
-	if not request.user.approved:
-		return HttpResponseRedirect(reverse('arenberg-online.core.views.notapproved'))
 	#AUTOMATISATION NEEDED, see comment at imports
 	concert1 = Performance.objects.get(short_name__contains="lente2016_1")
 	concert2 = Performance.objects.get(short_name__contains="lente2016_2")
@@ -79,15 +78,13 @@ def to_timestamp(dt):
 	return int((dt - epoch).total_seconds()*1000)
 
 @login_required
+@user_passes_test(lambda u:u.approved,login_url='/accessrestricted')
 def facebook_pictures(request):
-	if not request.user.approved:
-		return HttpResponseRedirect(reverse('notapproved'))
 	return render(request, 'internal/pictures.html', {})
 
 @login_required
+@user_passes_test(lambda u:u.approved,login_url='/accessrestricted')
 def my_tickets_dashboard(request):
-	if not request.user.approved:
-		return HttpResponseRedirect(reverse('notapproved'))
 	data = {}
 
 	data['ticket_distributions'] = \
@@ -126,9 +123,8 @@ class ReportedSaleForm(Form):
 	remarks = CharField(required=False)
 
 @login_required
+@user_passes_test(lambda u:u.approved,login_url='/accessrestricted')
 def register_sold_tickets(request):
-	if not request.user.approved:
-		return HttpResponseRedirect(reverse('notapproved'))
 	if request.method == 'POST':
 		form = ReportedSaleForm(request.POST)
 		if form.is_valid():

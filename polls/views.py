@@ -11,9 +11,9 @@ import gc
 def thanks(request):
 	return render(request, 'thanks.html')
 
+@login_required
+@user_passes_test(lambda u:u.approved,login_url='/accessrestricted')
 def new_semester(request):
-	if not request.user.approved:
-		return HttpResponseRedirect(reverse('notapproved'))
 	#prevents UNIQUE constraint failed by filling same form out twice
 	if NewSemester.objects.filter(user=request.user):
 		return HttpResponseRedirect(reverse('polls:thanks'))
@@ -42,9 +42,8 @@ def new_semester(request):
 	return response
 
 @login_required
+@user_passes_test(lambda u:u.approved,login_url='/accessrestricted')
 def browse_suggested_pieces(request, titlelike=None):
-	if not request.user.approved:
-		return HttpResponseRedirect(reverse('notapproved'))
 	pieces = []
 	likes = []
 	liked = []
@@ -79,9 +78,8 @@ def browse_suggested_pieces(request, titlelike=None):
 	return render(request,'browse_suggested_pieces.html',{'suggested_pieces': zipped})
 
 @login_required
+@user_passes_test(lambda u:u.approved,login_url='/accessrestricted')
 def suggest_piece(request):
-	if not request.user.approved:
-		return HttpResponseRedirect(reverse('notapproved'))
 	# If this is a POST request we need to process the form data.
 	if request.method == 'POST':
 		# Create a MODELform instance and populate it with data from the request:
@@ -105,16 +103,14 @@ def suggest_piece(request):
 		{'form': form})
 
 @login_required
+@user_passes_test(lambda u:u.approved,login_url='/accessrestricted')
 def browse_features(request, titlelike=None):
-	if not request.user.approved:
-		return HttpResponseRedirect(reverse('notapproved'))
 	features = Feature.objects.all()
 	return render(request,'browse_suggested_features.html',{'features': features})
 
 @login_required
+@user_passes_test(lambda u:u.approved,login_url='/accessrestricted')
 def suggest_feature(request):
-	if not request.user.approved:
-		return HttpResponseRedirect(reverse('notapproved'))
 	# If this is a POST request we need to process the form data.
 	if request.method == 'POST':
 		# Create a MODELform instance and populate it with data from the request:

@@ -20,6 +20,7 @@ class PosterForm(ModelForm):
 				  'count', 'hung_by', 'remarks', 'attachment_type']
 
 @login_required
+@user_passes_test(lambda u:u.approved,login_url='/accessrestricted')
 def add_poster(request):
 	if request.method == 'POST':
 		prod = Production.objects.get(name=settings.CURRENT_PRODUCTION)
@@ -36,6 +37,7 @@ def add_poster(request):
 	return render(request, 'add_poster.html', {'form': form})
 
 @login_required
+@user_passes_test(lambda u:u.approved,login_url='/accessrestricted')
 def posters(request):
 	context = {}
 	context['posters'] = []
