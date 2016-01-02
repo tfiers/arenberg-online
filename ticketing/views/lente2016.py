@@ -95,18 +95,18 @@ def persist_data(data):
 	for i in range(data['num_culture_card_tickets']):
 		Ticket.objects.create(
 			order = order,
-			price_category = PriceCategory.objects.get(short_name="cultuurkaart", price=4),
+			price_category = PriceCategory.objects.get(short_name="KUL Cult.kaart in VVK (€ 4)", price=4),
 		)
 	for i in range(data['num_student_tickets']):
 		Ticket.objects.create(
 			order = order,
-			price_category = PriceCategory.objects.get(short_name="niet-student", price=9),
+			price_category = PriceCategory.objects.get(short_name="Nt-stud. VVK (€ 9)", price=9),
 		)
 
 	for i in range(data['num_non_student_tickets']):
 		Ticket.objects.create(
 			order = order,
-			price_category = PriceCategory.objects.get(short_name="student", price=5),
+			price_category = PriceCategory.objects.get(short_name="stud. VVK (€ 5)", price=5),
 		)
 
 def email_user(data):
@@ -114,13 +114,12 @@ def email_user(data):
 	msg = render_to_string('lente2016/email.html', data)
 	fromm = "Arenbergorkest <webapp@arenbergorkest.be>"
 	send_mail(subject, msg, fromm, [data['email']], html_message=msg)
-	send_mail(subject, msg, fromm, ['tomas.fiers@gmail.com'], html_message=msg)
 
 def email_admin(data):
 	subject = "Bestelling tickets Lenteconcert Arenbergorkest"
 	msg = pformat(data)
 	fromm = "Arenbergorkest <webapp@arenbergorkest.be>"
-	send_mail(subject, msg, fromm, ['tomas.fiers@gmail.com'])
+	send_mail(subject, msg, fromm, ['lennart.bulteel@student.kuleuven.be'])
 
 FORMS = [("start_order", SpaceTicketingForm_1),
 		 ("complete_order", SpaceTicketingForm_2)]
@@ -144,6 +143,6 @@ class MultipageTicketingForm(SessionWizardView):
 		form_data.update(form_dict['complete_order'].cleaned_data)
 		data = parse_form_data(form_data)
 		persist_data(data)
-		# email_user(data)
-		# email_admin(data)
+		email_user(data)
+		email_admin(data)
 		return render_to_response('lente2016/thanks.html', data)

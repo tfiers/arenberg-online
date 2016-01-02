@@ -292,13 +292,15 @@ LOGGING = {
 # See: http://django-crispy-forms.readthedocs.org/en/latest/install.html#template-packs
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-# Email
-# EMAIL_USE_TLS = True
-# EMAIL_PORT = 587
-# EMAIL_HOST = 'smtp.mailgun.org'
-# EMAIL_HOST_USER = 'postmaster@arenbergorkest.be'
-# with open(os.path.join(CONFIG_DIR, 'mailgun_password')) as f:
-#     EMAIL_HOST_PASSWORD = f.read().strip()
+# MAILGUN
+#use: from django.core.mail import send_mail
+#then: send_mail(string subject, string message, string from_email, list(to_email strings), html htmlmessage)
+EMAIL_USE_TLS = True #encrypt mail
+EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = 'postmaster@arenbergorkest.be'
+with open(os.path.join(CONFIG_DIR, 'mailgun_password')) as f:
+    EMAIL_HOST_PASSWORD = f.read().strip()
 
 
 if DEVELOPPING:
@@ -309,7 +311,3 @@ else:
 # To what email address should emails sent to 
 # [undefined.string]@arenbergorkest.be be forwarded?
 CATCHALL_EMAIL = 'bestuur@arenbergorkest'
-
-# Migrating users from drupal site.
-with open(os.path.join(CONFIG_DIR, 'default_new_password.txt')) as f:
-    DEFAULT_NEW_PASSWORD = f.read().strip()
