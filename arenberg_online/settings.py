@@ -226,7 +226,7 @@ STATIC_ROOT = '/home/org/arenbergorkest/www/static'
 # django.contrib.auth user model.
 AUTH_USER_MODEL = 'core.User'
 
-LOGIN_URL = 'login' # Defined in urls.py
+LOGIN_URL = 'musicians:login' # Defined in urls.py
 LOGIN_REDIRECT_URL = 'ticketing:snow_landing' # Defined in urls.py
 
 TEMPLATE_DIRS = (
@@ -293,6 +293,7 @@ LOGGING = {
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # MAILGUN
+# 10.000 emails each month for free. 2/ticket order, 1/password reset - so it should be plenty. Provides other services/options too. 
 #use: from django.core.mail import send_mail
 #then: send_mail(string subject, string message, string from_email, list(to_email strings), html htmlmessage)
 EMAIL_USE_TLS = True #encrypt mail

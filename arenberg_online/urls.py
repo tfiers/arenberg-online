@@ -22,6 +22,9 @@ urlpatterns += solid_i18n_patterns('',
     url(r'^sponsors$', 'core.views.sponsors', name='sponsors'), 
     url(r'^contact$', 'core.views.contact', name='contact'),
     url(r'^accessrestricted$', 'core.views.notapproved', name='notapproved'), 
+    url(r'^musicians/reset/passwordsent/$', auth_views.password_reset_done, name='password_reset_done'),
+    url(r'^musicians/reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$', auth_views.password_reset_confirm, name='password_reset_confirm'),
+    url(r'^musicians/reset/complete/$', auth_views.password_reset_complete, name='password_reset_complete'),
     #moved here so @user_passes tests correctly go to this page, if it's musicians/accesrestricted it always becomes musicians/musicians/accesestricted and then url not found
     url(r'^musicians/', include('core.urls', namespace='musicians')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #needed for user avatars
