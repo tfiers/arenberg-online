@@ -46,7 +46,9 @@ ALLOWED_HOSTS = ['95.85.3.22', '.arenbergorkest.be']
 # Application definition
 
 INSTALLED_APPS = (
-    'grappelli', # A jazzy skin for the admin-interface - www.grappelliproject.com
+    #grappelli is skin for admin interface, must be listed before contrib.admin
+    'grappelli', 
+    #standard django apps
     'django.contrib.admin',
     'import_export',
     'django.contrib.auth',
@@ -54,17 +56,18 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms', # https://github.com/maraujop/django-crispy-forms
-    'core', # Users, user profiles, instruments and groups.
     'django.contrib.formtools', # For multi-page forms.
-    'ticketing', # Ordering tickets online, reporting tickets sold offline, 
-                 # tracking ticket sales 
-    'music_suggestions', # Suggest pieces to be played and vote for them.
+
+    #installed apps from repos and such
+    #'debug_toolbar', # http://stackoverflow.com/questions/2361985/profiling-django NOT YET INSTALLED
+    'crispy_forms', # https://github.com/maraujop/django-crispy-forms
+    'vinaigrette', # For translation of database values. See https://github.com/ecometrica/django-vinaigrette
+
+    #local project apps, implementing parts of the website, chained together by settings.py and urls.py in main folder arenberg-online
+    'core', # Users, user profiles, instruments and groups.
+    'ticketing', # Ordering tickets online, reporting tickets sold offline, tracking ticket sales 
     'polls', # Ask questions to orchestra members.
     'postermap', # See where posters have been hung in the city.
-    # 'debug_toolbar', # http://stackoverflow.com/questions/2361985/profiling-django
-    'loginas', # https://github.com/stochastic-technologies/django-loginas
-    'vinaigrette', # For translation of database values. See https://github.com/ecometrica/django-vinaigrette
 )
 
 MIDDLEWARE_CLASSES = (
@@ -76,7 +79,17 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware', #not setting it up means only our site can iframe itself, other sites can't iframe us
+)
+
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.SHA1PasswordHasher',
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+    'django.contrib.auth.hashers.CryptPasswordHasher',
 )
 
 ROOT_URLCONF = 'arenberg_online.urls'

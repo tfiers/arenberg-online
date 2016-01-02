@@ -11,7 +11,7 @@
 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 	<h1>{% trans "Wijzig je gebruikersinfo" %}</h1>
 	<p>{%trans "Je huidige gebruikersinfo is automatisch ingevuld. Verander naar wens en dien in." %}</p>
-		<form role='form' method='post' enctype="multipart/form-data" action="{% url 'edit' %}">
+		<form role='form' method='post' enctype="multipart/form-data" action="{% url 'musicians:edit' %}">
 			{% csrf_token %}
 			<div class="form-group">
 				<span class="error">

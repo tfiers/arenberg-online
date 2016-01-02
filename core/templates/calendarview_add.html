@@ -10,7 +10,7 @@
 
 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 	<h1>{% trans "Voeg event toe" %}</h1>
-	<form role='form' method="post" action="{% url 'calendarview_add' %}">
+	<form role='form' method="post" action="{% url 'musicians:calendarview_add' %}">
 		{% csrf_token %}
 
 			<div class="form-group">

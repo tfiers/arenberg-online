@@ -4,9 +4,9 @@
 {% block title %}{% trans "Snowman Concerten Arenbergorkest" %}{% endblock title %}
 {% block custom_css_js %}
 <link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="{% static 'ticketing/snowman2016/style.css' %}">
-<link rel="stylesheet" href="{% static 'ticketing/snowman2016/landing-page-style.css' %}" media="(min-width: 992px)">
-<link rel="stylesheet" href="{% static 'ticketing/snowman2016/style-landscape-tablet-and-larger.css' %}" media="(min-width: 992px)">
+<link rel="stylesheet" href="{% static 'ticketing/style.css' %}">
+<link rel="stylesheet" href="{% static 'ticketing/landing-page-style.css' %}" media="(min-width: 992px)">
+<link rel="stylesheet" href="{% static 'ticketing/style-landscape-tablet-and-larger.css' %}" media="(min-width: 992px)">
 {% endblock custom_css_js %}
 {% block content %}
 
@@ -30,7 +30,7 @@
 						<span id="tagline-third-line">chilling intensity</span></h3>
 						{% comment %}
 						<p>{% trans "Je kan vanavond nog kaarten aan de kassa kopen." %}</p><br>{% endcomment %}
-					<p><a href="{% url 'ticketing:start_order_snow' %}" class="btn btn-danger order-btn">{% trans "Bestel tickets" %}</a></p>
+					<p><a href="" class="btn btn-danger order-btn">{% trans "Bestel tickets" %}</a></p>
 					<div id="more-info-reference"><em>{% trans "Zo 14 februari" %}</em><br>
 						{% trans "17:00 @ Aula Pieter De Somer, Leuven" %}<br>
 						<em>{% trans "Za 20 februari" %}</em><br>

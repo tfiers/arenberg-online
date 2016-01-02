@@ -34,39 +34,33 @@
 
                         <li><a href="{% url 'ticketing:snow_landing' %}">Home</a></li>
 
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{%trans "Bestel tickets" %}<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{% url 'ticketing:start_order_snow' %}">{%trans "Snowman" %}</a></li>
-                                    <li><a href="{% url 'ticketing:start_order_lente' %}">{%trans "Lenteconcerten" %}</a></li>
-                                </ul>
-                        </li>
+                        <li><a href="">{%trans "Tickets Snowman" %}</a></li>
+
+                        <!-- <li><a href="{% url 'ticketing:start_order_lente' %}">{%trans "Lenteconcerten" %}</a></li> -->
 
                         <li><a href="{% url 'contact' %}">{%trans "Contact" %}</a></li>
 
                         {% comment %}
                         <li><a href="{% url 'sponsors' %}">{% trans "Sponsors" %}</a></li>
                         {% endcomment %}
+                        {% if LANGUAGE_CODE == 'en' %}
+                        <li><a href="{% url 'set_lang' lang='nl' %}">NL | <strong>EN</strong></a></li>
+                        {% else %}
+                        <li><a href="{% url 'set_lang' lang='en' %}"><strong>NL</strong> | EN</a></li>
+                        {% endif %}
 
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Language<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{% url 'set_lang' lang='nl' %}">Nederlands</a></li>
-                                    <li><a href="{% url 'set_lang' lang='en' %}">English</a></li>
-                                </ul>
-                        </li>
+                        <li><a href="https://www.facebook.com/Arenbergorkest/" class="pull-left"><img height = "30" src="{% static "images/fb_small.png" %}"></a>
+
+                        <li><a href="https://www.youtube.com/user/arenbergorkest" class="pull-left"><img height = "30" src="{% static "images/yt_small.png" %}"></a></li>
+
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
 
                         {% if user.is_authenticated %}
                         {% if request.user.approved %}
-                        <li><a href="{%url 'suggestions:browse_feature' %}"><i>{% trans "Suggesties website" %}</i></a></li>
-                        {% endif %}
-                        {% endif %}
+                        <li><a href="{%url 'polls:browse_feature' %}"><i>{% trans "Suggesties website" %}</i></a></li>
 
-                        {% if user.is_authenticated %}
-                        {% if request.user.approved %}
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Lenteconcerten" %}<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
@@ -75,18 +69,14 @@
                                     <li><a href="{% url 'ticketing:posters' %}">{% trans "Posters" %}</a></li>
                                 </ul>
                         </li>
-                        {% endif %}                        
-                        {% endif %}
 
-                        {% if user.is_authenticated %}
-                        {% if request.user.approved %}
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Orkest" %}<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{% url 'calendarview' %}">{%trans "Kalender" %}</a></li>
+                                    <li><a href="{% url 'musicians:calendarview' %}">{%trans "Kalender" %}</a></li>
                                     <li><a href="https://www.dropbox.com/sh/zbzfkiit0eyl77v/AAAJSX1O-5OCxcpQyfCY2VsVa?dl=0" target='_blank'>{% trans "Partituren" %}</a></li>
-                                    <li><a href="{% url 'suggestions:browse' %}">{% trans "Stel muziekstuk voor" %}</a></li>
-                                    <li><a href="{% url 'musicianlist' %}">{% trans "Lijst muzikanten" %}</a></li>          
+                                    <li><a href="{% url 'musicians:musicianlist' %}">{% trans "Lijst muzikanten" %}</a></li>   
+                                    <li><a href="{% url 'polls:browse' %}">{% trans "Stel muziekstuk voor" %}</a></li>       
                                 </ul>
                         </li>
                         {% endif %}                        
@@ -95,20 +85,20 @@
                         {%if user.is_authenticated %}
                         <img src="{{request.user.userprofile.avatar.url}}"> 
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href=""><b>{{ request.user.first_name }}&nbsp;{{request.user.last_name}}</b><span class="caret"></span></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href=""><b>{{ request.user.first_name }} {{request.user.last_name}}</b><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{% url 'new_semester_poll' %}">{% trans "Enquête je toekomst" %}</a></li>
-                                    <li><a href="{% url 'edit' %}">{% trans "Wijzig gebruikersinfo" %}</a></li>
-                                    <li><a href="{% url 'change_password' %}">{% trans "Verander wachtwoord" %}</a></li>
-                                    <li><a href="{% url 'logout' %}">{% trans "Uitloggen" %}</a></li>
+                                    <li><a href="{% url 'musicians:edit' %}">{% trans "Wijzig gebruikersinfo" %}</a></li>
+                                    <li><a href="{% url 'musicians:change_password' %}">{% trans "Verander wachtwoord" %}</a></li>
+                                    <li><a href="{% url 'polls:new_semester_poll' %}">{% trans "Enquête je toekomst" %}</a></li>
+                                    <li><a href="{% url 'musicians:logout' %}">{% trans "Uitloggen" %}</a></li>
                                 </ul>
                         </li>
                         {% else %}
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Muzikant" %}<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{% url 'login' %}">{% trans "Inloggen" %}</a></li>
-                                    <li><a href="{% url 'register' %}">{% trans "Registreren" %}</a></li>
+                                    <li><a href="{% url 'musicians:login' %}">{% trans "Inloggen" %}</a></li>
+                                    <li><a href="{% url 'musicians:register' %}">{% trans "Registreren" %}</a></li>
                                 </ul>
                         </li>
                         {% endif %}
@@ -119,7 +109,7 @@
         </nav>
 
         {% block content %}
-        <h1>You look nice today</h1>
+        <h1>You look nice today</h1> <!-- do not remove, this will be replaced by the page that extends base.html -->
         {% endblock content %}
 
     </body>

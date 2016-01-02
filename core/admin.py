@@ -91,7 +91,6 @@ class UserAdmin(django.contrib.auth.admin.UserAdmin):
     list_display = ('email', 'first_name', 'last_name','study', 'phone_number', 'is_staff', 'is_board','approved', 'date_joined', 'last_login')
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('-date_joined',)
-    change_form_template = 'loginas/change_form.html'
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('associated_user', 'old_drupal_uid', 'last_password_change', 'groups_as_string')

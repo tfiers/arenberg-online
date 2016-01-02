@@ -3,8 +3,8 @@ django-crispy-forms
 solid_i18n
 pytz
 unidecode
-django-loginas
 django-vinaigrette
 django-grappelli
 django-import-export
 pillow
+bcrypt

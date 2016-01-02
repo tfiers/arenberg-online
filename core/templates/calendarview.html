@@ -11,24 +11,24 @@
 <div style='width:80%; margin-left:10%; margin-right:10%;'class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 
 	<div id="calendarbutton">
-		<a href="{%url 'calendarview' PreviousYear PreviousMonth %}" class="btn btn-danger"><span class="glyphicon glyphicon-arrow-left"></span> {{PreviousMonthName}}</a>
+		<a href="{%url 'musicians:calendarview' PreviousYear PreviousMonth %}" class="btn btn-danger"><span class="glyphicon glyphicon-arrow-left"></span> {{PreviousMonthName}}</a>
 	</div>
 
 	<div id="calendarbutton">
-		<a href="{%url 'calendarview' %}" class="btn btn-danger"> {%trans 'Vandaag' %}</a>
+		<a href="{%url 'musicians:calendarview' %}" class="btn btn-danger"> {%trans 'Vandaag' %}</a>
 	</div>
 
 	<div id="calendarbutton">
-		<a href="{%url 'calendarview' NextYear NextMonth %}" class="btn btn-danger">{{NextMonthName}} <span class="glyphicon glyphicon-arrow-right"></span></a>
+		<a href="{%url 'musicians:calendarview' NextYear NextMonth %}" class="btn btn-danger">{{NextMonthName}} <span class="glyphicon glyphicon-arrow-right"></span></a>
 	</div>
 
 	{% if request.user.approved %}
 	{% if request.user.is_board %}
 	<div id="calendaraddbutton">
-		<a href="{%url 'calendarview_add' %}" class="btn btn-danger">{%trans "Voeg event toe" %} </a>
+		<a href="{%url 'musicians:calendarview_add' %}" class="btn btn-danger">{%trans "Voeg event toe" %} </a>
 	</div>
 	<div id="calendarlistbutton">
-		<a href="{%url 'calendar' %}" class="btn btn-danger">{%trans "Kalender in lijstvorm" %} </a>
+		<a href="{%url 'musicians:calendar' %}" class="btn btn-danger">{%trans "Kalender in lijstvorm" %} </a>
 	</div>
 	{% endif %}
 	{% endif %}

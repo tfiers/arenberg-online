@@ -12,7 +12,7 @@
 			<h1>{%trans "Voorgestelde muziek" %}</h1>
 		</div>
 		<div class="col-sm-4">
-			<a class="btn btn-danger" href="{% url 'music_suggestions:suggest' %}" id="btn-suggest">{%trans "Stel een muziekstuk voor" %}</a>
+			<a class="btn btn-danger" href="{% url 'polls:suggest' %}" id="btn-suggest">{%trans "Stel een muziekstuk voor" %}</a>
 		</div>
 	</div>	
 	<div class="row">
@@ -34,9 +34,9 @@
 					<td class="col-xs-2">{{ piece.suggested_by_string }}</td>
 					<td class="col-xs-3 sheet-music">{{ piece.sheet_music }}</td>
 					{% if liked %}
-					<td style="font-size:20px;" class="col-xs-2"><a href="{%url 'suggestions:browse' piece.title %}">{{like}} <span class="glyphicon glyphicon-heart"></a></td>
+					<td style="font-size:20px;" class="col-xs-2"><a href="{%url 'polls:browse' piece.title %}">{{like}} <span class="glyphicon glyphicon-heart"></a></td>
 					{% else %}
-					<td style="font-size:20px;" class="col-xs-2"><a href="{%url 'suggestions:browse' piece.title %}">{{like}} <span class="glyphicon glyphicon-heart-empty"></a></td>
+					<td style="font-size:20px;" class="col-xs-2"><a href="{%url 'polls:browse' piece.title %}">{{like}} <span class="glyphicon glyphicon-heart-empty"></a></td>
 					{% endif %}
 				</tr>
 				{% endfor %}

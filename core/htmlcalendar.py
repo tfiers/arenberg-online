@@ -5,7 +5,11 @@ from calendar import HTMLCalendar, monthrange
 from datetime import date
 
 class Calendar(HTMLCalendar):
-    """Renders HTML code for the calendar, needed in core/views.py"""
+    """
+    Renders HTML code for the calendar, needed in core/views.py.
+
+    Make sure to escape every possible bit of database info (like esc(e.name)): to be protect against xss attacks.
+    """
 
     def __init__(self, pEvents, birthdays):
         super(Calendar, self).__init__()

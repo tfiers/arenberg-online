@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from datetime import date
 from ticketing.models import Ticket, Performance
-from polls.models import ZaventemTransport
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
 from datetime import date, datetime
@@ -111,8 +110,8 @@ def my_tickets_dashboard(request):
 	return render(request, 'internal/my_tickets_dashboard.html', data)
 
 performances = (
-	('za', _('Zaterdag 20 februari')),
-	('zo', _('Zondag 14 februari')),
+	('do', _('Donderdag 5 mei')),
+	('zo', _('Zondag 8 mei')),
 )
 
 class ReportedSaleForm(Form):
@@ -156,7 +155,7 @@ def parse_form_data(form):
 	return data
 
 def persist_data(data, user):
-	short_name_mapping = {'za': Snowman2016_2, 'zo': Snowman2016_1} 
+	short_name_mapping = {'do': lente2016_1, 'zo': lente2016_2} 
 	performance = Performance.objects.get(short_name__contains=short_name_mapping['performance'])
 		
 	order = Order.objects.create(
@@ -177,15 +176,15 @@ def persist_data(data, user):
 	for i in range(data['num_student_tickets']):
 		Ticket.objects.create(
 			order = order,
-			price_category = PriceCategory.objects.get(full_name="Student VVK (vanaf winter 2014)", price=5),
+			price_category = PriceCategory.objects.get(full_name="Student VVK (vanaf winter 2015)", price=5),
 		)
 	for i in range(data['num_non_student_tickets']):
 		Ticket.objects.create(
 			order = order,
-			price_category = PriceCategory.objects.get(full_name="Niet-student in VVK (vanaf winter 2014)", price=9),
+			price_category = PriceCategory.objects.get(full_name="Niet-student in VVK (vanaf winter 2015)", price=9),
 		)
 	for i in range(data['num_culture_card_tickets']):
 		Ticket.objects.create(
 			order = order,
-			price_category = PriceCategory.objects.get(full_name="KU Leuven Cultuurkaart in VVK (vanaf winter 2014)", price=4),
+			price_category = PriceCategory.objects.get(full_name="KU Leuven Cultuurkaart in VVK (vanaf winter 2015)", price=4),
 		)

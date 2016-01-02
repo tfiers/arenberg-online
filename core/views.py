@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.utils.six.moves.urllib.parse import urlparse
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_protect #protection for forms and logins and such
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth import update_session_auth_hash
@@ -132,14 +132,17 @@ def musicianlist(request):
     #get all users, iterate over that query to 
     us = []
     uup = []
+    bd = []
     users = User.objects.all()
     iterator = queryset_iterator(users)
     #if users is a safety measure for if there are no users. queryset iterator cannot handle empty querysets. will not happen for users, but stays here in case the code is copied.
     if users: 
         for u in iterator: 
+            bdo = Event.objects.filter(birthday_user=u) #returns list with one event object
             us.append(u)
             uup.append(u.userprofile)
-        zipped = zip(us,uup)
+            bd += bdo 
+        zipped = zip(us,uup,bd)
         #ziet er nu zo uit (getest): [(<User: user1>, <UserProfile: User profile for user1>), (<User: user2>, <UserProfile: User profile for user2>),...]
     else:
         zipped=None

@@ -32,9 +32,6 @@ class OrderResource(ModelResource):
 		return Ticket.objects.filter(order=order, price_category=PriceCategory.objects.get(
 			full_name="KU Leuven Cultuurkaart in VVK (vanaf winter 2014)", price=4)).count()
 
-	def dehydrate_num_zaventem_tickets(self, order):
-		return Ticket.objects.filter(order=order, price_category=PriceCategory.objects.filter(price=10)[0]).count()
-
 	class Meta:
 		model = Order
 		fields = ('performance__short_name', 'online', 'first_name', 'last_name', 'email', 'payment_method', 'user_remarks',)
