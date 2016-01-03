@@ -1,3 +1,22 @@
+<!-- {% extends "email_base.html" %}
+{% load i18n %}
+
+{% autoescape off %}
+	{% blocktrans %}Je krijgt deze mail omdat je een wachtwoord verandering hebt aangevraagd voor je account op arenbergorkest.be.{% endblocktrans %}
+	<b>{% blocktrans %}Indien je de verandering niet hebt aangevraagd, of er iets mis lijkt te zijn met de mail, gelieve dan niet op de link te klikken (en vraag indien het nodig is nog een keer een wachtwoordverandering aan).{% endblocktrans %}</b>
+
+	{% trans "Klik op de volgende link om je wachtwoord te veranderen:" %}
+	{% block reset_link %}
+		{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+	{% endblock %}
+
+	<i>{% blocktrans %}Blij om je van dienst te zijn,{% endblocktrans %}
+
+	{% blocktrans %}Het Arenbergorkest Webteam{% endblocktrans %}</i>
+{% endautoescape %} -->
+
+
+
 {% extends "email_base.html" %}
 {% load i18n %}
 

@@ -483,7 +483,7 @@ msgid ""
 "dien in."
 msgstr ""
 "Your current user info is filled in automatically. Change what you want to "
-"change and submit"
+"and submit."
 
 #: core/templates/registration/edit.html:25
 #: core/templates/registration/register.html:25
@@ -651,11 +651,11 @@ msgstr "Access for musicians"
 
 #: core/templates/registration/register.html:46
 msgid "Standaard:"
-msgstr "Standard"
+msgstr "Default:"
 
 #: core/templates/registration/register.html:75
 msgid "bv. Fruitologie"
-msgstr ""
+msgstr "e.g. Scientology"
 
 #: core/templates/registration/register.html:84
 msgid "Je gsm nummer (aan elkaar geschreven)"

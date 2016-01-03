@@ -7,6 +7,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = patterns ('',
+    url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^setlang/(?P<lang>[\w-]+)/$', 'core.views.set_lang', name='set_lang'), #change lang
     url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
 )
@@ -23,8 +24,8 @@ urlpatterns += solid_i18n_patterns('',
     url(r'^contact$', 'core.views.contact', name='contact'),
     url(r'^accessrestricted$', 'core.views.notapproved', name='notapproved'), 
     #next three have to be here, because of the names. if they're in core/urls.py the names are musicians:... and contrib.auth won't recognise them
-    url(r'^musicians/reset/passwordsent/$', auth_views.password_reset_done, name='password_reset_done'),
-    url(r'^musicians/reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$', auth_views.password_reset_confirm, name='password_reset_confirm'),
+    url(r'^musicians/reset/mailsent/$', auth_views.password_reset_done, name='password_reset_done'),
+    url(r'^musicians/reset/newpassword/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$', auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^musicians/reset/complete/$', auth_views.password_reset_complete, name='password_reset_complete'),
     #moved here so @user_passes tests correctly go to this page, if it's musicians/accesrestricted it always becomes musicians/musicians/accesestricted and then url not found
     url(r'^musicians/', include('core.urls', namespace='musicians')),

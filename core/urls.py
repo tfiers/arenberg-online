@@ -5,7 +5,7 @@ from axes.decorators import watch_login #needed to activate axes on the login te
 
 urlpatterns = patterns('',
 	#all pages involving authentication or with authentication required (except for ticketing and poll pages, the ones that belong in a seperate app)
-    url(r'^reset$',auth_views.password_reset,{'from_email':'noreply@arenbergorkest.be','html_email_template_mail':'registration/password_reset_mail.html'}, name="iforgotitagain"),
+    url(r'^reset$',auth_views.password_reset,{'from_email':'noreply@arenbergorkest.be','html_email_template_name':'registration/password_reset_mail.html'}, name="iforgotitagain"),
     url(r'^choose-password$', 'core.views.change_password', name='change_password'),
     url(r'^choose-password/done$', 'core.views.password_set', name='pass_changed'),
     url(r'^calendar$', 'core.views.repcalendar', name='calendar'),
