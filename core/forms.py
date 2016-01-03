@@ -11,10 +11,6 @@ from datetime import datetime
 from django.forms.extras.widgets import SelectDateWidget
 from django.core.files.images import get_image_dimensions
 from PIL import Image
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Div, Submit, HTML, Field, Button, Row
-from crispy_forms.bootstrap import FormActions, StrictButton
-from django.core.mail import send_mail
 
 MIN_LENGTH = 8
 MAX_FILESIZE = 20*1024 #in bytes
