@@ -21,6 +21,7 @@ import calendar
 from django.utils.safestring import mark_safe
 from django.core.mail import send_mail
 from honeypot.decorators import check_honeypot
+from django.views.decorators.csrf import csrf_exempt
 
 @csrf_protect
 @check_honeypot
@@ -88,18 +89,19 @@ def set_lang(request, lang='nl'):
 def sponsors(request):
 	return render(request, 'sponsors.html')
 
-
 @check_honeypot
+@csrf_exempt #is OK in dit geval, heeft niets te maken met authenticatie en user moet niet ingelogd zijn en toch geeft het csrf error -.-
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            subject = form.cleaned_data.get("subject")+", "+form.cleaned_data.get("name_visitor")+", "+form.cleaned_data.get("email_visitor")
+            subject = "Subject: "+form.cleaned_data.get("subject")+", name: "+form.cleaned_data.get("name_visitor")+", email: "+form.cleaned_data.get("email_visitor")
             message = form.cleaned_data.get("message")
             send_mail(subject,message,'contact@arenbergorkest.be',['lennart.bulteel@student.kuleuven.be'])
-            return render(request, 'contact_sent.html')
+            return HttpResponseRedirect(reverse('contact_sent'))
     else:
         form = ContactForm()
+
     return render(request,'contact.html',{'form': form})
 
 def contact_sent(request):

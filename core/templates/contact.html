@@ -15,7 +15,7 @@
 
 	<p>{%trans 'Wilt u contact opnemen met het Arenbergorkest? Stuur dan een bericht!' %}</p>
 
-	<form role='form' method='post' enctype="multipart/form-data" action="">
+	<form role='form' method='post' enctype="multipart/form-data" action="{% url 'contact' %}">
 
 		{% render_honeypot_field %}
 		
@@ -31,12 +31,12 @@
 
 		<div class="form-group">
 			<span class="error">
-				{% for error in form.email.errors %}
+				{% for error in form.email_visitor.errors %}
 						{{error}}<br>
 				{% endfor %}
 			</span>
-			<label for="{{form.email.id_for_label}}">{% trans "Je e-mail" %}</label>
-			<input type="text" name="{{form.email.html_name}}" id="{{ form.email.id_for_label }}" class="form-control" value="{{ form.email.value|default_if_none:'' }}">
+			<label for="{{form.email_visitor.id_for_label}}">{% trans "Je e-mail" %}</label>
+			<input type="text" name="{{form.email_visitor.html_name}}" id="{{ form.email_visitor.id_for_label }}" class="form-control" value="{{ form.email_visitor.value|default_if_none:'' }}">
 		</div>
 
 		<div class="form-group">

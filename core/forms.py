@@ -23,10 +23,10 @@ class ContactForm(forms.Form):
     """
     Form for the send email page on contact page.
     """
-    name_visitor = forms.CharField(required=True,label=_('Naam'))
-    email_visitor = forms.EmailField(required=True,label=_('E-mail'))
-    subject = forms.CharField(required=True,label=_('Onderwerp'))
-    message = forms.CharField(required=True,label=_('Bericht'),widget=forms.Textarea(attrs={'class' : 'form-control'})) #form-control activates bootstrap textarea
+    name_visitor = forms.CharField(required=True)
+    email_visitor = forms.EmailField(required=True)
+    subject = forms.CharField(required=True)
+    message = forms.CharField(required=True,widget=forms.Textarea(attrs={'class' : 'form-control'})) #form-control activates bootstrap textarea
 
 class UserForm(forms.ModelForm):
 

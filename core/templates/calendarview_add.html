@@ -89,10 +89,9 @@
 				<label for="{{ addeventform.absolute_url.id_for_label }}">{% trans "En dan nog eventueel een link (niet verplicht)" %}</label>
 				<input type="text" name="{{ addeventform.absolute_url.html_name }}" id="{{ addeventform.absolute_url.id_for_label }}" class="form-control" placeholder="{% trans 'bv. http://www.thunderdome.com/home/' %}" value="{{ addeventform.absolute_url.value|default_if_none:'' }}">
 			</div>
-
-			<label for="{{ addeventform.board.id_for_label }}">{% trans "Enkel voor bestuur? Vink dan aan!" %}</label>
+			
 			<div class="form-group"> <!-- errors not really possible ... -->	
-				{{addeventform.board}}
+				{{addeventform.board}}&nbsp;&nbsp;<label for="{{ addeventform.board.id_for_label }}">{% trans "Enkel voor bestuur? Vink dan aan!" %}</label>
 			</div>
 
 
