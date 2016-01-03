@@ -63,6 +63,7 @@ INSTALLED_APPS = (
     'vinaigrette', # For translation of database values. See https://github.com/ecometrica/django-vinaigrette
     'axes', #protection against bruteforce password attacks, something django does NOT protect against 
     'formtools', #new way of formtools
+    'honeypot', #spam protection that isn't annoying for users (like captcha)
 
     #local project apps, implementing parts of the website, chained together by settings.py and urls.py in main folder arenberg-online
     'core', # Users, user profiles, instruments and groups.
@@ -108,6 +109,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
     "django.core.context_processors.request", # Now the request will be available in each template.
 )
+
+#form honeypot field
+HONEYPOT_FIELD_NAME = 'important'
 
 #axes settings
 AXES_LOGIN_FAILURE_LIMIT = 10 #after 10 tries ...

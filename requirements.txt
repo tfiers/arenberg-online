@@ -8,5 +8,6 @@ django-grappelli
 django-import-export
 django-axes
 django-formtools
+django-honeypot
 pillow
 bcrypt

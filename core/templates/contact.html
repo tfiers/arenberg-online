@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load staticfiles %}
-{% load crispy_forms_tags %}
+{% load honeypot %}
 {% block title %}{% trans "Contact" %}{% endblock title %}
 {% block custom_css_js %}
 <link rel="stylesheet" href="{% static 'registration/style.css' %}">
@@ -14,9 +14,64 @@
 	<h1>{% trans "Contact" %}</h1>
 
 	<p>{%trans 'Wilt u contact opnemen met het Arenbergorkest? Stuur dan een bericht!' %}
-	<div>
-		{% crispy form %}
-	</div>
+
+	<form role='form' method='post' enctype="multipart/form-data" action="">
+
+		{% render_honeypot_field %}
+
+		<div class="form-group">
+			<span class="error">
+				{% for error in form.name.errors %}
+						{{error}}<br>
+				{% endfor %}
+			</span>
+			<label for="{{form.name.id_for_label}}">{% trans "Je naam" %}</label>
+			<input type="text" name="{{form.name.html_name}}" id="{{ form.name.id_for_label }}" class="form-control" value="{{ form.name.value|default_if_none:'' }}">
+		</div>
+
+		<div class="form-group">
+			<span class="error">
+				{% for error in form.name_visitor.errors %}
+						{{error}}<br>
+				{% endfor %}
+			</span>
+			<label for="{{form.name_visitor.id_for_label}}">{% trans "Je naam" %}</label>
+			<input type="text" name="{{form.name_visitor.html_name}}" id="{{ form.name_visitor.id_for_label }}" class="form-control" value="{{ form.name_visitor.value|default_if_none:'' }}">
+		</div>
+
+		<div class="form-group">
+			<span class="error">
+				{% for error in form.email.errors %}
+						{{error}}<br>
+				{% endfor %}
+			</span>
+			<label for="{{form.email.id_for_label}}">{% trans "Je e-mail" %}</label>
+			<input type="text" name="{{form.email.html_name}}" id="{{ form.email.id_for_label }}" class="form-control" value="{{ form.email.value|default_if_none:'' }}">
+		</div>
+
+		<div class="form-group">
+			<span class="error">
+				{% for error in form.subject.errors %}
+						{{error}}<br>
+				{% endfor %}
+			</span>
+			<label for="{{form.subject.id_for_label}}">{% trans "Het onderwerp" %}</label>
+			<input type="text" name="{{form.subject.html_name}}" id="{{ form.subject.id_for_label }}" class="form-control" value="{{ form.subject.value|default_if_none:'' }}">
+		</div>
+
+		<div class="form-group">
+			<span class="error">
+				{% for error in form.message.errors %}
+						{{error}}<br>
+				{% endfor %}
+			</span>
+			<label for="{{form.message.id_for_label}}">{% trans "De boodschap" %}</label>
+			{{form.message}}
+		</div>
+
+		<input type="submit" value="{% trans 'Versturen!' %}" class="btn btn-danger">
+
+	</form>
 
 </div>
 

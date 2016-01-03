@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load staticfiles %}
+{% load honeypot %}
 {% block title %}{% trans "Registratie" %}{% endblock title %}
 {% block custom_css_js %}
 <link rel="stylesheet" href="{% static 'registration/style.css' %}">
@@ -12,6 +13,8 @@
 	<h1>{% trans "Registratie voor nieuwe muzikanten" %}</h1>
 		<form role='form' method='post' enctype="multipart/form-data" action="{% url 'musicians:register' %}">
 			{% csrf_token %}
+
+			{% render_honeypot_field %}
 
 			<div class="form-group">
 				<span class="error">

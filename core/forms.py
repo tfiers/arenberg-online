@@ -27,33 +27,10 @@ class ContactForm(forms.Form):
     """
     Form for the send email page on contact page.
     """
-    #=honeypot field, easy spam protection
-    #label is empty so it won't show nametag on form site, and input field is hidden with css.
-    #spambots don't look at js or css, and will see and fill the field as it is required
-    #users don't see the field and will use the default filled value
-    name = forms.CharField(required=True,label=_(''),initial='banaan',widget=forms.TextInput(attrs={'class' : 'hideandseek'})) 
     name_visitor = forms.CharField(required=True,label=_('Naam'))
     email_visitor = forms.EmailField(required=True,label=_('E-mail'))
     subject = forms.CharField(required=True,label=_('Onderwerp'))
-    message = forms.CharField(required=True,label=_('Bericht'),widget=forms.Textarea) #textarea class in template contact.html
-
-    def save(self,commit=True):
-        subject = self.cleaned_data.get("subject")+", "+self.cleaned_data.get("name_visitor")+", "+self.cleaned_data.get("email_visitor")
-        message = self.cleaned_data.get("message")
-        send_mail(subject,message,'contact@arenbergorkest.be',['lennart.bulteel@student.kuleuven.be'])
-
-    helper = FormHelper()
-    helper.form_action = 'contact'
-    helper.form_class = 'form-horizontal'
-    helper.label_class = 'col-sm-2'
-    helper.field_class = 'col-sm-8'
-    helper.layout = Layout(
-        'name',
-        'name_visitor',
-        'email_visitor',
-        'subject',
-        'message',
-        FormActions(Submit('submit', _('Verstuur!'), css_class="btn-danger"),),)
+    message = forms.CharField(required=True,label=_('Bericht'),widget=forms.Textarea(attrs={'class' : 'form-control'})) #form-control activates bootstrap textarea
 
 class UserForm(forms.ModelForm):
 
@@ -266,7 +243,11 @@ class AddEventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ['name', 'location','date_of_event', 'start_hour','end_hour','event_color', 'absolute_url', 'board']
-        widgets = {'date_of_event': SelectDateWidget()}
+        widgets = {
+        'date_of_event': SelectDateWidget(), 
+        'end_hour': forms.TextInput(attrs={'class' : 'form-control'}), #form-control activates bootstrap textarea
+        'start_hour': forms.TextInput(attrs={'class': 'form-control'}) #form-control activates bootstrap textarea
+        }
         #not yet displayed, for when crispy forms will be used with all these forms
         help_texts = {'event_color':_("1 = repetitie, 2 = concert, 3 = activiteit, 5 = repetitieweekend")}
 

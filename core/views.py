@@ -20,8 +20,10 @@ import datetime
 import calendar
 from django.utils.safestring import mark_safe
 from django.core.mail import send_mail
+from honeypot.decorators import check_honeypot
 
 @csrf_protect
+@check_honeypot
 def register(request):
     """handles the view of the registration form"""
     if request.method == 'POST':
@@ -86,17 +88,16 @@ def set_lang(request, lang='nl'):
 def sponsors(request):
 	return render(request, 'sponsors.html')
 
+
+@check_honeypot
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            if form.cleaned_data.get('name')=='banaan':
-                subject = form.cleaned_data.get("subject")+", "+form.cleaned_data.get("name_visitor")+", "+form.cleaned_data.get("email_visitor")
-                message = form.cleaned_data.get("message")
-                send_mail(subject,message,'contact@arenbergorkest.be',['lennart.bulteel@student.kuleuven.be'])
-                return render(request, 'contact_sent.html')
-            else:
-                return HttpResponseRedirect(reverse('contact'))
+            subject = form.cleaned_data.get("subject")+", "+form.cleaned_data.get("name_visitor")+", "+form.cleaned_data.get("email_visitor")
+            message = form.cleaned_data.get("message")
+            send_mail(subject,message,'contact@arenbergorkest.be',['lennart.bulteel@student.kuleuven.be'])
+            return render(request, 'contact_sent.html')
     else:
         form = ContactForm()
     return render(request,'contact.html',{'form': form})
