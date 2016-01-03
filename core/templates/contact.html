@@ -25,7 +25,7 @@
 						{{error}}<br>
 				{% endfor %}
 			</span>
-			<label for="{{form.name_visitor.id_for_label}}">{% trans "Je naam" %}</label>
+			<label for="{{form.name_visitor.id_for_label}}">{% trans "Uw naam" %}</label>
 			<input type="text" name="{{form.name_visitor.html_name}}" id="{{ form.name_visitor.id_for_label }}" class="form-control" value="{{ form.name_visitor.value|default_if_none:'' }}">
 		</div>
 
@@ -35,7 +35,7 @@
 						{{error}}<br>
 				{% endfor %}
 			</span>
-			<label for="{{form.email_visitor.id_for_label}}">{% trans "Je e-mail" %}</label>
+			<label for="{{form.email_visitor.id_for_label}}">{% trans "Uw e-mail" %}</label>
 			<input type="text" name="{{form.email_visitor.html_name}}" id="{{ form.email_visitor.id_for_label }}" class="form-control" value="{{ form.email_visitor.value|default_if_none:'' }}">
 		</div>
 
@@ -45,7 +45,7 @@
 						{{error}}<br>
 				{% endfor %}
 			</span>
-			<label for="{{form.subject.id_for_label}}">{% trans "Het onderwerp" %}</label>
+			<label for="{{form.subject.id_for_label}}">{% trans "Onderwerp" %}</label>
 			<input type="text" name="{{form.subject.html_name}}" id="{{ form.subject.id_for_label }}" class="form-control" value="{{ form.subject.value|default_if_none:'' }}">
 		</div>
 
@@ -55,7 +55,7 @@
 						{{error}}<br>
 				{% endfor %}
 			</span>
-			<label for="{{form.message.id_for_label}}">{% trans "De boodschap" %}</label>
+			<label for="{{form.message.id_for_label}}">{% trans "Boodschap" %}</label>
 			{{form.message}}
 		</div>
 

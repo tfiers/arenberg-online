@@ -11,3 +11,5 @@ django-formtools
 django-honeypot
 pillow
 bcrypt
+requests
+django-mailgun

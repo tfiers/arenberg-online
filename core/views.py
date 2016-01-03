@@ -18,10 +18,33 @@ from forms import BirthdayEditForm, UserForm, UserProfileForm, UserEditForm, Use
 import gc
 import datetime
 import calendar
+import os
 from django.utils.safestring import mark_safe
 from django.core.mail import send_mail
 from honeypot.decorators import check_honeypot
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+import requests
+
+def add_list_member(user,group_string):
+    """
+    Subscribes the user to a Mailgun group mailing list.
+    """
+    with open(os.path.join(settings.CONFIG_DIR, 'mailgun_api_key')) as f:
+        KEY = f.read().strip()
+    mail = user.email
+    name = user.first_name+" "+user.last_name
+    return requests.post("https://api.mailgun.net/v3/lists/{}@arenbergorkest.be/members".format(group_string),
+        auth=('api', KEY),
+        data={'subscribed': True,'address': mail,'name': name})
+
+def remove_list_member(user,group_string):
+    with open(os.path.join(settings.CONFIG_DIR, 'mailgun_api_key')) as f:
+        KEY = f.read().strip()
+    mail = user.email
+    return requests.delete(
+        ("https://api.mailgun.net/v3/lists/{}@arenbergorkest.be/members".format(group_string)+"/{}".format(mail)),
+        auth=('api', 'YOUR_API_KEY'))
 
 @csrf_protect
 @check_honeypot
@@ -39,7 +62,10 @@ def register(request):
             userprofile.last_password_change = datetime.datetime.now(utc) #setting last password change
             userprofile.save()
             userprofile.groups = upf.cleaned_data["groups"] #adds the groups. doesn't save because it's a m2m relationship. other options: using super() or save_m2m()
-            #TODO: send email here, is also commented out in thanks.html
+            #add user to all applicable mailing lists
+            grouplist = userprofile.groups_as_string.split(", ")
+            for gr in grouplist:
+                add_list_member(user,gr)
             return render_to_response('registration/thanks_register.html', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
     else:
         uf = UserForm(prefix='userform')
@@ -55,6 +81,7 @@ def edit(request):
         upf = UserProfileEditForm(request.POST, request.FILES, instance = request.user.userprofile, prefix='userprofileeditform')
         buser = Event.objects.get(birthday_user=request.user)
         ubf = BirthdayEditForm(request.POST,instance=buser, prefix='birthdayeditform')
+        previous_grouplist = request.user.userprofile.groups_as_string.split(", ")
         if uf.is_valid() * upf.is_valid():
             user = uf.save()
             ubf.save()
@@ -63,7 +90,12 @@ def edit(request):
             userprofile.last_password_change = datetime.datetime.now(utc) #setting last password change
             userprofile.save()
             userprofile.groups = upf.cleaned_data["groups"] #adds the groups. doesn't save because it's a m2m relationship. other options: using super() or save_m2m()
-            #TODO: send email here, is also commented out in thanks.html
+            grouplist = userprofile.groups_as_string.split(", ")
+            #remove user from previous groups and add user to new ones (not max efficient, could change to sets and diff them?)
+            for gr in previous_grouplist:
+                remove_list_member(request.user,gr)
+            for gro in grouplist:
+                add_list_member(request.user,gro)
             return render_to_response('registration/thanks_edit.html', dict(usereditform=uf, userprofileeditform=upf, birthdayeditform=ubf), context_instance=RequestContext(request))
     else:
         uf = UserEditForm(request.user,instance=request.user,  prefix='usereditform')
