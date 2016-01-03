@@ -306,13 +306,9 @@ EMAIL_HOST = 'smtp.mailgun.org'
 EMAIL_HOST_USER = 'postmaster@arenbergorkest.be'
 with open(os.path.join(CONFIG_DIR, 'mailgun_password')) as f:
     EMAIL_HOST_PASSWORD = f.read().strip()
-
-
-if DEVELOPPING:
-    POSTFIX_VIRTUAL_ALIAS_FILE = 'generated_for_postfix.txt'
-else:
-    POSTFIX_VIRTUAL_ALIAS_FILE = '/etc/postfix/virtual'
-
+with open(os.path.join(CONFIG_DIR, 'mailgun_api_key')) as f:
+    MAILGUN_API_KEY = f.read().strip()
+    
 # To what email address should emails sent to 
 # [undefined.string]@arenbergorkest.be be forwarded?
 CATCHALL_EMAIL = 'bestuur@arenbergorkest'
