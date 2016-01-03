@@ -14,11 +14,12 @@ from pytz import utc
 from django.template import RequestContext
 from core.models import  User, UserProfile, Event
 from core.htmlcalendar import Calendar
-from forms import BirthdayEditForm, UserForm, UserProfileForm, UserEditForm, UserProfileEditForm, CustomPasswordChangeForm, AddEventForm
+from forms import BirthdayEditForm, UserForm, UserProfileForm, UserEditForm, UserProfileEditForm, CustomPasswordChangeForm, AddEventForm, ContactForm
 import gc
 import datetime
 import calendar
 from django.utils.safestring import mark_safe
+from django.core.mail import send_mail
 
 @csrf_protect
 def register(request):
@@ -73,7 +74,7 @@ def edit(request):
 
 def set_lang(request, lang='nl'):
 	if lang not in ('en', 'nl'):
-		lang = 'en'
+		lang = 'en' #if people modify url to try get another language
 	translation.activate(lang)
 	request.session[translation.LANGUAGE_SESSION_KEY] = lang
 	referer = urlparse(request.META.get('HTTP_REFERER', '/')).path
@@ -86,7 +87,22 @@ def sponsors(request):
 	return render(request, 'sponsors.html')
 
 def contact(request):
-	return render(request, 'contact.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            if form.cleaned_data.get('name')=='banaan':
+                subject = form.cleaned_data.get("subject")+", "+form.cleaned_data.get("name_visitor")+", "+form.cleaned_data.get("email_visitor")
+                message = form.cleaned_data.get("message")
+                send_mail(subject,message,'contact@arenbergorkest.be',['lennart.bulteel@student.kuleuven.be'])
+                return render(request, 'contact_sent.html')
+            else:
+                return HttpResponseRedirect(reverse('contact'))
+    else:
+        form = ContactForm()
+    return render(request,'contact.html',{'form': form})
+
+def contact_sent(request):
+    return render(request, 'contact_sent.html')
 
 def home(request):
 	return render(request, 'Arenbergorkest.htm')
@@ -115,7 +131,7 @@ def calendarview_add(request):
         # to the database.
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('musicians/calendarview'))
+            return HttpResponseRedirect(reverse('musicians:calendarview'))
 
     # If this is a GET request (or any other type of request) we'll create a blank form.
     else:

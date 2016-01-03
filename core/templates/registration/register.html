@@ -22,7 +22,7 @@
 			{% for hidden in form.hidden_fields %}
     			{{ hidden }}
 			{% endfor %}
-				<label for="{{ useredit.first_name.id_for_label }}">{% trans "Je voornaam" %}</label>
+				<label for="{{ userform.first_name.id_for_label }}">{% trans "Je voornaam" %}</label>
 				<input type="text" name="{{ userform.first_name.html_name }}" id="{{ userform.first_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Ana' %}" value="{{ userform.first_name.value|default_if_none:'' }}">
 			</div>
 

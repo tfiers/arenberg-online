@@ -22,6 +22,7 @@ urlpatterns += solid_i18n_patterns('',
     url(r'^wie$', 'core.views.home', name='wie'), #will render the Arenbergorkest.htm introductory page
     url(r'^sponsors$', 'core.views.sponsors', name='sponsors'), 
     url(r'^contact$', 'core.views.contact', name='contact'),
+    url(r'^contact$', 'core.views.contact_sent', name='contact_sent'),
     url(r'^accessrestricted$', 'core.views.notapproved', name='notapproved'), 
     #next three have to be here, because of the names. if they're in core/urls.py the names are musicians:... and contrib.auth won't recognise them
     url(r'^musicians/reset/mailsent/$', auth_views.password_reset_done, name='password_reset_done'),
