@@ -22,29 +22,6 @@ from django.utils.safestring import mark_safe
 from django.core.mail import send_mail
 from honeypot.decorators import check_honeypot
 from django.views.decorators.csrf import csrf_exempt #never use this, only used to exempt send mail form in contact which doesn't have anything to do with user data
-import requests
-
-#THE AUTOMATIC MAILING USES A COMBINATION OF SIGNALS (CORE/SINGALS.PY) AND REQUESTS IN VIEWS (REGISTER AND EDIT)
-#DO NOT MANUALLY CHANGE GROUPS OR EMAIL FIELDS IN DJANGO ADMIN
-def add_list_member(user,group_string):
-    """
-    Subscribes the user to a Mailgun group mailing list.
-    """
-    mail = user.email
-    name = user.first_name+" "+user.last_name
-    return requests.post("https://api.mailgun.net/v3/lists/{}@arenbergorkest.be/members".format(group_string),
-        auth=('api', settings.MAILGUN_API_KEY),
-        data={'subscribed': True,'address': mail,'name': name})
-
-def remove_list_member(user,group_string,m=None):
-    #in edit, the old email is passed, because for some reason otherwise the new email in the form is used ...
-    if m == None:
-        mail = user.email
-    else:
-        mail = m
-    return requests.delete(
-        "https://api.mailgun.net/v3/lists/{}@arenbergorkest.be/members/{}".format(group_string,mail),
-        auth=('api', settings.MAILGUN_API_KEY))
 
 @csrf_protect
 @check_honeypot
@@ -63,10 +40,6 @@ def register(request):
             userprofile.save()
             #save the m2m relationship field groups, has to be done like this because we first did commit = False
             upf.save_m2m()
-            #add user to all applicable mailing lists
-            grouplist = userprofile.groups_as_string.split(", ")
-            for gr in grouplist:
-                add_list_member(user,gr)
             return render_to_response('registration/thanks_register.html', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
     else:
         uf = UserForm(prefix='userform')
@@ -79,16 +52,11 @@ def register(request):
 def edit(request):
     """handles the view of the edit form, to edit user info"""
     if request.method == 'POST':
-        m = request.user.email
         uf = UserEditForm(request.user,request.POST, instance=request.user, prefix='usereditform')
         upf = UserProfileEditForm(request.POST, request.FILES, instance = request.user.userprofile, prefix='userprofileeditform')
         buser = Event.objects.get(birthday_user=request.user)
         ubf = BirthdayEditForm(request.POST,instance=buser, prefix='birthdayeditform')
-        previous_grouplist = request.user.userprofile.groups_as_string.split(", ") #for mailing, see later in function
         if uf.is_valid() * upf.is_valid() * ubf.is_valid():
-            #removes all old group subscriptions with old email, for some reason old email needs to be explicitly passed or it won't be deleted when mail is changed
-            for gr in previous_grouplist: 
-                remove_list_member(request.user,gr,m)
             #save user, store in variable for later use
             user = uf.save()
             #save birthday form
@@ -99,10 +67,6 @@ def edit(request):
             userprofile.save()
             #save the m2m relationship field groups, has to be done like this because we first did commit = False
             upf.save_m2m() 
-            #adds new subscriptions with new email
-            grouplist = userprofile.groups_as_string.split(", ")
-            for gro in grouplist: 
-                add_list_member(request.user,gro)
             return render(request,'registration/thanks_edit.html')
     else:
         uf = UserEditForm(request.user,instance=request.user,  prefix='usereditform')
