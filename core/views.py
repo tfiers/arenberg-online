@@ -22,6 +22,8 @@ from django.utils.safestring import mark_safe
 from django.core.mail import send_mail
 from honeypot.decorators import check_honeypot
 from django.views.decorators.csrf import csrf_exempt #never use this, only used to exempt send mail form in contact which doesn't have anything to do with user data
+from tables import UserTable
+from django_tables2 import RequestConfig
 
 @csrf_protect
 @check_honeypot
@@ -268,3 +270,8 @@ def calendarview(request, pYear=datetime.datetime.now().year, pMonth=datetime.da
                                                        'NextMonthName' : named_month(lNextMonth),
                                                        'NextYear' : lNextYear,
                                                    })
+
+def table(request):
+    table = UserTable(User.objects.all())
+    RequestConfig(request, paginate=False).configure(table)
+    return render(request, 'musicianlist.html', {'table': table})

@@ -62,14 +62,14 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     Source: https://github.com/django/django/blob/master/django/contrib/auth/models.py#L379
     """
-    email = EmailField(_('email address'), max_length=255, unique=True,
+    email = EmailField(_('E-mail'), max_length=255, unique=True,
         error_messages={
             'unique': _("A user with that email adress already exists."),
         })
-    first_name = CharField(_('first name'), max_length=50, blank=False)
-    last_name = CharField(_('last name'), max_length=50, blank=False)
-    phone_number = CharField(_('phone_number'), max_length=15, blank=False) 
-    study = CharField(_('study'), max_length=50, blank=False) 
+    first_name = CharField(_('Voornaam'), max_length=50, blank=False)
+    last_name = CharField(_('Achternaam'), max_length=50, blank=False)
+    phone_number = CharField(_('GSM nummer'), max_length=15, blank=False) 
+    study = CharField(_('Studierichting'), max_length=50, blank=False) 
     is_staff = BooleanField(_('staff status'), default=False,
         help_text=_('Designates whether the user can log into this admin '
                     'site.'))
