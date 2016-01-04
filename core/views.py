@@ -8,21 +8,20 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth import update_session_auth_hash
-from django.conf import settings 
+from django.conf import settings
 from datetime import datetime
+import datetime
 from pytz import utc
 from django.template import RequestContext
 from core.models import  User, UserProfile, Event
 from core.htmlcalendar import Calendar
 from forms import BirthdayEditForm, UserForm, UserProfileForm, UserEditForm, UserProfileEditForm, CustomPasswordChangeForm, AddEventForm, ContactForm
 import gc
-import datetime
 import calendar
-import os
 from django.utils.safestring import mark_safe
 from django.core.mail import send_mail
 from honeypot.decorators import check_honeypot
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt #never use this, only used to exempt send mail form in contact which doesn't have anything to do with user data
 import requests
 
 #THE AUTOMATIC MAILING USES A COMBINATION OF SIGNALS (CORE/SINGALS.PY) AND REQUESTS IN VIEWS (REGISTER AND EDIT)
@@ -56,13 +55,14 @@ def register(request):
         upf = UserProfileForm(request.POST, request.FILES, prefix='userprofileform')
         if uf.is_valid() * upf.is_valid():
             user = uf.save()
-            #birthday event creation is not done by using a modelform here, could have been though. maybe in the future. 
+            #birthday event creation easier and shorter by creating object in view because only date_ov_event is in register form
             Event.objects.create(name='{} {}'.format(user.first_name,user.last_name),event_color="4", date_of_event=uf.cleaned_data['birthdate'], birthday_user=user)
             userprofile = upf.save(commit=False)
             userprofile.associated_user = user #adds the created as associated user for the userprofile
             userprofile.last_password_change = datetime.datetime.now(utc) #setting last password change
             userprofile.save()
-            userprofile.groups = upf.cleaned_data["groups"] #adds the groups. doesn't save because it's a m2m relationship. other options: using super() or save_m2m()
+            #save the m2m relationship field groups, has to be done like this because we first did commit = False
+            upf.save_m2m()
             #add user to all applicable mailing lists
             grouplist = userprofile.groups_as_string.split(", ")
             for gr in grouplist:
@@ -72,6 +72,7 @@ def register(request):
         uf = UserForm(prefix='userform')
         upf = UserProfileForm(prefix='userprofileform')
     return render_to_response('registration/register.html', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
+
 
 @csrf_protect
 @login_required
@@ -88,26 +89,27 @@ def edit(request):
             #removes all old group subscriptions with old email, for some reason old email needs to be explicitly passed or it won't be deleted when mail is changed
             for gr in previous_grouplist: 
                 remove_list_member(request.user,gr,m)
+            #save user, store in variable for later use
             user = uf.save()
+            #save birthday form
             ubf.save()
+            #save userprofile, commit=False at first to add user
             userprofile = upf.save(commit=False)
             userprofile.associated_user = user #adds the created as associated user for the userprofile
-            userprofile.last_password_change = datetime.datetime.now(utc) #setting last password change
             userprofile.save()
-            userprofile.groups = upf.cleaned_data["groups"] #adds the groups. doesn't save because it's a m2m relationship. other options: using super() or save_m2m()
-            grouplist = userprofile.groups_as_string.split(", ")
+            #save the m2m relationship field groups, has to be done like this because we first did commit = False
+            upf.save_m2m() 
             #adds new subscriptions with new email
+            grouplist = userprofile.groups_as_string.split(", ")
             for gro in grouplist: 
                 add_list_member(request.user,gro)
-            return render_to_response('registration/thanks_edit.html', dict(usereditform=uf, 
-                userprofileeditform=upf, birthdayeditform=ubf), context_instance=RequestContext(request))
+            return render(request,'registration/thanks_edit.html')
     else:
         uf = UserEditForm(request.user,instance=request.user,  prefix='usereditform')
         upf = UserProfileEditForm(instance = request.user.userprofile, prefix='userprofileeditform')
         buser = Event.objects.get(birthday_user=request.user)
         ubf = BirthdayEditForm(instance=buser, prefix='birthdayeditform')
-    return render_to_response('registration/edit.html', dict(usereditform=uf, userprofileeditform=upf, birthdayeditform=ubf), context_instance=RequestContext(request)) 
-    #the keys in the dict actually determine the var names you have to use for the forms in the template, these here are pretty long, which is pretty annoying ;)
+    return render_to_response('registration/edit.html', dict(form=uf, profileform=upf, bdform=ubf), context_instance=RequestContext(request)) 
 
 
 
@@ -201,31 +203,7 @@ def musicianlist(request):
         zipped=None
     return render(request, 'musicianlist.html', {'musicians': zipped})
 
-
-@login_required
-def logout(request):
-    return render(request, 'registration/thanks_logout.html')
-
-@csrf_protect
-@login_required
-def change_password(request):
-    if request.method == 'POST':
-        form = CustomPasswordChangeForm(user=request.user, data=request.POST)
-        if form.is_valid():
-            form.user.userprofile.last_password_change = datetime.datetime.now(utc)
-            form.user.userprofile.save()
-            form.save()
-            update_session_auth_hash(request, form.user)
-            return HttpResponseRedirect(reverse('musicians:pass_changed'))
-    else:
-        form = CustomPasswordChangeForm(user=request.user)
-    return render(request, 'registration/password_set_form.html', {'form': form})
-
-
-@login_required
-def password_set(request):
-	return render(request, 'registration/pass_changed.html')
-
+#used in musicianlist
 def queryset_iterator(queryset, chunksize=1000):
     '''''
     Iterate over a Django Queryset ordered by the primary key
@@ -251,6 +229,31 @@ def queryset_iterator(queryset, chunksize=1000):
             yield row
         gc.collect()
 
+
+@login_required
+def logout(request):
+    return render(request, 'registration/thanks_logout.html')
+
+@csrf_protect
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = CustomPasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            form.user.userprofile.last_password_change = datetime.datetime.now(utc)
+            form.user.userprofile.save()
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return HttpResponseRedirect(reverse('musicians:pass_changed'))
+    else:
+        form = CustomPasswordChangeForm(user=request.user)
+    return render(request, 'registration/password_set_form.html', {'form': form})
+
+
+@login_required
+def password_set(request):
+	return render(request, 'registration/pass_changed.html')
+
 #CALENDAR FUNCTIONS AND VIEWS
 
 def named_month(pMonthNumber):
@@ -270,7 +273,7 @@ def calendarhome(request):
 @user_passes_test(lambda u:u.approved,login_url='/accessrestricted')
 def calendarview(request, pYear=datetime.datetime.now().year, pMonth=datetime.datetime.now().month):
     """
-    Show calendar of events for specified month and year
+    Show calendar of events for specified month and year. The pYear and pMonth arguments are taken from regex in urls.py.
     """
     lYear = int(pYear)
     lMonth = int(pMonth)

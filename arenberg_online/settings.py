@@ -64,6 +64,7 @@ INSTALLED_APPS = (
     'axes', #protection against bruteforce password attacks, something django does NOT protect against 
     'formtools', #new way of formtools
     'honeypot', #spam protection that isn't annoying for users (like captcha)
+    'django_tables2',
 
     #local project apps, implementing parts of the website, chained together by settings.py and urls.py in main folder arenberg-online
     'core', # Users, user profiles, instruments and groups.
@@ -108,6 +109,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
     "django.core.context_processors.request", # Now the request will be available in each template.
+    "django.core.context_processors.request"
 )
 
 #form honeypot field
@@ -308,7 +310,7 @@ with open(os.path.join(CONFIG_DIR, 'mailgun_password')) as f:
     EMAIL_HOST_PASSWORD = f.read().strip()
 with open(os.path.join(CONFIG_DIR, 'mailgun_api_key')) as f:
     MAILGUN_API_KEY = f.read().strip()
-    
+
 # To what email address should emails sent to 
 # [undefined.string]@arenbergorkest.be be forwarded?
 CATCHALL_EMAIL = 'bestuur@arenbergorkest'

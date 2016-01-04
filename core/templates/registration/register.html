@@ -18,123 +18,123 @@
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in userform.first_name.errors %}
+					{% for error in form.first_name.errors %}
 						{{ error }}<br>
 					{% endfor %}
 				</span>
 			{% for hidden in form.hidden_fields %}
     			{{ hidden }}
 			{% endfor %}
-				<label for="{{ userform.first_name.id_for_label }}">{% trans "Je voornaam" %}</label>
-				<input type="text" name="{{ userform.first_name.html_name }}" id="{{ userform.first_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Ana' %}" value="{{ userform.first_name.value|default_if_none:'' }}">
+				<label for="{{ form.first_name.id_for_label }}">{% trans "Je voornaam" %}</label>
+				<input type="text" name="{{ form.first_name.html_name }}" id="{{ form.first_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Ana' %}" value="{{ form.first_name.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in userform.last_name.errors %}
+					{% for error in form.last_name.errors %}
 							{{ error }}<br>
 					{% endfor %}
 				</span>
 				<label for="{{ useredit.last_name.id_for_label }}">{% trans "Je achternaam" %}</label>
-				<input type="text" name="{{ userform.last_name.html_name }}" id="{{ userform.last_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Banana' %}" value="{{ userform.last_name.value|default_if_none:'' }}">
+				<input type="text" name="{{ form.last_name.html_name }}" id="{{ form.last_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Banana' %}" value="{{ form.last_name.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in userprofileform.avatar.errors %}
+					{% for error in profileform.avatar.errors %}
 							{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ userprofileform.avatar.id_for_label }}">{% trans "Je foto (niet verplicht) (max. 50x50 pixels, 20kb grootte)" %}</label>
+				<label for="{{ profileform.avatar.id_for_label }}">{% trans "Je foto (niet verplicht) (max. 50x50 pixels, 20kb grootte)" %}</label>
 				<div><p>{%trans "Standaard:" %}</p></div>
 				<div><img src="../../media/media/defaultavatar.png"></div>
 				<br>
 				<div>
-					{{userprofileform.avatar}}
+					{{profileform.avatar}}
 				</div>
 			</div>
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in userform.birthdate.errors %}
+					{% for error in form.birthdate.errors %}
 							{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ userform.birthdate.id_for_label }}">{% trans "Je geboortedatum" %}</label>
+				<label for="{{ form.birthdate.id_for_label }}">{% trans "Je geboortedatum" %}</label>
 					<div class="date"> <!-- for putting it on the next line -->
-						{{userform.birthdate}}
+						{{form.birthdate}}
 					</div>
 			</div>
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in userform.study.errors %}
+					{% for error in form.study.errors %}
 							{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ userform.study.id_for_label }}">{% trans "Je studierichting" %}</label>
-				<input type="text" name="{{ userform.study.html_name }}" id="{{ userform.study.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Fruitologie' %}" value="{{ userform.study.value|default_if_none:'' }}">
+				<label for="{{ form.study.id_for_label }}">{% trans "Je studierichting" %}</label>
+				<input type="text" name="{{ form.study.html_name }}" id="{{ form.study.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Fruitologie' %}" value="{{ form.study.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in userform.phone_number.errors %}
+					{% for error in form.phone_number.errors %}
 							{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ userform.phone_number.id_for_label }}">{% trans "Je gsm nummer (aan elkaar geschreven)" %}</label>
-				<input type="text" name="{{ userform.phone_number.html_name }}" id="{{ userform.phone_number.id_for_label }}" class="form-control" placeholder="{% trans 'bv. 0469696969' %}" value="{{ userform.phone_number.value|default_if_none:'' }}">
+				<label for="{{ form.phone_number.id_for_label }}">{% trans "Je gsm nummer (aan elkaar geschreven)" %}</label>
+				<input type="text" name="{{ form.phone_number.html_name }}" id="{{ form.phone_number.id_for_label }}" class="form-control" placeholder="{% trans 'bv. 0469696969' %}" value="{{ form.phone_number.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in userform.email.errors %}
+					{% for error in form.email.errors %}
 						{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ userform.email.id_for_label }}">{% trans "Je e-mailadres" %}</label>
-				<input type="text" name="{{ userform.email.html_name }}" id="{{ userform.email.id_for_label }}" class="form-control" placeholder="{% trans 'bv. anabanana@fruit.org' %}" value="{{ userform.email.value|default_if_none:'' }}">
+				<label for="{{ form.email.id_for_label }}">{% trans "Je e-mailadres" %}</label>
+				<input type="text" name="{{ form.email.html_name }}" id="{{ form.email.id_for_label }}" class="form-control" placeholder="{% trans 'bv. anabanana@fruit.org' %}" value="{{ form.email.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in userform.email2.errors %}
+					{% for error in form.email2.errors %}
 						{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ userform.email2.id_for_label }}">{% trans "Je e-mailadres opnieuw" %}</label>
-				<input type="text" name="{{ userform.email2.html_name }}" id="{{ userform.email2.id_for_label }}" class="form-control" placeholder="{% trans 'bv. anabanana@fruit.org' %}" value="{{ userform.email2.value|default_if_none:'' }}">
+				<label for="{{ form.email2.id_for_label }}">{% trans "Je e-mailadres opnieuw" %}</label>
+				<input type="text" name="{{ form.email2.html_name }}" id="{{ form.email2.id_for_label }}" class="form-control" placeholder="{% trans 'bv. anabanana@fruit.org' %}" value="{{ form.email2.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in userform.password1.errors %}
+					{% for error in form.password1.errors %}
 						<br>{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ userform.password1.id_for_label }}">{% trans "Je wachtwoord" %}</label>
-				<input type="password" name="{{ userform.password1.html_name }}" id="{{ userform.password1.id_for_label }}" class="form-control" placeholder="{% trans 'bv. ikbenstiekemeenpeer' %}" value="{{ userform.password1.value|default_if_none:'' }}" data-toggle="password">
+				<label for="{{ form.password1.id_for_label }}">{% trans "Je wachtwoord" %}</label>
+				<input type="password" name="{{ form.password1.html_name }}" id="{{ form.password1.id_for_label }}" class="form-control" placeholder="{% trans 'bv. ikbenstiekemeenpeer' %}" value="{{ form.password1.value|default_if_none:'' }}" data-toggle="password">
 			</div>
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in userform.password2.errors %}
+					{% for error in form.password2.errors %}
 						<br>{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ userform.password2.id_for_label }}">{% trans "Je wachtwoord opnieuw" %}</label>
-				<input type="password" name="{{ userform.password2.html_name }}" id="{{ userform.password2.id_for_label }}" class="form-control" placeholder="{% trans 'bv. ikbenstiekemeenpeer' %}" value="{{ userform.password2.value|default_if_none:'' }}" data-toggle="password">
+				<label for="{{ form.password2.id_for_label }}">{% trans "Je wachtwoord opnieuw" %}</label>
+				<input type="password" name="{{ form.password2.html_name }}" id="{{ form.password2.id_for_label }}" class="form-control" placeholder="{% trans 'bv. ikbenstiekemeenpeer' %}" value="{{ form.password2.value|default_if_none:'' }}" data-toggle="password">
 			</div>
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in userprofileform.groups.errors %}
+					{% for error in profileform.groups.errors %}
 							{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ userprofileform.groups.id_for_label }}">{% trans "Je groep(en)" %}</label>
+				<label for="{{ profileform.groups.id_for_label }}">{% trans "Je groep(en)" %}</label>
 				<div style="overflow: auto; width : 300px; height : 150px; " id="checkbox">
-					{% for g in userprofileform.groups %}
+					{% for g in profileform.groups %}
 						<li id="checkboxselectmultiple"><small>{{ g }}</small></li>
 					{% endfor %}
 				</div>

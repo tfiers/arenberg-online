@@ -13,3 +13,4 @@ pillow
 bcrypt
 requests
 django-mailgun
+django-tables2

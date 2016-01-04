@@ -150,6 +150,9 @@ class Group(Model):
         a collection of Users, for sending emails or showing specific
         content to. '''
 
+    class Meta:
+        ordering = ['name'] #to sort all the group options in forms
+
     STANDARD, MUSICAL, PROJECT = 'standard', 'musical', 'project'
     category_choices = (
         (STANDARD, _('Standaard')), # ouwzakken, bestuur, techniek, ...
@@ -193,7 +196,8 @@ class Event(Model):
     location  = CharField(max_length=50,null=True,blank=True)
     start_hour = TimeField(null=True, blank=True)
     end_hour = TimeField(null=True, blank=True)
-    event_color = CharField(max_length=1,help_text=_("Color code on calendar. Default (1) is red (rehearsal). 2 = concert, 3 = organised event, 4 = birthday, 5 = repetitieweekend."))
+    event_color = CharField(max_length=1,help_text=_("Color code on calendar. Default (1) is red (rehearsal)." 
+        "2 = concert, 3 = organised event, 4 = birthday, 5 = repetitieweekend."))
     date_of_event = DateField(max_length=50) 
     board = BooleanField(default=False,help_text=_('Designates whether the event is for is_board users only.'))
     absolute_url = CharField(max_length=100,null=True,blank=True,help_text=_("It's possible to make the event link to a page (opened in a tab)."))

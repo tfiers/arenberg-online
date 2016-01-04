@@ -15,92 +15,92 @@
 			{% csrf_token %}
 			<div class="form-group">
 				<span class="error">
-					{% for error in usereditform.first_name.errors %}
+					{% for error in form.first_name.errors %}
 						{{ error }}<br>
 					{% endfor %}
 				</span>
 			{% for hidden in form.hidden_fields %}
     			{{ hidden }}
 			{% endfor %}
-				<label for="{{ usereditform.first_name.id_for_label }}">{% trans "Je voornaam" %}</label>
-				<input type="text" name="{{ usereditform.first_name.html_name }}" id="{{ usereditform.first_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Ana' %}" value="{{ usereditform.first_name.value|default_if_none:'' }}">
+				<label for="{{ form.first_name.id_for_label }}">{% trans "Je voornaam" %}</label>
+				<input type="text" name="{{ form.first_name.html_name }}" id="{{ form.first_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Ana' %}" value="{{ form.first_name.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in usereditform.last_name.errors %}
+					{% for error in form.last_name.errors %}
 							{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ usereditform.last_name.id_for_label }}">{% trans "Je achternaam" %}</label>
-				<input type="text" name="{{ usereditform.last_name.html_name }}" id="{{ usereditform.last_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Banana' %}" value="{{ usereditform.last_name.value|default_if_none:'' }}">
+				<label for="{{ form.last_name.id_for_label }}">{% trans "Je achternaam" %}</label>
+				<input type="text" name="{{ form.last_name.html_name }}" id="{{ form.last_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Banana' %}" value="{{ form.last_name.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in userprofileeditform.avatar.errors %}
+					{% for error in profileform.avatar.errors %}
 							{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ userprofileeditform.avatar.id_for_label }}">{% trans "Je foto (niet verplicht) (max. 50x50 pixels, 20kb grootte)" %}</label>
+				<label for="{{ profileform.avatar.id_for_label }}">{% trans "Je foto (niet verplicht) (max. 50x50 pixels, 20kb grootte)" %}</label>
 				<div><img src="{{request.user.userprofile.avatar.url}}"></div>
 				<br>
 				<div>
-					{{userprofileeditform.avatar}}
+					{{profileform.avatar}}
 				</div>
 			</div>
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in birthdayeditform.date_of_event.errors %}
+					{% for error in bdform.date_of_event.errors %}
 							{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{birthdayeditform.date_of_event.id_for_label }}">{% trans "Je geboortedatum" %}</label>
+				<label for="{{bdform.date_of_event.id_for_label }}">{% trans "Je geboortedatum" %}</label>
 					<div class="date"> 
- 						{{birthdayeditform.date_of_event}}
+ 						{{bdform.date_of_event}}
 					</div>
 			</div>
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in usereditform.study.errors %}
+					{% for error in form.study.errors %}
 							{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ usereditform.study.id_for_label }}">{% trans "Je studierichting" %}</label>
-				<input type="text" name="{{ usereditform.study.html_name }}" id="{{ usereditform.study.id_for_label }}" class="form-control" placeholder="{% trans 'bv. 08-12-1996' %}" value="{{ usereditform.study.value|default_if_none:'' }}">
+				<label for="{{ form.study.id_for_label }}">{% trans "Je studierichting" %}</label>
+				<input type="text" name="{{ form.study.html_name }}" id="{{ form.study.id_for_label }}" class="form-control" placeholder="{% trans 'bv. 08-12-1996' %}" value="{{ form.study.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in usereditform.phone_number.errors %}
+					{% for error in form.phone_number.errors %}
 							{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ usereditform.phone_number.id_for_label }}">{% trans "Je GSM nummer" %}</label>
-				<input type="text" name="{{ usereditform.phone_number.html_name }}" id="{{ usereditform.phone_number.id_for_label }}" class="form-control" placeholder="{% trans 'bv. 0469696969' %}" value="{{ usereditform.phone_number.value|default_if_none:'' }}">
+				<label for="{{ form.phone_number.id_for_label }}">{% trans "Je GSM nummer" %}</label>
+				<input type="text" name="{{ form.phone_number.html_name }}" id="{{ form.phone_number.id_for_label }}" class="form-control" placeholder="{% trans 'bv. 0469696969' %}" value="{{ form.phone_number.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in usereditform.email.errors %}
+					{% for error in form.email.errors %}
 						{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ usereditform.email.id_for_label }}">{% trans "Je e-mailadres" %}</label>
-				<input type="text" name="{{ usereditform.email.html_name }}" id="{{ usereditform.email.id_for_label }}" class="form-control" placeholder="{% trans 'bv. anabanana@fruit.org' %}" value="{{ usereditform.email.value|default_if_none:'' }}">
+				<label for="{{ form.email.id_for_label }}">{% trans "Je e-mailadres" %}</label>
+				<input type="text" name="{{ form.email.html_name }}" id="{{ form.email.id_for_label }}" class="form-control" placeholder="{% trans 'bv. anabanana@fruit.org' %}" value="{{ form.email.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in userprofileeditform.groups.errors %}
+					{% for error in profileform.groups.errors %}
 							{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ userprofileeditform.groups.id_for_label }}">{% trans "Je groep(en)" %}</label>
+				<label for="{{ profileform.groups.id_for_label }}">{% trans "Je groep(en)" %}</label>
 				<div style="overflow: auto; width : 300px; height : 150px; " id="checkbox">
-					{% for g in userprofileeditform.groups %}
+					{% for g in profileform.groups %}
 						<li id="checkboxselectmultiple"><small>{{ g }}</small></li>
 					{% endfor %}
 				</div>
@@ -110,12 +110,12 @@
 
 			<div class="form-group">
 				<span class="error">
-					{% for error in usereditform.password2.errors %}
+					{% for error in form.password2.errors %}
 						<br>{{ error }}<br>
 					{% endfor %}
 				</span>
-				<label for="{{ usereditform.password2.id_for_label }}">{% trans "Je huidige wachtwoord ter bevestiging" %}</label>
-				<input type="password" name="{{ usereditform.password2.html_name }}" id="{{ usereditform.password2.id_for_label }}" class="form-control" placeholder="{% trans 'bv. ikbenstiekemeenpeer' %}" value="{{ usereditform.password2.value|default_if_none:'' }}" data-toggle="password">
+				<label for="{{ form.password2.id_for_label }}">{% trans "Je huidige wachtwoord ter bevestiging" %}</label>
+				<input type="password" name="{{ form.password2.html_name }}" id="{{ form.password2.id_for_label }}" class="form-control" placeholder="{% trans 'bv. ikbenstiekemeenpeer' %}" value="{{ form.password2.value|default_if_none:'' }}" data-toggle="password">
 			</div>
 
 

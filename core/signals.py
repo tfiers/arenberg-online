@@ -25,7 +25,7 @@ def create_mailing_list_group(sender, instance, **kwargs):
 	return requests.post("https://api.mailgun.net/v3/lists",
         auth=('api', settings.MAILGUN_API_KEY),
         data={'address': '{}@arenbergorkest.be'.format(name),
-              'description': name})
+              'name': name})
 
 @receiver(post_delete, sender=Group)
 def remove_mailing_list_group(sender, instance, **kwargs):

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Snowman!" %}{% endblock title %}
+{% block custom_css_js %}
+<link rel="stylesheet" href="{% static 'ticketing/style.css' %}">
+<link rel="stylesheet" href="{% static 'ticketing/style-landscape-tablet-and-larger.css' %}" media="(min-width: 992px)">
+{% endblock custom_css_js %}
+{% block content %}
+<div id="header">
+	<div class="container">
+		<h2 id="title-arenbergorkest" class="caps">{% trans "Arenbergorkest" %}</h2>
+		<h2 id="title-conductor" class="caps">{% trans "olv Roel Willems" %}</h2>
+		<h1 id="title-space" class="caps">{% trans "Snowman" %}</h1>
+	</div>
+</div> 
+<div class="googleform">
+	<iframe src="https://docs.google.com/forms/d/13LPEMJXkvHmYbWdahzTyCTF6-o-JmTmHjbIfwnnsxfo/viewform?embedded=true" width="760" height="1500" frameborder="0" align="center">Bezig met laden...</iframe>
+</div>
+{% endblock content %}
