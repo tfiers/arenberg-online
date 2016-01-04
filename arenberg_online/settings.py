@@ -109,6 +109,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
     "django.core.context_processors.request", # Now the request will be available in each template.
+    "django.core.context_processors.request"
 )
 
 #form honeypot field
