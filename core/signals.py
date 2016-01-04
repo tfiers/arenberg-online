@@ -1,7 +1,5 @@
-# coding: utf-8
-
 from django.dispatch import receiver
-from django.db.models.signals import post_save, m2m_changed, post_delete, pre_save
+from django.db.models.signals import post_save, m2m_changed, post_delete, pre_save, pre_delete
 from core.models import User, UserProfile, Group
 from django.conf import settings 
 import requests
@@ -30,7 +28,7 @@ def change_user_mailing_lists(sender, instance, action, reverse, model, pk_set, 
 	"""
 	Detects when something in the m2m relationship of groups and users is changed and applies those changes to the mailing lists.
 	"""
-	mail = instance.associated_user.email #WORKS
+	mail = instance.associated_user.email
 	#if groups are going to be added
 	if action == "post_add":
 		groups = instance.groups_as_string
@@ -48,7 +46,7 @@ def change_user_mailing_lists(sender, instance, action, reverse, model, pk_set, 
 		grplst = previous.groups_as_string.split(", ")
 		#loop over list
 		for grp in grplst:
-			requests.delete("https://api.mailgun.net/v3/lists/{}@arenbergorkest.be/members/{}".format(grp,mail),auth=('api', settings.MAILGUN_API_KEY)) #WORKS
+			requests.delete("https://api.mailgun.net/v3/lists/{}@arenbergorkest.be/members/{}".format(grp,mail),auth=('api', settings.MAILGUN_API_KEY))
 
 @receiver(pre_save, sender=User)
 def do_something_if_changed(sender, instance, **kwargs):
@@ -72,3 +70,13 @@ def do_something_if_changed(sender, instance, **kwargs):
 			    data={'subscribed': True,
 			          'address': instance.email})
 
+@receiver(pre_delete, sender=UserProfile)
+def remove_from_earth(sender, instance, **kwargs):
+	"""
+	Removes a user from all mailing lists when he's deleted, reacts upon UserProfile pre_delete.
+	"""
+	grplst = instance.groups_as_string.split(", ")
+	mail = instance.associated_user.email
+	#loop over list
+	for grp in grplst:
+		requests.delete("https://api.mailgun.net/v3/lists/{}@arenbergorkest.be/members/{}".format(grp,mail),auth=('api', settings.MAILGUN_API_KEY))

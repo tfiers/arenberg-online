@@ -28,8 +28,8 @@ from django.views.decorators.csrf import csrf_exempt #never use this, only used 
 def register(request):
     """handles the view of the registration form"""
     if request.method == 'POST':
-        uf = UserForm(request.POST, prefix='userform')
-        upf = UserProfileForm(request.POST, request.FILES, prefix='userprofileform')
+        uf = UserForm(request.POST)
+        upf = UserProfileForm(request.POST, request.FILES)
         if uf.is_valid() * upf.is_valid():
             user = uf.save()
             #birthday event creation easier and shorter by creating object in view because only date_ov_event is in register form
@@ -42,9 +42,9 @@ def register(request):
             upf.save_m2m()
             return render_to_response('registration/thanks_register.html', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
     else:
-        uf = UserForm(prefix='userform')
-        upf = UserProfileForm(prefix='userprofileform')
-    return render_to_response('registration/register.html', dict(userform=uf, userprofileform=upf), context_instance=RequestContext(request))
+        uf = UserForm()
+        upf = UserProfileForm()
+    return render_to_response('registration/register.html', dict(form=uf,profileform=upf), context_instance=RequestContext(request))
 
 
 @csrf_protect
