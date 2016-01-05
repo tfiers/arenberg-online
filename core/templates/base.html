@@ -73,9 +73,9 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Orkest" %}<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{% url 'musicians:calendarview' %}">{%trans "Kalender" %}</a></li>
+                                    <li><a href="{% url 'calendarview' %}">{%trans "Kalender" %}</a></li>
                                     <li><a href="https://www.dropbox.com/sh/zbzfkiit0eyl77v/AAAJSX1O-5OCxcpQyfCY2VsVa?dl=0" target='_blank'>{% trans "Partituren" %}</a></li>
-                                    <li><a href="{% url 'musicians:musicianlist' %}">{% trans "Lijst muzikanten" %}</a></li>   
+                                    <li><a href="{% url 'musicianlist' %}">{% trans "Lijst muzikanten" %}</a></li>   
                                     <li><a href="{% url 'polls:browse' %}">{% trans "Stel muziekstuk voor" %}</a></li>       
                                 </ul>
                         </li>
@@ -87,20 +87,20 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href=""><b>{{ request.user.first_name }} {{request.user.last_name}}</b><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{% url 'musicians:edit' %}">{% trans "Wijzig gebruikersinfo" %}</a></li>
-                                    <li><a href="{% url 'musicians:change_password' %}">{% trans "Verander wachtwoord" %}</a></li>
+                                    <li><a href="{% url 'edit' %}">{% trans "Wijzig gebruikersinfo" %}</a></li>
+                                    <li><a href="{% url 'change_password' %}">{% trans "Verander wachtwoord" %}</a></li>
                                     {% if request.user.approved %}
                                     <li><a href="{% url 'polls:new_semester_poll' %}">{% trans "Enquête je toekomst" %}</a></li>
                                     {% endif %}
-                                    <li><a href="{% url 'musicians:logout' %}">{% trans "Uitloggen" %}</a></li>
+                                    <li><a href="{% url 'logout' %}">{% trans "Uitloggen" %}</a></li>
                                 </ul>
                         </li>
                         {% else %}
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Muzikant" %}<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{% url 'musicians:login' %}">{% trans "Inloggen" %}</a></li>
-                                    <li><a href="{% url 'musicians:register' %}">{% trans "Registreren" %}</a></li>
+                                    <li><a href="{% url 'login' %}">{% trans "Inloggen" %}</a></li>
+                                    <li><a href="{% url 'register' %}">{% trans "Registreren" %}</a></li>
                                 </ul>
                         </li>
                         {% endif %}

@@ -136,7 +136,7 @@ def calendarview_add(request):
         # to the database.
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('musicians:calendarview'))
+            return HttpResponseRedirect(reverse('calendarview'))
 
     # If this is a GET request (or any other type of request) we'll create a blank form.
     else:
@@ -146,26 +146,69 @@ def calendarview_add(request):
 
 @login_required
 @user_passes_test(lambda u:u.approved,login_url='/accessrestricted')
-def musicianlist(request):
-    #get all users, iterate over that query to 
+def musicianlist(request,sort=None,order=None):
+    #any case not covered here will cause a 404, any case not in the ..|..|.. at urls.py will cause one too
+    if sort == 'fname':
+        sort = 'first_name'
+    if sort == 'lname':
+        sort = 'last_name'
+    if sort == 'phone':
+        sort = 'phone_number'
+    if sort == 'mail':
+        sort = 'email'
     us = []
     uup = []
     bd = []
-    users = User.objects.all()
-    iterator = queryset_iterator(users)
-    #if users is a safety measure for if there are no users. queryset iterator cannot handle empty querysets. 
-    #will not happen for users, but stays here in case the code is copied and used for bigger dataset.
-    if users: 
-        for u in iterator: 
-            bdo = Event.objects.filter(birthday_user=u) #returns list with one event object
+    if sort == "group": #works
+        if order == 'reverse':
+            userprofiles = sorted(UserProfile.objects.all(), key=lambda t: t.groups_as_string, reverse=True)
+        else:
+            userprofiles = sorted(UserProfile.objects.all(), key=lambda t: t.groups_as_string)
+        iterator = queryset_iterator(userprofiles)
+        #if users is a safety measure for if there are no users. queryset iterator cannot handle empty querysets. 
+        #will not happen for users, but stays here in case the code is copied and used for bigger dataset.
+        if userprofiles: 
+            for u in userprofiles: 
+                us.append(u.associated_user)
+                uup.append(u)
+                bdo = Event.objects.filter(birthday_user=u.associated_user)
+                bd += bdo 
+            zipped = zip(us,uup,bd)
+        else:
+            zipped=None
+    elif sort == "datebirth": #works
+        if order == 'reverse':
+            events = Event.objects.exclude(birthday_user=None).order_by('-date_of_event')
+        else:
+            events = Event.objects.exclude(birthday_user=None).order_by('date_of_event')
+        iterator = queryset_iterator(events)
+        if events: 
+            for e in events:
+                us.append(e.birthday_user) 
+                up = UserProfile.objects.filter(associated_user=e.birthday_user)
+                uup += up
+                bd.append(e)
+            zipped = zip(us,uup,bd)
+        else:
+            zipped=None
+    elif sort in ["first_name", "last_name", "study", "email", "phone_number"] or sort == None:
+        #using the iterator here removes the order_by, which defeats the purpose of sorting the table
+        if sort != None:
+            if order == 'reverse':
+                usr = User.objects.all().order_by("-"+sort)
+            else:
+                usr = User.objects.all().order_by(sort)
+        else:
+            usr = User.objects.all()
+        bs = usr
+        for u in usr: 
             us.append(u)
             uup.append(u.userprofile)
+            bdo = Event.objects.filter(birthday_user=u) #returns list with one event object
             bd += bdo 
         zipped = zip(us,uup,bd)
-        #ziet er nu zo uit (getest): [(<User: user1>, <UserProfile: User profile for user1>), (<User: user2>, <UserProfile: User profile for user2>),...]
-    else:
-        zipped=None
-    return render(request, 'musicianlist.html', {'musicians': zipped})
+    return render(request, 'musicianlist.html', {'musicians': zipped,'voornaam':'fname','achternaam':'lname','mail':'mail',
+        'nummer':'phone','studie':'study','groepen':'group','datum':'datebirth','sortedattr':sort,'order':order,'reverse':'reverse'},)
 
 #used in musicianlist
 def queryset_iterator(queryset, chunksize=1000):
@@ -208,7 +251,7 @@ def change_password(request):
             form.user.userprofile.save()
             form.save()
             update_session_auth_hash(request, form.user)
-            return HttpResponseRedirect(reverse('musicians:pass_changed'))
+            return HttpResponseRedirect(reverse('pass_changed'))
     else:
         form = CustomPasswordChangeForm(user=request.user)
     return render(request, 'registration/password_set_form.html', {'form': form})

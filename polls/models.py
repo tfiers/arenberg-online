@@ -56,7 +56,7 @@ class PieceOfMusic(Model):
 
 class Feature(Model):
 	name = CharField(max_length=500, unique=True)
-	description = TextField(null=True,blank=True)
+	description = TextField(null=True)
 	suggested_by = ForeignKey(User, blank=True, null=True)
 	#suggested_by_string = CharField(max_length=200, blank=True) #user who suggested feature will not be displayed so it's not a needed field
 

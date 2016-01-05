@@ -1,0 +1,35 @@
+#btn-suggest {
+	margin-top: 30px;
+}
+
+@media (min-width: 500px) {
+	#btn-suggest {
+		float: right;
+	}
+}
+
+.toofattable  {
+	margin-left:10%;
+	margin-right:10%;
+	width:80%;
+}
+
+form {
+	margin-top: 40px;
+}
+
+table {
+	margin-top: 40px;
+}
+
+td {
+	height: 60px;
+}
+
+.sheet-music {
+	color: gray;
+}
+
+input[type="submit"] {
+	margin: 2em 0;
+}

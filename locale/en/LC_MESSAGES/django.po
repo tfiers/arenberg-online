@@ -726,9 +726,8 @@ msgid ""
 "vragen we nu al naar je plannen.</p>"
 msgstr ""
 "<p>Next semester we again create a new concert series for in Leuven, with a "
-"strong new programme. In the second semester, we are planning a "
-"collaboration with the Ghent University Choir, with concerts in Leuven and "
-"in Ghent. To ensure a good balance in the orchestra, we are asking you now "
+"strong new programme. To ensure a good balance in the orchestra, we are "
+"asking you now "
 "for your plans.</p>"
 
 #: polls/forms.py:56

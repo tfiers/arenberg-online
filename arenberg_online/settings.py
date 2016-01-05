@@ -64,7 +64,6 @@ INSTALLED_APPS = (
     'axes', #protection against bruteforce password attacks, something django does NOT protect against 
     'formtools', #new way of formtools
     'honeypot', #spam protection that isn't annoying for users (like captcha)
-    'django_tables2',
 
     #local project apps, implementing parts of the website, chained together by settings.py and urls.py in main folder arenberg-online
     'core', # Users, user profiles, instruments and groups.
@@ -87,8 +86,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 PASSWORD_HASHERS = (
-    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-    'django.contrib.auth.hashers.BCryptPasswordHasher',
+	'moariterationspls.MyPBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
     'django.contrib.auth.hashers.SHA1PasswordHasher',
@@ -122,6 +120,8 @@ from datetime import timedelta
 AXES_COOLOFF_TIME=timedelta(seconds = 300) #... for 5 minutes
 AXES_LOCKOUT_URL = 'stop' #this makes it redirect to musicians/stop (in core/urls.py) when too many attempts have been made, AXES_LOCKOUT_TEMPLATE not needed
 
+#Grappelli settings
+GRAPPELLI_ADMIN_TITLE = "Arenbergorkest Admin"
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -138,18 +138,9 @@ DATABASES = {
 # https://github.com/st4lk/django-solid-i18n-urls#django-solid_i18n-urls
 
 #commands (in root directory project):
-#python manage.py makemessages -all
-#python manage.py compilemessages
+#django-admin makemessages (with maybe -l)
+#django-admin compilemessages
 #that's it
-
-#if you want to change fullcalendar default paths for css and such
-# FULLCALENDAR = {
-#     'css_url': <path_or_url_to_css_file>,
-#     'print_css_url': <path_or_url_to_print_css_file>,
-#     'javascript_url': <path_or_url_to_javascript_file>,
-#     'jquery_url': <path_or_url_to_jquery_file>,
-#     'jquery_ui_url': <path_or_url_to_jquery_ui_file>,
-# }
 
 #specifies the current production
 #included for future automatisation of ticketing, needed for poster

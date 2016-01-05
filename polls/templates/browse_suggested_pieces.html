@@ -17,6 +17,13 @@
 	</div>	
 	<div class="row">
 		<table class="table">
+		    <colgroup>
+		       <col span="1" style="width: 35%;">
+		       <col span="1" style="width: 15%;">
+		       <col span="1" style="width: 20%;">
+		       <col span="1" style="width: 20%;">
+		       <col span="1" style="width: 10%;">
+		    </colgroup>
 			<thead>
 				<tr>
 					<th>{%trans "Titel" %}</th>
@@ -29,14 +36,14 @@
 			<tbody>
 				{% for piece,like,liked in suggested_pieces %}
 				<tr>
-					<td class="col-xs-4"><strong>{{ piece.title }}</strong></td>
-					<td class="col-xs-2"><a href="{{ piece.link_to_recording }}">Luister</a></td>
-					<td class="col-xs-2">{{ piece.suggested_by_string }}</td>
-					<td class="col-xs-3 sheet-music">{{ piece.sheet_music }}</td>
+					<td><strong>{{ piece.title }}</strong></td>
+					<td><a href="{{ piece.link_to_recording }}">Luister</a></td>
+					<td class="col-xs-1">{{ piece.suggested_by_string }}</td>
+					<td class="col-xs-1 sheet-music">{{ piece.sheet_music }}</td>
 					{% if liked %}
-					<td style="font-size:20px;" class="col-xs-2"><a href="{%url 'polls:browse' piece.title %}">{{like}} <span class="glyphicon glyphicon-heart"></a></td>
+					<td style="font-size:20px;" class="col-xs-1"><a href="{%url 'polls:browse' piece.title %}">{{like}} <span class="glyphicon glyphicon-heart"></a></td>
 					{% else %}
-					<td style="font-size:20px;" class="col-xs-2"><a href="{%url 'polls:browse' piece.title %}">{{like}} <span class="glyphicon glyphicon-heart-empty"></a></td>
+					<td style="font-size:20px;" class="col-xs-1"><a href="{%url 'polls:browse' piece.title %}">{{like}} <span class="glyphicon glyphicon-heart-empty"></a></td>
 					{% endif %}
 				</tr>
 				{% endfor %}

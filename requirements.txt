@@ -10,7 +10,4 @@ django-axes
 django-formtools
 django-honeypot
 pillow
-bcrypt
 requests
-django-mailgun
-django-tables2

@@ -11,7 +11,7 @@
 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 	<h1>{% trans "Wijzig je gebruikersinfo" %}</h1>
 	<p>{%trans "Je huidige gebruikersinfo is automatisch ingevuld. Verander naar wens en dien in." %}</p>
-		<form role='form' method='post' enctype="multipart/form-data" action="{% url 'musicians:edit' %}">
+		<form role='form' method='post' enctype="multipart/form-data" action="{% url 'edit' %}">
 			{% csrf_token %}
 			<div class="form-group">
 				<span class="error">
@@ -23,7 +23,7 @@
     			{{ hidden }}
 			{% endfor %}
 				<label for="{{ form.first_name.id_for_label }}">{% trans "Je voornaam" %}</label>
-				<input type="text" name="{{ form.first_name.html_name }}" id="{{ form.first_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Ana' %}" value="{{ form.first_name.value|default_if_none:'' }}">
+				<input type="text" name="{{ form.first_name.html_name }}" id="{{ form.first_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Barack' %}" value="{{ form.first_name.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
@@ -33,7 +33,7 @@
 					{% endfor %}
 				</span>
 				<label for="{{ form.last_name.id_for_label }}">{% trans "Je achternaam" %}</label>
-				<input type="text" name="{{ form.last_name.html_name }}" id="{{ form.last_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Banana' %}" value="{{ form.last_name.value|default_if_none:'' }}">
+				<input type="text" name="{{ form.last_name.html_name }}" id="{{ form.last_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Obama' %}" value="{{ form.last_name.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
@@ -52,6 +52,16 @@
 
 			<div class="form-group">
 				<span class="error">
+					{% for error in form.study.errors %}
+							{{ error }}<br>
+					{% endfor %}
+				</span>
+				<label for="{{ form.study.id_for_label }}">{% trans "Je studierichting" %}</label>
+				<input type="text" name="{{ form.study.html_name }}" id="{{ form.study.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Scientology' %}" value="{{ form.study.value|default_if_none:'' }}">
+			</div>
+
+			<div class="form-group">
+				<span class="error">
 					{% for error in bdform.date_of_event.errors %}
 							{{ error }}<br>
 					{% endfor %}
@@ -60,16 +70,6 @@
 					<div class="date"> 
  						{{bdform.date_of_event}}
 					</div>
-			</div>
-
-			<div class="form-group">
-				<span class="error">
-					{% for error in form.study.errors %}
-							{{ error }}<br>
-					{% endfor %}
-				</span>
-				<label for="{{ form.study.id_for_label }}">{% trans "Je studierichting" %}</label>
-				<input type="text" name="{{ form.study.html_name }}" id="{{ form.study.id_for_label }}" class="form-control" placeholder="{% trans 'bv. 08-12-1996' %}" value="{{ form.study.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
@@ -89,7 +89,7 @@
 					{% endfor %}
 				</span>
 				<label for="{{ form.email.id_for_label }}">{% trans "Je e-mailadres" %}</label>
-				<input type="text" name="{{ form.email.html_name }}" id="{{ form.email.id_for_label }}" class="form-control" placeholder="{% trans 'bv. anabanana@fruit.org' %}" value="{{ form.email.value|default_if_none:'' }}">
+				<input type="text" name="{{ form.email.html_name }}" id="{{ form.email.id_for_label }}" class="form-control" placeholder="{% trans 'bv. yesmrpresident@whitehouse.com' %}" value="{{ form.email.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">

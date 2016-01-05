@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load staticfiles %}
-{% block title %}Voorgestelde muziek{% endblock title %}
+{% block title %}{%trans 'Voorgestelde muziek' %}{% endblock title %}
 {% block custom_css_js %}
-<link rel="stylesheet" href="{% static 'music_suggestions/style.css' %}"> <!-- for the same style as the browse suggested pieces -->
+<link rel="stylesheet" href="{% static 'musicianlist/style.css' %}"> <!-- for the same style as the browse suggested pieces -->
 {% endblock custom_css_js %}
 {% block content %}
 <div class="toofattable">
@@ -20,13 +20,76 @@
 			<thead>
 				<tr>
 					<th>{%trans "Afbeelding" %}</th>
-					<th>{%trans "Voornaam" %}</th>
-					<th>{%trans "Achternaam" %}</th>
-					<th>{%trans "Geboortedatum" %}</th>
-					<th>{%trans "Studierichting" %}</th>
-					<th>{%trans "GSM nummer" %}</th>
-					<th>{%trans "E-mail" %}</th>
-					<th>{%trans "Groepen" %}</th>
+
+					{% if sortedattr == "first_name" %}
+					{% if order == "reverse" %}
+					<th>{%trans "Voornaam" %}  <a href="{%url 'musicianlist' voornaam %}"><img src="{% static "images/sort_up.png" %}"></a></th>
+					{% else %}
+					<th>{%trans "Voornaam" %}  <a href="{%url 'musicianlist' voornaam reverse %}"><img src="{% static "images/sort_down.png" %}"></a></th>
+					{% endif %}
+					{% else %}
+					<th>{%trans "Voornaam" %}  <a href="{%url 'musicianlist' voornaam %}"><img src="{% static "images/sort_both.svg" %}"></a></th>
+					{% endif %}
+
+					{% if sortedattr == "last_name" %}
+					{% if order == "reverse" %}
+					<th>{%trans "Achternaam" %}  <a href="{%url 'musicianlist' achternaam %}"><img src="{% static "images/sort_up.png" %}"></a></th>
+					{% else %}
+					<th>{%trans "Achternaam" %}  <a href="{%url 'musicianlist' achternaam reverse %}"><img src="{% static "images/sort_down.png" %}"></a></th>
+					{% endif %}
+					{% else %}
+					<th>{%trans "Achternaam" %}  <a href="{%url 'musicianlist' achternaam %}"><img src="{% static "images/sort_both.svg" %}"></a></th>
+					{% endif %}
+
+					{% if sortedattr == "datebirth" %}
+					{% if order == "reverse" %}
+					<th>{%trans "Geboortedatum" %}  <a href="{%url 'musicianlist' datum %}"><img src="{% static "images/sort_up.png" %}"></a></th>
+					{% else %}
+					<th>{%trans "Geboortedatum" %}  <a href="{%url 'musicianlist' datum reverse %}"><img src="{% static "images/sort_down.png" %}"></a></th>
+					{% endif %}
+					{% else %}
+					<th>{%trans "Geboortedatum" %}  <a href="{%url 'musicianlist' datum %}"><img src="{% static "images/sort_both.svg" %}"></a></th>
+					{% endif %}
+
+					{% if sortedattr == "study" %}
+					{% if order == "reverse" %}
+					<th>{%trans "Studierichting" %}  <a href="{%url 'musicianlist' studie %}"><img src="{% static "images/sort_up.png" %}"></a></th>
+					{% else %}
+					<th>{%trans "Studierichting" %}  <a href="{%url 'musicianlist' studie reverse %}"><img src="{% static "images/sort_down.png" %}"></a></th>
+					{% endif %}
+					{% else %}
+					<th>{%trans "Studierichting" %}  <a href="{%url 'musicianlist' studie %}"><img src="{% static "images/sort_both.svg" %}"></a></th>
+					{% endif %}
+
+					{% if sortedattr == "phone_number" %}
+					{% if order == "reverse" %}
+					<th>{%trans "GSM nummer" %}  <a href="{%url 'musicianlist' nummer %}"><img src="{% static "images/sort_up.png" %}"></a></th>
+					{% else %}
+					<th>{%trans "GSM nummer" %}  <a href="{%url 'musicianlist' nummer reverse %}"><img src="{% static "images/sort_down.png" %}"></a></th>
+					{% endif %}
+					{% else %}
+					<th>{%trans "GSM nummer" %}  <a href="{%url 'musicianlist' nummer %}"><img src="{% static "images/sort_both.svg" %}"></a></th>
+					{% endif %}
+
+					{% if sortedattr == "email" %}
+					{% if order == "reverse" %}
+					<th>{%trans "E-mail" %}  <a href="{%url 'musicianlist' mail %}"><img src="{% static "images/sort_up.png" %}"></a></th>
+					{% else %}
+					<th>{%trans "E-mail" %}  <a href="{%url 'musicianlist' mail reverse %}"><img src="{% static "images/sort_down.png" %}"></a></th>
+					{% endif %}
+					{% else %}
+					<th>{%trans "E-mail" %}  <a href="{%url 'musicianlist' mail %}"><img src="{% static "images/sort_both.svg" %}"></a></th>
+					{% endif %}
+
+					{% if sortedattr == "group" %}
+					{% if order == "reverse" %}
+					<th>{%trans "Groepen" %}  <a href="{%url 'musicianlist' groepen %}"><img src="{% static "images/sort_up.png" %}"></a></th>
+					{% else %}
+					<th>{%trans "Groepen" %}  <a href="{%url 'musicianlist' groepen reverse %}"><img src="{% static "images/sort_down.png" %}"></a></th>
+					{% endif %}
+					{% else %}
+					<th>{%trans "Groepen" %}  <a href="{%url 'musicianlist' groepen %}"><img src="{% static "images/sort_both.svg" %}"></a></th>
+					{% endif %}
 				</tr>
 			</thead>
 			<tbody>
