@@ -15,7 +15,7 @@ import StringIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 MIN_LENGTH = 8
-MAX_FILESIZE = 75*1024 #in bytes
+MAX_FILESIZE = 100*1024 #in bytes
 MAX_HEIGHT = 50 #in px
 MAX_WIDTH = 50 #in px
 MIN_PHONE_NUMBER_LENGTH = 8
