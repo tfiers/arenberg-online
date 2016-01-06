@@ -11,9 +11,11 @@ from datetime import datetime
 from django.forms.extras.widgets import SelectDateWidget
 from django.core.files.images import get_image_dimensions
 from PIL import Image
+import StringIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 MIN_LENGTH = 8
-MAX_FILESIZE = 20*1024 #in bytes
+MAX_FILESIZE = 75*1024 #in bytes
 MAX_HEIGHT = 50 #in px
 MAX_WIDTH = 50 #in px
 MIN_PHONE_NUMBER_LENGTH = 8
@@ -93,8 +95,14 @@ class UserProfileForm(forms.ModelForm):
         if image:
             try:
                 width, height = get_image_dimensions(image)
-                if width > MAX_WIDTH or height > MAX_HEIGHT or image.size>MAX_FILESIZE: #or w > MAX_WIDTH or h > MAX_HEIGHT
+                if image.size>MAX_FILESIZE: #or w > MAX_WIDTH or h > MAX_HEIGHT
                     raise forms.ValidationError(_("Image dimensions or size too large."))
+                if width > MAX_WIDTH or height > MAX_HEIGHT: #thumbnail
+                    image = Image.open(image)
+                    image.thumbnail((MAX_WIDTH,MAX_HEIGHT),Image.ANTIALIAS)
+                    io = StringIO.StringIO()
+                    image.save(io, 'JPEG')
+                    image = InMemoryUploadedFile(io, None, 'avatar.jpg', 'image/jpeg', io.len, None)
             except IOError: #needed because otherwise you'd get this error when registering without an image input (=with default avatar)
                 return image
             return image
@@ -141,8 +149,14 @@ class UserProfileEditForm(forms.ModelForm):
         image = self.cleaned_data.get('avatar',False)
         if image:
             width, height = get_image_dimensions(image)
-            if width > MAX_WIDTH or height > MAX_HEIGHT or image.size>MAX_FILESIZE:
-                raise forms.ValidationError(_("Image dimensions or size too large."))
+            if image.size>MAX_FILESIZE:
+                raise forms.ValidationError(_("Image file size too large."))
+            if width > MAX_WIDTH or height > MAX_HEIGHT: #thumbnail
+                image = Image.open(image)
+                image.thumbnail((MAX_WIDTH,MAX_HEIGHT),Image.ANTIALIAS)
+                io = StringIO.StringIO()
+                image.save(io, 'JPEG')
+                image = InMemoryUploadedFile(io, None, 'avatar.jpg', 'image/jpeg', io.len, None)
             return image
 
 class BirthdayEditForm(forms.ModelForm):
