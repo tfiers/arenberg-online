@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 20:49+0100\n"
+"POT-Creation-Date: 2016-01-06 01:43+0100\n"
 "PO-Revision-Date: 2015-05-08 12:11+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,15 +17,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.7.5\n"
 
-#: core/admin.py:16 core/forms.py:24
+#: core/admin.py:16 core/forms.py:35
 msgid "The two password fields didn't match."
 msgstr ""
 
-#: core/admin.py:18 core/admin.py:50 core/forms.py:25
+#: core/admin.py:18 core/admin.py:50 core/forms.py:36
 msgid "Password"
 msgstr ""
 
-#: core/admin.py:20 core/forms.py:26
+#: core/admin.py:20 core/forms.py:37
 msgid "Password confirmation"
 msgstr ""
 
@@ -52,63 +52,67 @@ msgstr ""
 msgid "Important dates"
 msgstr ""
 
-#: core/forms.py:24
+#: core/forms.py:35
 msgid "The two e-mail fields didn't match."
 msgstr ""
 
-#: core/forms.py:26
+#: core/forms.py:37
 msgid "Enter the same password as before, for verification."
 msgstr ""
 
-#: core/forms.py:27
+#: core/forms.py:38
 msgid "e-mail"
 msgstr "Your email address"
 
-#: core/forms.py:28
+#: core/forms.py:39
 msgid "e-mail opnieuw"
 msgstr "Your email adress again"
 
-#: core/forms.py:48 core/forms.py:108
+#: core/forms.py:59 core/forms.py:125
 msgid "Invalid phone number."
 msgstr ""
 
-#: core/forms.py:54
+#: core/forms.py:65
 msgid "The password must be at least 8 characters long."
 msgstr ""
 
-#: core/forms.py:88 core/forms.py:136
+#: core/forms.py:99
 msgid "Image dimensions or size too large."
 msgstr ""
 
-#: core/forms.py:103
+#: core/forms.py:120
 msgid "password2"
 msgstr ""
 
-#: core/forms.py:117
+#: core/forms.py:134
 msgid "Your password was entered incorrectly. Please enter it again."
 msgstr ""
 
-#: core/forms.py:154
+#: core/forms.py:153
+msgid "Image file size too large."
+msgstr ""
+
+#: core/forms.py:177
 msgid "The two new password fields didn't match."
 msgstr ""
 
-#: core/forms.py:156
+#: core/forms.py:179
 msgid "New password"
 msgstr ""
 
-#: core/forms.py:158
+#: core/forms.py:181
 msgid "New password confirmation"
 msgstr ""
 
-#: core/forms.py:194
+#: core/forms.py:217
 msgid "Your old password was entered incorrectly. Please enter it again."
 msgstr ""
 
-#: core/forms.py:198
+#: core/forms.py:221
 msgid "Old password"
 msgstr ""
 
-#: core/forms.py:235
+#: core/forms.py:262
 msgid "1 = repetitie, 2 = concert, 3 = activiteit, 5 = repetitieweekend"
 msgstr "1 = rehearsal, 2 = concert, 3 = activity, 5 = rehearsal weekend"
 
@@ -176,43 +180,53 @@ msgstr ""
 msgid "date joined"
 msgstr ""
 
-#: core/models.py:155
+#: core/models.py:158
 msgid "Standaard"
 msgstr "Standard"
 
-#: core/models.py:156
+#: core/models.py:159
 msgid "Muzikaal"
 msgstr "Musical"
 
-#: core/models.py:157
+#: core/models.py:160
 msgid "Project"
 msgstr "Project"
 
-#: core/models.py:196
+#: core/models.py:199
 msgid ""
-"Color code on calendar. Default (1) is red (rehearsal). 2 = concert, 3 = "
+"Color code on calendar. Default (1) is red (rehearsal).2 = concert, 3 = "
 "organised event, 4 = birthday, 5 = repetitieweekend."
 msgstr ""
 
-#: core/models.py:198
+#: core/models.py:202
 msgid "Designates whether the event is for is_board users only."
 msgstr ""
 
-#: core/models.py:199
+#: core/models.py:203
 msgid "It's possible to make the event link to a page (opened in a tab)."
 msgstr ""
 
-#: core/models.py:200
+#: core/models.py:204
 msgid "If this event is a birthday, this attr holds the user."
 msgstr ""
+
+#: core/templates/base.html:29
+#: ticketing/templates/lente2016/complete_order.html:12
+#: ticketing/templates/lente2016/landing.html:14
+#: ticketing/templates/lente2016/start_order.html:12
+#: ticketing/templates/lente2016/thanks.html:12
+#: ticketing/templates/snowman2016/form.html:12
+#: ticketing/templates/snowman2016/landing.html:16
+msgid "Arenbergorkest"
+msgstr "Arenberg Orchestra"
 
 #: core/templates/base.html:33
 msgid "Over"
 msgstr "About"
 
 #: core/templates/base.html:37
-msgid "Tickets Snowman"
-msgstr "Tickets Snowman"
+msgid "Tickets The Snowman"
+msgstr "Tickets The Snowman"
 
 #: core/templates/base.html:39 core/templates/base.html.py:66
 #: ticketing/templates/lente2016/complete_order.html:14
@@ -221,8 +235,8 @@ msgstr "Tickets Snowman"
 msgid "Lenteconcerten"
 msgstr "Spring concerts"
 
-#: core/templates/base.html:41 core/templates/contact.html:4
-#: core/templates/contact.html.py:12
+#: core/templates/base.html:41 core/templates/contact.html:5
+#: core/templates/contact.html.py:14
 msgid "Contact"
 msgstr ""
 
@@ -260,7 +274,7 @@ msgid "Kalender"
 msgstr "Calendar"
 
 #: core/templates/base.html:78 polls/forms.py:86
-#: polls/templates/browse_suggested_pieces.html:25
+#: polls/templates/browse_suggested_pieces.html:32
 msgid "Partituren"
 msgstr "Sheet music"
 
@@ -277,27 +291,29 @@ msgid "Wijzig gebruikersinfo"
 msgstr "Edit user info"
 
 #: core/templates/base.html:92
+#: core/templates/registration/password_reset_confirm.html:4
+#: core/templates/registration/password_reset_confirm.html:27
 msgid "Verander wachtwoord"
 msgstr "Your password"
 
-#: core/templates/base.html:93
+#: core/templates/base.html:94
 msgid "Enquête je toekomst"
 msgstr "Poll your future"
 
-#: core/templates/base.html:94
+#: core/templates/base.html:96
 msgid "Uitloggen"
 msgstr "Log out"
 
-#: core/templates/base.html:99
+#: core/templates/base.html:101
 #: ticketing/templates/lente2016/complete_order.html:83
 msgid "Muzikant"
 msgstr "Musician"
 
-#: core/templates/base.html:101
+#: core/templates/base.html:103
 msgid "Inloggen"
 msgstr "Login"
 
-#: core/templates/base.html:102 core/templates/registration/register.html:142
+#: core/templates/base.html:104 core/templates/registration/register.html:143
 msgid "Registreren"
 msgstr "Register"
 
@@ -376,52 +392,51 @@ msgstr "A link (not required)"
 msgid "bv. http://www.thunderdome.com/home/"
 msgstr "e.g. http://www.thunderdome.com/home/"
 
-#: core/templates/calendarview_add.html:93
+#: core/templates/calendarview_add.html:94
 msgid "Enkel voor bestuur? Vink dan aan!"
 msgstr "For board only?"
 
-#: core/templates/calendarview_add.html:99
+#: core/templates/calendarview_add.html:98
 msgid "Voeg toe"
 msgstr "Add event"
 
-#: core/templates/contact.html:14
-msgid ""
-"\n"
-"\t<p>\n"
-"\tWilt u het Arenbergorkest contacteren? Stuur dan een mail naar <a href="
-"\"mailto:bestuur@arenbergorkest.be\">bestuur@arenbergorkest.be</a>. We "
-"antwoorden met plezier op al uw vragen!\n"
-"\t</p>\n"
-"\t<p>\n"
-"\tBent je muzikant en kan je niet komen volgende repetie? Stuur dan een mail "
-"naar <a href=\"mailto:afwezig@arenbergorkest.be\">afwezig@arenbergorkest.be</"
-"a>. \n"
-"\t</p>\n"
-"\t<p>\n"
-"\tU kan zich ook abonneren op ons YouTube kanaal (met opnames van vroegere "
-"concerten!) of onze Facebookpagina liken! Klik daarvoor bovenaan op de "
-"icoontjes.\n"
-"\t</p>\n"
-"\t"
-msgstr ""
-"\n"
-"\t<p>\n"
-"\tDo you want to contact the Arenberg Orchestra? Send a mail to: <a href="
-"\"mailto:bestuur@arenbergorkest.be\">bestuur@arenbergorkest.be</a>. We "
-"answer all your questions with great pleasure!\n"
-"\t</p>\n"
-"\t<p>\n"
-"\tAre you a musician and will you be absent next rehearsal? "
-"Send a mail "
-"to <a href=\"mailto:afwezig@arenbergorkest.be\">afwezig@arenbergorkest.be</"
-"a>. \n"
-"\t</p>\n"
-"\t<p>\n"
-"\tYou can subscribe to our YouTube channel (with recordings of earlier "
-"concerts!) or like our Facebook page! To go to either of those, click "
-"the icons at the top of the page.\n"
-"\t</p>\n"
-"\t"
+#: core/templates/contact.html:16
+msgid "Wilt u contact opnemen met het Arenbergorkest? Stuur dan een bericht!"
+msgstr "Do you want to contact the Arenberg Orchestra? Send a message!"
+
+#: core/templates/contact.html:28
+msgid "Uw naam"
+msgstr "Your name"
+
+#: core/templates/contact.html:38
+msgid "Uw e-mail"
+msgstr "Your email address"
+
+#: core/templates/contact.html:48
+msgid "Onderwerp"
+msgstr "Subject"
+
+#: core/templates/contact.html:58
+msgid "Boodschap"
+msgstr "Message"
+
+#: core/templates/contact.html:62
+msgid "Versturen!"
+msgstr "Send!"
+
+#: core/templates/contact_sent.html:4
+msgid "Bericht verstuurd"
+msgstr "Message sent"
+
+#: core/templates/contact_sent.html:12
+msgid "Het bericht is verstuurd!"
+msgstr "The message is sent!"
+
+#: core/templates/musicianlist.html:4
+#: polls/templates/browse_suggested_pieces.html:4
+#: polls/templates/browse_suggested_pieces.html:12
+msgid "Voorgestelde muziek"
+msgstr "Suggested music"
 
 #: core/templates/musicianlist.html:15
 msgid "Oude muzikantenlijst"
@@ -431,35 +446,42 @@ msgstr "Old list of musicians"
 msgid "Afbeelding"
 msgstr "Image"
 
-#: core/templates/musicianlist.html:23
+#: core/templates/musicianlist.html:26 core/templates/musicianlist.html:28
+#: core/templates/musicianlist.html:31
 #: ticketing/templates/internal/my_tickets_dashboard.html:196
 #: ticketing/templates/lente2016/start_order.html:71
 msgid "Voornaam"
 msgstr "First name"
 
-#: core/templates/musicianlist.html:24
+#: core/templates/musicianlist.html:36 core/templates/musicianlist.html:38
+#: core/templates/musicianlist.html:41
 #: ticketing/templates/internal/my_tickets_dashboard.html:197
 #: ticketing/templates/lente2016/start_order.html:79
 msgid "Achternaam"
 msgstr "Last name"
 
-#: core/templates/musicianlist.html:25
+#: core/templates/musicianlist.html:46 core/templates/musicianlist.html:48
+#: core/templates/musicianlist.html:51
 msgid "Geboortedatum"
 msgstr "Date of birth"
 
-#: core/templates/musicianlist.html:26
+#: core/templates/musicianlist.html:56 core/templates/musicianlist.html:58
+#: core/templates/musicianlist.html:61
 msgid "Studierichting"
 msgstr "Study"
 
-#: core/templates/musicianlist.html:27
+#: core/templates/musicianlist.html:66 core/templates/musicianlist.html:68
+#: core/templates/musicianlist.html:71
 msgid "GSM nummer"
 msgstr "Phone number"
 
-#: core/templates/musicianlist.html:28
+#: core/templates/musicianlist.html:76 core/templates/musicianlist.html:78
+#: core/templates/musicianlist.html:81
 msgid "E-mail"
 msgstr "Email address"
 
-#: core/templates/musicianlist.html:29
+#: core/templates/musicianlist.html:86 core/templates/musicianlist.html:88
+#: core/templates/musicianlist.html:91
 msgid "Groepen"
 msgstr "Groups"
 
@@ -486,68 +508,68 @@ msgstr ""
 "and submit."
 
 #: core/templates/registration/edit.html:25
-#: core/templates/registration/register.html:25
+#: core/templates/registration/register.html:28
 msgid "Je voornaam"
 msgstr "Your first name"
 
 #: core/templates/registration/edit.html:26
-#: core/templates/registration/register.html:26
-msgid "bv. Ana"
-msgstr "e.g. Ana"
+#: core/templates/registration/register.html:29
+msgid "bv. Barack"
+msgstr "e.g. Barack"
 
 #: core/templates/registration/edit.html:35
-#: core/templates/registration/register.html:35
+#: core/templates/registration/register.html:38
 msgid "Je achternaam"
 msgstr "Your last name"
 
 #: core/templates/registration/edit.html:36
-#: core/templates/registration/register.html:36
-msgid "bv. Banana"
-msgstr "e.g. Banana"
+#: core/templates/registration/register.html:39
+msgid "bv. Obama"
+msgstr "e.g. Obama"
 
 #: core/templates/registration/edit.html:45
-#: core/templates/registration/register.html:45
+#: core/templates/registration/register.html:48
 msgid "Je foto (niet verplicht) (max. 50x50 pixels, 20kb grootte)"
 msgstr "Your picture (not required) (max. 50x50, 20kb)"
 
 #: core/templates/registration/edit.html:59
-#: core/templates/registration/register.html:62
-msgid "Je geboortedatum"
-msgstr "Your date of birth"
-
-#: core/templates/registration/edit.html:71
-#: core/templates/registration/register.html:74
+#: core/templates/registration/register.html:63
 msgid "Je studierichting"
 msgstr "Your study"
 
-#: core/templates/registration/edit.html:72
-msgid "bv. 08-12-1996"
-msgstr "e.g. 08-12-1996"
+#: core/templates/registration/edit.html:60
+#: core/templates/registration/register.html:64
+msgid "bv. Scientology"
+msgstr "e.g. Scientology"
+
+#: core/templates/registration/edit.html:69
+#: core/templates/registration/register.html:73
+msgid "Je geboortedatum"
+msgstr "Your date of birth"
 
 #: core/templates/registration/edit.html:81
 msgid "Je GSM nummer"
 msgstr "Your phone number"
 
 #: core/templates/registration/edit.html:82
-#: core/templates/registration/register.html:85
+#: core/templates/registration/register.html:86
 msgid "bv. 0469696969"
 msgstr "e.g. 0469696969"
 
 #: core/templates/registration/edit.html:91
 #: core/templates/registration/login.html:20
-#: core/templates/registration/register.html:94
+#: core/templates/registration/register.html:95
 #: ticketing/templates/lente2016/start_order.html:87
 msgid "Je e-mailadres"
 msgstr "Your email address"
 
 #: core/templates/registration/edit.html:92
-#: core/templates/registration/register.html:95
-#: core/templates/registration/register.html:105
-msgid "bv. anabanana@fruit.org"
-msgstr "e.g. anabanana@fruit.org"
+#: core/templates/registration/register.html:96
+msgid "bv. yesmrpresident@whitehouse.com"
+msgstr ""
 
 #: core/templates/registration/edit.html:101
-#: core/templates/registration/register.html:134
+#: core/templates/registration/register.html:135
 msgid "Je groep(en)"
 msgstr "Your group(s)"
 
@@ -556,8 +578,8 @@ msgid "Je huidige wachtwoord ter bevestiging"
 msgstr "Your password to confirm"
 
 #: core/templates/registration/edit.html:118
-#: core/templates/registration/register.html:115
-#: core/templates/registration/register.html:125
+#: core/templates/registration/register.html:116
+#: core/templates/registration/register.html:126
 msgid "bv. ikbenstiekemeenpeer"
 msgstr "e.g. imsecretlyapear"
 
@@ -589,17 +611,23 @@ msgid "bv. xxJohnnyLover69@msn.be"
 msgstr "e.g. xxJohnnyLover69@msn.be"
 
 #: core/templates/registration/login.html:25
-#: core/templates/registration/register.html:114
+#: core/templates/registration/register.html:115
 msgid "Je wachtwoord"
 msgstr "Your password"
 
 #: core/templates/registration/login.html:26
+#: core/templates/registration/password_reset_confirm.html:19
+#: core/templates/registration/password_reset_confirm.html:24
 msgid "bv. H@rdstyleWillN3verDie"
 msgstr "e.g. H@rdstyleWillN3verDie"
 
 #: core/templates/registration/login.html:29
 msgid "Aanmelden"
 msgstr "Log in"
+
+#: core/templates/registration/login.html:31
+msgid "Wachtwoord vergeten?"
+msgstr "Forgot your password?"
 
 #: core/templates/registration/notapproved.html:7
 msgid "Niet goedgekeurd"
@@ -610,9 +638,108 @@ msgid "Je nieuwe account is nog niet goedgekeurd"
 msgstr "Your new account isn't approved yet"
 
 #: core/templates/registration/pass_changed.html:7
-#: core/templates/registration/pass_changed.html:11
 msgid "Je wachtwoord is ingesteld"
 msgstr "Your password has been set"
+
+#: core/templates/registration/pass_changed.html:11
+msgid "Je nieuwe wachtwoord is ingesteld"
+msgstr "Your new password has been set"
+
+#: core/templates/registration/password_reset_complete.html:4
+msgid "Wachtwoord veranderd!"
+msgstr "Password reset!"
+
+#: core/templates/registration/password_reset_complete.html:12
+msgid ""
+"Je wachtwoord is veranderd. Je kan nu inloggen met je nieuwe wachtwoord!"
+msgstr ""
+
+#: core/templates/registration/password_reset_confirm.html:12
+#: core/templates/registration/password_set_form.html:21
+msgid "Nieuw wachtwoord"
+msgstr "New password"
+
+#: core/templates/registration/password_reset_confirm.html:18
+msgid "Je nieuwe wachtwoord"
+msgstr "Your new password"
+
+#: core/templates/registration/password_reset_confirm.html:23
+msgid "Je nieuwe wachtwoord nog een keer voor de zekerheid"
+msgstr "Your new password again, to be sure"
+
+#: core/templates/registration/password_reset_confirm.html:34
+msgid ""
+"De link om je wachtwoord te veranderen is niet meer geldig: te oud of al "
+"gebruikt. Probeer nog een keer."
+msgstr "The link to set a new password is not valid anymore: too old "
+"or already used. Try again."
+
+#: core/templates/registration/password_reset_done.html:4
+msgid "Reset mail sent"
+msgstr ""
+
+#: core/templates/registration/password_reset_done.html:12
+msgid ""
+"De instructies om je wachtwoord te veranderen zijn verstuurd naar je e-"
+"mailadres."
+msgstr "The instructions to change your password are sent to your "
+"email adress."
+
+#: core/templates/registration/password_reset_form.html:4
+msgid "Wachtwoord reset"
+msgstr "Password reset"
+
+#: core/templates/registration/password_reset_form.html:12
+#: core/templates/registration/password_reset_form.html:29
+msgid "Reset wachtwoord"
+msgstr "Reset password"
+
+#: core/templates/registration/password_reset_form.html:14
+msgid ""
+"Geef het e-mailadres in van je account. Nadat je je e-mailadres hebt "
+"ingegeven sturen we je een mail om je wachtwoord te veranderen."
+msgstr "Give the email address of your account. We'll send an "
+"email to the address containing a link with which you can change "
+"your password."
+
+#: core/templates/registration/password_reset_form.html:25
+msgid "Je e-mail"
+msgstr "Your email address"
+
+#: core/templates/registration/password_reset_form.html:26
+msgid "Your email"
+msgstr "Your email address"
+
+#: core/templates/registration/password_reset_mail.html:6
+msgid "Beste,"
+msgstr "Dear,"
+
+#: core/templates/registration/password_reset_mail.html:8
+msgid ""
+"\n"
+"\t\t\t<p>Je krijgt deze mail omdat je een wachtwoord verandering hebt "
+"aangevraagd voor je account op arenbergorkest.be. <b>Antwoord niet op deze "
+"mail.</b></p>\n"
+"\t\t\t<p>Negeer deze mail indien je de verandering niet aangevraagd hebt.</"
+"p>\n"
+"\t\t\t"
+msgstr ""
+
+#: core/templates/registration/password_reset_mail.html:15
+msgid ""
+"\n"
+"\t\t<p>Blij om je van dienst te zijn,</p>\n"
+"\t\t<p>Het Arenbergorkest Webteam</p>\n"
+"\t\t"
+msgstr ""
+"\n"
+"\t\t<p>Glad to be of service,</p>\n"
+"\t\t<p>The Arenberg Orchestra Webteam</p>\n"
+"\t\t"
+
+#: core/templates/registration/password_reset_subject.txt:2
+msgid "Wachtwoord reset voor je account op arenbergorkest.be"
+msgstr "Password reset for your arenbergorkest.be account"
 
 #: core/templates/registration/password_set_form.html:4
 #: core/templates/registration/password_set_form.html:43
@@ -622,10 +749,6 @@ msgstr "Set password"
 #: core/templates/registration/password_set_form.html:12
 msgid "Stel een nieuw wachtwoord in"
 msgstr "Set a new password"
-
-#: core/templates/registration/password_set_form.html:21
-msgid "Nieuw wachtwoord"
-msgstr "New password"
 
 #: core/templates/registration/password_set_form.html:22
 #: core/templates/registration/password_set_form.html:31
@@ -641,31 +764,31 @@ msgstr "New password again"
 msgid "Je oude wachtwoord"
 msgstr "Your old password"
 
-#: core/templates/registration/register.html:4
+#: core/templates/registration/register.html:5
 msgid "Registratie"
 msgstr "Date or registration"
 
-#: core/templates/registration/register.html:12
+#: core/templates/registration/register.html:13
 msgid "Registratie voor nieuwe muzikanten"
 msgstr "Access for musicians"
 
-#: core/templates/registration/register.html:46
+#: core/templates/registration/register.html:49
 msgid "Standaard:"
 msgstr "Default:"
 
-#: core/templates/registration/register.html:75
-msgid "bv. Fruitologie"
-msgstr "e.g. Scientology"
-
-#: core/templates/registration/register.html:84
+#: core/templates/registration/register.html:85
 msgid "Je gsm nummer (aan elkaar geschreven)"
 msgstr "Your phone number (no spaces, dashes, ...)"
 
-#: core/templates/registration/register.html:104
+#: core/templates/registration/register.html:105
 msgid "Je e-mailadres opnieuw"
 msgstr "Your email address again"
 
-#: core/templates/registration/register.html:124
+#: core/templates/registration/register.html:106
+msgid "bv. anabanana@fruit.org"
+msgstr "e.g. anabanana@fruit.org"
+
+#: core/templates/registration/register.html:125
 msgid "Je wachtwoord opnieuw"
 msgstr "Your password again"
 
@@ -687,11 +810,11 @@ msgstr "You've succesfully registered. You can login now."
 
 #: core/templates/registration/thanks_register.html:12
 msgid ""
-"De content voor muzikanten kan je bekijken zodra je account goedgekeurd is "
-"door de beheerder."
+"De content voor muzikanten kan je pas bekijken zodra je account goedgekeurd "
+"is door de beheerder."
 msgstr ""
-"You're able to view the musicians-only content as soon as your account is "
-"approved"
+"You will be able to view the musicians-only content as soon as your account "
+"is approved."
 
 #: core/templates/sponsors.html:4 core/templates/sponsors.html.py:12
 msgid "Sponsors"
@@ -727,8 +850,7 @@ msgid ""
 msgstr ""
 "<p>Next semester we again create a new concert series for in Leuven, with a "
 "strong new programme. To ensure a good balance in the orchestra, we are "
-"asking you now "
-"for your plans.</p>"
+"asking you now for your plans.</p>"
 
 #: polls/forms.py:56
 msgid ""
@@ -743,11 +865,11 @@ msgstr ""
 "<p>More info about the specific tasks is coming up, but if you already know "
 "now:</p>"
 
-#: polls/forms.py:84 polls/templates/browse_suggested_pieces.html:22
+#: polls/forms.py:84 polls/templates/browse_suggested_pieces.html:29
 msgid "Titel"
 msgstr "Title"
 
-#: polls/forms.py:85 polls/templates/browse_suggested_pieces.html:23
+#: polls/forms.py:85 polls/templates/browse_suggested_pieces.html:30
 msgid "Link naar opname"
 msgstr "Link to recording"
 
@@ -817,22 +939,17 @@ msgstr ""
 msgid "Uitleg"
 msgstr "Explanation"
 
-#: polls/templates/browse_suggested_pieces.html:4
-#: polls/templates/browse_suggested_pieces.html:12
-msgid "Voorgestelde muziek"
-msgstr "Suggested music"
-
 #: polls/templates/browse_suggested_pieces.html:15
 #: polls/templates/suggest_piece_of_music.html:5
 #: polls/templates/suggest_piece_of_music.html:13
 msgid "Stel een muziekstuk voor"
 msgstr "Suggest a piece of music"
 
-#: polls/templates/browse_suggested_pieces.html:24
+#: polls/templates/browse_suggested_pieces.html:31
 msgid "Voorgesteld door"
 msgstr "Suggested by"
 
-#: polls/templates/browse_suggested_pieces.html:26
+#: polls/templates/browse_suggested_pieces.html:33
 msgid "Ik hou hiervan!"
 msgstr "I'm lovin' it!"
 
@@ -959,7 +1076,7 @@ msgstr ""
 #: postermap/templates/add_poster.html:146
 #: ticketing/templates/internal/register_sold_tickets.html:107
 #: ticketing/templates/lente2016/complete_order.html:111
-#: ticketing/templates/lente2016/email.html:42
+#: ticketing/templates/lente2016/email.html:61
 msgid "Opmerkingen"
 msgstr "Remarks"
 
@@ -1229,17 +1346,10 @@ msgstr "Register tickets"
 msgid "Lenteconcerten Arenbergorkest"
 msgstr "Spring Concerts Arenbergorkest"
 
-#: ticketing/templates/lente2016/complete_order.html:12
-#: ticketing/templates/lente2016/landing.html:14
-#: ticketing/templates/lente2016/start_order.html:12
-#: ticketing/templates/lente2016/thanks.html:12
-#: ticketing/templates/snowman2016/landing.html:16
-msgid "Arenbergorkest"
-msgstr "Arenberg Orchestra"
-
 #: ticketing/templates/lente2016/complete_order.html:13
 #: ticketing/templates/lente2016/start_order.html:13
 #: ticketing/templates/lente2016/thanks.html:13
+#: ticketing/templates/snowman2016/form.html:13
 msgid "olv Roel Willems"
 msgstr "directed by Roel Willems"
 
@@ -1266,17 +1376,16 @@ msgstr ""
 "%(s)s, non-students: %(ns)s, KU Leuven Culture Card holders: %(cc)s)<br>"
 
 #: ticketing/templates/lente2016/complete_order.html:28
-#: ticketing/templates/lente2016/email.html:26
+#: ticketing/templates/lente2016/email.html:45
 msgid "Voor"
 msgstr "For"
 
 #: ticketing/templates/lente2016/complete_order.html:28
-#: ticketing/templates/lente2016/email.html:26
+#: ticketing/templates/lente2016/email.html:45
 msgid "samen"
 msgstr "a total of"
 
 #: ticketing/templates/lente2016/complete_order.html:30
-#, python-format
 msgid ""
 "\n"
 "\t\t\t<p>\n"
@@ -1290,7 +1399,7 @@ msgid ""
 "\t\t\t<p>\n"
 "\t\t\t\tKlopt er iets niet? Dan kan je dat \n"
 "\t\t\t\t<button name=\"wizard_goto_step\" type=\"submit\" value=\"%(val)s\" "
-"class=\"btn btn-danger\">Aanpassen</button>\n"
+"class=\"btn btn-link\">Aanpassen</button>\n"
 "\t\t\t</p>\n"
 "\t\t\t<p>Als alles klopt, mag je het formulier hieronder verder invullen en "
 "je bestelling definitief bevestigen.</p>\n"
@@ -1315,7 +1424,7 @@ msgstr ""
 "\t\t\t"
 
 #: ticketing/templates/lente2016/complete_order.html:63
-#: ticketing/templates/lente2016/email.html:33
+#: ticketing/templates/lente2016/email.html:52
 msgid "Betalingswijze"
 msgstr "Method of payment"
 
@@ -1352,16 +1461,41 @@ msgstr "Questions or special requests"
 msgid "Bestel"
 msgstr "Order"
 
+#: ticketing/templates/lente2016/email.html:5
+msgid ""
+"Je krijgt deze mail omdat je een wachtwoord verandering hebt aangevraagd "
+"voor je account op arenbergorkest.be."
+msgstr ""
+
 #: ticketing/templates/lente2016/email.html:6
+msgid ""
+"Indien je de verandering niet hebt aangevraagd, of er iets mis lijkt te zijn "
+"met de mail, gelieve dan niet op de link te klikken (en vraag indien het "
+"nodig is nog een keer een wachtwoordverandering aan)."
+msgstr ""
+
+#: ticketing/templates/lente2016/email.html:8
+msgid "Klik op de volgende link om je wachtwoord te veranderen:"
+msgstr ""
+
+#: ticketing/templates/lente2016/email.html:13
+msgid "Blij om je van dienst te zijn,"
+msgstr ""
+
+#: ticketing/templates/lente2016/email.html:15
+msgid "Het Arenbergorkest Webteam"
+msgstr "The Arenberg Orchestra Webteam"
+
+#: ticketing/templates/lente2016/email.html:25
 msgid "Bestelling tickets Lenteconcert Arenbergorkest"
 msgstr "Tickets for Spring concert Arenbergorkest"
 
-#: ticketing/templates/lente2016/email.html:10
+#: ticketing/templates/lente2016/email.html:29
 #, python-format
 msgid "Beste %(first_name)s %(last_name)s,"
 msgstr "Dear %(first_name)s %(last_name)s,"
 
-#: ticketing/templates/lente2016/email.html:13
+#: ticketing/templates/lente2016/email.html:32
 msgid ""
 "\n"
 "\t\t\t<p>Bedankt om tickets te bestellen voor de Lenteconcerten van het "
@@ -1375,7 +1509,7 @@ msgstr ""
 "\t\t\t<p>This is your order:</p>\n"
 "\t\t\t"
 
-#: ticketing/templates/lente2016/email.html:20
+#: ticketing/templates/lente2016/email.html:39
 #, python-format
 msgid ""
 "<strong>%(total_tickets)s</strong> tickets voor samen <strong>€ "
@@ -1384,7 +1518,7 @@ msgstr ""
 "<strong>%(total_tickets)s</strong> tickets for a total of <strong>€ "
 "%(total_price)s</strong>."
 
-#: ticketing/templates/lente2016/email.html:24
+#: ticketing/templates/lente2016/email.html:43
 msgid ""
 "\n"
 "\t\t\t\t\tIn totaal <strong>%(total_tickets)s</strong> ticket%(ttplural)s "
@@ -1397,16 +1531,16 @@ msgstr ""
 "%(num_non_student_tickets)s, KU Leuven Culture Card holders: "
 "%(num_culture_card_tickets)s)<br>"
 
-#: ticketing/templates/lente2016/email.html:30
+#: ticketing/templates/lente2016/email.html:49
 #, python-format
 msgid "Voor het concert van <strong>%(performance_full)s</strong>.<br>"
 msgstr "For the performance of <strong>%(performance_full)s</strong>.<br>"
 
-#: ticketing/templates/lente2016/email.html:32
+#: ticketing/templates/lente2016/email.html:51
 msgid "Deze kaarten zullen klaarliggen op naam aan de kassa."
 msgstr "These tickets will be handed out at the desk on mention of your name."
 
-#: ticketing/templates/lente2016/email.html:35
+#: ticketing/templates/lente2016/email.html:54
 #, python-format
 msgid ""
 "\n"
@@ -1424,7 +1558,7 @@ msgstr ""
 "</p>\n"
 "\t\t\t"
 
-#: ticketing/templates/lente2016/email.html:48
+#: ticketing/templates/lente2016/email.html:67
 msgid ""
 "\n"
 "\t\t<p>Tot op het concert!</p>\n"
@@ -1447,7 +1581,6 @@ msgid "OLV Roel Willems"
 msgstr "Directed by Roel Willems"
 
 #: ticketing/templates/lente2016/landing.html:16
-#: ticketing/templates/snowman2016/landing.html:18
 msgid "SNOWMAN"
 msgstr "SNOWMAN"
 
@@ -1462,17 +1595,14 @@ msgid "Zo 14 februari"
 msgstr "Sun 14th of February"
 
 #: ticketing/templates/lente2016/landing.html:32
-#: ticketing/templates/snowman2016/landing.html:36
 msgid "17:00 @ Aula Pieter De Somer, Leuven"
 msgstr "20h30 @ Aula Pieter De Somer, Leuven"
 
 #: ticketing/templates/lente2016/landing.html:33
-#: ticketing/templates/snowman2016/landing.html:37
 msgid "Za 20 februari"
 msgstr "Sat 20th of February"
 
 #: ticketing/templates/lente2016/landing.html:34
-#: ticketing/templates/snowman2016/landing.html:38
 msgid "17u00 @ AMUZ, Antwerpen"
 msgstr ""
 
@@ -1523,16 +1653,18 @@ msgstr ""
 "\t\t\t"
 
 #: ticketing/templates/lente2016/thanks.html:27
-msgid "Je bestelde kaarten zullen klaarliggen op naam aan de kassa."
+msgid "Uw bestelde kaarten zullen klaarliggen op naam aan de kassa."
 msgstr ""
 "The tickets you ordered will be handed out at the desk on mention of your "
 "name."
 
 #: ticketing/templates/lente2016/thanks.html:28
 msgid ""
-"Je ontvangt zometeen een e-mail met nog eens alle informatie van je "
-"bestelling."
-msgstr "You'll soon receive an email with all info again about your order."
+"U ontvangt zometeen een e-mail met nog eens alle informatie van uw "
+"bestelling. Indien u de mail niet in uw inbox tevoorschijn ziet komen, kijk "
+"dan eens in uw spamfolder."
+msgstr "You'll soon receive an email with all info again about your order. "
+"If the mail doesn't pop up in your inbox, check your spam folder too."
 
 #: ticketing/templates/lente2016/thanks.html:29
 msgid "Bestel meer tickets!"
@@ -1541,6 +1673,26 @@ msgstr "Order more tickets"
 #: ticketing/templates/lente2016/thanks.html:30
 msgid "Terug naar het begin"
 msgstr "Back to the start"
+
+#: ticketing/templates/snowman2016/form.html:4
+msgid "Snowman!"
+msgstr "Snowman!"
+
+#: ticketing/templates/snowman2016/form.html:14
+msgid "The Snowman"
+msgstr "The Snowman"
+
+#: ticketing/templates/snowman2016/landing.html:18
+msgid "THE SNOWMAN"
+msgstr "THE SNOWMAN"
+
+#: ticketing/templates/snowman2016/landing.html:36
+msgid "16:00 @ Aula Pieter De Somer, Leuven"
+msgstr "16:00 @ Aula Pieter De Somer, Leuven"
+
+#: ticketing/templates/snowman2016/landing.html:37
+msgid "18:30 @ Aula Pieter De Somer, Leuven"
+msgstr "18:30 @ Aula Pieter De Somer, Leuven"
 
 #: ticketing/views/internal.py:110
 msgid "Donderdag 5 mei"
@@ -1561,6 +1713,49 @@ msgstr "Thursday the 5th of May – 20h30 in Aula Pieter De Somer, Leuven"
 #: ticketing/views/lente2016.py:23
 msgid "Zondag 8 mei - om 19u30 in Aula Pieter De Somer, Leuven"
 msgstr "Sunday the 8th of may – 20h30 in Aula Pieter De Somer, Leuven"
+
+#~ msgid ""
+#~ "\n"
+#~ "\t<p>\n"
+#~ "\tWilt u het Arenbergorkest contacteren? Stuur dan een mail naar <a href="
+#~ "\"mailto:bestuur@arenbergorkest.be\">bestuur@arenbergorkest.be</a>. We "
+#~ "antwoorden met plezier op al uw vragen!\n"
+#~ "\t</p>\n"
+#~ "\t<p>\n"
+#~ "\tBent je muzikant en kan je niet komen volgende repetie? Stuur dan een "
+#~ "mail naar <a href=\"mailto:afwezig@arenbergorkest.be"
+#~ "\">afwezig@arenbergorkest.be</a>. \n"
+#~ "\t</p>\n"
+#~ "\t<p>\n"
+#~ "\tU kan zich ook abonneren op ons YouTube kanaal (met opnames van "
+#~ "vroegere concerten!) of onze Facebookpagina liken! Klik daarvoor bovenaan "
+#~ "op de icoontjes.\n"
+#~ "\t</p>\n"
+#~ "\t"
+#~ msgstr ""
+#~ "\n"
+#~ "\t<p>\n"
+#~ "\tDo you want to contact the Arenberg Orchestra? Send a mail to: <a href="
+#~ "\"mailto:bestuur@arenbergorkest.be\">bestuur@arenbergorkest.be</a>. We "
+#~ "answer all your questions with great pleasure!\n"
+#~ "\t</p>\n"
+#~ "\t<p>\n"
+#~ "\tAre you a musician and will you be absent next rehearsal? Send a mail "
+#~ "to <a href=\"mailto:afwezig@arenbergorkest.be\">afwezig@arenbergorkest."
+#~ "be</a>. \n"
+#~ "\t</p>\n"
+#~ "\t<p>\n"
+#~ "\tYou can subscribe to our YouTube channel (with recordings of earlier "
+#~ "concerts!) or like our Facebook page! To go to either of those, click the "
+#~ "icons at the top of the page.\n"
+#~ "\t</p>\n"
+#~ "\t"
+
+#~ msgid "bv. Ana"
+#~ msgstr "e.g. Ana"
+
+#~ msgid "bv. 08-12-1996"
+#~ msgstr "e.g. 08-12-1996"
 
 #~ msgid "Naar oude site"
 #~ msgstr "To old website"
@@ -1784,9 +1979,6 @@ msgstr "Sunday the 8th of may – 20h30 in Aula Pieter De Somer, Leuven"
 #~ "num_non_student_tickets)s, KU Leuven Culture Card holders: %(first_form."
 #~ "num_culture_card_tickets)s)<br>\n"
 #~ "\t\t\t\t\t"
-
-#~ msgid "Wachtwoord"
-#~ msgstr "Password"
 
 #~ msgid "Aanpassen."
 #~ msgstr "Change."
