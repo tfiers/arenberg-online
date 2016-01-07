@@ -38,6 +38,12 @@ class ContactForm(forms.Form):
     subject = forms.CharField(required=True)
     message = forms.CharField(required=True,widget=forms.Textarea(attrs={'class' : 'form-control'})) #form-control activates bootstrap textarea
 
+    def clean_email_visitor(self):
+        mail = self.cleaned_data.get("email_visitor")
+        if get_validate(mail) == False:
+            raise forms.ValidationError("Not a valid e-mail address.")
+        return mail
+
 class UserForm(forms.ModelForm):
 
     error_messages = {'password_mismatch': _("The two password fields didn't match."),'email_mismatch': _("The two e-mail fields didn't match."),}
