@@ -14,6 +14,7 @@ from PIL import Image
 import StringIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.conf import settings
+import requests
 
 MIN_LENGTH = 8
 MAX_FILESIZE = 100*1024 #in bytes
@@ -25,7 +26,7 @@ MAX_PHONE_NUMBER_LENGTH = 12
 def get_validate(address):
     return requests.get(
         "https://api.mailgun.net/v3/address/validate",
-        auth=("api", settings.MAILGUN_KEY),
+        auth=("api", settings.MAILGUN_API_KEY),
         params={"address": address})
 
 class ContactForm(forms.Form):

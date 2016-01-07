@@ -61,11 +61,11 @@ def do_something_if_changed(sender, instance, **kwargs):
 	    pass #user is new (register) so ignore signal
 	else:
 		#user exists (edit form), check if mail has changed:
-		username = instance.associated_user.first_name+" "+instance.associated_user.last_name
+		username = instance.first_name+" "+instance.last_name
 		if usr.email != instance.email:
 			group_list_usr = usr.userprofile.groups_as_string.split(", ")
-	        for grp in group_list_usr:
-	        	requests.delete("https://api.mailgun.net/v3/lists/{}@arenbergorkest.be/members/{}".format(grp,usr.email),auth=('api', settings.MAILGUN_API_KEY))
+			for grp in group_list_usr:
+				requests.delete("https://api.mailgun.net/v3/lists/{}@arenbergorkest.be/members/{}".format(grp,usr.email),auth=('api', settings.MAILGUN_API_KEY))
 	    	group_list_inst = instance.userprofile.groups_as_string.split(", ")
 	    	for gr in group_list_inst:
 				requests.post("https://api.mailgun.net/v3/lists/{}@arenbergorkest.be/members".format(gr),
