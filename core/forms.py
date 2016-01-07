@@ -13,6 +13,7 @@ from django.core.files.images import get_image_dimensions
 from PIL import Image
 import StringIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.conf import settings
 
 MIN_LENGTH = 8
 MAX_FILESIZE = 100*1024 #in bytes
@@ -20,6 +21,12 @@ MAX_HEIGHT = 50 #in px
 MAX_WIDTH = 50 #in px
 MIN_PHONE_NUMBER_LENGTH = 8
 MAX_PHONE_NUMBER_LENGTH = 12
+
+def get_validate(address):
+    return requests.get(
+        "https://api.mailgun.net/v3/address/validate",
+        auth=("api", settings.MAILGUN_KEY),
+        params={"address": address})
 
 class ContactForm(forms.Form):
     """
@@ -51,6 +58,8 @@ class UserForm(forms.ModelForm):
         email2 = self.cleaned_data.get("email2")
         if email1 and email2 and email1 != email2:
             raise forms.ValidationError(self.error_messages['email_mismatch'],code='email_mismatch',)
+        if get_validate(email1) == False:
+            raise forms.ValidationError("Not a valid e-mail address.")
         return email2
 
     def clean_phone_number(self):
@@ -118,6 +127,12 @@ class UserEditForm(forms.ModelForm):
         fields = ("first_name","last_name","phone_number","study","email") 
 
     password2 = forms.CharField(label=_("password2"),widget=forms.PasswordInput(attrs={'autofocus': ''}),)
+
+    def clean_email(self):
+        mail = self.cleaned_data.get("email")
+        if get_validate(mail) == False:
+            raise forms.ValidationError("Not a valid e-mail address.")
+        return mail
 
     def clean_phone_number(self):
         pn = self.cleaned_data.get("phone_number")

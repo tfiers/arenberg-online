@@ -21,7 +21,7 @@
 	<h1>{% trans "Verjaardagen" %}</h1>
 		<div>
 		{%for b in birthdays %}
-		<p><b>{{b.date_of_event|date:"D d/m/Y"}}</b> {%trans 'Verjaardag' %} <b>{{b.name}}</b></p>
+		<p>{{b.date_of_event|date:"l d/m"}} {{b.name}}</p>
 		{% endfor %}
 		</div>
 </div>

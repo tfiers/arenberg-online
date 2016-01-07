@@ -110,7 +110,7 @@ def contact_sent(request):
     return render(request, 'contact_sent.html')
 
 def home(request):
-	return render(request, 'Arenbergorkest.htm')
+	return render(request, 'arenbergorkest.html')
 
 def notapproved(request):
     return render(request, 'registration/notapproved.html')
@@ -282,32 +282,32 @@ def calendarview(request, pYear=datetime.datetime.now().year, pMonth=datetime.da
     """
     Show calendar of events for specified month and year. The pYear and pMonth arguments are taken from regex in urls.py.
     """
-    lYear = int(pYear)
-    lMonth = int(pMonth)
-    lCalendarFromMonth = datetime.date(lYear, lMonth, 1)
-    lCalendarToMonth = datetime.date(lYear, lMonth, calendar.monthrange(lYear, lMonth)[1])
-    lEvents = Event.objects.filter(date_of_event__gte=lCalendarFromMonth, date_of_event__lte=lCalendarToMonth).order_by("start_hour")
-    lBirthDays = Event.objects.filter(event_color=4,date_of_event__month=lMonth) #get all birthdays in the current month
-    lCalendar = Calendar(lEvents,lBirthDays).formatmonth(lYear, lMonth)
-    lPreviousYear = lYear
-    lPreviousMonth = lMonth - 1
-    if lPreviousMonth == 0:
-        lPreviousMonth = 12
-        lPreviousYear = lYear - 1
-    lNextYear = lYear
-    lNextMonth = lMonth + 1
-    if lNextMonth == 13:
-        lNextMonth = 1
-        lNextYear = lYear + 1
+    year = int(pYear)
+    month = int(pMonth)
+    CalendarFromMonth = datetime.date(year, month, 1)
+    CalendarToMonth = datetime.date(year, month, calendar.monthrange(year, month)[1])
+    events = Event.objects.filter(date_of_event__gte=CalendarFromMonth, date_of_event__lte= CalendarToMonth).order_by("start_hour")
+    birthDays = Event.objects.filter(event_color=4,date_of_event__month=month) #get all birthdays in the current month
+    cal= Calendar(events,birthDays).formatmonth(year, month)
+    previousyear = year
+    previousmonth = month - 1
+    if previousmonth == 0:
+        previousmonth = 12
+        previousyear = year - 1
+    nextYear = year
+    nextMonth = month + 1
+    if nextMonth == 13:
+        nextMonth = 1
+        nextYear = year + 1
 
-    return render(request, 'calendarview.html', {'Calendar' : mark_safe(lCalendar),
-                                                       'Month' : lMonth,
-                                                       'MonthName' : named_month(lMonth),
-                                                       'Year' : lYear,
-                                                       'PreviousMonth' : lPreviousMonth,
-                                                       'PreviousMonthName' : named_month(lPreviousMonth),
-                                                       'PreviousYear' : lPreviousYear,
-                                                       'NextMonth' : lNextMonth,
-                                                       'NextMonthName' : named_month(lNextMonth),
-                                                       'NextYear' : lNextYear,
+    return render(request, 'calendarview.html', {'Calendar' : mark_safe(cal),
+                                                       'Month' : month,
+                                                       'MonthName' : named_month(month),
+                                                       'Year' : year,
+                                                       'PreviousMonth' : previousmonth,
+                                                       'PreviousMonthName' : named_month(previousmonth),
+                                                       'PreviousYear' : previousyear,
+                                                       'NextMonth' : nextMonth,
+                                                       'NextMonthName' : named_month(nextMonth),
+                                                       'NextYear' : nextYear,
                                                    })

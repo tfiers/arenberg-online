@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-06 01:43+0100\n"
+"POT-Creation-Date: 2016-01-06 17:56+0100\n"
 "PO-Revision-Date: 2015-05-08 12:11+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -210,7 +210,11 @@ msgstr ""
 msgid "If this event is a birthday, this attr holds the user."
 msgstr ""
 
-#: core/templates/base.html:29
+#: core/templates/Arenbergorkest.html:11
+msgid "Arenbergorkest - Symfonisch Studentenorkest uit Leuven"
+msgstr ""
+
+#: core/templates/Arenbergorkest.html:444 core/templates/base.html:29
 #: ticketing/templates/lente2016/complete_order.html:12
 #: ticketing/templates/lente2016/landing.html:14
 #: ticketing/templates/lente2016/start_order.html:12
@@ -219,6 +223,181 @@ msgstr ""
 #: ticketing/templates/snowman2016/landing.html:16
 msgid "Arenbergorkest"
 msgstr "Arenberg Orchestra"
+
+#: core/templates/Arenbergorkest.html:446
+msgid "Symfonisch Studentenorkest KU Leuven"
+msgstr "Symphonic student orchestra KU Leuven"
+
+#: core/templates/Arenbergorkest.html:448
+msgid "We zijn op zoek naar geëngageerde nieuwe muzikanten."
+msgstr "We're looking for new enthousiast musicians."
+
+#: core/templates/Arenbergorkest.html:449
+msgid "Iets voor jou? Maak hier kennis met ons:"
+msgstr "Interested in playing in our orchestra? Read on!"
+
+#: core/templates/Arenbergorkest.html:483
+msgid "Elk semester werken we aan een nieuwe concertreeks."
+msgstr "Every semester we work on a new series of "
+"concerts."
+
+#: core/templates/Arenbergorkest.html:486
+msgid "Muziek: een mix van klassiek en filmscores, met alles daartussen."
+msgstr "The music is a mix between classical music, filmscores and "
+"everything inbetween."
+
+#: core/templates/Arenbergorkest.html:488
+msgid "Van Beethoven&nbsp;tot John Williams,"
+msgstr "From Beethoven&nbsp;to John Williams,"
+
+#: core/templates/Arenbergorkest.html:489
+msgid ""
+"van de musicalmuziek van Leonard Bernstein tot de donkere tango van&nbsp;"
+"Astor Piazzolla."
+msgstr ""
+"from the musical music of Leonard Bernstein to the dark tango of &nbsp;"
+"Astor Piazzola."
+
+#: core/templates/Arenbergorkest.html:538
+msgid "Ontmoet de leukste mensen uit alle studierichtingen in Leuven."
+msgstr "Meet fun people out of all different studies in Leuven."
+
+#: core/templates/Arenbergorkest.html:609
+msgid "We really like music."
+msgstr ""
+
+#: core/templates/Arenbergorkest.html:611
+msgid ""
+"We hopen dat we nieuwe leden kunnen aansteken met onze liefde voor samenspel "
+"en het symfonisch repertoire."
+msgstr "We hope we can inspire new musicians with our love for playing music "
+"together, as well as our love for symphonic music."
+
+#: core/templates/Arenbergorkest.html:649
+msgid "We houden geen audities.*"
+msgstr "We do not hold auditions.*"
+
+#: core/templates/Arenbergorkest.html:651
+msgid ""
+"Er wordt van jou verwacht dat je apart met de muziek bezig bent en ze "
+"oefent, vooral als je weinig orkestervaring en/of technische baggage hebt."
+msgstr "We expect you to rehearse at home, especially if you don't have "
+"any orchestra experience or if you're an inexperienced musician."
+
+#: core/templates/Arenbergorkest.html:652
+msgid "Vervolgens is voldoende aanwezigheid op de repetities noodzakelijk."
+msgstr "You also have to attend enough rehearsals during the semester."
+
+#: core/templates/Arenbergorkest.html:653
+msgid ""
+"Elke instrumentengroep heeft een ervaren aanvoerder die je graag op weg "
+"helpt."
+msgstr "Every instrument group has an experienced leader who will gladly "
+"help you on your way."
+
+#: core/templates/Arenbergorkest.html:656
+msgid ""
+"* In het (zeldzame) geval dat een instrumentengroep na de tweede repetitie "
+"nog te groot is, wordt er geloot onder de nieuwe leden."
+msgstr "* In the (rare) case there are too many applicants for an "
+"instrument, we randomly select who may stay."
+
+#: core/templates/Arenbergorkest.html:697
+msgid "Repetities:"
+msgstr "Rehearsals:"
+
+#: core/templates/Arenbergorkest.html:698
+msgid "Eerste ~10 donderdagen van elk academisch semester"
+msgstr "The first ~10 thursdays of each semester"
+
+#: core/templates/Arenbergorkest.html:699
+msgid "19u45 tot 22u30"
+msgstr "19u45 till 22u30"
+
+#: core/templates/Arenbergorkest.html:700
+msgid "in de Ensemblezaal van het STUK (Naamsestraat 96, Leuven)."
+msgstr "in the Ensemblezaal at the STUK (Naamsestraat 96, "
+"Leuven)."
+
+#: core/templates/Arenbergorkest.html:702
+msgid ""
+"Enkele extra repetities tegen de concerten op het einde van het semester."
+msgstr "There are always a few extra rehearsals at the end of semester."
+
+#: core/templates/Arenbergorkest.html:703
+msgid "Eén weekend per&nbsp;semester: repetitieweekend."
+msgstr "One weekend per&nbsp;semester: rehearsal weekend."
+
+#: core/templates/Arenbergorkest.html:734
+msgid ""
+"Het repetitieweekend is drie dagen intens muziek maken, samenleven en "
+"plezier maken."
+msgstr "The rehearsal weekend is three days of making music, living "
+"together and having fun!"
+
+#: core/templates/Arenbergorkest.html:779
+msgid "Voor wie wilt, doen we nog een heleboel extra dingen:"
+msgstr "We also do a lot of other activities:"
+
+#: core/templates/Arenbergorkest.html:781
+msgid "Zo hebben we vorige winter de kindertekenfilm"
+msgstr "Last winter we showed the animated movie"
+
+#: core/templates/Arenbergorkest.html:781
+msgid "getoond, en in kleine bezetting live de muziek gespeeld."
+msgstr "and played the music live!"
+
+#: core/templates/Arenbergorkest.html:783
+msgid ""
+"Na de repetities gaan we meestel samen iets drinken. Regelmatig organiseert "
+"het orkest activiteiten: feestjes, schaatsen, film, cantus,&nbsp;dropping, "
+"dansles, ..."
+msgstr "After the rehearsals we often go drink one. Regularily activities "
+"are organised: parties, ice skating, films, cantuses, droppings, ..."
+
+#: core/templates/Arenbergorkest.html:785
+msgid "Elk jaar is een van de hoogtepunten de concertreis in september."
+msgstr "One of the highlights every year is the concert tour abroad "
+"in September."
+
+#: core/templates/Arenbergorkest.html:786
+msgid ""
+"Dit jaar zijn we op concertreis geweest in China (Wuhan, Chengdu, Beijing):"
+msgstr "Last year we traveled to China (Wuhan, Chengdu, Beijing):"
+
+#: core/templates/Arenbergorkest.html:871
+msgid ""
+"Zin om ons aan het werk te zien? Kom dan naar een van onze kerst- of "
+"lenteconcerten!"
+msgstr "Would you like to hear us play? Come to one of our winter- "
+"or spring concerts!"
+
+#: core/templates/Arenbergorkest.html:873
+msgid ""
+"Zin om mee te spelen? Kom dan begin volgend academiejaar zeker naar de open "
+"repetitie!"
+msgstr "Would you like to join us? Be sure to come to our open rehearsal "
+"next academic year!"
+
+#: core/templates/Arenbergorkest.html:875
+msgid "Check ook onze"
+msgstr "Check our"
+
+#: core/templates/Arenbergorkest.html:875
+msgid "Facebookpagina"
+msgstr "Facebook page"
+
+#: core/templates/Arenbergorkest.html:876
+msgid "en contacteer ons op"
+msgstr "and contact us at"
+
+#: core/templates/Arenbergorkest.html:878
+msgid "Hopelijk tot binnenkort!"
+msgstr "See you soon!"
+
+#: core/templates/Arenbergorkest.html:879
+msgid "Het Arenbergorkest"
+msgstr "The Arenberg Orchestra"
 
 #: core/templates/base.html:33
 msgid "Over"
@@ -328,10 +507,6 @@ msgstr ""
 #: core/templates/calendar.html:21
 msgid "Verjaardagen"
 msgstr "Birthdays"
-
-#: core/templates/calendar.html:24
-msgid "Verjaardag"
-msgstr "Birthday"
 
 #: core/templates/calendarview.html:18
 msgid "Vandaag"
@@ -529,7 +704,9 @@ msgstr "e.g. Obama"
 
 #: core/templates/registration/edit.html:45
 #: core/templates/registration/register.html:48
-msgid "Je foto (niet verplicht) (max. 50x50 pixels, 20kb grootte)"
+#, fuzzy
+#| msgid "Je foto (niet verplicht) (max. 50x50 pixels, 20kb grootte)"
+msgid "Je foto (niet verplicht) (max. 100kb grootte)"
 msgstr "Your picture (not required) (max. 50x50, 20kb)"
 
 #: core/templates/registration/edit.html:59
@@ -671,8 +848,9 @@ msgstr "Your new password again, to be sure"
 msgid ""
 "De link om je wachtwoord te veranderen is niet meer geldig: te oud of al "
 "gebruikt. Probeer nog een keer."
-msgstr "The link to set a new password is not valid anymore: too old "
-"or already used. Try again."
+msgstr ""
+"The link to set a new password is not valid anymore: too old or already "
+"used. Try again."
 
 #: core/templates/registration/password_reset_done.html:4
 msgid "Reset mail sent"
@@ -682,8 +860,8 @@ msgstr ""
 msgid ""
 "De instructies om je wachtwoord te veranderen zijn verstuurd naar je e-"
 "mailadres."
-msgstr "The instructions to change your password are sent to your "
-"email adress."
+msgstr ""
+"The instructions to change your password are sent to your email adress."
 
 #: core/templates/registration/password_reset_form.html:4
 msgid "Wachtwoord reset"
@@ -698,9 +876,9 @@ msgstr "Reset password"
 msgid ""
 "Geef het e-mailadres in van je account. Nadat je je e-mailadres hebt "
 "ingegeven sturen we je een mail om je wachtwoord te veranderen."
-msgstr "Give the email address of your account. We'll send an "
-"email to the address containing a link with which you can change "
-"your password."
+msgstr ""
+"Give the email address of your account. We'll send an email to the address "
+"containing a link with which you can change your password."
 
 #: core/templates/registration/password_reset_form.html:25
 msgid "Je e-mail"
@@ -1386,6 +1564,7 @@ msgid "samen"
 msgstr "a total of"
 
 #: ticketing/templates/lente2016/complete_order.html:30
+#, python-format
 msgid ""
 "\n"
 "\t\t\t<p>\n"
@@ -1663,8 +1842,9 @@ msgid ""
 "U ontvangt zometeen een e-mail met nog eens alle informatie van uw "
 "bestelling. Indien u de mail niet in uw inbox tevoorschijn ziet komen, kijk "
 "dan eens in uw spamfolder."
-msgstr "You'll soon receive an email with all info again about your order. "
-"If the mail doesn't pop up in your inbox, check your spam folder too."
+msgstr ""
+"You'll soon receive an email with all info again about your order. If the "
+"mail doesn't pop up in your inbox, check your spam folder too."
 
 #: ticketing/templates/lente2016/thanks.html:29
 msgid "Bestel meer tickets!"
@@ -1713,6 +1893,9 @@ msgstr "Thursday the 5th of May – 20h30 in Aula Pieter De Somer, Leuven"
 #: ticketing/views/lente2016.py:23
 msgid "Zondag 8 mei - om 19u30 in Aula Pieter De Somer, Leuven"
 msgstr "Sunday the 8th of may – 20h30 in Aula Pieter De Somer, Leuven"
+
+#~ msgid "Verjaardag"
+#~ msgstr "Birthday"
 
 #~ msgid ""
 #~ "\n"

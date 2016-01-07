@@ -26,7 +26,7 @@
     			{{ hidden }}
 			{% endfor %}
 				<label for="{{ form.first_name.id_for_label }}">{% trans "Je voornaam" %}</label>
-				<input type="text" name="{{ form.first_name.html_name }}" id="{{ form.first_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Barack' %}" value="{{ form.first_name.value|default_if_none:'' }}">
+				<input type="text" name="{{ form.first_name.html_name }}" id="{{ form.first_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. South' %}" value="{{ form.first_name.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
@@ -36,7 +36,7 @@
 					{% endfor %}
 				</span>
 				<label for="{{ useredit.last_name.id_for_label }}">{% trans "Je achternaam" %}</label>
-				<input type="text" name="{{ form.last_name.html_name }}" id="{{ form.last_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. Obama' %}" value="{{ form.last_name.value|default_if_none:'' }}">
+				<input type="text" name="{{ form.last_name.html_name }}" id="{{ form.last_name.id_for_label }}" class="form-control" placeholder="{% trans 'bv. East' %}" value="{{ form.last_name.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
@@ -93,7 +93,7 @@
 					{% endfor %}
 				</span>
 				<label for="{{ form.email.id_for_label }}">{% trans "Je e-mailadres" %}</label>
-				<input type="text" name="{{ form.email.html_name }}" id="{{ form.email.id_for_label }}" class="form-control" placeholder="{% trans 'bv. yesmrpresident@whitehouse.com' %}" value="{{ form.email.value|default_if_none:'' }}">
+				<input type="text" name="{{ form.email.html_name }}" id="{{ form.email.id_for_label }}" class="form-control" placeholder="{% trans 'bv. gerardderover@tvolen.be' %}" value="{{ form.email.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
@@ -103,7 +103,7 @@
 					{% endfor %}
 				</span>
 				<label for="{{ form.email2.id_for_label }}">{% trans "Je e-mailadres opnieuw" %}</label>
-				<input type="text" name="{{ form.email2.html_name }}" id="{{ form.email2.id_for_label }}" class="form-control" placeholder="{% trans 'bv. anabanana@fruit.org' %}" value="{{ form.email2.value|default_if_none:'' }}">
+				<input type="text" name="{{ form.email2.html_name }}" id="{{ form.email2.id_for_label }}" class="form-control" placeholder="{% trans 'bv. gerardderover@tvolen.be' %}" value="{{ form.email2.value|default_if_none:'' }}">
 			</div>
 
 			<div class="form-group">
@@ -113,7 +113,7 @@
 					{% endfor %}
 				</span>
 				<label for="{{ form.password1.id_for_label }}">{% trans "Je wachtwoord" %}</label>
-				<input type="password" name="{{ form.password1.html_name }}" id="{{ form.password1.id_for_label }}" class="form-control" placeholder="{% trans 'bv. ikbenstiekemeenpeer' %}" value="{{ form.password1.value|default_if_none:'' }}" data-toggle="password">
+				<input type="password" name="{{ form.password1.html_name }}" id="{{ form.password1.id_for_label }}" class="form-control" placeholder="{% trans 'bv. hunter2hunter2' %}" value="{{ form.password1.value|default_if_none:'' }}" data-toggle="password">
 			</div>
 
 			<div class="form-group">
@@ -123,7 +123,7 @@
 					{% endfor %}
 				</span>
 				<label for="{{ form.password2.id_for_label }}">{% trans "Je wachtwoord opnieuw" %}</label>
-				<input type="password" name="{{ form.password2.html_name }}" id="{{ form.password2.id_for_label }}" class="form-control" placeholder="{% trans 'bv. ikbenstiekemeenpeer' %}" value="{{ form.password2.value|default_if_none:'' }}" data-toggle="password">
+				<input type="password" name="{{ form.password2.html_name }}" id="{{ form.password2.id_for_label }}" class="form-control" placeholder="{% trans 'bv. hunter2hunter2' %}" value="{{ form.password2.value|default_if_none:'' }}" data-toggle="password">
 			</div>
 
 			<div class="form-group">

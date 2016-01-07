@@ -29,6 +29,7 @@ def change_user_mailing_lists(sender, instance, action, reverse, model, pk_set, 
 	Detects when something in the m2m relationship of groups and users is changed and applies those changes to the mailing lists.
 	"""
 	mail = instance.associated_user.email
+	username = instance.associated_user.first_name+" "+instance.associated_user.last_name
 	#if groups are going to be added
 	if action == "post_add":
 		groups = instance.groups_as_string
@@ -38,6 +39,7 @@ def change_user_mailing_lists(sender, instance, action, reverse, model, pk_set, 
 		 	requests.post("https://api.mailgun.net/v3/lists/{}@arenbergorkest.be/members".format(group),
 		    auth=('api', settings.MAILGUN_API_KEY),
 		    data={'subscribed': True,
+		    	  'name':username,
 		          'address': mail})
 	#if groups are going to be removed
 	if action == "pre_clear": 
@@ -59,15 +61,17 @@ def do_something_if_changed(sender, instance, **kwargs):
 	    pass #user is new (register) so ignore signal
 	else:
 		#user exists (edit form), check if mail has changed:
-	    if usr.email != instance.email:
-	        group_list_usr = usr.userprofile.groups_as_string.split(", ")
+		username = instance.associated_user.first_name+" "+instance.associated_user.last_name
+		if usr.email != instance.email:
+			group_list_usr = usr.userprofile.groups_as_string.split(", ")
 	        for grp in group_list_usr:
 	        	requests.delete("https://api.mailgun.net/v3/lists/{}@arenbergorkest.be/members/{}".format(grp,usr.email),auth=('api', settings.MAILGUN_API_KEY))
-        	group_list_inst = instance.userprofile.groups_as_string.split(", ")
-        	for gr in group_list_inst:
+	    	group_list_inst = instance.userprofile.groups_as_string.split(", ")
+	    	for gr in group_list_inst:
 				requests.post("https://api.mailgun.net/v3/lists/{}@arenbergorkest.be/members".format(gr),
 			    auth=('api', settings.MAILGUN_API_KEY),
 			    data={'subscribed': True,
+			    	  'name':username,
 			          'address': instance.email})
 
 @receiver(pre_delete, sender=UserProfile)

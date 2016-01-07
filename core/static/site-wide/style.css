@@ -22,11 +22,11 @@
 
 /* title */
 .navbar-default .navbar-brand {
-    color: #777;
+    color: #555;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-    color: #5E5E5E;
+    color: #555;
 }
 /* link */
 .navbar-default .navbar-nav > li > a {
