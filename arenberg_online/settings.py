@@ -2,10 +2,10 @@
 django settings for arenberg_online project.
 
 For more information on this file, see
-https://docs.djangoproject.com/en/1.7/topics/settings/
+https://docs.djangoproject.com/en/1.8/topics/settings/
 
 For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.7/ref/settings/
+https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 import os
@@ -17,7 +17,6 @@ if os.path.isfile("/home/org/arenbergorkest/we_are_in_production"):
     DEVELOPPING = False
 else:
     DEVELOPPING = True
-DEVELOPPING = True
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))

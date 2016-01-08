@@ -49,12 +49,13 @@
                         <li><a href="{% url 'set_lang' lang='en' %}"><strong>NL</strong> | EN</a></li>
                         {% endif %}
 
-                        <li><a href="https://www.facebook.com/Arenbergorkest/" class="pull-left"><img height = "30" src="{% static "images/fb_small.png" %}"></a>
+                        <li><a href="https://www.facebook.com/Arenbergorkest/" class="pull-left"><img height = "30" src="{% static "images/fb_small.png" %}"></a></li>
 
                         <li><a href="https://www.youtube.com/user/arenbergorkest" class="pull-left"><img height = "30" src="{% static "images/yt_small.png" %}"></a></li>
 
                     </ul>
 
+                    {% comment %}
                     <ul class="nav navbar-nav navbar-right">
 
                         {% if user.is_authenticated %}
@@ -106,6 +107,7 @@
                         {% endif %}
 
                     </ul>
+                    {% endcomment %}
                 </div>
             </div>
         </nav>
