@@ -115,12 +115,12 @@ class SuggestFeatureForm(forms.ModelForm):
 		model=Feature
 		exclude=['suggested_by'] #, 'suggested_by_string'
 		labels = {
-			'name': _("Naam"),
-			'description': _('Beschrijving feature'),
+			'name': _("Idee"),
+			'description': _('Beschrijving idee'),
 		}
 		help_texts = {
-			'name':_("Naam van de feature die je wil voorstellen."),
-			'desciption':_("De bijbehorende beschrijving."),
+			'name':_("Welk idee is het?"),
+			'desciption':_("Uitgebreide beschrijving!."),
 		}
 	helper = FormHelper()
 	helper.form_action = 'polls:suggest_feature'

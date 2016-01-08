@@ -17,6 +17,7 @@ from core.models import  User, UserProfile, Event
 from core.htmlcalendar import Calendar
 from forms import BirthdayEditForm, UserForm, UserProfileForm, UserEditForm, UserProfileEditForm, CustomPasswordChangeForm, AddEventForm, ContactForm
 import gc
+import os
 import calendar
 from django.utils.safestring import mark_safe
 from django.core.mail import send_mail
@@ -147,6 +148,8 @@ def calendarview_add(request):
 @login_required
 @user_passes_test(lambda u:u.approved,login_url='/accessrestricted')
 def musicianlist(request,sort=None,order=None):
+    with open(os.path.join(settings.CONFIG_DIR, 'google_list.txt')) as f:
+        old_list_url = f.read().strip()
     #any case not covered here will cause a 404, any case not in the ..|..|.. at urls.py will cause one too
     if sort == 'fname':
         sort = 'first_name'
@@ -207,7 +210,7 @@ def musicianlist(request,sort=None,order=None):
             bdo = Event.objects.filter(birthday_user=u) #returns list with one event object
             bd += bdo 
         zipped = zip(us,uup,bd)
-    return render(request, 'musicianlist.html', {'musicians': zipped,'voornaam':'fname','achternaam':'lname','mail':'mail',
+    return render(request, 'musicianlist.html', {'old_list_url':old_list_url, 'musicians': zipped,'voornaam':'fname','achternaam':'lname','mail':'mail',
         'nummer':'phone','studie':'study','groepen':'group','datum':'datebirth','sortedattr':sort,'order':order,'reverse':'reverse'},)
 
 #used in musicianlist

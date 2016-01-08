@@ -23,7 +23,7 @@
         {% block custom_css_js %}{% endblock custom_css_js %}
     </head>
     <body>
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default navbar-static-top">
             <div class="container-fluid">
                 <a class="pull-left"><img height = "50" src="{% static "images/logo.png" %}"></a>
                 <div class="navbar-header"><a class="navbar-brand"><b>{%trans 'Arenbergorkest' %}</b></a></div>
@@ -34,7 +34,7 @@
 
                         <li><a href="{% url 'ticketing:snow_landing' %}">Home</a></li>
 
-                        <li><a href="{% url 'ticketing:start_order_snow' %}">{%trans "The Snowman" %}</a></li>
+                        <li><a href="{% url 'ticketing:start_order_snow' %}">{%trans "Tickets The Snowman" %}</a></li>
 
                         <!-- <li><a href="{% url 'ticketing:start_order_lente' %}">{%trans "Lenteconcerten" %}</a></li> -->
 
@@ -59,7 +59,7 @@
 
                         {% if user.is_authenticated %}
                         {% if request.user.approved %}
-                        <li><a href="{%url 'polls:browse_feature' %}">{% trans "Suggesties website" %}</a></li>
+                        <li><a href="{%url 'polls:browse_feature' %}">{% trans "Heb je een idee?" %}</a></li>
 
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="">{% trans "Lenteconcerten" %}<span class="caret"></span></a>

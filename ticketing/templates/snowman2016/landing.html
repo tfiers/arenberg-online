@@ -9,33 +9,34 @@
 <link rel="stylesheet" href="{% static 'ticketing/style-landscape-tablet-and-larger.css' %}" media="(min-width: 992px)">
 {% endblock custom_css_js %}
 {% block content %}
+<body class=snowman>
+	<div id="header" style="color:white;">
 
-<div id="header">
-
-	<div class="container">
-		<h2 id="title-arenbergorkest" class="caps">{% trans "Arenbergorkest" %}</h2>
-		<h2 id="title-conductor" class="caps">{% trans "OLV Roel Willems" %}</h2>
-		<h1 id="title-space" class="caps">{% trans "THE SNOWMAN" %}</h1>
-	</div>
-	
-	<img align="center" height = '350px' src="{% static "images/snowman.jpg" %}">
-	
-	<footer class="footer">
 		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
-					<br>
-					<h3 id="tagline", class="caps">Symphony orchestra<br>
-						<span class="handwritten">plays music of</span><br>
-						<span id="tagline-third-line">chilling intensity</span></h3>
-					<p><a href="{%url 'ticketing:start_order_snow' %}" class="btn btn-danger order-btn">{% trans "Bestel tickets" %}</a></p>
-					<div id="more-info-reference"><em>{% trans "Zo 14 februari" %}</em><br>
-						{% trans "16:00 @ Aula Pieter De Somer, Leuven" %}<br>
-						{% trans "18:30 @ Aula Pieter De Somer, Leuven" %}<br>
+			<h2 id="title-arenbergorkest" class="caps">{% trans "Arenbergorkest" %}</h2>
+			<h2 id="title-conductor" class="caps">{% trans "OLV Roel Willems" %}</h2>
+			<h1 id="title-space" class="caps">{% trans "THE SNOWMAN" %}</h1>
+		</div>
+		
+		<footer class="footer" style="margin-top:18%;">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3">
+						<br>
+						<p><a href="{%url 'ticketing:explanation' %}" class="btn btn-default order-btn">{% trans "Wat is The Snowman?" %}</a></p>
+						<div style="color:white; font-size:15px;" id="more-info-reference"><em><b>{% trans "Zo 14 februari" %}</b></em><br>
+							{% trans "16:00 @ Aula Pieter De Somer, Leuven" %}<br>
+							{% trans "18:30 @ Aula Pieter De Somer, Leuven" %}<br>
+						</div>
+						<p><a href="{%url 'ticketing:explanation' %}" class="btn btn-default order-btn">{% trans "Bestel tickets" %}</a></p>
+						<div style="color:white; font-size:15px;" id="more-info-reference">
+							{% trans "5 euro voor kinderen van -12 jaar" %}<br>
+							{% trans "10 euro voor volwassenen" %}<br>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</footer>
-</div>
+		</footer>
+	</div>
+</body>
 {% endblock content %}

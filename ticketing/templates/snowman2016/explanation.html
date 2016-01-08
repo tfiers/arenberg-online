@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Snowman Concerten Arenbergorkest" %}{% endblock title %}
+{% block custom_css_js %}
+<link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{% static 'ticketing/style.css' %}">
+<link rel="stylesheet" href="{% static 'ticketing/landing-page-style.css' %}" media="(min-width: 992px)">
+<link rel="stylesheet" href="{% static 'ticketing/style-landscape-tablet-and-larger.css' %}" media="(min-width: 992px)">
+{% endblock custom_css_js %}
+{% block content %}
+
+<div id="header">
+
+	<div class="container">
+		<h2 id="title-arenbergorkest" class="caps">{% trans "Arenbergorkest" %}</h2>
+		<h2 id="title-conductor" class="caps">{% trans "OLV Roel Willems" %}</h2>
+		<h1 id="title-space" class="caps">{% trans "THE SNOWMAN" %}</h1>
+	</div>
+
+<!-- 	<img align="center" height = '370px' src="{% static "images/snowman.jpg" %}">
+
+	<br>
+	<br>
+	<br> -->
+	
+	<div align="left" style="margin-right:35%; margin-left:35%; font-size:16px;">
+
+
+		De Sneeuwman (The Snowman) is een Britse tekenfilm uit 1982, gebaseerd op het boek van Raymond Briggs uit 1978. In 1983 werd de film genomineerd voor een Oscar in de categorie ‘Beste geanimeerde korte film’ (Best Animated Short Film). De muziek uit de film is geschreven door Howard Blake.
+
+		In de tekenfilm wordt er niet gesproken: het verhaal wordt volledig verteld door beeld en muziek. Enkel het liedje ‘Walking in the Air’ wordt gezongen in het Engels.
+
+		The Snowman vertelt het verhaal van een jongen, James, die een sneeuwman maakt op een koude winterdag. Die avond, om middernacht, komt deze sneeuwman tot leven. Het jongetje wordt wakker en laat de sneeuwman zijn huis binnen. De sneeuwman is in eerste instantie druk met het onderzoeken van allerlei apparaten, speelgoed en andere zaken in het huis van het jongetje.
+
+		De sneeuwman herinnert zich dat hij naar een feest voor sneeuwmannen moet en neemt de jongen mee op reis. Samen vliegen ze door de lucht, over huizen, wegen en weilanden, naar de Noordpool. Op het feestje blijkt het jongetje de enige mens te zijn. Ze ontmoeten daar de Kerstman en diens rendieren. Samen vliegen de sneeuwman en het jongetje terug naar huis, waar de sneeuwman zijn plek in de tuin weer inneemt. De volgende ochtend schijnt de zon en het jongetje ontdekt dat zijn sneeuwman gesmolten is. Toch kan het echt geen droom geweest zijn, want het jongetje heeft de sjaal van de Kerstman nog...
+
+	</div>
+
+	<br>
+	<br>
+	<br>
+
+	<a href="{%url 'ticketing:start_order_snow' %}" class="btn btn-danger order-btn">{% trans "Bestel tickets!" %}</a>
+
+</div>
+{% endblock content %}

@@ -41,3 +41,11 @@ body {
 	font-size: 18px;
 }
 /* -- Temp -- */
+
+.snowman { 
+  background: url(../images/snowman.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
