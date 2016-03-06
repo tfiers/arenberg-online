@@ -7,6 +7,8 @@ Serves the public website and a private members section.
 
 www.arenbergorkest.be
 
+*Update Januari 2016: This project has moved to a private repo (maintained by [@lennartbu](https://github.com/lennartbu)). This repo is out of date.*
+
 Feature ideas
 -------------
 
